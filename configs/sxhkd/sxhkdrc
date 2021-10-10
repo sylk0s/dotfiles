@@ -2,6 +2,10 @@
 super + Return
 	kitty
 
+# Floating Terminal
+super + shift + Return
+	/home/sylkos/dotfiles/configs/sxhkd/scripts/floating_terminal.sh
+
 # Launch apps
 super + d
 	rofi -show run
