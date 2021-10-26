@@ -1,0 +1,1 @@
+~/stellaris_loader/IronyModManager &
