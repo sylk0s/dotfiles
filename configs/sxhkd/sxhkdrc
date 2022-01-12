@@ -14,7 +14,7 @@ super + d
 super + {Escape,r}
 	bspc {quit,wm -r}
 
-# Close window included because of the meme
+# Close window, included because of the meme
 alt + F4
 	bspc node --close
 
@@ -53,6 +53,7 @@ XF86AudioRaiseVolume
 XF86AudioLowerVolume
 	pactl set-sink-volume @DEFAULT_SINK@ -10%
 
+# Hack fix for minecraft 1.12
 super + o
 	xrandr --output DVI-D-0 --mode 1920x1200
 
@@ -66,3 +67,21 @@ ctrl + alt + {h,j,k,l}
 # contract a window by moving one of its side inward
 ctrl + alt + shift + {h,j,k,l}
 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# apps to add
+# reload more stuff like polybar
+# window name?
+# screenshots
+# audio
+# dunst?
+# shutdown
+# restart
+# swap to largest node
+# marking and preselecting
+# window state
+# node flags
+# focus next node / path node
+# focus last node
+# focus prev node in view
+# resize
+# audio key
