@@ -38,6 +38,8 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export PATH=$PATH:/home/sylkos/.local/bin/
 xsetroot -cursor_name left_ptr
 
+/home/sylkos/dotfiles/scripts/xmodmap_setup.sh
+
 xrandr --output DVI-D-0 --rotate right
 xrandr --output DVI-D-0 --pos 0x0 --mode 1920x1200 --output DP-0 --pos 1200x445 --output HDMI-0 --pos 3120x585
 #Not sure why its doing this but the last arg *should* be 3120x585

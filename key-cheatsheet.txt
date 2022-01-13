@@ -1,6 +1,6 @@
 Keyboard:
-191 = Big "o": F13 - Hotkey - XF86Launch5
-192 = Big "x": F14 - Hotkey - XF86Launch6
+191 = Big "o": F13 - Hotkey - Hyper_L
+192 = Big "x": F14 - Hotkey - Meta_L
 193 = Calc : F15 - Hotkey - XF86Favorites
 194 = Volume : F16 - Discord Mute/Deafen - XF86Launch7
 
