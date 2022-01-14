@@ -13,15 +13,15 @@ super + shift + {1-9,0}
         bspc node --to-desktop ^{1-9,10} --focus
 
 # expand a window by moving one of its side outward
-ctrl + alt + {h,j,k,l}
+super + alt + {h,j,k,l}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
 # contract a window by moving one of its side inward
-ctrl + alt + shift + {h,j,k,l}
+super + alt + ctrl + {h,j,k,l}
 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
 # swap current and largest node
-super + c
+super + s
 	bspc node -s biggest
 
 # Set window state
@@ -32,57 +32,39 @@ super + {w,e,Tab,f}
 super + y
 	bspc node newest.marked.local -n newest.!automatic.local
 
-# focus the node for the given path jump
-super + {p,b,comma,period}
-	bspc node -f @{parent,brother,first,second}
-
-# focus the next/previous node in the current desktop
-super + {_,shift + }c
-	bspc node -f {next,prev}.local
-
 # focus the next/previous desktop in the current monitor
 super + bracket{left,right}
 	bspc desktop -f {prev,next}.local
 
-# focus the last node/desktop
-super + {grave,\}
-	bspc {node,desktop} -f last || zsh -c "last-workspace.sh"
-
-# focus the older or newer node in the focus history
-super + {n,m}
-	bspc wm -h off; \
-	bspc node {older,newer} -f; \
-	bspc wm -h on
-
 # send node to prev/next desktop
-ctrl + alt + {Left,Right}
-    bspc node -d {prev,next} -f
-
-ctrl + alt + {h,l}
+super + alt + {n,m}
     bspc node -d {prev,next} -f
 
 # preselect the direction
-#super + ctrl + {Left,Down,Up,Right}
-	#bspc node -p {west,south,north,east}
+super + ctrl + {Left,Down,Up,Right}
+	bspc node -p {west,south,north,east}
 
-#super + ctrl + {h,j,k,l}
-	#bspc node -p {west,south,north,east}
-
-# preselect the ratio
-#super + ctrl + {1-9}
-	#bspc node -o 0.{1-9}
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
 
 # cancel the preselection for the focused node
-#super + ctrl + space
-	#bspc node -p cancel
+super + ctrl + b
+	bspc node -p cancel
 
 # cancel the preselection for the focused desktop
-#super + ctrl + shift + space
-	#bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+super + ctrl + g
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
 # move a floating window
-super + {Left,Down,Up,Right}
+super + shift + alt {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+super + shift + alt {h,j,k,l}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# set the node flags
+super + ctrl + {z,x,c,v}
+	bspc node -g {locked,sticky,private,marked}
 
 ### Applications
 
@@ -140,12 +122,10 @@ mod3 + shift + e
 	/home/sylkos/dotfiles/configs/sxhkd/scripts/floating_thunar.sh
 
 # ranger
-# doesnt work
 mod3 + r
 	kitty -e ranger
 
 # btop
-# doesnt work
 mod3 + g
 	kitty -e btop
 
@@ -193,15 +173,6 @@ alt + F4
 # Close window
 super + q
 	bspc node --close
-
-# Toggle Float
-super + Tab
-	bspc query --nodes -n focused.tiled && state=floating || state=tiled; \
-	bspc node --state \~$state
-
-# Fullscreen
-super + f
-	bspc node --state \~fullscreen
 
 ### Screenshots
 
