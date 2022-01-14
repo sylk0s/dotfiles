@@ -66,6 +66,10 @@ super + shift + alt {h,j,k,l}
 super + ctrl + {z,x,c,v}
 	bspc node -g {locked,sticky,private,marked}
 
+# move focused to preselected
+super + ctrl + m
+	bspc node -n newest.!automatic.local
+
 ### Applications
 
 # Terminal
