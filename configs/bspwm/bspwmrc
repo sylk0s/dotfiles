@@ -2,8 +2,6 @@
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 picom -b &
-wmname LG3D &
-
 
 # for via; may cause issues idk
 lxqt-policykit-agent &

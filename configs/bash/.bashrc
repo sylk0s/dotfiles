@@ -100,6 +100,11 @@ source $OSH/oh-my-bash.sh
 # alias bashconfig="mate ~/.bashrc"
 # alias ohmybash="mate ~/.oh-my-bash"
 alias cdmc="cd /home/sylkos/.local/share/multimc/instances"
+alias ll="exa -l"
+
+
+
+export TERM='xterm-256color'
 
 
 # BEGIN_KITTY_SHELL_INTEGRATION
