@@ -1,13 +1,3 @@
-if (empty($TMUX))
-    if (has("nvim"))
-        let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-    endif
-
-	if (has("termguicolors"))
-		set termguicolors
-    endif
-endif
-
 " Themes and color
 set background=dark
 colorscheme one
@@ -19,19 +9,8 @@ set smartindent
 set ruler
 set number
 
+" lets mouse wortk
 set mouse=a
 
-let g:chadtree_settings = { "theme.text_colour_set" : "nord" }
-
 " temp here
-autocmd VimEnter * CHADopen
-
-lua << EOF
-require("bufferline").setup { 
-				offsets = {{ 
-								filetype = "NvimTree", 
-								text = "File System",
-								text_align = "left" 
-								}}
-				}
-EOF
+autocmd VimEnter * CHADopen --nofocus

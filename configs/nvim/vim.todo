@@ -8,4 +8,6 @@ markdown
 tmux
 cmp configs (lots)
 ultisnips etc
-bufferline offset
+
+translate to lua?
+nerdtree replacement

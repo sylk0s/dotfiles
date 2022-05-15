@@ -22,5 +22,6 @@ Plug 'kdheepak/cmp-latex-symbols'
 
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'akinsho/bufferline.nvim' " Did some stuff here
+" Plug 'noib3/nvim-cokeline'
 
 call plug#end()
