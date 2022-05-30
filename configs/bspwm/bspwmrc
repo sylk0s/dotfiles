@@ -6,9 +6,9 @@ picom -b &
 # for via; may cause issues idk
 lxqt-policykit-agent &
 
-bspc monitor DVI-D-0 -d 1 2 3
-bspc monitor DP-0 -d 4 5 6 7
-bspc monitor HDMI-0 -d 8 9 0
+bspc monitor DVI-D-0 -d 1 2 3 4
+bspc monitor DP-0 -d 5 6 7 8 9
+bspc monitor HDMI-0 -d 10 11 12 13 
 
 bspc config border_width         1
 bspc config window_gap          10
