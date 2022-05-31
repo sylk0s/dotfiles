@@ -5,6 +5,8 @@ function update_variables(){
     source $context
 }
 
+dunstctl set-paused false
+
 update_variables
 
 bspc desktop --focus ^$m1

@@ -2,6 +2,7 @@
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 picom -b &
+dunst -config ~/dotfiles/configs/dunst/dunstrc &
 
 # for via; may cause issues idk
 lxqt-policykit-agent &

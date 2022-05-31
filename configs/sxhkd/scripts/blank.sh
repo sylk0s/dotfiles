@@ -18,6 +18,8 @@ set_variable m1 $f1
 set_variable m2 $f2
 set_variable m3 $f3
 
+dunstctl set-paused true
+
 bspc desktop --focus ^4
 bspc desktop --focus ^9
 bspc desktop --focus ^13
