@@ -4,10 +4,12 @@ colorscheme one
 let g:airline_theme = 'one'
 hi Normal guibg=NONE ctermbg=NONE
 
-set tabstop=2 softtabstop=2
+set tabstop=4 
+set softtabstop=4
+set expandtab
 set smartindent
 set ruler
-set number
+set number relativenumber
 
 " lets mouse wortk
 set mouse=a

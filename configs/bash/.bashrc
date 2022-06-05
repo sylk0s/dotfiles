@@ -101,7 +101,7 @@ source $OSH/oh-my-bash.sh
 # alias ohmybash="mate ~/.oh-my-bash"
 alias cdmc="cd /home/sylkos/.local/share/multimc/instances"
 alias ll="exa -l"
-
+alias oops="sudo !!"
 
 
 export TERM='xterm-256color'
