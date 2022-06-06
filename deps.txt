@@ -1,0 +1,13 @@
+bspwm
+btop
+dunst
+kitty
+neofetch
+nitrogen
+neovim
+picom
+polybar
+ranger
+rofi
+sxhkd
+thunar
