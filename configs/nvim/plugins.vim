@@ -1,14 +1,24 @@
 call plug#begin()
 
+" Navigation
 Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'} " Some config done, need to setup keybinds
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'akinsho/bufferline.nvim'
 
-Plug 'rakr/vim-one' " Config Finished
+" Aesthetic
+Plug 'rakr/vim-one' 
 
-Plug 'timonv/vim-cargo' " Learn Keybinds
-Plug 'JuliaEditorSupport/julia-vim' " Intricate said something about making this better, i should mess with that
+" Language Server / Lang Specific
+Plug 'onsails/lspkind.nvim'
+Plug 'iamcco/vim-language-server'
+Plug 'simrat39/rust-tools.nvim'
+Plug 'timonv/vim-cargo'
+Plug 'JuliaEditorSupport/julia-vim' 
 
-Plug 'hrsh7th/nvim-cmp' " Nope!
+" CMP Stuff
+Plug 'hrsh7th/nvim-cmp' 
 Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
 Plug 'windwp/nvim-autopairs'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/cmp-path'
@@ -16,12 +26,11 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'kdheepak/cmp-latex-symbols'
 
-" Had some issues with python here :\
-" Plug 'SirVer/ultisnips'
-" Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+" Snippets
+Plug 'SirVer/ultisnips'
+Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'akinsho/bufferline.nvim' " Did some stuff here
-" Plug 'noib3/nvim-cokeline'
+
+Plug 'nvim-treesitter/nvim-treesitter'
 
 call plug#end()
