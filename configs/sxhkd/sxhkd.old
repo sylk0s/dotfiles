@@ -1,31 +1,16 @@
 ### Movement
 
 # Focus/swap windows by direction
-super + {_,shift + }{a,s,w,d}
-	bspc node --{focus,swap} {west,south,north,east}
-
 super + {_,shift + }{h,j,k,l}
-        bspc node --{focus,swap} {west,south,north,east}
+	bspc node --{focus,swap} {west,south,north,east}
 
 # Switch to desktop
 super + {1-9,0}
         bspc desktop --focus ^{1-3,5-8,10,11,12}
 
-super + alt + {1-4}
-        bspc desktop --focus ^{5-8}
-
-super + ctrl + {1-3}
-        bspc desktop --focus ^{10-12}
-
 # Move window to selected desktop
 super + shift + {1-9,0}
         bspc node --to-desktop ^{1-3,5-8,10,11,12} --focus
-
-super + shift + alt + {1-4}
-        bspc node --to-desktop ^{5-8} --focus
-
-super + shift + ctrl + {1-3}
-        bspc node --to-desktop ^{10-12} --focus
 
 # expand a window by moving one of its side outward
 super + alt + {h,j,k,l}
@@ -34,73 +19,61 @@ super + alt + {h,j,k,l}
 super + alt + {Left, Down, Up, Right}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
-super + alt + {a,s,w,d}
-        bspc node -z {left -20 0,bottom 0 20,top 0 -20, right 20 0}
-
 # contract a window by moving one of its side inward
-super + ctrl + {h,j,k,l}
+super + alt + ctrl + {h,j,k,l}
 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
-super + ctrl + {Left, Down, Up, Right}
+super + alt + ctrl + {Left, Down, Up, Right}
 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 	
-super + ctrl + {a,s,w,d}
-        bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
-
 # swap current and largest node
-super + v
- 	bspc node -s biggest
+super + s
+	bspc node -s biggest
 
 # Set window state
-super + {z,x,c,f}
- 	bspc node -t '~{tiled,pseudo_tiled,floating,fullscreen}'
+super + {w,e,Tab,f}
+	bspc node -t '~{tiled,pseudo_tiled,floating,fullscreen}'
 
 # send the newest marked node to the newest preselected node
-super + e
- 	bspc node newest.marked.local -n newest.!automatic.local
+super + y
+	bspc node newest.marked.local -n newest.!automatic.local
 
 # focus the next/previous desktop in the current monitor
 super + bracket{left,right}
 	bspc desktop -f {prev,next}.local
 
 # send node to prev/next desktop
-super + shift + bracket{left,right}
-   bspc node -d {prev,next} -f
+super + alt + {n,m}
+    bspc node -d {prev,next} -f
 
 # preselect the direction
-super + alt + shift + {Left,Down,Up,Right}
+super + ctrl + {Left,Down,Up,Right}
 	bspc node -p {west,south,north,east}
 
-super + alt + shift + {h,j,k,l}
+super + ctrl + {h,j,k,l}
 	bspc node -p {west,south,north,east}
-
-super + alt + shift + {a,s,w,d}
-        bspc node -p {west,south,north,east}
 
 # cancel the preselection for the focused node
-super + shift + b
+super + ctrl + b
 	bspc node -p cancel
 
 # cancel the preselection for the focused desktop
-super + alt + b
+super + ctrl + g
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
 # move a floating window
-super + shift + ctrl + {Left,Down,Up,Right}
+super + shift + alt {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
-super + shift + ctrl + {h,j,k,l}
+super + shift + alt {h,j,k,l}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
-
-super + shift + ctrl + {a,s,w,d}
-        bspc node -v {-20 0,0 20,0 -20,20 0}
 
 # set the node flags
 super + ctrl + {z,x,c,v}
-	bspc node -g {marked,sticky,private,locked}
+	bspc node -g {locked,sticky,private,marked}
 
 # move focused to preselected
-super + t
+super + ctrl + m
 	bspc node -n newest.!automatic.local
 
 ### Applications
@@ -109,55 +82,67 @@ super + t
 super + Return
 	kitty
 
-super + Tab
+mod3 + Return
 	kitty
 
 # Floating Terminal
 super + shift + Return
 	/home/sylkos/dotfiles/configs/sxhkd/scripts/floating_terminal.sh
 
-super + shift + Tab
+mod3 + shift + Return
 	/home/sylkos/dotfiles/configs/sxhkd/scripts/floating_terminal.sh
 
 # Firefox
-super + shift + f
+mod3 + f
 	firefox
 
 # Discord
-super + shift + z
+mod3 + d
 	discord
 
+# Alt-Discord
+mod3 + shift + d
+	discord-canary
+
+# VSCodium
+mod3 + c
+	vscodium
+
 # Spotify
-super + shift + x
+mod3 + s
 	spotify
 
+# intellij
+mod3 + x
+	intellij-idea-ultimate-edition
+
 # multimc
-super + shift + c
+mod3 + z
 	multimc
 
 # steam
-super + shift + e
+mod3 + a
 	steam
 
 # thunar
-super + shift + v
+mod3 + e
 	thunar
 
-super + shift + alt + e
+mod3 + shift + e
 	/home/sylkos/dotfiles/configs/sxhkd/scripts/floating_thunar.sh
 
 # ranger
-super + shift + r
+mod3 + r
 	kitty -e ranger
 
 # btop
-super + Shift + g
+mod3 + g
 	kitty -e btop
 
 ### Rofi
 
 # Launch apps
-super + shift + q
+super + d
 	rofi -show drun
 
 ### System stuff
@@ -171,8 +156,15 @@ XF86Audio{Raise,Lower}Volume
 	pactl set-sink-volume @DEFAULT_SINK@ {+,-}10%
 
 # make sxhkd reload its configuration files:
-super + p
+super + shift + r
         pkill -USR1 -x sxhkd
+
+# shutdown
+super + Meta_L
+	shutdown now
+
+# reboot
+super + shift + Meta_L
 
 # get window's class name
 super + alt + c
@@ -191,7 +183,7 @@ super + q
 ### Screenshots
 
 # Region
-super + ctl + z
+super + shift + s
 	maim -s | xclip -selection clipboard -t image/png
 
 # Window
@@ -212,10 +204,10 @@ super + o
 super + i
 	/home/sylkos/dotfiles/configs/polybar/sylkbar/preview.sh
 
-super + alt + x
+super + shift + i
   /home/sylkos/dotfiles/configs/sxhkd/scripts/blank.sh
 
-super + alt + z
+super + shift + u
   /home/sylkos/dotfiles/configs/sxhkd/scripts/restore.sh
 
 # dunst?
