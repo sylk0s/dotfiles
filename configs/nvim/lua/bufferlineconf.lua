@@ -1,4 +1,3 @@
-vim.opt.termguicolors = true
 require('bufferline').setup {
   options = {
     mode = "buffers", -- set to "tabs" to only show tabpages instead
@@ -54,7 +53,7 @@ require('bufferline').setup {
         return true
       end
     end,
-    offsets = {{filetype = "CHADTree", text = "File Explorer", text_align = "left"}},
+    offsets = {{filetype = "NERDTree", text = "File Explorer", text_align = "left"}},
     color_icons = true, -- whether or not to add the filetype icon highlights
     show_buffer_icons = true, -- disable filetype icons for buffers
     show_buffer_close_icons = true,

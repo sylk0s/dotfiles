@@ -1,0 +1,7 @@
+require('plugins')
+require('settings')
+require('mappings')
+require('bufferlineconf')
+require('cmpconf')
+require('lsp')
+require('nerdtreeconf')

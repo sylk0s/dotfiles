@@ -191,7 +191,7 @@ super + q
 ### Screenshots
 
 # Region
-super + ctl + z
+super + alt + e
 	maim -s | xclip -selection clipboard -t image/png
 
 # Window
