@@ -1,13 +1,9 @@
 Latex editing in vim
-chadtree
 cargo, git, other installed
 
-treesitter
 bufferline
 markdown
 tmux
-cmp configs (lots)
-ultisnips etc
-
-translate to lua?
-nerdtree replacement
+snippits
+telescope
+more language server stuff
