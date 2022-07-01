@@ -27,3 +27,8 @@ nkeymap('K', ':lua vim.lsp.buf.hover()<cr>')
 nkeymap('<c-k>', ':lua vim.lsp.buf.signature_help()<cr>')
 nkeymap('<leader>af', ':lua vim.lsp.buf.code_action()<cr>')
 nkeymap('<leader>rn', ':lua vim.lsp.buf.rename()<cr>')
+
+nkeymap('ff',':Telescope find_files<cr>')
+nkeymap('fg',':Telescope live_grep<cr>')
+nkeymap('fb',':Telescope buffers<cr>')
+nkeymap('fh',':Telescope help_tags<cr>')

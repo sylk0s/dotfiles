@@ -44,4 +44,9 @@ require('packer').startup(function()
     use 'ryanoasis/vim-devicons'
     use 'tiagofumo/vim-nerdtree-syntax-highlight'
     use 'nvim-lualine/lualine.nvim'
+
+    use {
+     'nvim-telescope/telescope.nvim',
+      requires = { {'nvim-lua/plenary.nvim'} }
+    }
 end)
