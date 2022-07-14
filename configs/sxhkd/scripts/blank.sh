@@ -10,16 +10,17 @@ function set_variable(){
 
 ##################
 
-f1=$(bspc query -D -d DVI-D-0:focused --names)
-f2=$(bspc query -D -d DP-0:focused --names)
-f3=$(bspc query -D -d HDMI-0:focused --names)
+f1=$(bspc query -D -d eDP1:focused --names)
+#f2=$(bspc query -D -d DP-0:focused --names)
+#f3=$(bspc query -D -d HDMI-0:focused --names)
 
 set_variable m1 $f1
-set_variable m2 $f2
-set_variable m3 $f3
+#set_variable m2 $f2
+#set_variable m3 $f3
 
 dunstctl set-paused true
 
-bspc desktop --focus ^4
-bspc desktop --focus ^9
-bspc desktop --focus ^13
+bspc desktop --focus ^11
+#bspc desktop --focus ^4
+#bspc desktop --focus ^9
+#bspc desktop --focus ^13

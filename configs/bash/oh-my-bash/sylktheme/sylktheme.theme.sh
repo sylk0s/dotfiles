@@ -24,14 +24,14 @@ scm_prompt() {
 }
 
 pure_prompt() {
-    ps_host="${blue}\u${normal}@${yellow}\h${normal}";
-    ps_user_mark="${bold}${purple}λ${normal}";
-    ps_root_mark="${normal}§"
-    ps_path="${normal}\W";
+    ps_host="$\[{blue}\]\u\[${normal}@${yellow}\]\h\[${normal}\]";
+    ps_user_mark="\[${bold}${purple}\]λ\[${normal}\]";
+    ps_root_mark="\[${normal}\]§"
+    ps_path="\[${normal}\]\W";
 
     # make it work
     case $(id -u) in
-        0) PS1="${yellow}ツ$ps_path $(scm_prompt)$ps_root_mark "
+        0) PS1="\[${yellow}\]ツ$ps_path $(scm_prompt)$ps_root_mark "
             ;;
         *) PS1="${yellow}ツ$ps_path $(scm_prompt)$ps_user_mark "
             ;;
