@@ -42,8 +42,8 @@ xsetroot -cursor_name left_ptr
 
 #/home/sylkos/dotfiles/scripts/xmodmap_setup.sh
 
-#xrandr --output DVI-D-0 --rotate right
-#xrandr --output DVI-D-0 --pos 0x0 --mode 1920x1200 --output DP-0 --pos 1200x445 --output HDMI-0 --pos 3120x585
+#xrandr --output DP3-1 --rotate right
+#xrandr --output DP3-1 --pos 0x0 --mode 1920x1200 --output DP3-2 --pos 1200x445 --output eDP1 --pos 3120x585
 #Not sure why its doing this but the last arg *should* be 3120x585
 #exec xrandr > screens.txt
 exec bspwm

@@ -3,6 +3,7 @@
 #pgrep -x sxhkd > /dev/null || sxhkd &
 sxhkd &
 picom -b &
+#xcompmgr -c &
 dunst -config ~/dotfiles/configs/dunst/dunstrc &
 
 # for via; may cause issues idk
@@ -12,7 +13,13 @@ dunst -config ~/dotfiles/configs/dunst/dunstrc &
 #bspc monitor DP-0 -d 5 6 7 8 9
 #bspc monitor HDMI-0 -d 10 11 12 13 
 
-bspc monitor eDP1 -d 1 2 3 4 5 6 7 8 9 10 11
+if [ "$(bspc query -M | wc -l)" -eq "3" ]; then
+  bspc monitor DP-3-1 -d 1 2 3	
+  bspc monitor DP-3-2 -d 4 5 6 7
+  bspc monitor eDP-1 -d 8 9 10 11
+else 
+  bspc monitor eDP-1 -d 1 2 3 4 5 6 7 8 9 10 11
+fi
 
 bspc config border_width         1
 bspc config window_gap          10
@@ -27,7 +34,13 @@ bspc config normal_border_color \#B19CD9
 bspc config focused_border_color \#E98FC9
 bspc config presel_feedback_color \#FFF758
 
+bspc remove_disabled_monitors true
+bspc remove_unplugged_monitors true
+
 echo "bspwm init"
 # Polybar
-$HOME/.config/polybar/start.sh
-nitrogen --restore
+#$HOME/.config/polybar/start.sh
+
+###
+autorandr -c &
+$HOME/dotfiles/config/bspwm/monitors.sh &

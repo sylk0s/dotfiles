@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# DUNST notification
+notify-send -i display "Display profile" "$AUTORANDR_CURRENT_PROFILE"
+
+if [ $AUTORANDR_CURRENT_PROFILE = "docked" ]; then
+#  bspc monitor DP-3-1 -d 1 2 3  
+#  bspc monitor DP-3-2 -d 4 5 6 7
+#  bspc monitor eDP-1 -d 8 9 10 11
+
+  # cleans up monitors
+  #bspc monitor eDP-1 -d 1 2 3
+  #bspc monitor DP-3-2 -d tmp
+  #bspc monitor DP-3-2 -d tmp
+  #for i in {1,2}; do bspc desktop Desktop --remove
+
+  #for d in {1,2,3}; do bspc desktop $d -m DP-3-1; done
+  #for d in {4,5,6,7}; do bspc desktop $d -m DP-3-2; done
+
+  # Polybar
+  rm $HOME/dotfiles/configs/polybar/m.ini
+  printf "%s\n" "[m]" 'onitor=${env:MONITOR:DP-3-1}' > $HOME/dotfiles/configs/polybar/m.ini
+fi
+
+if [ $AUTORANDR_CURRENT_PROFILE = "mobile" ]; then
+#  bspc monitor eDP-1 -d 1 2 3 4 5 6 7 8 9 10 11
+
+  #for d in {1,2,3,4,5,6,7}; do bspc desktop $d -m eDP-1; done
+  #bspc desktop Desktop --remove
+
+  # Polybar
+  rm $HOME/dotfiles/configs/polybar/m.ini
+  printf "%s\n" "[m]" 'onitor=${env:MONITOR:eDP-1}' > $HOME/dotfiles/configs/polybar/m.ini
+fi
+
+$HOME/dotfiles/configs/polybar/start.sh
