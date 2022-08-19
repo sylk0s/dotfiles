@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# DUNST notification
+notify-send -i display "Display profile" "$AUTORANDR_CURRENT_PROFILE"
+
+#if [ $AUTORANDR_CURRENT_PROFILE = "docked" ]; then
+#fi
+
+#if [ $AUTORANDR_CURRENT_PROFILE = "mobile" ]; then
+#fi

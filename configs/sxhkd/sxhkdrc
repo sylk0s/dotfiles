@@ -114,10 +114,10 @@ super + t
 
 # Terminal
 super + Return
-  prime-run kitty
+  env LIBGL_ALWAYS_SOFTWARE=1 kitty
 
 super + Tab
-  prime-run kitty
+  env LIBGL_ALWAYS_SOFTWARE=1 kitty
 
 # Floating Terminal
 super + shift + Return
@@ -132,7 +132,7 @@ super + shift + f
 
 # Discord
 super + shift + z
-  prime-run discord
+  env LIBGL_ALWAYS_SOFTWARE=1 discord
 
 # Spotify
 super + shift + x
