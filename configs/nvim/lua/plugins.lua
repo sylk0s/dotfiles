@@ -20,7 +20,8 @@ require('packer').startup(function()
     use 'preservim/nerdtree'
     use 'kyazdani42/nvim-web-devicons'
     use 'akinsho/bufferline.nvim'
-    use 'ii14/onedark.nvim'
+--   use 'ii14/onedark.nvim'
+    use { "catppuccin/nvim", as = "catppuccin" }
     use 'onsails/lspkind.nvim'
 
     use 'simrat39/rust-tools.nvim'

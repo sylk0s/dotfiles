@@ -165,13 +165,19 @@ super + shift + g
 
 # Launch apps
 super + shift + q
-	rofi -show drun
+	sh $HOME/dotfiles/configs/rofi/bin/launcher
+
+super + Escape
+  sh $HOME/dotfiles/configs/rofi/bin/powermenu
 
 ### System stuff
 
 # Reload, Exit -> mess with this
-super + {Escape,r}
-	bspc {quit,wm -r}
+super + r
+  bspc wm -r
+
+super + shift + Escape
+  bspc quit
 
 # Volume Control
 XF86Audio{Raise,Lower}Volume
@@ -225,6 +231,7 @@ super + alt + x
 super + alt + z
   /home/sylkos/dotfiles/configs/sxhkd/scripts/restore.sh
 
-# dunst?
+super + alt + q	
+  betterlockscreen --lock
 # audio key
 # ideal layout
