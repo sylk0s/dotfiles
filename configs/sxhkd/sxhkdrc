@@ -161,6 +161,9 @@ super + shift + r
 super + shift + g
   env LIBGL_ALWAYS_SOFTWARE=1 kitty -e btop
 
+# julia
+super + shift + m
+  env LIBGL_ALWAYS_SOFTWARE=1 kitty -e julia
 ### Rofi
 
 # Launch apps
