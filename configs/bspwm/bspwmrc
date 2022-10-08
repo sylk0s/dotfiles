@@ -1,19 +1,20 @@
 #! /bin/sh
-autorandr -c &
+autorandr -c
 pgrep -x sxhkd > /dev/null || sxhkd &
 picom -b & 
 dunst -config ~/dotfiles/configs/dunst/dunstrc &
+eww open bar &
 
 # Initial setup based on initial state
 if [ "$(bspc query -M | wc -l)" -eq "3" ]; then
-  bspc monitor DP-3-2 -d 8 9 10	
-  bspc monitor DP-3-1 -d 4 5 6 7
-  bspc monitor eDP-1 -d 1 2 3 
+#  bspc monitor DP-3-2 -d 8 9 10	
+#  bspc monitor DP-3-1 -d 4 5 6 7
+#  bspc monitor eDP-1 -d 1 2 3 
+  autorandr -c -f docked-dorm
 else 
-  bspc monitor eDP-1 -d 1 2 3 4 5 6 7 8 9 10 11
+#  bspc monitor eDP-1 -d 1 2 3 4 5 6 7 8 9 10 11
+  autorandr -c -f mobile
 fi
-
-$HOME/dotfiles/configs/bspwm/monitors.sh &
 
 bspc config border_width         1
 bspc config window_gap          10
@@ -31,8 +32,6 @@ bspc config presel_feedback_color \#FFF758
 bspc remove_disabled_monitors true
 bspc remove_unplugged_monitors true
 
-nitrogen --restore &
-
 # Polybar
-$HOME/dotfiles/configs/polybar/start.sh &
+#$HOME/dotfiles/configs/polybar/start.sh &
 $HOME/dotfiles/configs/polybar/systray.sh &

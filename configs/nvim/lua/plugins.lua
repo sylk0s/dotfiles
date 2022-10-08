@@ -17,16 +17,26 @@ packer.init({
 require('packer').startup(function()
     use 'wbthomason/packer.nvim'
     use 'vimwiki/vimwiki'
-    use 'preservim/nerdtree'
+    --use 'preservim/nerdtree'
+    --use 'ms-jpq/chadtree'
+    use {
+  'kyazdani42/nvim-tree.lua',
+  requires = {
+    'kyazdani42/nvim-web-devicons', -- optional, for file icons
+  },
+  tag = 'nightly' -- optional, updated every week. (see issue #1193)
+}
     use 'kyazdani42/nvim-web-devicons'
     use 'akinsho/bufferline.nvim'
---   use 'ii14/onedark.nvim'
     use { "catppuccin/nvim", as = "catppuccin" }
     use 'onsails/lspkind.nvim'
 
     use 'simrat39/rust-tools.nvim'
     use 'timonv/vim-cargo'
     use 'JuliaEditorSupport/julia-vim'
+    use 'elkowar/yuck.vim'
+    use 'gpanders/nvim-parinfer'
+    use 'benknoble/vim-racket'
 
     use 'hrsh7th/nvim-cmp'
     use 'hrsh7th/cmp-nvim-lsp'

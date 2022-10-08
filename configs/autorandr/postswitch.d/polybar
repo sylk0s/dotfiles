@@ -7,12 +7,16 @@ if [ "$AUTORANDR_CURRENT_PROFILE" == "docked-dorm" ]; then
           bspc monitor DP-3-2 -d 8 9 10
           bspc monitor DP-3-1 -d 4 5 6 7
           bspc monitor eDP-1 -d 1 2 3
-	  $HOME/dotfiles/configs/polybar/ar_start.sh &
-else
+#	  $HOME/dotfiles/configs/polybar/start.sh &
+	  #notify-send -i display "In docked-dorm" "$(bspc query -D --names)"
+fi
+
+if [ "$AUTORANDR_CURRENT_PROFILE" == "mobile" ]; then
           bspc monitor eDP-1 -d 1 2 3 4 5 6 7 8 9 10 11
 	  bspc monitor DP-3-1 -d  
 	  bspc monitor DP-3-2 -d
-	  $HOME/dotfiles/configs/poylbar/ar_start.sh &
+#	  $HOME/dotfiles/configs/polybar/start.sh &
+	  #notify-send -i display "In mobile" "$(bspc query -D --names)"
 fi
 
 #if [ "$AUTORANDR_CURRENT_PROFILE" == "mobile" ]; then

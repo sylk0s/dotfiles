@@ -1,17 +1,33 @@
--- Open NERDTree on nvim startup
+--Open NERDTree on nvim startup
+
 vim.api.nvim_create_autocmd(
   "VimEnter",
-  { command = [[NERDTree | wincmd p]] }
+  { command = [[NvimTreeToggle]] }
 )
 
--- Exits nvim if NERDTree is the only remaining window
-vim.api.nvim_create_autocmd(
-  "BufEnter",
-  { command = [[if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif]] }
-)
+vim.api.nvim_create_autocmd("BufEnter", {
+  nested = true,
+  callback = function()
+    if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
+      vim.cmd "quit"
+    end
+  end
+})
 
--- If a buffer tries to replace NERDTree, move it elsewhere and then bring back NERDTree
-vim.api.nvim_create_autocmd(
-  "BufEnter",
-  { command = [[if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 | let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif]] }
-)
+require("nvim-tree").setup({
+  sort_by = "case_sensitive",
+  view = {
+    adaptive_size = true,
+    mappings = {
+      list = {
+        { key = "u", action = "dir_up" },
+      },
+    },
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+})

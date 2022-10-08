@@ -16,6 +16,9 @@ local function nkeymap(key, map)
   keymap('n', key, map, opts)
 end
 
+-- mapping for autocomplete
+-- keymap('i', 'Tab', 'cmp.mapping.confirm({ select = true })<cr>', opts)
+
 nkeymap('gd', ':lua vim.lsp.buf.definition()<cr>')
 nkeymap('gD', ':lua vim.lsp.buf.declaration()<cr>')
 nkeymap('gi', ':lua vim.lsp.buf.implementation()<cr>')
@@ -27,6 +30,9 @@ nkeymap('K', ':lua vim.lsp.buf.hover()<cr>')
 nkeymap('<c-k>', ':lua vim.lsp.buf.signature_help()<cr>')
 nkeymap('<leader>af', ':lua vim.lsp.buf.code_action()<cr>')
 nkeymap('<leader>rn', ':lua vim.lsp.buf.rename()<cr>')
+nkeymap('\\', ':NvimTreeToggle<CR>')
+nkeymap('<c-n>', ':bnext<cr>')
+nkeymap('<c-m>', ':bprevious<cr>')
 
 nkeymap('ff',':Telescope find_files<cr>')
 nkeymap('fg',':Telescope live_grep<cr>')

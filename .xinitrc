@@ -32,9 +32,11 @@ fi
 # unset f
 #fi
 
-#export _JAVA_AWT_WM_NONREPARENTING=1
+export _JAVA_AWT_WM_NONREPARENTING=1
 export PATH=$PATH:/home/sylkos/.local/bin/
+export PATH=$PATH:/home/sylkos/tools/eww/target/release/
 xsetroot -cursor_name left_ptr
+#wmname LG3D
 
 #/home/sylkos/dotfiles/scripts/xmodmap_setup.sh
 

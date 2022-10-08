@@ -6,3 +6,12 @@ btop++ needs an interactive shell to run.
 2022/01/12 (21:14:49) | ===> btop++ v.1.1.4
 2022/01/12 (21:14:49) | ERROR: No tty detected!
 btop++ needs an interactive shell to run.
+
+2022/09/10 (14:32:05) | ===> btop++ v.1.2.9
+2022/09/10 (14:32:05) | ERROR: Invalid RGB decimal value: "ba1a84"
+2022/09/10 (14:32:06) | ERROR: Invalid RGB decimal value: "ba1a84"
+2022/09/10 (14:32:09) | ERROR: Invalid RGB decimal value: "ba1a84"
+2022/09/10 (14:32:37) | ERROR: Invalid RGB decimal value: "ba1a84"
+
+2022/10/06 (19:38:28) | ===> btop++ v.1.2.9
+2022/10/06 (19:38:28) | ERROR: Stall in Runner thread, restarting!

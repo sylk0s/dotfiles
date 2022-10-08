@@ -1,0 +1,105 @@
+; Windows foldstart
+(defwindow bar
+  :monitor 0
+  :hexpand false
+  :vexpand false
+  :geometry (geometry :anchor "top center" :x 0 :y 5 :width "1900px")
+  :reserve (struts :distance "25px" :side "top")
+  (bar :screen 0))
+; foldend
+
+; Bar foldstart
+(defwidget bar [screen]
+  (box :orientation "h"
+       :space-evenly false
+       :class "bar"
+    (box :halign "start"
+         :space-evenly false
+      (workspaces)
+      (player))
+    (box :halign "end"
+         :spacing 12
+         :hexpand true
+         :space-evenly false
+      (wifi)
+      (bat)
+      (bluetooth)
+      (date)
+      (time))))
+; foldend
+
+; Variables foldstart
+(defpoll time_poll :interval "1s" "date +%H:%M:%S")
+(defpoll date_poll :interval "1m" "date +%d/%m/%Y")
+(defpoll ping_poll :interval "10s" "./modules/ping.sh")
+
+(deflisten workspaces_listen "./modules/workspaces.sh")
+(deflisten player_listen :initial '{"show": "no", "content": ""}' "./modules/player.sh")
+
+; Make this cleaner at some point
+(defpoll speaker_poll :interval "999h" "./modules/speaker.sh")
+; foldend
+
+; Modules foldstart
+; Generic icon module foldstart
+(defwidget icon-module [icon ?class ?visible]
+  (box :class "${class} icon-module"
+       :orientation "h"
+       :halign "end"
+       :space-evenly false
+       :visible {visible ?: true} ; because the argument is optional
+    (label :class "icon-module__icon" :text "${icon}")
+    (children)))
+; foldend
+
+(defwidget bluetooth []
+  (button :onclick `./modules/bluetooth.sh` (label :text "")))
+
+; Polybar-Style modules foldstart
+(defwidget workspaces []
+  (literal :content workspaces_listen))
+
+(defwidget player []
+  (icon-module :class "player" :icon "" :visible {player_listen.show == "yes"}
+    (literal :content {player_listen.content})))
+
+(defwidget date []
+  (icon-module :class "date" :icon "" 
+    (label :text date_poll)))
+
+(defwidget time []
+  (icon-module :class "time" :icon "" 
+    (label :text time_poll))) 
+
+(defwidget ping []
+  (icon-module :class "ping" :icon ""
+    (label :text ping_poll))) 
+
+(defwidget speaker []
+  (icon-module :class "speaker" 
+               :icon {speaker_poll.icon}
+    (eventbox :onscroll `eww update speaker_poll="$(./modules/speaker.sh {})"`
+      (button :onclick `eww update speaker_poll="$(./modules/speaker.sh toogle)"`
+        (label :text {speaker_poll.content})))))
+
+;; Battery Widgets ;;
+(defwidget bat []
+  (box  :orientation "h"  
+   (label  :class "bat"    
+    :text battery  
+    :tooltip "Battery: ${battery-cappacity}%")))
+
+;; Wifi Widgets ;;
+(defwidget wifi []
+  (box    :orientation "h"  
+     :tooltip wifi-name
+   (button    :onclick "./modules/wifi_popup.sh"
+      :class "wifi-icon" wifi-icon)))
+(defpoll wifi-icon :interval "1s" "./modules/wifi.sh icon")
+(defpoll wifi-name :interval "1s" "./modules/wifi.sh name")
+
+(defpoll battery      :interval "1s"  "./modules/battery.sh icon")
+(defpoll battery-cappacity  :interval "1s"  "./modules/battery.sh percent")
+; foldenod
+
+; vim:foldmarker=foldstart,foldend

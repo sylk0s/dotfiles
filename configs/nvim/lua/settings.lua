@@ -20,4 +20,4 @@ vim.cmd [[colorscheme catppuccin]]
 -- vim.cmd [[colorscheme onedark]]
 vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
 
-require('lualine').setup()
+--require('lualine').setup()
