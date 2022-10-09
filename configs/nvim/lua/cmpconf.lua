@@ -1,5 +1,3 @@
-vim.cmd [[ set completeopt=menu,menuone,noselect ]]
-
 -- Setup nvim-cmp.
 local cmp = require'cmp'
 
@@ -11,8 +9,8 @@ cmp.setup({
     end,
   },
   window = {
-    -- completion = cmp.config.window.bordered(),
-    -- documentation = cmp.config.window.bordered(),
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
   },
   mapping = cmp.mapping.preset.insert({
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
@@ -20,13 +18,45 @@ cmp.setup({
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
     ['CR'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ['<Tab>'] = cmp.mapping(function(fallback)
+      local col = vim.fn.col('.') - 1
+      if cmp.visible() then
+	cmp.select_next_item(select_opts)
+      elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+	fallback()
+      else
+	cmp.complete()
+      end
+    end, {'i', 's'}),
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+	cmp.select_prev_item(select_opts)
+      else
+	fallback()
+      end
+    end, {'i', 's'}),
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'luasnip' }, -- For luasnip users.
+    { name = 'path' },
   }, {
     { name = 'buffer' },
-  })
+  }),
+  formatting = {
+  fields = {'menu', 'abbr', 'kind'},
+  format = function(entry, item)
+    local menu_icon = {
+      nvim_lsp = 'λ',
+      luasnip = '⋗',
+      buffer = 'Ω',
+      path = '🖫',
+    }
+
+    item.menu = menu_icon[entry.source.name]
+    return item
+  end,
+},
 })
 
 -- Set configuration for specific filetype.

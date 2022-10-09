@@ -7,6 +7,7 @@ vim.opt.ruler = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.termguicolors = true
+vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
 
 -- This works, it doesnt work when i do it with the proper lua thingy...
 vim.cmd [[set mouse=a]]

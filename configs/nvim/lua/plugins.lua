@@ -20,16 +20,18 @@ require('packer').startup(function()
     --use 'preservim/nerdtree'
     --use 'ms-jpq/chadtree'
     use {
-  'kyazdani42/nvim-tree.lua',
-  requires = {
-    'kyazdani42/nvim-web-devicons', -- optional, for file icons
-  },
-  tag = 'nightly' -- optional, updated every week. (see issue #1193)
-}
+      'kyazdani42/nvim-tree.lua',
+      requires = {
+	'kyazdani42/nvim-web-devicons', -- optional, for file icons
+      },
+      tag = 'nightly' -- optional, updated every week. (see issue #1193)
+    }
+
     use 'kyazdani42/nvim-web-devicons'
     use 'akinsho/bufferline.nvim'
     use { "catppuccin/nvim", as = "catppuccin" }
     use 'onsails/lspkind.nvim'
+    use { "williamboman/mason.nvim" }
 
     use 'simrat39/rust-tools.nvim'
     use 'timonv/vim-cargo'
@@ -45,10 +47,9 @@ require('packer').startup(function()
     use 'hrsh7th/cmp-cmdline'
 
     use 'neovim/nvim-lspconfig'
-    use 'williamboman/nvim-lsp-installer'
     use 'windwp/nvim-autopairs'
 
-    use 'L3MON4D3/LuaSnip'
+    use({"L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*"})
     use 'saadparwaiz1/cmp_luasnip'
 
     use 'nvim-treesitter/nvim-treesitter'
