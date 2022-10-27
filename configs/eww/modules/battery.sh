@@ -25,7 +25,7 @@ elif [ "$per" -gt "20" ]; then
 	icon=""
 elif [ "$per" -gt "10" ]; then
 	icon=""
-	notify-send -u critical "Battery Low" "Connect Charger"
+#	notify-send -u critical "Battery Low" "Connect Charger"
 elif [ "$per" -gt "0" ]; then
 	icon=""
 	notify-send -u critical "Battery Low" "Connect Charger"
