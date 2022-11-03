@@ -140,7 +140,7 @@ super + shift + x
 
 # multimc
 super + shift + c
-  prime-run polymc
+  prime-run prismlauncher
 
 # steam
 super + shift + e

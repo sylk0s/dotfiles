@@ -1,9 +1,14 @@
 #! /bin/sh
+export _JAVA_AWT_WM_NONREPARENTING=1
+export PATH=$PATH:/home/sylkos/.local/bin/
+export PATH=$PATH:/home/sylkos/tools/eww/target/release/
+xsetroot -cursor_name left_ptr
+
 autorandr -c
 pgrep -x sxhkd > /dev/null || sxhkd &
 picom -b & 
 dunst -config ~/dotfiles/configs/dunst/dunstrc &
-eww open bar &
+eww open bar
 
 # Initial setup based on initial state
 if [ "$(bspc query -M | wc -l)" -eq "3" ]; then
