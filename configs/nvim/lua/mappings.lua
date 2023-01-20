@@ -17,7 +17,7 @@ local function nkeymap(key, map)
 end
 
 -- mapping for autocomplete
--- keymap('i', 'Tab', 'cmp.mapping.confirm({ select = true })<cr>', opts)
+keymap('i', 'Tab', 'cmp.mapping.confirm({ select = true })<cr>', opts)
 
 nkeymap('gd', ':lua vim.lsp.buf.definition()<cr>')
 nkeymap('gD', ':lua vim.lsp.buf.declaration()<cr>')

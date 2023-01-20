@@ -4,7 +4,7 @@ export PATH=$PATH:/home/sylkos/.local/bin/
 export PATH=$PATH:/home/sylkos/tools/eww/target/release/
 xsetroot -cursor_name left_ptr
 
-autorandr -c
+#autorandr -c
 pgrep -x sxhkd > /dev/null || sxhkd &
 picom -b & 
 dunst -config ~/dotfiles/configs/dunst/dunstrc &

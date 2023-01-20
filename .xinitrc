@@ -35,6 +35,7 @@ fi
 export _JAVA_AWT_WM_NONREPARENTING=1
 export PATH=$PATH:/home/sylkos/.local/bin/
 export PATH=$PATH:/home/sylkos/tools/eww/target/release/
+export PATH=$PATH:/home/sylkos/projects/mcli/target/debug/
 xsetroot -cursor_name left_ptr
 #wmname LG3D
 

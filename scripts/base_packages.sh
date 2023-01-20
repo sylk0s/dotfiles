@@ -76,6 +76,11 @@
 
 pacman -S xorg
 pacman -S sxhkd bspwm kitty
-pacman -S sudo
+pacman -S sudo xorg-xinit exa
+# add to sudoers file
 # yay!
 # pacman -S lightdm lightdm-webkit2-greeter lightdm-webkit-theme-aether
+pacman -S btop dunst nitrogen picom ranger rofi thunar neofetch
+firefox
+base-devel
+
