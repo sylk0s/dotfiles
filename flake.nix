@@ -17,36 +17,38 @@
 
     # Variables for use throughout the rest of the config
     let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-	config.allowUnfree = true;
-      };
-      lib = nixpkgs.lib;
+      user = "sylkos";
     in {
       nixosConfigurations = {
-        # testing setup (extra hard drive on pc)
-	nix = lib.nixosSystem {
-	  inherit system;
-
-          modules = [ 
-            ./configuration.nix 
-
-            hyprland.nixosModules.default
-            {programs.hyprland.enable = true;}
-
-	    home-manager.nixosModules.home-manager {
-	      home-manager.useGlobalPkgs = true;
-	      home-manager.useUserPackages = true;
-	      home-manager.users.sylkos = {
-		imports = [
-		  ./home.nix
-		];
-	      };
-	    }
-          ];
-	};
+        import ./hosts {
+	  inherit (nixpkgs) lib;
+	  inherit inputs nixpkgs home-manager user hyprland;
+	}
       };
     };
+
+        # testing setup (extra hard drive on pc)
+#	nix = lib.nixosSystem {
+#	  inherit system;
+#
+#          modules = [ 
+#            ./configuration.nix 
+#
+#            hyprland.nixosModules.default
+#            {programs.hyprland.enable = true;}
+#
+#	    home-manager.nixosModules.home-manager {
+#	      home-manager.useGlobalPkgs = true;
+#	      home-manager.useUserPackages = true;
+#	      home-manager.users.sylkos = {
+#		imports = [
+#		  ./home.nix
+#		];
+#	      };
+#	    }
+#          ];
+#	};
+#     };
+#    };
 }
 

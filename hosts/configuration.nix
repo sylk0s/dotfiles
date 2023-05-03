@@ -2,27 +2,27 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, lib, pkgs, imputs, user, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+#  imports =
+#    [ # Include the results of the hardware scan.
+#      ./hardware-configuration.nix
+#    ];
 
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   
-  nixpkgs.config = {
-    allowUnfree = true;
-  };
+#  nixpkgs.config = {
+#    allowUnfree = true;
+#  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
-  networking.hostName = "nix"; # Define your hostname.
+  networking.hostName = "testing"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -51,7 +51,7 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  # services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
   #services.xserver.displayManager.gdm.enable = true;
@@ -62,13 +62,13 @@
   #services.xserver.desktopManager.plasma5.enable = true;
   
   # Configure keymap in X11
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
-  };
+  #services.xserver = {
+  #  layout = "us";
+  #  xkbVariant = "";
+  #};
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  #services.printing.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -110,6 +110,10 @@
   neovim
   git
   alacritty
+  killall
+  pciutils
+  usbutils
+  wget
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
