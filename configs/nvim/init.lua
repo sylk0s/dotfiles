@@ -1,8 +1,0 @@
-require('plugins')
-require('settings')
-require('teleconf')
-require('bufferlineconf')
-require('cmpconf')
-require('lsp')
-require('nerdtreeconf')
-require('mappings')
