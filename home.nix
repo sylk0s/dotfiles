@@ -17,5 +17,6 @@
     neofetch
     wofi
     firefox
+    gh
   ];
 }
