@@ -13,7 +13,7 @@
     };
   };
 
-  outputs = inputs @ {self, nixpkgs, ...}: let
+  outputs = inputs @ {self, nixpkgs, hyprland, ...}: let
 
     inherit (lib.my) mapModules mapModulesRec mapHosts;
 

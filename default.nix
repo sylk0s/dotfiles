@@ -22,7 +22,7 @@ with lib.my;
       registryInputs = mapAttrs (_: v: { flake = v; }) filteredInputs;
   in {
     package = pkgs.nixFlakes;
-    extraOption = "experimental-features = nix-command flakes";
+    extraOptions = "experimental-features = nix-command flakes";
 
     nixPath = nixPathInputs ++ [ "dotfiles=${config.dotfiles.dir}" ];
 
@@ -40,9 +40,9 @@ with lib.my;
   system.stateVersion = "21.05";
 
   boot = {
-    kernalPackages = mkDefault pkgs.linuxPackages_latest;
+    kernelPackages = mkDefault pkgs.linuxPackages_latest;
 
-    loadwer = {
+    loader = {
       efi = {
 	canTouchEfiVariables = mkDefault true;
 	efiSysMountPoint = "/boot/efi";
@@ -68,5 +68,5 @@ with lib.my;
     git
     neovim
     wget
-  ]
+  ];
 }

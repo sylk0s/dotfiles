@@ -8,8 +8,8 @@
   modules = {
     desktop = {
       hyprland.enable = true;
-    }
-  }
+    };
+  };
 
   # TODO CPU?
 
