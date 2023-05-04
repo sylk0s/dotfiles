@@ -16,9 +16,28 @@
     ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
+
+    loader = {
+      efi = {
+	canTouchEfiVariables = true;
+	efiSysMountPoint = "/boot/efi";
+      };
+
+      grub = {
+	enable = true;
+	version = 2;
+	devices = [ "nodev" ];
+	efiSupport = true;
+	useOSProber = true;
+	configurationLimit = 10;
+	default = 2;
+      };
+
+      timeout = null;
+    };
+  };
 
   networking.hostName = "testing"; # Define your hostname.
 
@@ -48,10 +67,68 @@
   #};
 
   # Configure keymap in X11
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
+  services = {
+    xserver = {
+      layout = "us";
+      xkbVariant = "";
+      enable = true;
+      displayManager.gdm = {
+	enable = true;
+	wayland = true;
+      };
+    };
+
   };
+
+  systemd.tmpfiles.rules = [
+    "L+ /run/gdm/.config/monitors.xml - - - - ${pkgs.writeText "gdm-monitors.xml" ''
+	<monitors version="2">
+	  <configuration>
+	    <logicalmonitor>
+	      <x>1920</x>
+	      <y>0</y>
+	      <scale>1</scale>
+	      <transform>
+		<rotation>right</rotation>
+		<flipped>no</flipped>
+	      </transform>
+	      <monitor>
+		<monitorspec>
+		  <connector>HDMI-1</connector>
+		  <vendor>HWP</vendor>
+		  <product>HP LP2475w</product>
+		  <serial>CNC0090CVH</serial>
+		</monitorspec>
+		<mode>
+		  <width>1920</width>
+		  <height>1200</height>
+		  <rate>59.950</rate>
+		</mode>
+	      </monitor>
+	    </logicalmonitor>
+	    <logicalmonitor>
+	      <x>0</x>
+	      <y>340</y>
+	      <scale>1</scale>
+	      <primary>yes</primary>
+	      <monitor>
+		<monitorspec>
+		  <connector>DP-1</connector>
+		  <vendor>LEN</vendor>
+		  <product>LEN T2424zA</product>
+		  <serial>V1K90974</serial>
+		</monitorspec>
+		<mode>
+		  <width>1920</width>
+		  <height>1080</height>
+		  <rate>60.000</rate>
+		</mode>
+	      </monitor>
+	    </logicalmonitor>
+	  </configuration>
+	</monitors>
+    ''}"
+  ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sylkos = {
