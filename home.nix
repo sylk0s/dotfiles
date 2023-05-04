@@ -20,6 +20,11 @@
       btop
       ranger
       pavucontrol
+      #alacritty
+      kitty
+      #neovim
+      #firefox
+      #wofi
     ];
 
     imports = [
@@ -50,7 +55,8 @@
 	# See https://wiki.hyprland.org/Configuring/Monitors/
 	monitor = DP-1,1920x1080,0x288,1
 	monitor = HDMI-A-1,1920x1200,1920x0,1,transform,3
-
+	# adds any random monitors automatically to the right of the other monitors
+	monitor=,preferred,auto,1
 
 	# See https://wiki.hyprland.org/Configuring/Keywords/ for more
 
@@ -165,7 +171,7 @@
 	bind = $mainMod, P, pseudo, # dwindle
 	bind = $mainMod, J, togglesplit, # dwindle
 	bind = $mainMod SHIFT, F, exec, firefox
-	bind = $mainMod, Tab, exec, alacritty
+	bind = $mainMod, Tab, exec, ${pkgs.alacritty}/bin/alacritty
 
 	# Move focus with mainMod + arrow keys
 	bind = $mainMod, left, movefocus, l
@@ -211,6 +217,39 @@
       enable = true;
       userName  = "sylk0s";
       userEmail = "sylkos49@gmail.com";
+    };
+
+    gtk = {
+      enable = true;
+
+      iconTheme = {
+        name = "Papirus-Dark";
+        package = pkgs.papirus-icon-theme;
+      };
+
+      theme = {
+        name = "Catppuccin-Mocha-Compact-Lavender-Dark";
+        package = pkgs.catppuccin-gtk.override {
+          accents = [ "lavender" ];
+          size = "compact";
+          tweaks = [ "rimless" "black" ];
+          variant = "mocha";
+        };
+      };
+
+
+      gtk3.extraConfig = {
+        Settings = ''
+          gtk-application-prefer-dark-theme=1
+        '';
+      };
+
+      gtk4.extraConfig = {
+        Settings = ''
+          gtk-application-prefer-dark-theme=1
+        '';
+      };
+
     };
 
   };

@@ -71,13 +71,23 @@
     xserver = {
       layout = "us";
       xkbVariant = "";
+      # stupid thing we need to make gdm work
       enable = true;
       displayManager.gdm = {
 	enable = true;
 	wayland = true;
       };
     };
-
+    
+    pipewire = {
+      enable = true;
+      alsa = {
+	enable = true;
+	support32Bit = true;
+      };
+      pulse.enable = true;
+      jack.enable = true;
+    };
   };
 
   systemd.tmpfiles.rules = [
@@ -151,7 +161,7 @@
     wget
     neovim
     alacritty
-    kitty
+    #kitty
     firefox
     wofi
   ];
