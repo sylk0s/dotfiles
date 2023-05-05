@@ -9,7 +9,7 @@ in {
   };
 
   config = mkIf (cfg.enable) {
-		services.udiskie = {
+		home-manager.users.${config.user.name}.services.udiskie = {
 			enable = true;
 			automount = true;
 		};

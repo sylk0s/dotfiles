@@ -5,8 +5,15 @@ with lib.my;
 let cfg = config.modules.themes.gtk;
     srv = config.services;
 in {
-  options.modules.themes.colors = {
+  options.modules.themes.gtk = {
     enable = mkBoolOpt true;
+		iconTheme = {
+      package = lib.mkOption {
+        type = lib.types.package;
+        default = pkgs.papirus-icon-theme;
+      };
+      name = mkStrOpt "Papirus-Dark";
+    };
   };
 
   config = mkIf (srv.xserver.enable || programs.hyprland.enable) {
@@ -16,8 +23,8 @@ in {
         enable = true;
 
         iconTheme = {
-          name = "Papirus-Dark";
-          package = pkgs.papirus-icon-theme;
+          name = cfg.iconTheme.name;
+          package = cfg.iconTheme.package;
         };
 
         theme = {

@@ -1,7 +1,7 @@
 # Dunst notification daemon configuration
 { config, options, lib, pkgs, ...}: 
 let
-  crf = config.modules.desktop.services.dunst;
+  cfg = config.modules.desktop.services.dunst;
   colorScheme = config.modules.themes.colors;
   gtkConfig = config.modules.themes.gtk;
   fontConfig = config.modules.themes.fonts.styles;
@@ -9,13 +9,13 @@ in {
   options.modules.desktop.services.dunst = {
     enable = lib.mkOption {
       type = lib.types.bool;
-      default = false;
+      default = true;
     };
   };
 
   config = lib.mkIf (cfg.enable) {
     # hicolor is the fallback theme
-    environment.packages = [pkgs.libnotify pkgs.hicolor-icon-theme];
+    environment.systemPackages = with pkgs; [libnotify hicolor-icon-theme];
 
     # home manager configuration
     home-manager.users.${config.user.name}.services.dunst = {
@@ -31,10 +31,10 @@ in {
       in {
         global = {
           follow = "mouse";
-          width = 350;
-          height = 350;
+          width = 300;
+          height = 300;
           origin = "top-right";
-          offset = "24x24";
+          offset = "8x8";
 
           progress_bar = true;
           progress_bar_height = 17;
