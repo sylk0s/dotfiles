@@ -13,6 +13,9 @@
       	discord.enable = true;
       	#signal.enable = true;
       };
+			apps = {
+				firefox.enable = true;
+			};
     };
   };
 
