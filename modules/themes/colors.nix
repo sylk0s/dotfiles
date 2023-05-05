@@ -1,5 +1,7 @@
 # Colors based on Xresources
 { config, options, lib, pkgs, ...}: 
+with lib;
+with lib.my;
 let
   colorType =
     lib.types.addCheck lib.types.str (x: !isNull (builtins.match "#[0-9a-fA-F]{6}" x));
@@ -12,10 +14,8 @@ let
 in {
   options.modules.themes.colors = {
     enable = mkBoolOpt true;
-  };
 
-  config = mkIf cfg.enable {
-    # Github dark color scheme & types
+    # cattpuccin
     colors = {
       color0 = color "#45475A";
       color1 = color "#f38ba8";

@@ -33,9 +33,9 @@ in {
 	enable = true;
 	userName = cfg.userName;
 	userEmail = cfg.userEmail;
-	ignores = ["/.vscode" "/.pio" "/__pycache__" ".envrc" ".direnv" ".env" ]
-      }
-    }
+	ignores = ["/.vscode" "/.pio" "/__pycache__" ".envrc" ".direnv" ".env" ];
+      };
+    };
 
     #modules.shell.zsh.rcFiles = [ "${configDir}/git/aliases.zsh" ];
   };

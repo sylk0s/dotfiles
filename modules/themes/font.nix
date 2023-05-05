@@ -1,9 +1,11 @@
 # Global font configuration
 { config, options, lib, pkgs, ... }: 
+with lib;
+with lib.my;
 let
   cfg = config.modules.themes.fonts;
   font = defaultFamily: defaultSize: {
-    family = mkStrOpt defaultFamily
+    family = mkStrOpt defaultFamily;
     size = lib.mkOption {
       type = lib.types.int;
       default = defaultSize;
@@ -26,20 +28,20 @@ in {
   config = lib.mkIf (cfg.enable) {
     fonts = {
       fonts = with pkgs; [
-        inter
+        #inter
         (nerdfonts.override {
 	  fonts = [
-	    "JetBrainsMono"
+	#    "JetBrainsMono"
 	    "Ubuntu"
-	    "Mononoki"
-	    "FiraCode"
-	  ]
-	}
+	#    "Mononoki"
+	#    "FiraCode"
+	  ];
+	})
 	julia-mono
-        ibm-plex
-        noto-fonts
-        noto-fonts-cjk
-        noto-fonts-emoji
+        #ibm-plex
+        #noto-fonts
+        #noto-fonts-cjk
+        #noto-fonts-emoji
         #material-design-icons
         #material-icons
         #font-awesome

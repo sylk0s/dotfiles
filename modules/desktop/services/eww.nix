@@ -1,5 +1,7 @@
 # Configuration for EWW (Elkowar's Wacky Widgets)
 { config, options, lib, pkgs, ...}: 
+with lib;
+with lib.my;
 let
   cfg = config.modules.desktop.services.eww;
 in {
@@ -34,7 +36,7 @@ in {
   in
     lib.mkIf (cfg.enable) {
       # home manager configuration
-      home.manager = {
+      home-manager.users.${config.user.name} = {
       # TODO switch between wayland and X
         programs.eww-wayland = {
           enable = true;

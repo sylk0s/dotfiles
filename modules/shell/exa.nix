@@ -2,9 +2,9 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.editors.exa;
+let cfg = config.modules.shell.exa;
 in {
-  options.modules.editors.exa = {
+  options.modules.shell.exa = {
     enable = mkBoolOpt true;
   };
 

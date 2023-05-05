@@ -6,12 +6,10 @@ let cfg = config.modules.themes.gtk;
     srv = config.services;
 in {
   options.modules.themes.colors = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = true;
+    enable = mkBoolOpt true;
   };
 
-  config = mkIf srv.xserver.enable || programs.hyprland.enable {
+  config = mkIf (srv.xserver.enable || programs.hyprland.enable) {
 
     home-manager.users.${config.user.name} = {
       gtk = {

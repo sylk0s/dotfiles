@@ -20,5 +20,5 @@ rec {
     inherit default;
     type = types.str;
     example = true;
-  }
+  };
 }

@@ -29,7 +29,7 @@ in {
       # https://bugzilla.mozilla.org/show_bug.cgi?id=1082717
       env.XDG_DESKTOP_DIR = "$HOME/";
 
-      modules.desktop.browsers.firefox.settings = {
+      modules.desktop.apps.firefox.settings = {
         # Default to dark theme in DevTools panel
         "devtools.theme" = "dark";
         # Enable ETP for decent security (makes firefox containers and many
@@ -219,6 +219,6 @@ in {
 #            text = cfg.userContent;
 #          };
 #      };
-#    }
+    }
   ]);
 }

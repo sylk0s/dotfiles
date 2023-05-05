@@ -2,9 +2,9 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.editors.exa;
+let cfg = config.modules.desktop.social.discord;
 in {
-  options.modules.editors.exa = {
+  options.modules.desktop.social.discord = {
     enable = mkBoolOpt true;
   };
 

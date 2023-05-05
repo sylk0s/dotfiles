@@ -25,7 +25,7 @@ in {
     ];
   
     user.packages = with pkgs; [
-      thunar
+      xfce.thunar
       vscodium
       wofi
     ];

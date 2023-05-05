@@ -8,9 +8,10 @@
   modules = {
     desktop = {
       hyprland.enable = true;
-      apps = {
-	media.spotify.enable;
-	social.discord.enable;
+      #media.spotify.enable = true;
+      social = {
+      	discord.enable = true;
+      	#signal.enable = true;
       };
     };
   };

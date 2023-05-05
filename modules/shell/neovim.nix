@@ -2,9 +2,9 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.editors.neovim;
+let cfg = config.modules.shell.neovim;
 in {
-  options.modules.editors.neovim = {
+  options.modules.shell.neovim = {
     enable = mkBoolOpt true;
   };
 
@@ -15,7 +15,7 @@ in {
 
     # I stole this as an example
     # TODO just redo my vim config some time
-    programs = {
+    home-manager.users.${config.user.name}.programs = {
       neovim = {
         enable = true;
         viAlias = true;
