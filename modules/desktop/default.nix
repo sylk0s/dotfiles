@@ -25,14 +25,12 @@ in {
     ];
   
     user.packages = with pkgs; [
-      discord
-      alacritty
-      firefox
+      thunar
+      vscodium
+      wofi
     ];
 
-    fonts.fonts = with pkgs; [
-      (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" "Ubuntu" ]; })
-    ];
-
+    services.tumbler.enable = true;
+    # thunar pkgs? seperate module?
   };
 }

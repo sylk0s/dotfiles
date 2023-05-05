@@ -15,4 +15,10 @@ rec {
     type = types.bool;
     example = true;
   };
+
+  mkStrOpt = default: mkOption {
+    inherit default;
+    type = types.str;
+    example = true;
+  }
 }
