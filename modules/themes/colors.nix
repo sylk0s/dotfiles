@@ -38,8 +38,8 @@ in {
       background = color "#1e1e2e";
       background-darker = color "#11111b";
       foreground = color "#cdd6f4";
-      #highlight = color "#f78166";
-      #border = color "#30363d";
+      highlight = color "#f78166"; # not cat
+      border = color "#30363d"; # not cat
       #selection = color "#2d3139";
       #current-line = color "#171b22";
     };
