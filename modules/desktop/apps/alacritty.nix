@@ -19,8 +19,8 @@ in {
         # window settings
         window = {
           padding = {
-            x = 10;
-            y = 10;
+            x = 4;
+            y = 4;
           };
           dynamic_padding = true;
           opacity = 1;

@@ -71,3 +71,4 @@
 
   networking.networkmanager.enable = true;
 }
+

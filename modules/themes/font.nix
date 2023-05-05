@@ -19,7 +19,7 @@ in {
       main = font "Ubuntu Nerd Font" 11;
       sub = font "Inter" 11;
       serif = font "IBM Plex Serif" 11;
-      mono = font "JuliaMono" 12;
+      mono = font "JuliaMono" 11;
       icons = font "Mononoki NF" 12;
       emoji = font "Noto Color Emoji" 12;
     };

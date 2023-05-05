@@ -36,7 +36,7 @@ in {
 
           # Customization
           wombat256-vim         # Color scheme for lightline
-          srcery-vim            # Color scheme for text
+          #srcery-vim            # Color scheme for text
 
           lightline-vim         # Info bar at bottom
           indent-blankline-nvim # Indentation lines
@@ -44,7 +44,7 @@ in {
 
         extraConfig = ''
           syntax enable                             " Syntax highlighting
-          colorscheme srcery                        " Color scheme text
+          "colorscheme srcery                        " Color scheme text
 
           let g:lightline = {
             \ 'colorscheme': 'wombat',
@@ -56,6 +56,11 @@ in {
           set number                                " Set numbers
 
           nmap <F6> :NERDTreeToggle<CR>             " F6 opens NERDTree
+
+	  "expandtab
+	  set tabstop=2
+	  set shiftwidth=2
+	  set softtabstop=2
         '';
       };
     };
