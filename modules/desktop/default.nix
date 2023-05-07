@@ -25,7 +25,6 @@ in {
     ];
   
     user.packages = with pkgs; [
-      wofi
     ];
   };
 }

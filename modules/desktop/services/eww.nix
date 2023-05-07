@@ -4,13 +4,14 @@ with lib;
 with lib.my;
 let
   cfg = config.modules.desktop.services.eww;
+
 in {
   options.modules.desktop.services.eww = {
     enable = mkBoolOpt false;
-    #package = lib.mkOption {
-    #  type = lib.types.package;
-    #  default = pkgs.eww;
-    #};
+    package = lib.mkOption {
+      type = lib.types.package;
+      default = pkgs.eww-wayland;
+    };
   };
 
   config = let
@@ -38,9 +39,9 @@ in {
       # home manager configuration
       home-manager.users.${config.user.name} = {
       # TODO switch between wayland and X
-        programs.eww-wayland = {
+        programs.eww = {
           enable = true;
-          #package = ewwConfig.package;
+					package = cfg.package;
           configDir = "${config.dotfiles.configDir}/eww";
         };
 

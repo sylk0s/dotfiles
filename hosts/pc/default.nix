@@ -19,6 +19,9 @@
 			gaming = {
 				steam.enable = true;
 			};
+			services = {
+				eww.enable = true;
+			};
     };
 		dev = {
 			python.enable = true;
@@ -27,7 +30,7 @@
 
 	# TODO remove all of these :3
 	environment.systemPackages = with pkgs; [
-	
+		#pavucontrol	
 	];
 
   # TODO CPU?
