@@ -13,6 +13,7 @@ in {
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
+			gh
       #gitAndTools.git-annex
       #unstable.gitAndTools.gh
       #gitAndTools.git-open
@@ -30,10 +31,10 @@ in {
 
     home-manager.users.${config.user.name} = {
       programs.git = {
-	enable = true;
-	userName = cfg.userName;
-	userEmail = cfg.userEmail;
-	ignores = ["/.vscode" "/.pio" "/__pycache__" ".envrc" ".direnv" ".env" ];
+				enable = true;
+				userName = cfg.userName;
+				userEmail = cfg.userEmail;
+				ignores = ["/.vscode" "/.pio" "/__pycache__" ".envrc" ".direnv" ".env" ];
       };
     };
 
