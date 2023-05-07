@@ -5,6 +5,8 @@
     ./hardware-configuration.nix
   ];
 
+	boot.kernelParams = [ "nomodeset" ];
+
   modules = {
     desktop = {
       hyprland = {
