@@ -8,6 +8,7 @@ let
 in {
   options.modules.desktop.hyprland = {
     enable = mkBoolOpt false;
+		nvidia = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {
@@ -25,7 +26,7 @@ in {
 
       wayland.windowManager.hyprland = {
         enable = true;
-        #nvidiaPatches = true; if you have nvidia
+        nvidiaPatches = cfg.nvidia; #if you have nvidia
         extraConfig = ''
         # hyprland config here
 	########################################################################################

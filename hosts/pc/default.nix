@@ -15,6 +15,7 @@
       };
 			apps = {
 				firefox.enable = true;
+				intellij.enable = true;
 			};
 			gaming = {
 				steam.enable = true;
@@ -25,6 +26,7 @@
     };
 		dev = {
 			python.enable = true;
+			rust.enable = true;
 		};
   };
 
