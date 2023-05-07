@@ -2,19 +2,17 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.editors.exa;
+let cfg = config.modules.desktop.apps.thunar;
 in {
-  options.modules.editors.exa = {
+  options.modules.desktop.apps.thunar = {
     enable = mkBoolOpt true;
   };
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
-      exa
+      xfce.thunar
     ];
 
-    environment.shellAliases = {
-      ll = "exa -ll";
-    };
+		services.tumbler.enable = true;
   };
 }

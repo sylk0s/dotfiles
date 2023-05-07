@@ -25,23 +25,24 @@ in {
     };
   };
 
+  # TODO add some option here for a light font install
   config = lib.mkIf (cfg.enable) {
     fonts = {
       fonts = with pkgs; [
-        #inter
+        inter
         (nerdfonts.override {
-	  fonts = [
-	#    "JetBrainsMono"
-	    "Ubuntu"
-	#    "Mononoki"
-	#    "FiraCode"
-	  ];
-	})
-	julia-mono
-        #ibm-plex
-        #noto-fonts
-        #noto-fonts-cjk
-        #noto-fonts-emoji
+					fonts = [
+						"JetBrainsMono"
+						"Ubuntu"
+						"Mononoki"
+						#"FiraCode"
+					];
+				})
+				julia-mono
+				ibm-plex
+				noto-fonts
+        noto-fonts-cjk
+        noto-fonts-emoji
         #material-design-icons
         #material-icons
         #font-awesome

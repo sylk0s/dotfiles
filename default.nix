@@ -67,6 +67,6 @@ with lib.my;
   environment.systemPackages = with pkgs; [
     git
     neovim
-    wget
+    curl
   ];
 }

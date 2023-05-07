@@ -12,6 +12,7 @@ with lib.my;
           (findFirst pathExists (toString ../.) [
             "/mnt/etc/dotfiles"
             "/etc/dotfiles"
+						"/home/${config.user.name}/dotfiles"
           ]));
       binDir     = mkOpt path "${config.dotfiles.dir}/bin";
       configDir  = mkOpt path "${config.dotfiles.dir}/config";

@@ -212,27 +212,16 @@ in {
     ];
 
     # login manager
-    services = {
-      xserver = {
-	layout = "us";
-	xkbVariant = "";
-	enable = true;
-	displayManager.gdm = {
-	  enable = true;
-	  wayland = true;
-	};
-      };
-
-      pipewire = {
-	enable = true;
-	alsa = {
-	  enable = true;
-	  support32Bit = true;
-	};
-	pulse.enable = true;
-	jack.enable = true;
-      };
-    };
-
+		services = {
+			xserver = {
+				layout = "us";
+				xkbVariant = "";
+				enable = true;
+				displayManager.gdm = {
+					enable = true;
+					wayland = true;
+				};
+			};
+		};
   };
 }

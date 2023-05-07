@@ -9,6 +9,8 @@ in {
   };
 
   config = mkIf (cfg.enable) {
+		services.udisks2.enable = true;
+
 		home-manager.users.${config.user.name}.services.udiskie = {
 			enable = true;
 			automount = true;

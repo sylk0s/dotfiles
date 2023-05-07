@@ -25,12 +25,7 @@ in {
     ];
   
     user.packages = with pkgs; [
-      xfce.thunar
-      vscodium
       wofi
     ];
-
-    services.tumbler.enable = true;
-    # thunar pkgs? seperate module?
   };
 }
