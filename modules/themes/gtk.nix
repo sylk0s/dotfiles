@@ -16,7 +16,7 @@ in {
     };
   };
 
-  config = mkIf (srv.xserver.enable || programs.hyprland.enable) {
+  config = mkIf (srv.xserver.enable || config.modules.desktop.hyprland.enable) {
 
     home-manager.users.${config.user.name} = {
       gtk = {

@@ -30,6 +30,11 @@
 		};
   };
 
+	services.xserver.displayManager.gdm = {
+		enable = true;
+		wayland = true;
+	}
+
 	# TODO remove all of these :3
 	environment.systemPackages = with pkgs; [
 		#pavucontrol	

@@ -13,10 +13,44 @@ in {
 
   config = mkIf cfg.enable {
 
+		services.xserver = {
+			enable = true;
+			displayManager.gdm = {
+				enable = true;
+				wayland = true;
+			};
+		};
+
     # whats going on here? why are there both here...
     programs.hyprland = {
       enable = true;
+#			package = inputs.hyprland.packages.${pkgs.system}.default.override {
+#				nvidiaPatches = true;
+#				wlroots =
+#					inputs.hyprland.packages.${pkgs.system}.wlroots-hyprland.overrideAttrs {
+#					(old: {
+#						patches = 
+#							(old.patches or [])
+#							++ [
+#								(pkgs.fetchpatch {
+#									url =" https://aur.archlinux.org/cgit/aur.git/plain/0001-nvidia-format-workaround.patch?h=hyprland-nvidia-screenshare-git";
+#									sha256 = "A9f1p5EW++mGCaNq8w7ZJfeWmvTfUm4iO+1KDcnqYX8=";
+#								})
+#							];
+#						});
+#					};
+#			};
+			nvidiaPatches = cfg.nvidia;
+			xwayland.enable = true;
     };
+
+		environment.sessionVariables = rec {
+			LIBVA_DRIVER_NAME = "nvidia";
+			XDG_SESSION_TYPE = "wayland";
+			GBM_BACKEND = "nvidia-drm";
+			__GLX_VENDOR_LIBRARY_NAME = "nvidia";
+			WLR_NO_HARDWARE_CURSORS = "1";
+		};
 
     home-manager.users.${config.user.name} = {
 
@@ -27,6 +61,7 @@ in {
       wayland.windowManager.hyprland = {
         enable = true;
         nvidiaPatches = cfg.nvidia; #if you have nvidia
+				xwayland.enable = true;
         extraConfig = ''
         # hyprland config here
 	########################################################################################
@@ -212,17 +247,5 @@ in {
       wofi
     ];
 
-    # login manager
-		services = {
-			xserver = {
-				layout = "us";
-				xkbVariant = "";
-				enable = true;
-				displayManager.gdm = {
-					enable = true;
-					wayland = true;
-				};
-			};
-		};
   };
 }
