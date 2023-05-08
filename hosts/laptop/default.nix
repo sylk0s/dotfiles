@@ -48,6 +48,7 @@
 		mesa
 		brightnessctl
 		networkmanagerapplet
+		acpi
 	];
 
 	nixpkgs.config.packageOverrides = pkgs: rec {
