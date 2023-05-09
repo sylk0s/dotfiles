@@ -51,17 +51,27 @@
 		acpi
 	];
 
-	nixpkgs.config.packageOverrides = pkgs: rec {
-		wpa_supplicant = pkgs.wpa_supplicant.overrideAttrs (attrs: {
-			patches = attrs.patches ++ [ ./eduroam.patch ];
-		});
-	};
+#	nixpkgs.config.packageOverrides = pkgs: rec {
+#		wpa_supplicant = pkgs.wpa_supplicant.overrideAttrs (attrs: {
+#			patches = attrs.patches ++ [ ./eduroam.patch ];
+#		});
+#	};
 
   # TODO CPU?
 	# TODO auto gpu switching
 
   networking.networkmanager.enable = true;
 	
+	# trying IWD to see if it works better with eduroam/WPA Enterprise
+	networking.wireless.iwd.enable = true;
+	networking.networkmanager.wifi.backend = "iwd";
+	
+#	nmcli connection add \
+#		type wifi con-name "MySSID" ifname wlp0s20f3 ssid "MySSID" -- \
+#		wifi-sec.key-mgmt wpa-eap 802-1x.eap peap 802-1x.identity "USERNAME" \
+#		 THERE WAS ALSO SOMETHING HERE BUT I FORGOT IT BUT IWD PROMPTS YOU TO ADD IT SO...
+#		802-1x.private-key-password "..."
+
 	# WPA_SUPPLICANT
 	#networking.wireless.enable = true;
 	#users.extraUsers.sylkos.extraGroups = [ "wheel" ];
