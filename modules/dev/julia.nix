@@ -5,7 +5,7 @@ with lib.my;
 let cfg = config.modules.dev.julia;
 in {
   options.modules.dev.julia = {
-    enable = mkBoolOpt true;
+    enable = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {

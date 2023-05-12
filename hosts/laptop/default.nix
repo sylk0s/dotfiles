@@ -35,6 +35,7 @@
 		dev = {
 			python.enable = true;
 			rust.enable = true;
+			julia.enable = true;
 		};
 		hardware = {
 			audio.enable = false;
