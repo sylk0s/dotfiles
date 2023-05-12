@@ -1,32 +1,59 @@
-(defvar     bluetooth       "{}")
-(defvar     network         "{}")
-(defvar     media           "{}")
-(defvar     media_positions "{}")
-(defvar     battery         "{}")
-(defvar     notifications   "{}")
-(defvar     apps            "{}")
+(defwindow bar
+  :monitor 0
+  :hexpand false
+  :vexpand false
+  :geometry (geometry :anchor "top center" :x 0 :y 0 :width "100%" :height "2%")
+	:exclusive true
+  (bar :screen 0))
 
-(deflisten  window      `scripts/hyprland window`)
-(deflisten  workspaces  `scripts/hyprland workspaces`)
+(defwidget bar [screen]
+  (box :orientation "h"
+       :space-evenly false
+       :class "bar"
+    (box :halign "start"
+         :space-evenly false
+			(widget_workspaces))
+    (box :halign "end"
+         :spacing 12
+         :hexpand true
+         :space-evenly false
+      (date)
+      (time))))
 
-(defpoll    volume      :interval "3s" :initial "{}" `scripts/volume get`)
-(defpoll    theme       :interval "3s" :initial "{}" `scripts/theme get`)
-(defpoll    power       :interval "3s" :initial "{}" `scripts/power get`)
-(defpoll    night_light :interval "3s" :initial "{}" `scripts/night_light get`)
-(defpoll    brightness  :interval "3s" :initial "{}" `scripts/brightness get`)
+(defpoll time_poll :interval "1s" "date +%H:%M:%S")
+(defpoll date_poll :interval "1m" "date +%d/%m/%Y")
 
-(defpoll    events      :interval "3s" :initial "[]" `scripts/todo --eww`)
-(defpoll    weather     :interval "3m" :initial "[]" `scripts/weather`)
+; Generic icon module foldstart
+(defwidget icon-module [icon ?class ?visible]
+  (box :class "${class} icon-module"
+       :orientation "h"
+       :halign "end"
+       :space-evenly false
+       :visible {visible ?: true} ; because the argument is optional
+    (label :class "icon-module__icon" :text "${icon}")
+    (children)))
 
-(defpoll    panel_clock :interval "5s" `date "+%H:%M  |  %b. %d. %A"`)
-(defpoll    hour        :interval "5s" `date "+%H"`)
-(defpoll    minutes     :interval "5s" `date "+%M"`)
-(defpoll    date        :interval "5s" `date "+%b. %d. %A"`)
-(defpoll    uptime      :interval "60s" "uptime | awk '{print $3}' | tr ',' ' '")
+(defwidget date []
+  (icon-module :class "date" :icon "" 
+    (label :text date_poll)))
 
-(defvar real_name "Sylkos")
-(defvar user_name "@Sylkos")
+(defwidget time []
+  (icon-module :class "time" :icon "" 
+    (label :text time_poll))) 
 
-(include "./yuck/widgets.yuck")
-(include "./yuck/windows.yuck")
-(include "./setups/leftbar.yuck")
+(deflisten workspaces :initial "[]" "/home/sylkos/dotfiles/config/eww/scripts/get-workspaces")
+(deflisten current_workspace :initial "1" "/home/sylkos/dotfiles/config/eww/scripts/get-active-workspace")
+(defwidget widget_workspaces []
+  (eventbox :onscroll "/home/sylkos/dotfiles/config/eww/scripts/change-active-workspace {} ${current_workspace}" :class "workspaces-widget"
+    (box :space-evenly true
+      (label :text "${workspaces}${current_workspace}" :visible false)
+      (for workspace in workspaces
+        (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
+          (box :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
+            (label :text "${workspace.id}")
+            )
+          )
+        )
+      )
+    )
+  )

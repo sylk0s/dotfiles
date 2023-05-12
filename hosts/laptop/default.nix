@@ -34,6 +34,7 @@
     };
 		dev = {
 			python.enable = true;
+			rust.enable = true;
 		};
 		hardware = {
 			audio.enable = false;
@@ -49,6 +50,11 @@
 		brightnessctl
 		networkmanagerapplet
 		acpi
+		waybar
+		jq
+		socat
+		openssl
+		vscode
 	];
 
 #	nixpkgs.config.packageOverrides = pkgs: rec {

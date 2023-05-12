@@ -1,25 +1,33 @@
-@import "./scss/colors.scss";
-@import "./scss/variables.scss";
-@import "./scss/common.scss";
+$foreground: #ffffff;
+$grey: #aaaaaa;
+$foreground-alt: #465059;
+$background: #0e1419;
+$black: #000000;
+$red: #ff6565;
+$green: #b8cc52;
+$yellow: #e6c446;
+$blue: #68d4ff;
+$magenta: #ffa3aa;
+$cyan: #36a3d9;
+$white: #ffffff;
 
-@import "./scss/widgets/sys_sliders.scss";
-@import "./scss/widgets/notification.scss";
-@import "./scss/widgets/toggle_button.scss";
-@import "./scss/widgets/media.scss";
-@import "./scss/widgets/calendar.scss";
-@import "./scss/widgets/bar_widget.scss";
-@import "./scss/widgets/user.scss";
+* {
+  all: unset;
+}
 
-@import "./scss/windows/hbar.scss";
-@import "./scss/windows/vbar.scss";
-@import "./scss/windows/datemenu.scss";
-@import "./scss/windows/quicksettings.scss";
-@import "./scss/windows/powermenu.scss";
-@import "./scss/windows/desktop.scss";
-@import "./scss/windows/osd.scss";
-@import "./scss/windows/dock.scss";
-@import "./scss/windows/notifications.scss";
-@import "./scss/windows/noti_center.scss";
-@import "./scss/windows/media.scss";
-@import "./scss/windows/app_laucher.scss";
-tooltip{ @include tooltip }
+window {
+  background: $background;
+}
+
+.bar {
+  font-family: "Ubuntu Nerd Font";
+  font-size: 13px;
+  margin: 0 10px;
+}
+
+.icon-module {
+  margin: 0 5px;
+  & > &__icon {
+    margin-right: 5px;
+  }
+}

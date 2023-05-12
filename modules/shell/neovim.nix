@@ -25,6 +25,7 @@ in {
           # Syntax
           vim-nix
           vim-markdown
+					yuck-vim
 
           # Quality of life
           vim-lastplace         # Opens document where you left it

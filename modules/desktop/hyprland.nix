@@ -90,6 +90,7 @@ in {
 
 	# Execute your favorite apps at launch
 	# exec-once = waybar & hyprpaper & firefox
+	exec-once = waybar
 
 	# Source a file (multi-file configs)
 	# source = ~/.config/hypr/myColors.conf
