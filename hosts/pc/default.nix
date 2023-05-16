@@ -19,6 +19,7 @@
 			};
 			gaming = {
 				steam.enable = true;
+				mc.enable = true;
 			};
 			services = {
 				eww.enable = true;
