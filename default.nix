@@ -50,7 +50,6 @@ with lib.my;
 
       grub = {
 	enable = true;
-	version = 2;
 	devices = [ "nodev" ];
 	efiSupport = true;
 	useOSProber = true;

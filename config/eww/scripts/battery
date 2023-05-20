@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+bat=/sys/class/power_supply/BAT0/
+per="$(cat "$bat/capacity")"
+echo $per

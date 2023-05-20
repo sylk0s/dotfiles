@@ -1,0 +1,37 @@
+
+; Workspace widget for hyprland
+(defwidget bar_workspaces [orientation]
+	(eventbox :onscroll "scripts/change-active-workspace {} ${current_workspace}"
+						:class "w-workspaces"
+						:orientation orientation
+						(box :space-evenly true
+							(label :text "${workspaces}${current_workspace}" :visible false)
+							(for workspace in workspaces
+								(eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
+									(box :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
+										(label :text "${workspace.id == current_workspace ? "" : "${workspace.windows > 0 ? "" : ""}"}")))))))
+
+; Launcher widget nixos
+; Does nothing for now, eventuall opens wofi?
+(defwidget bar_launcher [] (box :class "w-launcher"
+    (button
+        :class "button launcher"
+				:onclick "wofi --show drun"
+				:timeout "10s"
+        (label :class "icon" :text "󱄅" :halign "center")
+    )
+))
+
+(defwidget bar_date []
+  (icon-module :class "date" :icon ""
+    (label :text date_poll)))
+
+(defwidget bar_time []
+  (icon-module :class "time" :icon ""
+    (label :text time_poll)))
+
+(defwidget bar_battery []
+	(icon-module :class "battery" :icon "  "
+		(label :text battery)))
+
+

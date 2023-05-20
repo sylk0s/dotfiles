@@ -1,3 +1,5 @@
+(include "./yuck/widgets/bar.yuck")
+
 (defwindow bar
   :monitor 0
   :hexpand false
@@ -12,13 +14,15 @@
        :class "bar"
     (box :halign "start"
          :space-evenly false
-			(widget_workspaces))
+			(bar_launcher)
+			(bar_workspaces :orientation "h"))
     (box :halign "end"
          :spacing 12
          :hexpand true
          :space-evenly false
-      (date)
-      (time))))
+			(bar_battery)
+      (bar_date)
+      (bar_time))))
 
 (defpoll time_poll :interval "1s" "date +%H:%M:%S")
 (defpoll date_poll :interval "1m" "date +%d/%m/%Y")
@@ -33,27 +37,7 @@
     (label :class "icon-module__icon" :text "${icon}")
     (children)))
 
-(defwidget date []
-  (icon-module :class "date" :icon "" 
-    (label :text date_poll)))
+(deflisten workspaces :initial "[]" "scripts/get-workspaces")
+(deflisten current_workspace :initial "1" "scripts/get-active-workspace")
 
-(defwidget time []
-  (icon-module :class "time" :icon "" 
-    (label :text time_poll))) 
-
-(deflisten workspaces :initial "[]" "/home/sylkos/dotfiles/config/eww/scripts/get-workspaces")
-(deflisten current_workspace :initial "1" "/home/sylkos/dotfiles/config/eww/scripts/get-active-workspace")
-(defwidget widget_workspaces []
-  (eventbox :onscroll "/home/sylkos/dotfiles/config/eww/scripts/change-active-workspace {} ${current_workspace}" :class "workspaces-widget"
-    (box :space-evenly true
-      (label :text "${workspaces}${current_workspace}" :visible false)
-      (for workspace in workspaces
-        (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
-          (box :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
-            (label :text "${workspace.id}")
-            )
-          )
-        )
-      )
-    )
-  )
+(defpoll battery :interval "1s"	"scripts/battery")

@@ -23,6 +23,7 @@
 			};
 			services = {
 				eww.enable = true;
+				docker.enable = true;
 			};
     };
 		dev = {

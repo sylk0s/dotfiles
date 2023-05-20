@@ -2,6 +2,7 @@ $foreground: #ffffff;
 $grey: #aaaaaa;
 $foreground-alt: #465059;
 $background: #0e1419;
+
 $black: #000000;
 $red: #ff6565;
 $green: #b8cc52;
@@ -21,7 +22,7 @@ window {
 
 .bar {
   font-family: "Ubuntu Nerd Font";
-  font-size: 13px;
+  font-size: 14px;
   margin: 0 10px;
 }
 
@@ -30,4 +31,8 @@ window {
   & > &__icon {
     margin-right: 5px;
   }
+}
+
+.w-launcher {
+	margin: 0 4px;
 }
