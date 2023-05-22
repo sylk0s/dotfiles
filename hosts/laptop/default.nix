@@ -53,8 +53,6 @@
 		networkmanagerapplet
 		acpi
 		waybar
-		jq
-		socat
 		openssl
 		vscode
 	];
@@ -78,7 +76,7 @@
 #		type wifi con-name "MySSID" ifname wlp0s20f3 ssid "MySSID" -- \
 #		wifi-sec.key-mgmt wpa-eap 802-1x.eap peap 802-1x.identity "USERNAME" \
 #		 THERE WAS ALSO SOMETHING HERE BUT I FORGOT IT BUT IWD PROMPTS YOU TO ADD IT SO...
-#		802-1x.private-key-password "..."
+#		802-1x.private-key-password "..." 802-1x.phase2-auth mschapv2
 
 	# WPA_SUPPLICANT
 	#networking.wireless.enable = true;

@@ -15,7 +15,7 @@ in {
   };
 
   config = let
-    dependencies = [
+    dependencies = with pkgs; [
       #ewwConfig.package
       #pkgs.sway
       #pkgs.swaysome
@@ -28,8 +28,6 @@ in {
       #pkgs.gnused
       #pkgs.procps
       #pkgs.findutils
-      #pkgs.jq
-      #pkgs.networkmanager
       #pkgs.connman
       #pkgs.pulseaudio
       #pkgs.wireplumber
@@ -58,5 +56,10 @@ in {
         #  Install.WantedBy = ["graphical-session.target"];
         #};
       };
+
+			environment.systemPackages = with pkgs; [
+				jq
+				socat
+			];
     };
 }

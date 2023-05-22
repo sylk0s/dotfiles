@@ -14,11 +14,6 @@ in {
 			enable = true;
 		};
 
-		virtualisation.docker.rootless = {
-			enable = true;
-			setSocketVariable = true;
-		};
-
 		users.users.${config.user.name}.extraGroups = [ "docker" ];
 
 		user.packages = with pkgs; [
