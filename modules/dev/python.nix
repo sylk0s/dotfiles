@@ -24,6 +24,9 @@ let cfg = config.modules.dev.python;
 #				}
 #			)
 			# other python packages
+			ipykernel
+			numpy
+			pip
 		];
 in {
   options.modules.dev.python = {

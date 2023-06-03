@@ -55,6 +55,9 @@
 		waybar
 		openssl
 		vscode
+		scenebuilder
+		openjdk17
+		openjfx17
 	];
 
 #	nixpkgs.config.packageOverrides = pkgs: rec {
