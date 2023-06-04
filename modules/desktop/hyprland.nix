@@ -91,6 +91,9 @@ in {
 
 	# Execute your favorite apps at launch
 	# exec-once = waybar & hyprpaper & firefox
+	# preload = ${config.dotfiles.configDir}/assets/wallpapers/hekatewhistler.jpeg
+	# wallpaper = monitor,contain:${config.dotfiles.configDir}/assets/wallpapers/hekatewhistler.jpeg
+	exec-once = ${config.dotfiles.configDir}/scripts/wallpaper.sh
 
 	# Source a file (multi-file configs)
 	# source = ~/.config/hypr/myColors.conf
@@ -250,6 +253,7 @@ in {
       wofi
 			grim
 			slurp
+			swww
     ];
 
   };
