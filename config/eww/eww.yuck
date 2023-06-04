@@ -1,31 +1,11 @@
+(include "./yuck/vars.yuck")
 (include "./yuck/widgets/bar.yuck")
 
-(defwindow bar
-  :monitor 0
-  :hexpand false
-  :vexpand false
-  :geometry (geometry :anchor "top center" :x 0 :y 0 :width "100%" :height "2%")
-	:exclusive true
-  (bar :screen 0))
+(include "./yuck/widgets/hbar.yuck")
+(include "./yuck/windows/hbar.yuck")
 
-(defwidget bar [screen]
-  (box :orientation "h"
-       :space-evenly false
-       :class "bar"
-    (box :halign "start"
-         :space-evenly false
-			(bar_launcher)
-			(bar_workspaces :orientation "h"))
-    (box :halign "end"
-         :spacing 12
-         :hexpand true
-         :space-evenly false
-			(bar_battery)
-      (bar_date)
-      (bar_time))))
-
-(defpoll time_poll :interval "1s" "date +%H:%M:%S")
-(defpoll date_poll :interval "1m" "date +%d/%m/%Y")
+(include "./yuck/widgets/vbar.yuck")
+(include "./yuck/windows/vbar.yuck")
 
 ; Generic icon module foldstart
 (defwidget icon-module [icon ?class ?visible]
@@ -36,8 +16,3 @@
        :visible {visible ?: true} ; because the argument is optional
     (label :class "icon-module__icon" :text "${icon}")
     (children)))
-
-(deflisten workspaces :initial "[]" "scripts/get-workspaces")
-(deflisten current_workspace :initial "1" "scripts/get-active-workspace")
-
-(defpoll battery :interval "1s"	"scripts/battery")

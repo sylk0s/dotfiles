@@ -1,0 +1,28 @@
+(defwidget hbar []
+	(centerbox
+		:orientation "h"
+		:class "hbar"
+
+		(box
+			:class "leftbar"
+			:space-evenly false
+			:halign "start"
+			:orientation "h"
+			(bar_launcher)
+			(bar_workspaces :orientation "h"))
+
+		(box
+			:class "middlebar"
+			:space-evenly false
+			:orientation "h"
+			)
+
+		(box
+			:class "rightbar"
+			:space-evenly false
+			:halign "end"
+			:orientation "h"
+			(bar_battery)
+			(bar_date)
+			(bar_time))
+))

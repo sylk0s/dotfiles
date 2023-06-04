@@ -20,7 +20,13 @@ window {
   background: $background;
 }
 
-.bar {
+.hbar {
+  font-family: "Ubuntu Nerd Font";
+  font-size: 14px;
+  margin: 0 10px;
+}
+
+.vbar {
   font-family: "Ubuntu Nerd Font";
   font-size: 14px;
   margin: 0 10px;

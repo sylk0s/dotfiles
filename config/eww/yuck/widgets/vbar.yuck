@@ -1,0 +1,25 @@
+(defwidget vbar []
+	(centerbox
+		:orientation "v"
+		:class "vbar"
+
+		(box
+			:class "leftbar"
+			:space-evenly false
+			:halign "start"
+			:orientation "v"
+			(bar_launcher)
+			(bar_workspaces :orientation "v"))
+
+		(box
+			:class "middlebar"
+			:space-evenly false
+			:orientation "v"
+			)
+
+		(box
+			:class "rightbar"
+			:space-evenly false
+			:halign "end"
+			:orientation "v")
+))
