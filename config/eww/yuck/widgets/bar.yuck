@@ -1,8 +1,9 @@
 ; Workspace widget for hyprland
 (defwidget bar_workspaces [orientation]
 	(eventbox :onscroll "scripts/change-active-workspace {} ${current_workspace}"
-						:class "w-workspaces"
+						:class "w-workspaces-outer"
 						(box 
+							:class "w-workspaces-inner"
 							:space-evenly true
 							:orientation orientation
 							(label :text "${workspaces}${current_workspace}" :visible false)
@@ -33,4 +34,33 @@
 	(icon-module :class "battery" :icon ""
 		(label :text battery)))
 
+(defwidget bar_powermenu [] (box :class "w-powermenu" 
+	(button
+    :class "button powermenu"
+    :onclick "hyprctl dispatch exit 1"
+    (label :class "icon" :text "")
+)))
+
+(defwidget bar_clock [orientation] (box :class "w-time"
+    (button
+        :class "button clock"
+        (box
+            :space-evenly false
+            :orientation orientation
+            (label :text hour :class "clock")
+            (bar_separator :orientation orientation :dots "[1, 2]" :visible true)
+            (label :text minutes :class "minutes")
+            (bar_separator :orientation orientation :dots "[1, 2]" :visible true)
+            (label :text seconds :class "seconds")
+        )
+    )
+))
+
+(defwidget bar_separator [orientation dots visible] (box
+    :orientation orientation
+    :class "separator"
+    :space-evenly false
+    :visible visible
+    (for dot in dots
+        (box :class "dot" :halign "center" :hexpand true :valign "center"))))
 

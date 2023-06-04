@@ -6,7 +6,7 @@
 		(box
 			:class "leftbar"
 			:space-evenly false
-			:halign "start"
+			:valign "start"
 			:orientation "v"
 			(bar_launcher)
 			(bar_workspaces :orientation "v"))
@@ -20,6 +20,8 @@
 		(box
 			:class "rightbar"
 			:space-evenly false
-			:halign "end"
-			:orientation "v")
+			:valign "end"
+			:orientation "v"
+			(bar_clock :orientation "v")
+			(bar_powermenu))
 ))

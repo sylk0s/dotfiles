@@ -1,6 +1,10 @@
 (defpoll time_poll :interval "1s" "date +%H:%M:%S")
 (defpoll date_poll :interval "1m" "date +%m/%d")
 
+(defpoll hour :interval "1s" "date +%H")
+(defpoll minutes :interval "1s" "date +%M")
+(defpoll seconds :interval "1s" "date +%S")
+
 (deflisten workspaces :initial "[]" "scripts/get-workspaces")
 (deflisten current_workspace :initial "1" "scripts/get-active-workspace")
 

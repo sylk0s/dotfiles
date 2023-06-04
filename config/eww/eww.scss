@@ -23,22 +23,46 @@ window {
 .hbar {
   font-family: "Ubuntu Nerd Font";
   font-size: 14px;
-  margin: 0 10px;
+  margin: 2px 10px;
 }
 
 .vbar {
   font-family: "Ubuntu Nerd Font";
   font-size: 14px;
-  margin: 0 10px;
+  margin: 2px 8px;
 }
 
 .icon-module {
-  margin: 0 5px;
+  margin: 0px 5px;
   & > &__icon {
     margin-right: 5px;
   }
 }
 
 .w-launcher {
-	margin: 0 4px;
+	margin: 2px 0px;
+	font-size: 24px;
+	color: $blue;
+}
+
+.w-workspaces-outer {
+	background: transparentize($grey, .9);
+	border-radius: 6px;
+	margin: 4px 0px;
+}
+
+.w-workspaces-inner {
+	margin: 4px 0px;
+}
+
+.w-powermenu {
+	color: $red;
+	margin: 2px 0px;
+	font-size: 24px;
+}
+
+.w-time {
+	background: transparentize($grey, .9);
+	border-radius: 6px;
+	margin: 4px 0px;
 }
