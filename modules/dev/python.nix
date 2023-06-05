@@ -27,6 +27,7 @@ let cfg = config.modules.dev.python;
 			ipykernel
 			numpy
 			pip
+			matplotlib
 		];
 in {
   options.modules.dev.python = {

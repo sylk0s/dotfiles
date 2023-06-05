@@ -8,6 +8,8 @@ let
 in {
   options.modules.desktop.services.eww = {
     enable = mkBoolOpt false;
+
+		# Override to pkgs.eww for non-wayland DE
     package = lib.mkOption {
       type = lib.types.package;
       default = pkgs.eww-wayland;
@@ -36,25 +38,11 @@ in {
     lib.mkIf (cfg.enable) {
       # home manager configuration
       home-manager.users.${config.user.name} = {
-      # TODO switch between wayland and X
         programs.eww = {
           enable = true;
 					package = cfg.package;
           configDir = "${config.dotfiles.configDir}/eww";
         };
-
-        #systemd.user.services.eww = {
-        #  Unit = {
-        #    Description = "Eww Daemon";
-        #    PartOf = ["graphical-session.target"];
-        #  };
-        #  Service = {
-        #    Environment = "PATH=/run/wrappers/bin:${lib.makeBinPath dependencies}";
-        #    ExecStart = "${ewwConfig.package}/bin/eww daemon --no-daemonize";
-        #    Restart = "on-failure";
-        #  };
-        #  Install.WantedBy = ["graphical-session.target"];
-        #};
       };
 
 			environment.systemPackages = with pkgs; [

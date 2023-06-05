@@ -22,6 +22,7 @@
 			:space-evenly false
 			:valign "end"
 			:orientation "v"
+			(bar_battery :orientation "v")
 			(bar_clock :orientation "v")
 			(bar_powermenu))
 ))

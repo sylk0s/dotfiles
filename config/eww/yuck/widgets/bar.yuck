@@ -64,3 +64,13 @@
     (for dot in dots
         (box :class "dot" :halign "center" :hexpand true :valign "center"))))
 
+(defwidget bar_battery [orientation] (box :class "w-battery"
+	(button
+		:class "button battery"
+		(box
+			:space-evenly false
+			:orientation orientation
+			(overlay
+				(label :text ""))
+				(label :class "battery-testing-thingy" :text battery)
+		))))
