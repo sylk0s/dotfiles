@@ -15,9 +15,11 @@ in {
 
 		services.xserver = {
 			enable = true;
-			displayManager.gdm = {
+			displayManager.lightdm = {
 				enable = true;
-				wayland = true;
+				greeters.enso.enable = true;
+				background = "${config.dotfiles.configDir}/assets/wallpapers/hekatewhistler.jpeg";
+				#wayland = true;
 			};
 		};
 
