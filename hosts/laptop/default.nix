@@ -46,13 +46,18 @@
 
 	# TODO remove all of these :3
 	environment.systemPackages = with pkgs; [
-		#libva
-		#libsForQt5.qt5ct
-		#mesa
+		# I don't remember what these are for
+		libva
+		libsForQt5.qt5ct
+
+		mesa
+		
+		# laptopy things
 		brightnessctl
-		networkmanagerapplet
 		acpi
-		#waybar
+	
+		# random
+		networkmanagerapplet
 		openssl
 		vscode
 	];
