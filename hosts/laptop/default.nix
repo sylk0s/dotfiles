@@ -37,6 +37,7 @@
 			python.enable = true;
 			rust.enable = true;
 			julia.enable = true;
+			java.enable = true;
 		};
 		hardware = {
 			audio.enable = false;
@@ -45,19 +46,15 @@
 
 	# TODO remove all of these :3
 	environment.systemPackages = with pkgs; [
-		pciutils
-		libva
-		libsForQt5.qt5ct
-		mesa
+		#libva
+		#libsForQt5.qt5ct
+		#mesa
 		brightnessctl
 		networkmanagerapplet
 		acpi
-		waybar
+		#waybar
 		openssl
 		vscode
-		scenebuilder
-		openjdk17
-		openjfx17
 	];
 
 #	nixpkgs.config.packageOverrides = pkgs: rec {
