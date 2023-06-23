@@ -27,6 +27,8 @@
 			};
 			gaming = {
 				#steam.enable = true;
+				mc.enable = true;
+				emu.enable = true;
 			};
 			services = {
 				eww.enable = true;
@@ -40,7 +42,7 @@
 			java.enable = true;
 		};
 		hardware = {
-			audio.enable = false;
+			audio.enable = true;
 		};
   };
 
@@ -97,4 +99,7 @@
   #  password="@PASS@"
   #'';
 #};
+
+	hardware.bluetooth.enable = true;
+	services.blueman.enable = true;
 }
