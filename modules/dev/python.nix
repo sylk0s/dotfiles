@@ -28,6 +28,10 @@ let cfg = config.modules.dev.python;
 			numpy
 			pip
 			matplotlib
+			scipy
+			cloudflare
+			requests
+			python-dotenv
 		];
 in {
   options.modules.dev.python = {

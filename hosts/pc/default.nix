@@ -35,6 +35,7 @@
 
 	# TODO remove all of these :3
 	environment.systemPackages = with pkgs; [
+		brightnessctl
 		#pavucontrol	
 	];
 
