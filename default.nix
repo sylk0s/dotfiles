@@ -67,5 +67,6 @@ with lib.my;
     git
     neovim
     curl
+		pciutils
   ];
 }

@@ -27,6 +27,8 @@
 			};
 			gaming = {
 				#steam.enable = true;
+				mc.enable = true;
+				emu.enable = true;
 			};
 			services = {
 				eww.enable = true;
@@ -37,27 +39,29 @@
 			python.enable = true;
 			rust.enable = true;
 			julia.enable = true;
+			java.enable = true;
 		};
 		hardware = {
-			audio.enable = false;
+			audio.enable = true;
 		};
   };
 
 	# TODO remove all of these :3
 	environment.systemPackages = with pkgs; [
-		pciutils
+		# I don't remember what these are for
 		libva
 		libsForQt5.qt5ct
+
 		mesa
+		
+		# laptopy things
 		brightnessctl
-		networkmanagerapplet
 		acpi
-		waybar
+	
+		# random
+		networkmanagerapplet
 		openssl
 		vscode
-		scenebuilder
-		openjdk17
-		openjfx17
 	];
 
 #	nixpkgs.config.packageOverrides = pkgs: rec {
@@ -95,4 +99,7 @@
   #  password="@PASS@"
   #'';
 #};
+
+	hardware.bluetooth.enable = true;
+	services.blueman.enable = true;
 }
