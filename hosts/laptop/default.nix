@@ -26,7 +26,7 @@
 				intellij.enable = true;
 			};
 			gaming = {
-				#steam.enable = true;
+				steam.enable = true;
 				mc.enable = true;
 				emu.enable = true;
 			};

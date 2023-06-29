@@ -54,7 +54,7 @@ in {
         antialias = true;
         hinting = {
           enable = true;
-          style = "hintslight";
+          style = "medium";
           autohint = false;
         };
         defaultFonts = {
