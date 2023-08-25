@@ -104,5 +104,5 @@
 	services.blueman.enable = true;
 
 	# temp timezone changer
-	time.timeZone = "Europe/Budapest";
+	# time.timeZone = "Europe/Budapest";
 }

@@ -69,4 +69,6 @@ with lib.my;
     curl
 		pciutils
   ];
+
+	#programs.home-manager.enable = true;
 }

@@ -28,7 +28,7 @@ in {
   # TODO add some option here for a light font install
   config = lib.mkIf (cfg.enable) {
     fonts = {
-      fonts = with pkgs; [
+      packages = with pkgs; [
         inter
         (nerdfonts.override {
 					fonts = [
@@ -64,7 +64,7 @@ in {
           emoji = ["${styles.emoji.family} ${toString styles.emoji.size}"];
         };
       };
-      enableDefaultFonts = true;
+      enableDefaultPackages = true;
     };
   };
 }

@@ -42,7 +42,7 @@ in {
 #						});
 #					};
 #			};
-			nvidiaPatches = cfg.nvidia;
+			enableNvidiaPatches = cfg.nvidia;
 			xwayland.enable = true;
     };
 
@@ -62,7 +62,7 @@ in {
 
       wayland.windowManager.hyprland = {
         enable = true;
-        nvidiaPatches = cfg.nvidia; #if you have nvidia
+        enableNvidiaPatches = cfg.nvidia; #if you have nvidia
 				xwayland.enable = true;
         extraConfig = ''
         # hyprland config here
@@ -136,10 +136,15 @@ in {
 	    # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
 	    rounding = 0
-	    blur = yes
-	    blur_size = 3
-	    blur_passes = 1
-	    blur_new_optimizations = on
+	    blur {
+				enabled = true # default
+				size = 3 # smaller than default
+				passes = 1 # default
+				new_optimizations = true # default
+			}
+	    #blur_size = 3
+	    #blur_passes = 1
+	    #blur_new_optimizations = on
 
 	    drop_shadow = yes
 	    shadow_range = 4

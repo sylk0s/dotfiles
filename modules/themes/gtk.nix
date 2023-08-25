@@ -10,7 +10,10 @@ in {
 		iconTheme = {
       package = lib.mkOption {
         type = lib.types.package;
-        default = pkgs.papirus-icon-theme;
+        default = pkgs.catppuccin-papirus-folders.override {
+					flavor = "mocha";
+					accent = "lavender";
+				};
       };
       name = mkStrOpt "Papirus-Dark";
     };
@@ -28,7 +31,7 @@ in {
         };
 
         theme = {
-          name = "Catppuccin-Mocha-Compact-Lavender-Dark";
+          name = "Catppuccin-Mocha-Compact-Lavender-dark";
           package = pkgs.catppuccin-gtk.override {
             accents = [ "lavender" ];
             size = "compact";
@@ -39,15 +42,11 @@ in {
 
 
         gtk3.extraConfig = {
-          Settings = ''
-            gtk-application-prefer-dark-theme=1
-          '';
+					gtk-application-prefer-dark-theme = 1;
         };
 
         gtk4.extraConfig = {
-          Settings = ''
-            gtk-application-prefer-dark-theme=1
-          '';
+					gtk-application-prefer-dark-theme = 1;
         };
       };
     };
