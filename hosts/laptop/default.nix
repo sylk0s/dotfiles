@@ -32,7 +32,7 @@
 			};
 			services = {
 				eww.enable = true;
-				docker.enable = true;
+				podman.enable = true;
 			};
     };
 		dev = {
