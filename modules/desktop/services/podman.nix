@@ -13,6 +13,8 @@ in {
 		virtualisation.podman = {
 			enable = true;
 			defaultNetwork.settings.dns_enabled = true;
+			# Create a `docker` alias for podman, to use it as a drop-in replacement
+      dockerCompat = true;
 		};
 
 		user.packages = with pkgs; [
