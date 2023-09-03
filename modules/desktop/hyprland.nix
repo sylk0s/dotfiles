@@ -84,8 +84,10 @@ in {
 	exec-once = ${config.dotfiles.configDir}/eww/scripts/init
 
 	# See https://wiki.hyprland.org/Configuring/Monitors/
-	monitor = DP-1,1920x1080,0x288,1
-	monitor = HDMI-A-1,1920x1200,1920x0,1,transform,3
+	# monitor = DP-1,1920x1080,0x288,1
+	# monitor = HDMI-A-1,1920x1200,1920x0,1,transform,3
+	monitor = DP-1,1920x1080,1200x288,1
+	monitor = HDMI-A-1,1920x1200,0x0,1,transform,3
 	# adds any random monitors automatically to the right of the other monitors
 	monitor=,preferred,auto,1
 

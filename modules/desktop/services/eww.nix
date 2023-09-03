@@ -14,6 +14,9 @@ in {
       type = lib.types.package;
       default = pkgs.eww-wayland;
     };
+
+		# layout name... probably later should implement this as the script or something
+		layout = mkStrOpt "left";
   };
 
   config = let
