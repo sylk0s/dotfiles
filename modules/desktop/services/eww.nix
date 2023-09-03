@@ -16,7 +16,7 @@ in {
     };
 
 		# layout name... probably later should implement this as the script or something
-		layout = mkStrOpt "left";
+		layout = mkStrOpt "leftbar";
   };
 
   config = let

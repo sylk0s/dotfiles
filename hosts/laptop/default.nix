@@ -31,7 +31,10 @@
 				emu.enable = true;
 			};
 			services = {
-				eww.enable = true;
+				eww = {
+					enable = true;
+					#layout = "rightbar";
+				};
 				docker.enable = true;
 			};
     };

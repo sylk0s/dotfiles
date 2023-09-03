@@ -1,4 +1,4 @@
-(defwindow vbar
+(defwindow leftbar
 	:monitor 0
 	:hexpand false
 	:vexpand false

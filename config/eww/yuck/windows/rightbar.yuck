@@ -1,0 +1,7 @@
+(defwindow rightbar
+	:monitor 0
+	:hexpand false
+	:vexpand false
+	:geometry (geometry :anchor "center right" :x 0 :y 0 :width "1%" :height "100%")
+	:exclusive true
+	(vbar))

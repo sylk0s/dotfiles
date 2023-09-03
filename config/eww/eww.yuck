@@ -2,10 +2,11 @@
 (include "./yuck/widgets/bar.yuck")
 
 (include "./yuck/widgets/hbar.yuck")
-(include "./yuck/windows/hbar.yuck")
+(include "./yuck/windows/topbar.yuck")
 
 (include "./yuck/widgets/vbar.yuck")
-(include "./yuck/windows/vbar.yuck")
+(include "./yuck/windows/rightbar.yuck")
+(include "./yuck/windows/leftbar.yuck")
 
 ; Generic icon module foldstart
 (defwidget icon-module [icon ?class ?visible]
