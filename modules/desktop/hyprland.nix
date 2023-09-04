@@ -205,7 +205,8 @@ in {
 	# Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
 	bind = $mainMod, Q, killactive
 	bind = $mainMod SHIFT, Z, exec, discord
-	bind = $mainMod, escape, exit,
+	bind = $mainMod, escape, exec, eww open powermenu
+	bind = $mainMod SHIFT, escape, exit,
 	bind = $mainMod, E, exec, dolphin
 	bind = $mainMod, V, togglefloating,
 	bind = $mainMod, R, exec, wofi --show drun
@@ -263,7 +264,7 @@ in {
 			grim
 			slurp
 			swww
-			swaylock
+			swaylock-effects
     ];
 
 		security.pam.services.swaylock = {

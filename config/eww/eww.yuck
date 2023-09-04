@@ -8,6 +8,9 @@
 (include "./yuck/windows/rightbar.yuck")
 (include "./yuck/windows/leftbar.yuck")
 
+(include "./yuck/widgets/powermenu.yuck")
+(include "./yuck/windows/powermenu.yuck")
+
 ; Generic icon module foldstart
 (defwidget icon-module [icon ?class ?visible]
   (box :class "${class} icon-module"

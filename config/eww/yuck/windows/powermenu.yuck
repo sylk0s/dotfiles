@@ -1,0 +1,7 @@
+(defwindow powermenu
+	:monitor 0
+	:hexpand false
+	:vexpand false
+	:geometry (geometry :anchor "center center" :width "10%" :height "5%")
+	:exclusive false
+	(powermenu))

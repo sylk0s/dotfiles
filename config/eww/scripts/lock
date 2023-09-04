@@ -1,0 +1,2 @@
+swaylock --screenshots --clock --indicator --effect-blur 20x5 --effect-scale .1 --ring-color b4befe --key-hl-color f9e2af --line-color 1e1e2e --inside-color 00000088 --text-color f9e2af --inside-wrong-color f38ba8 &
+eww close powermenu

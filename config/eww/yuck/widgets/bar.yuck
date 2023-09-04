@@ -37,7 +37,7 @@
 (defwidget bar_powermenu [] (box :class "w-powermenu" 
 	(button
     :class "button powermenu"
-    :onclick "hyprctl dispatch exit 1"
+    :onclick "eww open powermenu"
     (label :class "icon" :text "")
 )))
 

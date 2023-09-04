@@ -1,0 +1,31 @@
+(defwidget powermenu []
+	(box
+		:orientation "h"
+		:class "powermenu"
+		:space-evenly true
+
+		(button
+			:class "powermenu-off"
+			:onclick "shutdown now"
+			(label :class "icon" :text "⏻" :halign "center")
+		)
+
+		(button
+			:class "powermenu-logout"
+			:onclick "hyprctl dispatch exit"
+			(label :class "icon" :text "󰍃" :halign "center")
+		)
+			
+		(button
+			:class "powermenu-lock"
+			:onclick "./scripts/lock"
+			(label :class "icon" :text "" :halign "center")
+		)
+
+		(button
+			:class "powermenu-close"
+			:onclick "eww close powermenu"
+			(label :class "icon" :text "" :halign "center")
+		)
+	)
+)
