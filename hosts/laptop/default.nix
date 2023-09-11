@@ -43,6 +43,7 @@
 			rust.enable = true;
 			julia.enable = true;
 			java.enable = true;
+			c.enable = true;
 		};
 		hardware = {
 			audio.enable = true;
@@ -65,6 +66,9 @@
 		networkmanagerapplet
 		openssl
 		vscode
+		wireshark
+		cura
+		quartus-prime-lite
 	];
 
 #	nixpkgs.config.packageOverrides = pkgs: rec {
