@@ -188,6 +188,11 @@ in {
         "extensions.formautofill.heuristics.enabled" = false;
 	# for tiling window managers expands to the size of the window
 	"full-screen-api.ignore-widgets" = true;
+
+	# tab open behavior
+	"browser.search.openintab" = true;
+	"browser.link.open_newwindow" = 3;
+	"browser.link.open_newwindow.restriction" = 0;
       };
 
       # Use a stable profile name so we can target it in themes
