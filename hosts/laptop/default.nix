@@ -69,6 +69,11 @@
 		wireshark
 		cura
 		quartus-prime-lite
+		
+		# removed in favor of:
+		# https://codeberg.org/tropf/nix-inkstitch
+		#inkscape-with-extensions
+		#python311Packages.pygobject3
 	];
 
 #	nixpkgs.config.packageOverrides = pkgs: rec {

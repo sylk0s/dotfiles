@@ -23,6 +23,11 @@ in {
     {
       user.packages = with pkgs; [
         firefox
+#				(pkgs.firefox.override {
+#					extraPolicies = {
+#					DontCheckDefaultBrowser = true;
+#					DisablePocket = true;
+#      };
       ];
 
       # Prevent auto-creation of ~/Desktop. The trailing slash is necessary; see
@@ -186,7 +191,7 @@ in {
       };
 
       # Use a stable profile name so we can target it in themes
-      #home.file = let cfgPath = ".mozilla/firefox"; in {
+      home.file = let cfgPath = ".mozilla/firefox"; in {
       #  "${cfgPath}/profiles.ini".text = ''
       #    [Profile0]
       #    Name=default
@@ -199,15 +204,15 @@ in {
 #          Version=2
 #        '';
 #
-#        "${cfgPath}/${cfg.profileName}.default/user.js" =
-#          mkIf (cfg.settings != {} || cfg.extraConfig != "") {
-#            text = ''
-#              ${concatStrings (mapAttrsToList (name: value: ''
-#                user_pref("${name}", ${builtins.toJSON value});
-#              '') cfg.settings)}
-#              ${cfg.extraConfig}
-#            '';
-#          };
+        "${cfgPath}/${cfg.profileName}.default/user.js" =
+          mkIf (cfg.settings != {} || cfg.extraConfig != "") {
+            text = ''
+              ${concatStrings (mapAttrsToList (name: value: ''
+                user_pref("${name}", ${builtins.toJSON value});
+              '') cfg.settings)}
+              ${cfg.extraConfig}
+            '';
+          };
 #
 #        "${cfgPath}/${cfg.profileName}.default/chrome/userChrome.css" =
 #          mkIf (cfg.userChrome != "") {
@@ -218,7 +223,7 @@ in {
 #          mkIf (cfg.userContent != "") {
 #            text = cfg.userContent;
 #          };
-#      };
+			};
     }
   ]);
 }
