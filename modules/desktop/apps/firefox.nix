@@ -204,7 +204,8 @@ in {
 #          Version=2
 #        '';
 #
-        "${cfgPath}/${cfg.profileName}.default/user.js" =
+				# hardcoded for laptop profile for now
+        "${cfgPath}/ahpu6nkm.default/user.js" =
           mkIf (cfg.settings != {} || cfg.extraConfig != "") {
             text = ''
               ${concatStrings (mapAttrsToList (name: value: ''
