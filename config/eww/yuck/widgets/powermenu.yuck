@@ -11,6 +11,12 @@
 		)
 
 		(button
+			:class "powermenu-restart"
+			:onclick "shutdown -r now"
+			(label :class "icon" :text "󰑙" :halign "center")
+		)
+
+		(button
 			:class "powermenu-logout"
 			:onclick "hyprctl dispatch exit"
 			(label :class "icon" :text "󰍃" :halign "center")

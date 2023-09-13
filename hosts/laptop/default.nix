@@ -66,8 +66,13 @@
 		networkmanagerapplet
 		openssl
 		vscode
+
 		wireshark
+
+		# 3d printer slicer
 		cura
+
+		# digital design & fpga programmer for DE1-SoC
 		quartus-prime-lite
 		
 		# removed in favor of:

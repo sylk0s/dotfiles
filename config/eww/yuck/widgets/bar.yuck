@@ -16,8 +16,7 @@
 (defwidget bar_launcher [] (box :class "w-launcher"
     (button
         :class "button launcher"
-				:onclick "wofi --show drun"
-				:timeout "10s"
+				:onclick "./scripts/launcher"
         (label :class "icon" :text "󱄅" :halign "center")
     )
 ))
