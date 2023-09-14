@@ -211,9 +211,10 @@ in {
 	bind = $mainMod, V, togglefloating,
 	bind = $mainMod, R, exec, wofi --show drun
 	bind = $mainMod, P, pseudo, # dwindle
-	bind = $mainMod, J, togglesplit, # dwindle
+	bind = $mainMod, U, togglesplit, # dwindle
 	bind = $mainMod SHIFT, F, exec, firefox
 	bind = $mainMod, Tab, exec, ${pkgs.alacritty}/bin/alacritty
+	bind = $mainMod ALT, X, exec, ${config.dotfiles.configDir}/eww/scripts/lock
 
 	bind = $mainMod ALT, E, exec, grim -g "$(slurp)"
 
