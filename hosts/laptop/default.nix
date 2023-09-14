@@ -22,7 +22,10 @@
       	signal.enable = true;
       };
 			apps = {
-				firefox.enable = true;
+				firefox = {
+					enable = true;
+					profileName = "ahpu6nkm";
+				};
 				intellij.enable = true;
 				virtualbox.enable = true;
 			};
@@ -80,6 +83,8 @@
 		# https://codeberg.org/tropf/nix-inkstitch
 		#inkscape-with-extensions
 		#python311Packages.pygobject3
+
+		#jetbrains.rust-rover
 	];
 
 #	nixpkgs.config.packageOverrides = pkgs: rec {
