@@ -24,6 +24,7 @@
 			apps = {
 				firefox.enable = true;
 				intellij.enable = true;
+				virtualbox.enable = true;
 			};
 			gaming = {
 				steam.enable = true;
@@ -122,4 +123,6 @@
 
 	# temp timezone changer
 	# time.timeZone = "Europe/Budapest";
+
+
 }

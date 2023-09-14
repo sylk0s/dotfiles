@@ -2,19 +2,19 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.shell.exa;
+let cfg = config.modules.shell.eza;
 in {
-  options.modules.shell.exa = {
+  options.modules.shell.eza = {
     enable = mkBoolOpt true;
   };
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
-      exa
+      eza
     ];
 
     environment.shellAliases = {
-      ll = "exa -ll";
+      ll = "eza -ll";
     };
   };
 }
