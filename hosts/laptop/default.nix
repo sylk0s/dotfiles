@@ -89,6 +89,7 @@
 		stm32flash
 		usbutils
 		gimp
+		circup
 	];
 
 #	nixpkgs.config.packageOverrides = pkgs: rec {
