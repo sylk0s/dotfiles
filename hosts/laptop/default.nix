@@ -84,7 +84,7 @@
 		#inkscape-with-extensions
 		#python311Packages.pygobject3
 
-		#jetbrains.rust-rover
+		jetbrains.rust-rover
 
 		stm32flash
 		usbutils
