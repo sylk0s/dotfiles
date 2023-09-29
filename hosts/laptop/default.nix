@@ -71,8 +71,6 @@
 		openssl
 		vscode
 
-		wireshark
-
 		# 3d printer slicer
 		cura
 
@@ -133,6 +131,14 @@
 
 	# temp timezone changer
 	# time.timeZone = "Europe/Budapest";
+
+	users.groups.wireshark = {};
+	users.users.sylkos.extraGroups = [ "wireshark" ];
+
+	programs.wireshark = {
+		enable = true;
+		package = pkgs.wireshark;
+	};
 
 	services.udev.extraRules = ''
     SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3744", MODE:="0666", SYMLINK+="stlinkv1_%n"
