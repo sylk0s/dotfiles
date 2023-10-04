@@ -68,8 +68,6 @@
 	
 		# random
 		networkmanagerapplet
-		openssl
-		vscode
 
 		# 3d printer slicer
 		cura
@@ -84,10 +82,17 @@
 
 		jetbrains.rust-rover
 
-		stm32flash
-		usbutils
 		gimp
-		circup
+
+		# embedded
+		gcc-arm-embedded
+		openocd
+		screen
+		jetbrains.clion
+		stlink
+		usbutils
+
+		busybox
 	];
 
 #	nixpkgs.config.packageOverrides = pkgs: rec {
