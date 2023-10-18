@@ -91,6 +91,8 @@
 		jetbrains.clion
 		stlink
 		usbutils
+		stm32cubemx
+		pico-sdk
 
 		busybox
 	];
@@ -138,7 +140,8 @@
 	# time.timeZone = "Europe/Budapest";
 
 	users.groups.wireshark = {};
-	users.users.sylkos.extraGroups = [ "wireshark" ];
+	users.groups.plugdev = {};
+	users.users.sylkos.extraGroups = [ "wireshark" "plugdev" ];
 
 	programs.wireshark = {
 		enable = true;
