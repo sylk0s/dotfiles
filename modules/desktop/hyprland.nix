@@ -186,6 +186,10 @@ in {
 	    workspace_swipe = off
 	}
 
+	misc {
+			force_default_wallpaper = 0
+	}
+
 	# Example per-device config
 	# See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
 	device:epic-mouse-v1 {
