@@ -56,6 +56,7 @@ with lib.my;
     # nixos-rebuild build-vm to work.
     home-manager = {
       useUserPackages = true;
+			useGlobalPkgs = true;
 
       users.${config.user.name} = {
         home = {

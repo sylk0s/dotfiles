@@ -9,7 +9,30 @@ in {
   };
 
   config = mkIf (cfg.enable) {
-		services.udisks2.enable = true;
+		services.udisks2 = {
+			enable = true;
+		};
+
+		nixpkgs.overlays = [
+			(self: super: {
+				udiskie = super.udiskie.override {
+					python3 = super.python3.override { 
+						packageOverrides = final: prev: {
+							keyutils = prev.keyutils.overridePythonAttrs({
+								preBuild = ''
+									cython keyutils/_keyutils.pyx
+								'';
+								preCheck = ''
+									rm -rf keyutils
+								'';
+								nativeBuildInputs = [ final.cython ];
+								nativeCheckInputs = [ final.pytestCheckHook ];
+							});
+						};
+					};
+				};
+			})
+		];
 
 		home-manager.users.${config.user.name}.services.udiskie = {
 			enable = true;

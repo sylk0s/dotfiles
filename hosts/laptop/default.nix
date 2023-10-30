@@ -32,7 +32,7 @@
 			gaming = {
 				steam.enable = true;
 				mc.enable = true;
-				emu.enable = true;
+				emu.enable = false;
 			};
 			services = {
 				eww = {
@@ -57,9 +57,8 @@
 	# TODO remove all of these :3
 	environment.systemPackages = with pkgs; [
 		# I don't remember what these are for
-		libva
-		libsForQt5.qt5ct
-
+		#libva
+		#libsForQt5.qt5ct
 		mesa
 		
 		# laptopy things
@@ -67,7 +66,7 @@
 		acpi
 	
 		# random
-		networkmanagerapplet
+		#networkmanagerapplet
 
 		# 3d printer slicer
 		cura
@@ -80,7 +79,7 @@
 		#inkscape-with-extensions
 		#python311Packages.pygobject3
 
-		jetbrains.rust-rover
+		#jetbrains.rust-rover
 
 		gimp
 
