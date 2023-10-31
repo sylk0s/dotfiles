@@ -12,6 +12,11 @@ in {
     user.packages = with pkgs; [
 			vscode
     ];
+		# in ~/.config/Code/User/settings.json
+#		{
+#			"window.titleBarStyle": "custom",
+#			...
+#		}
 		
 		environment.sessionVariables.NIXOS_OZONE_WL = "1";
   };
