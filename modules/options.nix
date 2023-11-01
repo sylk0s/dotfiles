@@ -1,4 +1,4 @@
-{ config, options, lib, home-manager, ... }:
+{ config, options, lib, home-manager, pkgs, ... }:
 
 with lib;
 with lib.my;
@@ -56,7 +56,7 @@ with lib.my;
         # nixos-rebuild build-vm to work.
         home-manager = {
             useUserPackages = true;
-                    useGlobalPkgs = true;
+            useGlobalPkgs = true;
 
             users.${config.user.name} = {
                 home = {
@@ -71,6 +71,8 @@ with lib.my;
                 };
             };
         };
+
+        users.defaultUserShell = pkgs.zsh;
 
         users.users.${config.user.name} = mkAliasDefinitions options.user;
 

@@ -1,0 +1,6 @@
+[submodule "config/oh-my-zsh/powerlevel10k"]
+	path = config/oh-my-zsh/powerlevel10k
+	url = git@github.com:romkatv/powerlevel10k.git
+[submodule "config/--force"]
+	path = config/--force
+	url = git@github.com:romkatv/powerlevel10k.git
