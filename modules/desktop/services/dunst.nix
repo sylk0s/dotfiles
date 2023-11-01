@@ -120,7 +120,7 @@ in {
       };
     };
     
-		# icons for volume, brightness etc.
+        # icons for volume, brightness etc.
     #home.configFile."dunst/icons" = {
     #  source = "${config.nixosConfig.configDir}/dunst/icons";
     #  recursive = true;

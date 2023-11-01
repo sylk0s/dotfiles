@@ -9,14 +9,14 @@ in {
   options.modules.desktop.services.eww = {
     enable = mkBoolOpt false;
 
-		# Override to pkgs.eww for non-wayland DE
+        # Override to pkgs.eww for non-wayland DE
     package = lib.mkOption {
       type = lib.types.package;
       default = pkgs.eww-wayland;
     };
 
-		# layout name... probably later should implement this as the script or something
-		layout = mkStrOpt "leftbar";
+        # layout name... probably later should implement this as the script or something
+        layout = mkStrOpt "leftbar";
   };
 
   config = let
@@ -43,14 +43,14 @@ in {
       home-manager.users.${config.user.name} = {
         programs.eww = {
           enable = true;
-					package = cfg.package;
+                    package = cfg.package;
           configDir = "${config.dotfiles.configDir}/eww";
         };
       };
 
-			environment.systemPackages = with pkgs; [
-				jq
-				socat
-			];
+            environment.systemPackages = with pkgs; [
+                jq
+                socat
+            ];
     };
 }

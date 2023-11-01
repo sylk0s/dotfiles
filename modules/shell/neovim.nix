@@ -25,7 +25,7 @@ in {
           # Syntax
           vim-nix
           vim-markdown
-					yuck-vim
+                    yuck-vim
 
           # Quality of life
           vim-lastplace         # Opens document where you left it
@@ -58,10 +58,10 @@ in {
 
           nmap <F6> :NERDTreeToggle<CR>             " F6 opens NERDTree
 
-	  "expandtab
-	  set tabstop=2
-	  set shiftwidth=2
-	  set softtabstop=2
+      "expandtab
+      set tabstop=2
+      set shiftwidth=2
+      set softtabstop=2
         '';
       };
     };

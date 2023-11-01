@@ -9,11 +9,11 @@ in {
   };
 
   config = mkIf cfg.enable {
-		environment.systemPackages = with pkgs; [
-			dolphin-emu
-			lutris
-		];
+        environment.systemPackages = with pkgs; [
+            dolphin-emu
+            lutris
+        ];
 
-		services.udev.packages = [ pkgs.dolphinEmu ];
+        services.udev.packages = [ pkgs.dolphinEmu ];
   };
 }

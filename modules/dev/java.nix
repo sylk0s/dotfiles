@@ -10,9 +10,9 @@ in {
 
   config = mkIf cfg.enable {
       user.packages = with pkgs; [ 
-				openjdk17
-				#openjfx17
-				#scenebuilder
-			];
-	};
+                openjdk17
+                #openjfx17
+                #scenebuilder
+            ];
+    };
 }

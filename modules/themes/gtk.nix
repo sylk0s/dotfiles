@@ -7,13 +7,13 @@ let cfg = config.modules.themes.gtk;
 in {
   options.modules.themes.gtk = {
     enable = mkBoolOpt true;
-		iconTheme = {
+        iconTheme = {
       package = lib.mkOption {
         type = lib.types.package;
         default = pkgs.catppuccin-papirus-folders.override {
-					flavor = "mocha";
-					accent = "lavender";
-				};
+                    flavor = "mocha";
+                    accent = "lavender";
+                };
       };
       name = mkStrOpt "Papirus-Dark";
     };
@@ -42,11 +42,11 @@ in {
 
 
         gtk3.extraConfig = {
-					gtk-application-prefer-dark-theme = 1;
+                    gtk-application-prefer-dark-theme = 1;
         };
 
         gtk4.extraConfig = {
-					gtk-application-prefer-dark-theme = 1;
+                    gtk-application-prefer-dark-theme = 1;
         };
       };
     };

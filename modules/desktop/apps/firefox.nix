@@ -23,10 +23,10 @@ in {
     {
       user.packages = with pkgs; [
         firefox
-#				(pkgs.firefox.override {
-#					extraPolicies = {
-#					DontCheckDefaultBrowser = true;
-#					DisablePocket = true;
+#               (pkgs.firefox.override {
+#                   extraPolicies = {
+#                   DontCheckDefaultBrowser = true;
+#                   DisablePocket = true;
 #      };
       ];
 
@@ -186,13 +186,13 @@ in {
         "extensions.formautofill.creditCards.available" = false;
         "extensions.formautofill.creditCards.enabled" = false;
         "extensions.formautofill.heuristics.enabled" = false;
-	# for tiling window managers expands to the size of the window
-	"full-screen-api.ignore-widgets" = true;
+    # for tiling window managers expands to the size of the window
+    "full-screen-api.ignore-widgets" = true;
 
-	# tab open behavior
-	"browser.search.openintab" = true;
-	"browser.link.open_newwindow" = 3;
-	"browser.link.open_newwindow.restriction" = 0;
+    # tab open behavior
+    "browser.search.openintab" = true;
+    "browser.link.open_newwindow" = 3;
+    "browser.link.open_newwindow.restriction" = 0;
       };
 
       # Use a stable profile name so we can target it in themes
@@ -209,7 +209,7 @@ in {
 #          Version=2
 #        '';
 #
-				# hardcoded for laptop profile for now
+                # hardcoded for laptop profile for now
         "${cfgPath}/${cfg.profileName}.default/user.js" =
           mkIf (cfg.settings != {} || cfg.extraConfig != "") {
             text = ''
@@ -229,7 +229,7 @@ in {
 #          mkIf (cfg.userContent != "") {
 #            text = cfg.userContent;
 #          };
-			};
+            };
     }
   ]);
 }

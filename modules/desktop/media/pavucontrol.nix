@@ -9,9 +9,9 @@ in {
   };
 
   config = mkIf (cfg.enable && config.modules.hardware.audio.enable) 
-	{
+    {
     user.packages = with pkgs; [
-			pavucontrol
+            pavucontrol
     ];
   };
 }

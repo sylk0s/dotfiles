@@ -31,16 +31,16 @@ in {
       packages = with pkgs; [
         inter
         (nerdfonts.override {
-					fonts = [
-						"JetBrainsMono"
-						"Ubuntu"
-						"Mononoki"
-						#"FiraCode"
-					];
-				})
-				julia-mono
-				#ibm-plex
-				noto-fonts
+                    fonts = [
+                        "JetBrainsMono"
+                        "Ubuntu"
+                        "Mononoki"
+                        #"FiraCode"
+                    ];
+                })
+                julia-mono
+                #ibm-plex
+                noto-fonts
         noto-fonts-cjk
         noto-fonts-emoji
         #material-design-icons

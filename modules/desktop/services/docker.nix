@@ -10,14 +10,14 @@ in {
 
   config = mkIf (cfg.enable) {
 
-		virtualisation.docker = {
-			enable = true;
-		};
+        virtualisation.docker = {
+            enable = true;
+        };
 
-		users.users.${config.user.name}.extraGroups = [ "docker" ];
+        users.users.${config.user.name}.extraGroups = [ "docker" ];
 
-		user.packages = with pkgs; [
-			docker-compose
-		];
-	};
+        user.packages = with pkgs; [
+            docker-compose
+        ];
+    };
 }

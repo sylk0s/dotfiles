@@ -22,7 +22,7 @@ in {
       htop
       neofetch
       zip
-			unzip
+            unzip
     ];
 
     #home-manager.users.${config.user.name} = {

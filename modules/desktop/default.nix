@@ -15,7 +15,7 @@ in {
           let srv = config.services;
           in srv.xserver.enable ||
              srv.sway.enable ||
-	     programs.hyprland.enable ||
+         programs.hyprland.enable ||
              !(anyAttrs
                (n: v: isAttrs v &&
                       anyAttrs (n: v: isAttrs v && v.enable))

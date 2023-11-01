@@ -13,7 +13,7 @@ in {
       xfce.thunar
     ];
 
-		services.tumbler.enable = true;
-		services.gvfs.enable = true;
+        services.tumbler.enable = true;
+        services.gvfs.enable = true;
   };
 }

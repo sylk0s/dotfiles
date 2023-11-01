@@ -44,16 +44,16 @@ with lib.my;
 
     loader = {
       efi = {
-	canTouchEfiVariables = mkDefault true;
-	efiSysMountPoint = "/boot/efi";
+    canTouchEfiVariables = mkDefault true;
+    efiSysMountPoint = "/boot/efi";
       };
 
       grub = {
-	enable = true;
-	devices = [ "nodev" ];
-	efiSupport = true;
-	useOSProber = true;
-	configurationLimit = mkDefault 10;
+    enable = true;
+    devices = [ "nodev" ];
+    efiSupport = true;
+    useOSProber = true;
+    configurationLimit = mkDefault 10;
       };
 
       timeout = null;
@@ -67,8 +67,8 @@ with lib.my;
     git
     neovim
     curl
-		pciutils
+        pciutils
   ];
 
-	#programs.home-manager.enable = true;
+    #programs.home-manager.enable = true;
 }

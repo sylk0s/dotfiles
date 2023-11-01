@@ -74,7 +74,7 @@ in {
       #    esac
       # '')
     ];
-		networking.firewall.allowedTCPPorts = [ 57621 ];
+        networking.firewall.allowedTCPPorts = [ 57621 ];
   #   systemd.user.services.spotifyd.serviceConfig =
   #     let spotifydConf = pkgs.writeText "spotifyd.conf" ''
   #         [global]

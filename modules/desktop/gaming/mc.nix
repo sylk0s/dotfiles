@@ -9,9 +9,9 @@ in {
   };
 
   config = mkIf cfg.enable {
-		environment.systemPackages = with pkgs; [
-			tomlplusplus
-			prismlauncher
-		];
+        environment.systemPackages = with pkgs; [
+            tomlplusplus
+            prismlauncher
+        ];
   };
 }

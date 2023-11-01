@@ -12,7 +12,7 @@ with lib.my;
           (findFirst pathExists (toString ../.) [
             "/mnt/etc/dotfiles"
             "/etc/dotfiles"
-						"/home/${config.user.name}/dotfiles"
+                        "/home/${config.user.name}/dotfiles"
           ]));
       binDir     = mkOpt path "${config.dotfiles.dir}/bin";
       configDir  = mkOpt path "${config.dotfiles.dir}/config";
@@ -56,7 +56,7 @@ with lib.my;
     # nixos-rebuild build-vm to work.
     home-manager = {
       useUserPackages = true;
-			useGlobalPkgs = true;
+            useGlobalPkgs = true;
 
       users.${config.user.name} = {
         home = {
