@@ -25,25 +25,9 @@ in {
 
     # whats going on here? why are there both here...
     programs.hyprland = {
-      enable = true;
-#           package = inputs.hyprland.packages.${pkgs.system}.default.override {
-#               nvidiaPatches = true;
-#               wlroots =
-#                   inputs.hyprland.packages.${pkgs.system}.wlroots-hyprland.overrideAttrs {
-#                   (old: {
-#                       patches = 
-#                           (old.patches or [])
-#                           ++ [
-#                               (pkgs.fetchpatch {
-#                                   url =" https://aur.archlinux.org/cgit/aur.git/plain/0001-nvidia-format-workaround.patch?h=hyprland-nvidia-screenshare-git";
-#                                   sha256 = "A9f1p5EW++mGCaNq8w7ZJfeWmvTfUm4iO+1KDcnqYX8=";
-#                               })
-#                           ];
-#                       });
-#                   };
-#           };
-            enableNvidiaPatches = cfg.nvidia;
-            xwayland.enable = true;
+        enable = true;
+        enableNvidiaPatches = cfg.nvidia;
+        xwayland.enable = true;
     };
 
         environment.sessionVariables = rec {
@@ -63,7 +47,7 @@ in {
       wayland.windowManager.hyprland = {
         enable = true;
         enableNvidiaPatches = cfg.nvidia; #if you have nvidia
-                xwayland.enable = true;
+        xwayland.enable = true;
         extraConfig = ''
         # hyprland config here
     ########################################################################################
@@ -267,20 +251,20 @@ in {
 
     # other hyprland specific packages
     environment.systemPackages = with pkgs; [
-      wofi
-            grim
-            slurp
-            swww
-            swaylock-effects
+        wofi
+        grim
+        slurp
+        swww
+        swaylock-effects
     ];
 
-        security.pam.services.swaylock = {
-            text = ''
-                # PAM configuration file for the swaylock screen locker. By default, it includes
-                # the 'login' configuration file (see /etc/pam.d/login)
-                auth include login
-            '';
-        };
+    security.pam.services.swaylock = {
+        text = ''
+            # PAM configuration file for the swaylock screen locker. By default, it includes
+            # the 'login' configuration file (see /etc/pam.d/login)
+            auth include login
+        '';
+    };
 
   };
 }

@@ -4,71 +4,69 @@ with lib;
 with lib.my;
 
 {
-  imports = 
-    [ inputs.home-manager.nixosModules.home-manager ]
-    # all personally defined modules
-    ++ (mapModulesRec' (toString ./modules) import);
+    imports = 
+        [ inputs.home-manager.nixosModules.home-manager ]
+        # all personally defined modules
+        ++ (mapModulesRec' (toString ./modules) import);
 
-  environment.variables.DOTFILES = config.dotfiles.dir;
-  environment.variables.DOTFILES_BIN = config.dotfiles.binDir;
+    environment.variables.DOTFILES = config.dotfiles.dir;
+    environment.variables.DOTFILES_BIN = config.dotfiles.binDir;
 
-  # Configure nix and nixpkgs
-  environment.variables.NIXPKGS_ALLOW_UNFREE = "1";
+    # Configure nix and nixpkgs
+    environment.variables.NIXPKGS_ALLOW_UNFREE = "1";
 
-  # TODO
-  nix = 
-  let filteredInputs = filterAttrs (n: _: n != "self") inputs;
-      nixPathInputs  = mapAttrsToList (n: v: "${n}=${v}") filteredInputs;
-      registryInputs = mapAttrs (_: v: { flake = v; }) filteredInputs;
-  in {
-    package = pkgs.nixFlakes;
-    extraOptions = "experimental-features = nix-command flakes";
+    # TODO
+    nix = 
+        let filteredInputs = filterAttrs (n: _: n != "self") inputs;
+            nixPathInputs  = mapAttrsToList (n: v: "${n}=${v}") filteredInputs;
+            registryInputs = mapAttrs (_: v: { flake = v; }) filteredInputs;
+        in {
+            package = pkgs.nixFlakes;
+            extraOptions = "experimental-features = nix-command flakes";
 
-    nixPath = nixPathInputs ++ [ "dotfiles=${config.dotfiles.dir}" ];
+            nixPath = nixPathInputs ++ [ "dotfiles=${config.dotfiles.dir}" ];
 
-    registry = registryInputs // { dotfiles.flake = inputs.self; };
+            registry = registryInputs // { dotfiles.flake = inputs.self; };
 
-    settings = {
-      # also some options here about keys, subscribers, cachix
+            settings = {
+                # also some options here about keys, subscribers, cachix
 
-      auto-optimise-store = true;
-    };
-  };
+                auto-optimise-store = true;
+            };
+        };
 
-  # TODO
-  system.configurationRevision = with inputs; mkIf (self ? rev) self.rev;
-  system.stateVersion = "21.05";
+        # TODO
+        system.configurationRevision = with inputs; mkIf (self ? rev) self.rev;
+        system.stateVersion = "21.05";
 
-  boot = {
-    kernelPackages = mkDefault pkgs.linuxPackages_latest;
+        boot = {
+            kernelPackages = mkDefault pkgs.linuxPackages_latest;
 
-    loader = {
-      efi = {
-    canTouchEfiVariables = mkDefault true;
-    efiSysMountPoint = "/boot/efi";
-      };
+            loader = {
+                efi = {
+                    canTouchEfiVariables = mkDefault true;
+                    efiSysMountPoint = "/boot/efi";
+                };
 
-      grub = {
-    enable = true;
-    devices = [ "nodev" ];
-    efiSupport = true;
-    useOSProber = true;
-    configurationLimit = mkDefault 10;
-      };
+                grub = {
+                    enable = true;
+                    devices = [ "nodev" ];
+                    efiSupport = true;
+                    useOSProber = true;
+                    configurationLimit = mkDefault 10;
+                };
 
-      timeout = null;
-    };
-  };
+                timeout = null;
+            };
+        };
 
-  time.timeZone = mkDefault "America/New_York";
-  i18n.defaultLocale = mkDefault "en_US.UTF-8";
+        time.timeZone = mkDefault "America/New_York";
+        i18n.defaultLocale = mkDefault "en_US.UTF-8";
 
-  environment.systemPackages = with pkgs; [
-    git
-    neovim
-    curl
-        pciutils
-  ];
-
-    #programs.home-manager.enable = true;
+        environment.systemPackages = with pkgs; [
+            git
+            neovim
+            curl
+            pciutils
+        ];
 }

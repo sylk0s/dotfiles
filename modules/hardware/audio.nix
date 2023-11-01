@@ -4,11 +4,11 @@ with lib;
 with lib.my;
 let cfg = config.modules.hardware.audio;
 in {
-  options.modules.hardware.audio = {
-    enable = mkBoolOpt true;
-  };
+    options.modules.hardware.audio = {
+        enable = mkBoolOpt true;
+    };
 
-  config = mkIf cfg.enable {
+    config = mkIf cfg.enable {
         services = {
             pipewire = {
                 enable = true;
@@ -20,5 +20,5 @@ in {
                 jack.enable = true;
             };
         };
-  };
+    };
 }

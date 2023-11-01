@@ -10,17 +10,17 @@
 
     #services.xserver.desktopManager.gnome.enable = true;
 
-  modules = {
-    desktop = {
-      hyprland = {
+    modules = {
+        desktop = {
+            hyprland = {
                 enable = true;
 #               nvidia = true;
             };
-      media.spotify.enable = true;
-      social = {
-        discord.enable = true;
-        signal.enable = true;
-      };
+            media.spotify.enable = true;
+            social = {
+                discord.enable = true;
+                signal.enable = true;
+            };
             apps = {
                 firefox = {
                     enable = true;
@@ -105,7 +105,7 @@
   # TODO CPU?
     # TODO auto gpu switching
 
-  networking.networkmanager.enable = true;
+    networking.networkmanager.enable = true;
     
     # trying IWD to see if it works better with eduroam/WPA Enterprise
     networking.wireless.iwd.enable = true;
@@ -148,7 +148,7 @@
     };
 
     services.udev.extraRules = ''
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3744", MODE:="0666", SYMLINK+="stlinkv1_%n"
+        SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3744", MODE:="0666", SYMLINK+="stlinkv1_%n"
         SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374a", MODE:="0666", SYMLINK+="stlinkv2-1_%n"
         SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", MODE:="0666", SYMLINK+="stlinkv2-1_%n"
         SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3752", MODE:="0666", SYMLINK+="stlinkv2-1_%n"

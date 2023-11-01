@@ -2,11 +2,11 @@
 with lib;
 with lib.my;
 let
-  cfg = config.modules.desktop.services.udiskie;
+    cfg = config.modules.desktop.services.udiskie;
 in {
-  options.modules.desktop.services.udiskie = {
-    enable = mkBoolOpt true;
-  };
+    options.modules.desktop.services.udiskie = {
+        enable = mkBoolOpt true;
+    };
 
   config = mkIf (cfg.enable) {
         services.udisks2 = {
