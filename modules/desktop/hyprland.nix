@@ -200,7 +200,7 @@ in {
     bind = $mainMod SHIFT, escape, exit,
     bind = $mainMod, E, exec, dolphin
     bind = $mainMod, V, togglefloating,
-    bind = $mainMod, R, exec, wofi --show drun
+    #bind = $mainMod, R, exec, wofi --show drun
     bind = $mainMod, P, pseudo, # dwindle
     bind = $mainMod, U, togglesplit, # dwindle
     bind = $mainMod SHIFT, F, exec, firefox
@@ -208,6 +208,10 @@ in {
     bind = $mainMod ALT, X, exec, ${config.dotfiles.configDir}/eww/scripts/lock
 
     bind = $mainMod ALT, E, exec, wayshot -s --stdout $(slurp) | wl-copy
+
+    bind = $mainMod, R, exec, ags -t applauncher
+    bind = $mainMod SHIFT, R, exec, ags quit; ags
+    bind = $mainMod ALT, w, exec, ags -t overview
 
     # Move focus with mainMod + arrow keys
     bind = $mainMod, h, movefocus, l

@@ -74,7 +74,7 @@ export default {
     hypr: {
         active_border: Option('rgba(3f3f3f55)', { scss: 'exclude' }),
         inactive_border: Option('rgba(3f3f3f22)', { scss: 'exclude' }),
-        wm_gaps: Option(22, { scss: 'wm-gaps' }),
+        wm_gaps: Option(8, { scss: 'wm-gaps' }),
     },
 
     shadow: Option('rgba(0, 0, 0, .6)'),
@@ -119,17 +119,12 @@ export default {
         iconSize: Option(42),
         pinnedApps: Option([
             'firefox',
-            'org.wezfurlong.wezterm',
-            'org.gnome.Nautilus',
-            'org.gnome.Calendar',
-            'obsidian',
-            'transmission-gtk',
-            'caprine',
-            'teams-for-linux',
+            'alacritty',
+            'thunar',
             'discord',
             'spotify',
-            'com.usebottles.bottles',
-            'org.gnome.Software',
+            'code',
+            'signal',
         ], { scss: 'exclude' }),
     },
 
@@ -151,7 +146,7 @@ export default {
         }),
     },
 
-    workspaces: Option(7, {
+    workspaces: Option(10, {
         'summary': 'No. workspaces on bar and overview',
         'description': 'Set it to 0 to make it dynamic',
     }),
