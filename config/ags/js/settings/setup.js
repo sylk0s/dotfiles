@@ -10,6 +10,7 @@ import { timeout } from 'resource:///com/github/Aylur/ags/utils.js';
 import { setTheme } from './theme.js';
 import IconBrowser from '../misc/IconBrowser.js';
 import { initWallpaper } from './wallpaper.js';
+import { setupHyprland } from './hyprland.js';
 
 export function init() {
     initWallpaper();
@@ -19,6 +20,7 @@ export function init() {
     tmux();
     gsettigsColorScheme();
     scssWatcher();
+    setupHyprland();
 
     timeout(50, () => {
         setTheme(options.theme.name.value);
