@@ -22,8 +22,8 @@ export default {
         icon: Option(themes[0].icon),
     },
 
-    spacing: Option(9),
-    padding: Option(8),
+    spacing: Option(6),
+    padding: Option(6),
     radii: Option(9),
     transition: Option(200, { unit: 'ms' }),
 
@@ -79,7 +79,7 @@ export default {
 
     shadow: Option('rgba(0, 0, 0, .6)'),
     drop_shadow: Option(true, { scss: 'drop-shadow' }),
-    avatar: Option(`/home/${USER}/Pictures/avatars/donna.jpg`, { format: v => `"${v}"` }),
+    avatar: Option(`/home/${USER}/dotfiles/config/assets/sylkos.png`, { format: v => `"${v}"` }),
 
     applauncher: {
         width: Option(500),
@@ -96,7 +96,7 @@ export default {
     },
 
     battery: {
-        showPercentage: Option(true, { noReload: false }),
+        showPercentage: Option(false, { noReload: false }),
         bar: {
             width: Option(70),
             height: Option(14),
@@ -116,7 +116,7 @@ export default {
     },
 
     dock: {
-        iconSize: Option(56),
+        iconSize: Option(42),
         pinnedApps: Option([
             'firefox',
             'org.wezfurlong.wezterm',

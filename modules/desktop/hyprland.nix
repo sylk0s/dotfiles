@@ -82,7 +82,7 @@ in {
     # exec-once = waybar & hyprpaper & firefox
     # preload = ${config.dotfiles.configDir}/assets/wallpapers/hekatewhistler.jpeg
     # wallpaper = monitor,contain:${config.dotfiles.configDir}/assets/wallpapers/hekatewhistler.jpeg
-    exec-once = ${config.dotfiles.configDir}/scripts/wallpaper.sh
+    # exec-once = ${config.dotfiles.configDir}/scripts/wallpaper.sh
 
     # Source a file (multi-file configs)
     # source = ~/.config/hypr/myColors.conf
@@ -207,7 +207,7 @@ in {
     bind = $mainMod, Tab, exec, ${pkgs.alacritty}/bin/alacritty
     bind = $mainMod ALT, X, exec, ${config.dotfiles.configDir}/eww/scripts/lock
 
-    bind = $mainMod ALT, E, exec, grim -g "$(slurp)"
+    bind = $mainMod ALT, E, exec, wayshot -s --stdout $(slurp) | wl-copy
 
     # Move focus with mainMod + arrow keys
     bind = $mainMod, h, movefocus, l
@@ -253,10 +253,15 @@ in {
     # other hyprland specific packages
     environment.systemPackages = with pkgs; [
         wofi
-        grim
         slurp
         swww
         swaylock-effects
+        hyprpicker
+        wl-gammactl
+        wl-clipboard
+        wayshot
+        swappy
+        imagemagick
     ];
 
     security.pam.services.swaylock = {

@@ -7,6 +7,7 @@ import Avatar from '../../misc/Avatar.js';
 import { uptime } from '../../variables.js';
 import options from '../../options.js';
 import { openSettings } from '../../settings/theme.js';
+import * as Utils from 'resource:///com/github/Aylur/ags/utils.js';
 
 export const BatteryProgress = () => Widget.Box({
     class_name: 'battery-progress',
@@ -63,7 +64,7 @@ export default () => Widget.Box({
                         }),
                         Widget.Button({
                             vpack: 'center',
-                            on_clicked: () => Lockscreen.lockscreen(),
+                            on_clicked: () => Utils.execAsync(["/home/sylkos/dotfiles/config/eww/scripts/lock"]),
                             child: Widget.Icon(icons.lock),
                         }),
                         Widget.Button({

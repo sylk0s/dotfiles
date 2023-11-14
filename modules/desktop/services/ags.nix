@@ -12,8 +12,9 @@ in {
 
         environment.systemPackages = with pkgs; [
             sassc
-            upower
         ];
+
+        services.upower.enable = true;
 
         home-manager.users.${config.user.name} = {
             # add the home manager module
