@@ -96,6 +96,6 @@ export default {
     system: {
         cpu: 'org.gnome.SystemMonitor-symbolic',
         ram: 'drive-harddisk-solidstate-symbolic',
-        temp: 'nf-fa-thermometer',
+        temp: 'pan-up-symbolic',
     },
 };

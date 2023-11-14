@@ -32,7 +32,7 @@ in {
                     "web-search"
                 ];
                 theme = "powerlevel10k/powerlevel10k";
-                custom = "${config.dotfiles.configDir}/oh-my-zsh/";
+                custom = "/home/sylkos/dotfiles/config/oh-my-zsh/";
             };
         };
 

@@ -22,9 +22,9 @@ export default {
         icon: Option(themes[0].icon),
     },
 
-    spacing: Option(6),
-    padding: Option(6),
-    radii: Option(9),
+    spacing: Option(9),
+    padding: Option(8),
+    radii: Option(12),
     transition: Option(200, { unit: 'ms' }),
 
     font: {
