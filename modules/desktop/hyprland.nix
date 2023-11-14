@@ -65,7 +65,8 @@ in {
 
     # exec startup for the init script i stole
     # exec-once = ~/.config/eww/scripts/init
-    exec-once = ${config.dotfiles.configDir}/eww/scripts/${config.modules.desktop.services.eww.layout}
+    #exec-once = ${config.dotfiles.configDir}/eww/scripts/${config.modules.desktop.services.eww.layout}
+    exec-once = ags
 
     # See https://wiki.hyprland.org/Configuring/Monitors/
     # monitor = DP-1,1920x1080,0x288,1

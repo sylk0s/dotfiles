@@ -36,8 +36,11 @@
             };
             services = {
                 eww = {
-                    enable = true;
+                    enable = false;
                     #layout = "rightbar";
+                };
+                ags = {
+                    enable = true;
                 };
                 docker.enable = true;
             };
