@@ -62,4 +62,16 @@ export default [
         'popover.padding.multiplier': 1.8,
         'bar.flat_buttons': false,
     }),
+    Theme({
+        name: 'Compact',
+        icon: '󰵆',
+        'spacing': 6,
+        'padding': 6,
+        'radii': 0,
+        'hypr.wm_gaps': 0,
+        'desktop.screen_corners': false,
+        'desktop.clock.enable': false,
+        'bar.separators': false,
+        'fonts.size': 10,
+    })
 ];

@@ -91,6 +91,7 @@ $bar-spacing: $spacing / 2;
         label { color: transparentize($accent, 0.2); }
         &:hover label { color: $accent; }
         &:active label, &.active label { color: $accent-fg; }
+        margin-right: $wm-gaps;
     }
 
     .powermenu, .recorder {
@@ -191,6 +192,7 @@ $bar-spacing: $spacing / 2;
                 background-color: transparentize($fg-color, 0.2);
                 min-width: 8px;
                 min-height: 8px;
+                border-radius: 2px;
             }
 
             &:hover .indicator {
@@ -204,6 +206,7 @@ $bar-spacing: $spacing / 2;
             &.active .indicator {
                 min-width: 12px;
                 min-height: 12px;
+                border-radius: 3px;
             }
         }
     }
