@@ -43,6 +43,7 @@
                     enable = true;
                 };
                 docker.enable = true;
+                dunst.enable = false;
             };
     };
         dev = {
