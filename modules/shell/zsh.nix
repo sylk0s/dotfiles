@@ -36,8 +36,6 @@ in {
             };
         };
 
-        user.packages = with pkgs; [
-                thefuck
-        ];
+        programs.thefuck.enable = true;
     };
 }

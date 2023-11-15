@@ -23,6 +23,13 @@ in {
             neofetch
             zip
             unzip
+            bat
+            fd
+            ripgrep
+            fzf
+            socat
+            jq
+            acpi
         ];
 
         #home-manager.users.${config.user.name} = {

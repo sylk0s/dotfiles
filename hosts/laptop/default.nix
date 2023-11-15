@@ -97,6 +97,10 @@
         pico-sdk
 
         busybox
+
+        icon-library
+        # ffmpeg
+        jp2a
     ];
 
 #   nixpkgs.config.packageOverrides = pkgs: rec {
