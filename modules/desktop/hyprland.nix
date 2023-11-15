@@ -196,7 +196,7 @@ in {
     # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
     bind = $mainMod, Q, killactive
     bind = $mainMod SHIFT, Z, exec, discord
-    bind = $mainMod, escape, exec, eww open powermenu
+    bind = $mainMod, escape, exec, ags -t powermenu
     bind = $mainMod SHIFT, escape, exit,
     bind = $mainMod, E, exec, dolphin
     bind = $mainMod, V, togglefloating,
