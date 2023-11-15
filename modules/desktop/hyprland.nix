@@ -207,7 +207,8 @@ in {
     bind = $mainMod, Tab, exec, ${pkgs.alacritty}/bin/alacritty
     bind = $mainMod ALT, X, exec, ${config.dotfiles.configDir}/eww/scripts/lock
 
-    bind = $mainMod ALT, E, exec, wayshot -s --stdout $(slurp) | wl-copy
+    bind = $mainMod ALT, E, exec, wayshot --stdout -s "$(slurp)" | wl-copy
+    bind = $mainMod ALT, S, exec, wayshot -s "$(slurp)" -f ~/Pictures/Screenshots/sc-$(date +%s).jpg
 
     bind = $mainMod, R, exec, ags -t applauncher
     bind = $mainMod SHIFT, R, exec, ags quit; ags
