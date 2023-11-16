@@ -1,21 +1,26 @@
-{ config, options, lib, pkgs, ... }:
-
+{
+  config,
+  options,
+  lib,
+  pkgs,
+  ...
+}:
 with lib;
-with lib.my;
-let cfg = config.modules.shell.eza;
+with lib.my; let
+  cfg = config.modules.shell.eza;
 in {
-    options.modules.shell.eza = {
-        enable = mkBoolOpt true;
-    };
+  options.modules.shell.eza = {
+    enable = mkBoolOpt true;
+  };
 
-    config = mkIf cfg.enable {
-        user.packages = with pkgs; [
-            eza
-        ];
+  config = mkIf cfg.enable {
+    user.packages = with pkgs; [
+      eza
+    ];
 
-        environment.shellAliases = {
-            ll = "eza -ll";
-            tree = "eza --tree";
-        };
+    environment.shellAliases = {
+      ll = "eza -ll";
+      tree = "eza --tree";
     };
+  };
 }

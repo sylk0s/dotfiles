@@ -1,23 +1,27 @@
-{ config, options, lib, pkgs, ...}: 
+{
+  config,
+  options,
+  lib,
+  pkgs,
+  ...
+}:
 with lib;
-with lib.my;
-let
-    cfg = config.modules.desktop.services.docker;
+with lib.my; let
+  cfg = config.modules.desktop.services.docker;
 in {
-    options.modules.desktop.services.docker = {
-        enable = mkBoolOpt false;
+  options.modules.desktop.services.docker = {
+    enable = mkBoolOpt false;
+  };
+
+  config = mkIf (cfg.enable) {
+    virtualisation.docker = {
+      enable = true;
     };
 
-    config = mkIf (cfg.enable) {
+    users.users.${config.user.name}.extraGroups = ["docker"];
 
-        virtualisation.docker = {
-            enable = true;
-        };
-
-        users.users.${config.user.name}.extraGroups = [ "docker" ];
-
-        user.packages = with pkgs; [
-            docker-compose
-        ];
-    };
+    user.packages = with pkgs; [
+      docker-compose
+    ];
+  };
 }
