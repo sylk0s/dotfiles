@@ -72,11 +72,9 @@
         # random
         #networkmanagerapplet
 
-        # 3d printer slicer
+        # engineering bullshit apps
         cura
-
-        # digital design & fpga programmer for DE1-SoC
-        quartus-prime-lite
+        kicad
         
         # removed in favor of:
         # https://codeberg.org/tropf/nix-inkstitch

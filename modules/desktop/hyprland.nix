@@ -209,6 +209,7 @@ in {
 
     bind = $mainMod ALT, E, exec, wayshot --stdout -s "$(slurp)" | wl-copy
     bind = $mainMod ALT, S, exec, wayshot -s "$(slurp)" -f ~/Pictures/Screenshots/sc-$(date +%s).jpg
+    bind = $mainMod ALT, D, exec, wayshot -f ~/Pictures/Screenshots/sc-$(date +%s).jpg
 
     bind = $mainMod, R, exec, ags -t applauncher
     bind = $mainMod SHIFT, R, exec, ags quit; ags
