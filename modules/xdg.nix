@@ -6,33 +6,38 @@
 { config, home-manager, ... }:
 {
     ### A tidy $HOME is a tidy mind
-    home-manager.users.${config.user.name}.xdg = {
-        enable = true;
-        mimeApps = {
+    home-manager.users.${config.user.name} = {
+        xdg = {
             enable = true;
-            defaultApplications = {
-                "application/json"="firefox.desktop";
-                "application/pdf"="org.pwmt.zathura.desktop.desktop";
-                "application/x-extension-htm"="firefox.desktop";
-                "application/x-extension-html"="firefox.desktop";
-                "application/x-extension-shtml"="firefox.desktop";
-                "application/x-extension-xht"="firefox.desktop";
-                "application/x-extension-xhtml"="firefox.desktop";
-                "application/xhtml+xml"="firefox.desktop";
-                "text/html"="firefox.desktop";
-                "x-scheme-handler/discord"="discordcanary.desktop";
-                "x-scheme-handler/ftp"="firefox.desktop";
-                "x-scheme-handler/http"="firefox.desktop";
-                "x-scheme-handler/https"="firefox.desktop";
-                "x-scheme-handler/spotify"="spotify.desktop";
-                "x-scheme-handler/about"="firefox.desktop";
-                "x-scheme-handler/unknown"="firefox.desktop";
-                "Terminal"="alacritty.desktop";
-                "image/jpeg"="firefox.desktop";
-                "image/png"="firefox.desktop";
-                "text/plain"="nvim.desktop";
+            mimeApps = {
+                enable = true;
+                defaultApplications = {
+                    "application/json"="firefox.desktop";
+                    "application/pdf"="org.pwmt.zathura.desktop.desktop";
+                    "application/x-extension-htm"="firefox.desktop";
+                    "application/x-extension-html"="firefox.desktop";
+                    "application/x-extension-shtml"="firefox.desktop";
+                    "application/x-extension-xht"="firefox.desktop";
+                    "application/x-extension-xhtml"="firefox.desktop";
+                    "application/xhtml+xml"="firefox.desktop";
+                    "text/html"="firefox.desktop";
+                    "x-scheme-handler/discord"="discordcanary.desktop";
+                    "x-scheme-handler/ftp"="firefox.desktop";
+                    "x-scheme-handler/http"="firefox.desktop";
+                    "x-scheme-handler/https"="firefox.desktop";
+                    "x-scheme-handler/spotify"="spotify.desktop";
+                    "x-scheme-handler/about"="firefox.desktop";
+                    "x-scheme-handler/unknown"="firefox.desktop";
+                    "Terminal"="alacritty.desktop";
+                    "image/jpeg"="firefox.desktop";
+                    "image/png"="firefox.desktop";
+                    "text/plain"="nvim.desktop";
+                };
             };
         };
+
+        # pam.sessionVariables.TERMINAL = "alacritty";
+        # programs.bash.enable = true;
     };
 
     environment = {

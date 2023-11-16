@@ -21,6 +21,7 @@ in {
                 background = "${config.dotfiles.configDir}/assets/wallpapers/hekatewhistler.jpeg";
                 #wayland = true;
             };
+            excludePackages = [ pkgs.xterm ];
         };
 
     # whats going on here? why are there both here...
