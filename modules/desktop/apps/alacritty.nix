@@ -8,7 +8,7 @@ let
     cfg = config.modules.desktop.apps.alacritty;
     xterm = pkgs.writeShellScriptBin "xterm" ''
                     ${pkgs.alacritty}/bin/alacritty "$@"
-                '';``
+                '';
 in {
     options.modules.desktop.apps.alacritty = {
         enable = mkBoolOpt true;
