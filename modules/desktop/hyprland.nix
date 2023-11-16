@@ -11,6 +11,8 @@ with lib;
 with lib.my; let
   cfg = config.modules.desktop.hyprland;
   configDir = config.dotfiles.configDir;
+
+  # change this for nvidia
   hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
 in {
   options.modules.desktop.hyprland = {
@@ -68,9 +70,10 @@ in {
     };
 
     home-manager.users.${config.user.name} = {
-      imports = [
-        inputs.hyprland.homeManagerModules.default
-      ];
+      # this lets you use the settings config
+      #   imports = [
+      #     inputs.hyprland.homeManagerModules.default
+      #   ];
 
       wayland.windowManager.hyprland = {
         enable = true;
@@ -97,8 +100,8 @@ in {
             gaps_in = 0;
             gaps_out = 0;
             border_size = 1;
-            col.active_border = "rgba(E98FC8aa)";
-            col.inactive_border = "rgba(595959aa)";
+            "col.active_border" = "rgba(E98FC8aa)";
+            "col.inactive_border" = "rgba(595959aa)";
             layout = "dwindle";
           };
 
@@ -113,7 +116,7 @@ in {
             drop_shadow = true;
             shadow_range = 4;
             shadow_render_power = 3;
-            col.shadow = "rgba(1a1a1aee)";
+            "col.shadow" = "rgba(1a1a1aee)";
           };
 
           animations = {
@@ -193,7 +196,7 @@ in {
           in
             [
               # hyprland stuff
-              (base "Q" "killactive")
+              (base "killactive" "Q" "")
 
               # apps
               (app "Z" "discord")
@@ -205,6 +208,7 @@ in {
               (ag "R" "applauncher")
               (ag "escape" "powermenu")
               (ag "E" "overview")
+              (salt "exec" "Q" "ags quit; ags")
 
               # screenshot keybinds
               (sal "E" "wayshot --stdout -s \"$(slurp)\" | wl-copy")
@@ -225,8 +229,8 @@ in {
               (ws "0" "10")
               (mvtows "0" "10")
 
-              (base "mouse_down" "workspace" "e+1")
-              (base "mouse_up" "workspace" "e-1")
+              (base "workspace" "mouse_down" "e+1")
+              (base "workspace" "mouse_up" "e-1")
             ]
             # ++ (map (i: (map (j: swpfocus (toString j) (toString i [0]))) i [1]) dirs)
             # ++ (map (i: (map (j: mvfocus (toString j) (toString i [0]))) i [1]) dirs)
