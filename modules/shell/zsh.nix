@@ -13,7 +13,7 @@ in {
             enable = true;
             shellAliases = {
                 update = "sudo nixos-rebuild switch --flake .#";
-                xterm = "alacritty";
+                # xterm = "alacritty";
             };
             histSize = 10000;
 
