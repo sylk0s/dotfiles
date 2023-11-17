@@ -11,6 +11,22 @@
   home-manager.users.${config.user.name} = {
     xdg = {
       enable = true;
+
+      desktopEntries = {
+        thunar-settings = {
+          name = "thunar-settings";
+          genericName = "File Explorer";
+          exec = "thunar %U";
+          terminal = false;
+        };
+        thunar-bulk-rename = {
+          name = "thunar-bulk-rename";
+          genericName = "File Explorer";
+          exec = "thunar %U";
+          terminal = false;
+        };
+      };
+
       mimeApps = {
         enable = true;
         defaultApplications = {

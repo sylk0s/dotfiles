@@ -118,13 +118,13 @@ export default {
     dock: {
         iconSize: Option(42),
         pinnedApps: Option([
-            'firefox',
-            'alacritty',
-            'thunar',
-            'discord',
-            'spotify',
-            'code',
-            'signal',
+            ['firefox', 0],
+            ['alacritty', 0],
+            ['thunar', 1],
+            ['discord',0],
+            ['spotify',0],
+            ['code',0],
+            ['signal',0]
         ], { scss: 'exclude' }),
     },
 
@@ -173,7 +173,7 @@ export default {
             ['org.wezfurlong.wezterm', 'Wezterm'],
             ['com.raggesilver.BlackBox', 'BlackBox'],
             ['firefox', 'Firefox'],
-            ['org.gnome.Nautilus', 'Files'],
+            ['org.xfce.thunar', 'Files'],
             ['libreoffice-writer', 'Writer'],
             ['', 'Desktop'],
         ],

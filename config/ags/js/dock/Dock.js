@@ -62,7 +62,7 @@ const PinnedApps = () => Widget.Box({
     class_name: 'pins',
     homogeneous: true,
     binds: [['children', options.dock.pinnedApps, 'value', v => v
-        .map(term => ({ app: Applications.query(term)?.[0], term }))
+        .map(term => ({ app: Applications.query(term[0])?.[term[1]], term: term[0] }))
         .filter(({ app }) => app)
         .map(({ app, term = true }) => AppButton({
             pinned: true,

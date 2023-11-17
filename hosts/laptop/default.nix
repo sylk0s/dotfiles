@@ -31,6 +31,7 @@
         };
         intellij.enable = true;
         virtualbox.enable = true;
+        nautilus.enable = true;
       };
       gaming = {
         steam.enable = true;
