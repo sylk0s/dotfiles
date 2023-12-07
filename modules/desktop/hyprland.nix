@@ -197,6 +197,8 @@ in {
             [
               # hyprland stuff
               (base "killactive" "Q" "")
+              (base "togglefloating" "V" "")
+              (base "fullscreen" "F" "")
 
               # apps
               (app "Z" "discord")

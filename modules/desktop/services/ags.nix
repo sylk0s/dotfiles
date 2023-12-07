@@ -18,6 +18,7 @@ in {
     environment.systemPackages = with pkgs; [
       sassc
       gnome.gnome-control-center
+      gnome.gnome-bluetooth
     ];
 
     services.upower.enable = true;

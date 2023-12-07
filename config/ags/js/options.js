@@ -120,7 +120,7 @@ export default {
         pinnedApps: Option([
             ['firefox', 0],
             ['alacritty', 0],
-            ['thunar', 1],
+            ['thunar', 0],
             ['discord',0],
             ['spotify',0],
             ['code',0],
