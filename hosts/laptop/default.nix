@@ -97,12 +97,18 @@
     usbutils
     stm32cubemx
     pico-sdk
+    platformio
 
     busybox
 
     icon-library
     # ffmpeg
     jp2a
+  ];
+
+  services.udev.packages = [ 
+    pkgs.platformio-core
+    pkgs.openocd
   ];
 
   #   nixpkgs.config.packageOverrides = pkgs: rec {

@@ -18,13 +18,12 @@ in {
       clang
       llvmPackages.bintools
       rustup
+      libcxxabi # for FireDBG <3
     ];
 
-    env.PATH = ["$(${pkgs.yarn}/bin/yarn global bin)"];
+    env.PATH = ["$(${pkgs.yarn}/bin/yarn global bin)" "$CARGO_HOME/bin"];
 
     env.RUSTUP_HOME = "$XDG_DATA_HOME/rustup";
     env.CARGO_HOME = "$XDG_DATA_HOME/cargo";
-
-    environment.variables.PATH = ["$CARGO_HOME/bin"];
   };
 }

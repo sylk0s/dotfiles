@@ -138,6 +138,12 @@ in {
               version = "0.0.15";
               sha256 = "sha256-2u4Moixrf94vDLBQzz57dToLbqzz7OenQL6G9BMCn3I=";
             }
+            {
+              name = "firedbg-rust";
+              publisher = "SeaQL";
+              version = "0.1.2";
+              sha256 = "sha256-LKe5Lgp4XUJH0gx3T3mRwKJ5tRKC6mJNx7xpZJNRjDw=";
+            }
           ];
       })
     ];
