@@ -53,7 +53,7 @@ in {
 
             eugleo.magic-racket
 
-            ms-vsliveshare.vsliveshare
+#            ms-vsliveshare.vsliveshare
             catppuccin.catppuccin-vsc
             ms-vscode-remote.remote-ssh
 

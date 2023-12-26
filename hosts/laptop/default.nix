@@ -77,7 +77,7 @@
 
     # engineering bullshit apps
     cura
-    kicad
+#    kicad
 
     # removed in favor of:
     # https://codeberg.org/tropf/nix-inkstitch
