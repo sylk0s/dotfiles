@@ -33,10 +33,20 @@ in {
     #   excludePackages = [pkgs.xterm];
     # };
 
+    services.greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+          user = "greeter";
+        };
+      };
+    };
+
     # whats going on here? why are there both here...
     programs.hyprland = {
       enable = true;
-      enableNvidiaPatches = cfg.nvidia;
+      #   enableNvidiaPatches = cfg.nvidia;
       xwayland.enable = true;
     };
 

@@ -1,6 +1,6 @@
 import App from 'resource:///com/github/Aylur/ags/app.js';
 
-const expectedVersion = '1.5.1';
+const expectedVersion = '1.6.3';
 let config = {};
 
 if (pkg.version === expectedVersion) {

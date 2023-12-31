@@ -19,6 +19,7 @@ in {
       sassc
       gnome.gnome-control-center
       gnome.gnome-bluetooth
+      inotify-tools
     ];
 
     services.upower.enable = true;

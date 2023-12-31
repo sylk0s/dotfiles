@@ -77,7 +77,7 @@
 
     # engineering bullshit apps
     cura
-#    kicad
+    #    kicad
 
     # removed in favor of:
     # https://codeberg.org/tropf/nix-inkstitch
@@ -106,7 +106,7 @@
     jp2a
   ];
 
-  services.udev.packages = [ 
+  services.udev.packages = [
     pkgs.platformio-core
     pkgs.openocd
   ];
@@ -123,8 +123,8 @@
   networking.networkmanager.enable = true;
 
   # trying IWD to see if it works better with eduroam/WPA Enterprise
-  networking.wireless.iwd.enable = true;
-  networking.networkmanager.wifi.backend = "iwd";
+  #   networking.wireless.iwd.enable = true;
+  #   networking.networkmanager.wifi.backend = "iwd";
 
   #   nmcli connection add \
   #       type wifi con-name "MySSID" ifname wlp0s20f3 ssid "MySSID" -- \
@@ -175,4 +175,19 @@
     SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374e", MODE:="0666", SYMLINK+="stlinkv3_%n"
     SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374f", MODE:="0666", SYMLINK+="stlinkv3_%n"
   '';
+
+  # find arch :3
+  boot.loader.grub.extraEntries = ''
+    menuentry "Arch Linux (on /dev/nvme1n1p7)" --class arch --class os {
+        set gfxpayload=keep
+        insmod gzio
+        insmod part_gpt
+        insmod fat
+        search --no-floppy --fs-uuid --set=root 0037-42F6
+        echo 'Loading Arch Linux'
+        linux /vmlinuz-linux root=/dev/mapper/vg0-root rw cryptdevice=/dev/nvme1n1p7:cryptlvm root=/dev/vg0/root loglevel=3 quiet
+        echo 'Loading initial ramdisk ...'
+        initrd /initramfs-linux.img
+    }
+    '';
 }
