@@ -123,8 +123,8 @@
   networking.networkmanager.enable = true;
 
   # trying IWD to see if it works better with eduroam/WPA Enterprise
-  #   networking.wireless.iwd.enable = true;
-  #   networking.networkmanager.wifi.backend = "iwd";
+  networking.wireless.iwd.enable = true;
+  networking.networkmanager.wifi.backend = "iwd";
 
   #   nmcli connection add \
   #       type wifi con-name "MySSID" ifname wlp0s20f3 ssid "MySSID" -- \
@@ -189,5 +189,5 @@
         echo 'Loading initial ramdisk ...'
         initrd /initramfs-linux.img
     }
-    '';
+  '';
 }
