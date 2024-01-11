@@ -55,6 +55,7 @@
       julia.enable = true;
       java.enable = true;
       c.enable = true;
+      matlab.enable = false;
     };
     hardware = {
       audio.enable = true;

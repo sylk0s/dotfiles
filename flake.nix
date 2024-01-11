@@ -10,12 +10,17 @@
     };
 
     ags.url = "github:Aylur/ags";
+
+    nix-matlab = {
+      url = "gitlab:doronbehar/nix-matlab";
+    };
   };
 
   outputs = inputs @ {
     self,
     nixpkgs,
     hyprland,
+    nix-matlab,
     ...
   }: let
     inherit (lib.my) mapModules mapModulesRec mapHosts;
@@ -41,6 +46,14 @@
       });
   in {
     lib = lib.my;
+
+    # overlay = final: prev: {
+    #   unstable = pkgs';
+    #   my = self.packages."${system}";
+    # };
+
+    overlays =
+      mapModules ./overlays import;
 
     # Imports all of the modules in ./modules?
     nixosModules =
