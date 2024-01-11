@@ -3,8 +3,7 @@
 ## Overview
 Nix Flake which contains configs for most of my more recent systems. Uses modules for high configurability between systems, organization, and encapsulation of configs for a specific program. Optimized so that adding hosts and programs is easy, and it should be enough to add a new file, then rebuild and everything will work. No need to specify any extra imports.
 
-## Hosts
-
+// ## Hosts
 
 ## Installation
 I typically use the gnome install enviornment, since it's just a bit easier to use than minimal, but either are fine. With the gnome install, I install the minimal environment & partiton accordingly and then clone this repo and run the following command.
@@ -35,10 +34,12 @@ This repo is designed to make it super easy to add a host!
 ### Adding a program
 This repo is also designed to make it easy to add a program as a module!
 - See table below for where to add programs
-- If it's in a list
+- If it's not a module, just add the program to a list
+- Otherwise, at the appropriate place under `modules/` add a new file named `module-name.nix` and create a module (look to other modules similar for inspiration)
 
 // Places programs are specified
 
 ## Major Inspiration
 - Hlissner's dotfiles
 - Auyler's dotifles
+- TODO more
