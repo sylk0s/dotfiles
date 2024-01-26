@@ -105,6 +105,8 @@
     icon-library
     # ffmpeg
     jp2a
+
+    libsodium
   ];
 
   services.udev.packages = [
