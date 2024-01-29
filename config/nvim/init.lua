@@ -1,4 +1,3 @@
--- bootstrap lazy.nvim into program
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -12,12 +11,9 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- sets up lazy.nvim
-require("lazy").setup(plugins, opts)
-
-{ "catppuccin/nvim", name = "catppuccin", priority = 1000 }
-
-require("catppuccin").setup({
+{ "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
     flavour = "mocha", -- latte, frappe, macchiato, mocha
     background = { -- :h background
         light = "latte",
@@ -61,8 +57,7 @@ require("catppuccin").setup({
             indentscope_color = "",
         },
         -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
-    },
-})
+    }, 
+}
 
--- setup must be called before loading
 vim.cmd.colorscheme "catppuccin"

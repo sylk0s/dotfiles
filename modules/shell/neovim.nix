@@ -28,7 +28,7 @@ in {
         viAlias = true;
         vimAlias = true;
 
-        programs.neovim.extraConfig = lib.fileContents "${configDir}/nvim/init.lua";
+        extraConfig = "luafile ${config.dotfiles.configDir}/nvim/init.lua";
 
         # plugins = with pkgs.vimPlugins; [
         #   # Syntax
