@@ -31,7 +31,7 @@ in {
           #   myConfig
           # ];
 
-          extraConfig = "luafile ${config.dotfiles.configDir}/nvim/init.lua";
+          extraConfig = "luafile /home/sylkos/dotfiles/config/nvim/init.lua";
 
           # plugins = with pkgs.vimPlugins; [
           #   # Syntax
