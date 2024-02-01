@@ -24,6 +24,7 @@ with lib.my; {
       configDir = mkOpt path "${config.dotfiles.dir}/config";
       modulesDir = mkOpt path "${config.dotfiles.dir}/modules";
       themesDir = mkOpt path "${config.dotfiles.modulesDir}/themes";
+      nvimDir = mkOpt path "${config.dotfiles.dir}/config/nvim";
     };
 
     home = {
