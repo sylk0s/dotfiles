@@ -7,19 +7,15 @@
 }:
 with lib;
 with lib.my; let
-  cfg = config.modules.dev.c;
+  cfg = config.modules.dev.racket;
 in {
-  options.modules.dev.c = {
+  options.modules.dev.racket = {
     enable = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
-      clang
-      gcc
-      gdb
-      cmake
-      llvmPackages.libcxx
+      racket
     ];
   };
 }

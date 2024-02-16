@@ -6,18 +6,14 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    #       ./nvidia.nix
   ];
 
   #boot.kernelParams = [ "nomodeset" ];
-
-  #services.xserver.desktopManager.gnome.enable = true;
 
   modules = {
     desktop = {
       hyprland = {
         enable = true;
-        #               nvidia = true;
       };
       media.spotify.enable = true;
       social = {
@@ -31,6 +27,7 @@
         };
         intellij.enable = true;
         virtualbox.enable = true;
+        cutter.enable = true;
       };
       gaming = {
         steam.enable = true;
@@ -38,10 +35,6 @@
         emu.enable = false;
       };
       services = {
-        eww = {
-          enable = false;
-          #layout = "rightbar";
-        };
         ags = {
           enable = true;
         };
@@ -56,6 +49,7 @@
       java.enable = true;
       c.enable = true;
       matlab.enable = false;
+      racket.enable = true;
     };
     hardware = {
       audio.enable = true;
@@ -109,6 +103,9 @@
     libsodium
 
     python311Packages.west
+
+    ghidra
+    burpsuite
   ];
 
   services.udev.packages = [

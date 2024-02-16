@@ -7,19 +7,15 @@
 }:
 with lib;
 with lib.my; let
-  cfg = config.modules.dev.c;
+  cfg = config.modules.desktop.apps.cutter;
 in {
-  options.modules.dev.c = {
+  options.modules.desktop.apps.cutter = {
     enable = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
-      clang
-      gcc
-      gdb
-      cmake
-      llvmPackages.libcxx
+      (cutter.withPlugins (ps: with ps; [jsdec rz-ghidra sigdb]))
     ];
   };
 }

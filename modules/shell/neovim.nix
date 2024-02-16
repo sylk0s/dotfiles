@@ -13,8 +13,28 @@ in {
     enable = mkBoolOpt true;
   };
 
+  # Some links
+  # https://nixalted.com/
+  # https://github.com/KFearsoff/NixOS-config/blob/088641c3527f1027ebd366a9abb5cc557cd6f0c1/modules/neovim/lua/plugins/nix.lua
+  # https://github.com/Kidsan/nixos-config/blob/main/home/programs/neovim/nvim/lua/plugins/lsp.lua
+
   config = mkIf cfg.enable {
     environment.variables.EDITOR = "nvim";
+
+    environment.systemPackages = with pkgs; [
+      lua-language-server
+      rust-analyzer
+      java-language-server
+      nodePackages.pyright
+      nodePackages.typescript-language-server
+      nodePackages.bash-language-server
+      clang-tools_17
+      cmake-language-server
+      dockerfile-language-server-nodejs
+      statix
+      alejandra
+      nil
+    ];
 
     home-manager.users.${config.user.name} = {
       programs = {
@@ -27,8 +47,29 @@ in {
 
           plugins = with pkgs.vimPlugins; [
             lazy-nvim
+
             which-key-nvim
+
+            # theming
             catppuccin-nvim
+
+            # completions
+            nvim-cmp
+            cmp-buffer # buffer completions
+            cmp-path # path completions
+            cmp_luasnip # snipper completions
+            cmp-nvim-lsp # LSP completions
+            cmp-cmdline
+
+            luasnip
+            friendly-snippets
+
+            # lsp
+            nvim-lspconfig
+            nvim-lint
+
+            # treesitter
+            nvim-treesitter.withAllGrammars
           ];
 
           extraLuaConfig = ''
@@ -47,7 +88,7 @@ in {
                   },
                   dev = {
                       path = "${pkgs.vimUtils.packDir config.home-manager.users.${config.user.name}.programs.neovim.finalPackage.passthru.packpathDirs}/pack/myNeovimPackages/start",
-                      patterns = {"folke", "catppuccin" }, -- Specify that "folke/which-key.nvim" will use our dev dir
+                      patterns = {"folke", "catppuccin", "nvim-treesitter", "hrsh7th", "saadparwaiz1", "L3MON4D3", "neovim", "mfussenegger", "rafamadriz" },
                   },
                   install = {
                       -- Safeguard in case we forget to install a plugin with Nix
@@ -55,24 +96,7 @@ in {
                   },
             })
 
-            vim.cmd.colorscheme "catppuccin"
-
-            local opt = vim.opt
-
-            opt.mouse = "a"
-
-            opt.number = true
-            opt.relativenumber = true
-
-            opt.autoindent = true
-            opt.smartindent = true
-
-            opt.tabstop = 2
-            opt.softtabstop = 2
-            opt.shiftwidth = 2
-            opt.expandtab = true
-
-            opt.completeopt = {'menu', 'menuone', 'noselect'}
+            require("settings")
           '';
         };
       };
