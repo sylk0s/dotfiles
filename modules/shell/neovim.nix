@@ -22,6 +22,7 @@ in {
     environment.variables.EDITOR = "nvim";
 
     environment.systemPackages = with pkgs; [
+      # LSP
       lua-language-server
       rust-analyzer
       java-language-server
@@ -34,6 +35,10 @@ in {
       statix
       alejandra
       nil
+
+      # Deps of telescope
+      ripgrep
+      fd
     ];
 
     home-manager.users.${config.user.name} = {
@@ -49,6 +54,7 @@ in {
             lazy-nvim
 
             which-key-nvim
+            nvim-autopairs
 
             # theming
             catppuccin-nvim
@@ -61,6 +67,7 @@ in {
             cmp-nvim-lsp # LSP completions
             cmp-cmdline
 
+            # snippets
             luasnip
             friendly-snippets
 
@@ -70,6 +77,11 @@ in {
 
             # treesitter
             nvim-treesitter.withAllGrammars
+
+            # telescope
+            telescope-nvim
+            plenary-nvim
+            nvim-web-devicons
           ];
 
           extraLuaConfig = ''
@@ -88,7 +100,7 @@ in {
                   },
                   dev = {
                       path = "${pkgs.vimUtils.packDir config.home-manager.users.${config.user.name}.programs.neovim.finalPackage.passthru.packpathDirs}/pack/myNeovimPackages/start",
-                      patterns = {"folke", "catppuccin", "nvim-treesitter", "hrsh7th", "saadparwaiz1", "L3MON4D3", "neovim", "mfussenegger", "rafamadriz" },
+                      patterns = {"folke", "catppuccin", "nvim-treesitter", "hrsh7th", "saadparwaiz1", "L3MON4D3", "neovim", "mfussenegger", "rafamadriz", "windwp", "nvim-tree", "nvim-lua" },
                   },
                   install = {
                       -- Safeguard in case we forget to install a plugin with Nix
