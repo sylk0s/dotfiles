@@ -78,10 +78,24 @@ in {
             # treesitter
             nvim-treesitter.withAllGrammars
 
+            # TODO
             # telescope
             telescope-nvim
             plenary-nvim
             nvim-web-devicons
+
+            # TODO
+            # comfort.nvim
+            # UI stuff
+            # lang specific
+            # spectre, flash
+            # todo-comments-nvim
+            # leap?
+            alpha-nvim
+            # copilot?
+            # diffview
+            # noice
+            #
           ];
 
           extraLuaConfig = ''
@@ -100,7 +114,7 @@ in {
                   },
                   dev = {
                       path = "${pkgs.vimUtils.packDir config.home-manager.users.${config.user.name}.programs.neovim.finalPackage.passthru.packpathDirs}/pack/myNeovimPackages/start",
-                      patterns = {"folke", "catppuccin", "nvim-treesitter", "hrsh7th", "saadparwaiz1", "L3MON4D3", "neovim", "mfussenegger", "rafamadriz", "windwp", "nvim-tree", "nvim-lua" },
+                      patterns = {"folke", "catppuccin", "nvim-treesitter", "hrsh7th", "saadparwaiz1", "L3MON4D3", "neovim", "mfussenegger", "rafamadriz", "windwp", "nvim-tree", "nvim-lua", "nvim-telescope", "goolord" },
                   },
                   install = {
                       -- Safeguard in case we forget to install a plugin with Nix
