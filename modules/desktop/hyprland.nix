@@ -95,6 +95,7 @@ in {
         settings = {
           exec-once = [
             "ags"
+            "nmcli con up NUwaveB" # im so sorry
           ];
 
           monitor = [

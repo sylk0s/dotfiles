@@ -50,6 +50,8 @@
       c.enable = true;
       matlab.enable = false;
       racket.enable = true;
+      haskell.enable = true;
+      arduino.enable = true;
     };
     hardware = {
       audio.enable = true;
