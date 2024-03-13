@@ -3,7 +3,7 @@
   options,
   lib,
   pkgs,
-  agenix,
+  inputs,
   ...
 }:
 with lib;
@@ -15,6 +15,8 @@ in {
   };
 
   config = mkIf (cfg.enable) {
-    environment.systemPackages = [agenix.packages.x86_64-linux.default];
+    environment.systemPackages = [
+      inputs.agenix.packages.x86_64-linux.default
+    ];
   };
 }
