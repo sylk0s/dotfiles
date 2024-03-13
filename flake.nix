@@ -11,6 +11,8 @@
 
     ags.url = "github:Aylur/ags";
 
+    agenix.url = "github:ryantm/agenix";
+
     nix-matlab = {
       url = "gitlab:doronbehar/nix-matlab";
     };
@@ -21,6 +23,7 @@
     nixpkgs,
     hyprland,
     nix-matlab,
+    agenix,
     ...
   }: let
     inherit (lib.my) mapModules mapModulesRec mapHosts;

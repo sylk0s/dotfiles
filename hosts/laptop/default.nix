@@ -40,6 +40,7 @@
         };
         docker.enable = true;
         dunst.enable = false;
+        agenix.enable = true;
       };
     };
     dev = {
