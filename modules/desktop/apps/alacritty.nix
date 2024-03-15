@@ -36,7 +36,7 @@ in {
           };
 
           # max lines in buffer
-          scolling.history = 10000;
+          scrolling.history = 10000;
 
           # font config
           font = let
@@ -61,13 +61,12 @@ in {
             size = mono.size;
           };
 
-          draw_bold_text_with_bright_colors = true;
-
           # colorscheme
           colors = let
             cc = colorScheme.colors;
             ct = colorScheme.types;
           in {
+            draw_bold_text_with_bright_colors = true;
             primary = {
               background = ct.background;
               foreground = ct.foreground;
@@ -100,11 +99,11 @@ in {
           # cursor settings
           cursor = {
             style.shape = "Beam";
-            unfocused_follow = false;
+            # unfocused_follow = false;
           };
 
           # mouse settings
-          mouse_bindings = [
+          mouse.bindings = [
             {
               mouse = "Middle";
               action = "PasteSelection";
@@ -112,7 +111,7 @@ in {
           ];
 
           # key bindings
-          key_bindings = [
+          keyboard.bindings = [
             {
               key = "V";
               mods = "Control|Shift";

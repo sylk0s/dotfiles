@@ -93,7 +93,7 @@ in {
 
         settings = {
           exec-once = [
-            "ags"
+            "ags -c /home/sylkos/dotfiles/config/ags/config.js"
             "nmcli con up NUwaveB" # im so sorry
           ];
 

@@ -1,16 +1,8 @@
-import App from 'resource:///com/github/Aylur/ags/app.js';
+import { bar } from "./bartmp.js"
 
-const expectedVersion = '1.6.3';
-let config = {};
+App.config({
+    style: "./style.css",
+    windows: [ bar ],
+})
 
-if (pkg.version === expectedVersion) {
-    config = (await import('./js/main.js')).default;
-}
-else {
-    print('your ags version is ' + pkg.version);
-    print('my config uses the git branch which is ' + expectedVersion);
-    print('update ags to the current git version');
-    App.connect('config-parsed', app => app.Quit());
-}
-
-export default config;
+export { }
