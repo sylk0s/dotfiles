@@ -46,6 +46,11 @@ label {
           min-height: 10pt;
           background-color: @theme_fg_color;
 }
+
+.workspaces {
+  margin: 0px 10px;
+}
+
 /*
         &.active,
         &:active {
