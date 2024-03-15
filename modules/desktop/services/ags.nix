@@ -33,6 +33,10 @@ in {
         configDir = "${config.dotfiles.configDir}/ags";
         extraPackages = with pkgs; [
           libsoup_3
+          # the following were suggested from the wiki? 
+          gtksourceview
+          webkitgtk
+          accountsservice
         ];
       };
 
