@@ -16,7 +16,6 @@
 # Short Term Plans
 
 ## Bar
-- make the workspaces generally work as expected
 - move things out of the bar
 
 - then start to abstract things for styling
