@@ -19,8 +19,10 @@ in {
     ];
 
     environment.shellAliases = {
-      cat = "bat --paging=never";
-      catp = "bat -p --paging=never";
+      cat = "bat --theme ansi -P -p";
+      cata = "bat --theme ansi -P";
+      catv = "bat --theme ansi -P -A";
+      bat = "bat --theme ansi";
     };
   };
 }
