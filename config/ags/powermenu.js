@@ -4,7 +4,7 @@ const icons = {
         sleep: "weather-clear-night-symbolic",
         reboot: "system-reboot-symbolic",
         logout: "system-log-out-symbolic",
-        shutdown: "system-shutdown-symbolic",
+        "shutdown now" : "system-shutdown-symbolic",
 };
 
 const SysButton = (action, label) => Widget.Button({
@@ -29,7 +29,7 @@ export default () => PopupWindow({
     child: Widget.Box({
         class_name: "powermenu-horizontal",
         children: [
-                    SysButton("shutdown", "Shutdown"),
+                    SysButton("shutdown now", "Shutdown"),
                     SysButton("logout", "Log Out"),
                     SysButton("reboot", "Reboot"),
                     SysButton("sleep", "Sleep"),

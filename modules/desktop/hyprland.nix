@@ -93,8 +93,9 @@ in {
 
         settings = {
           exec-once = [
-            "ags -c /home/sylkos/dotfiles/config/ags/config.js"
+            "ags"
             "nmcli con up NUwaveB" # im so sorry
+            "/home/sylkos/dotfiles/config/scripts/wallpaper.sh"
           ];
 
           monitor = [
