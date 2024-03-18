@@ -94,8 +94,8 @@ in {
         settings = {
           exec-once = [
             "ags"
-            "nmcli con up NUwaveB" # im so sorry
             "/home/sylkos/dotfiles/config/scripts/wallpaper.sh"
+            "nmcli con up NUwaveB" # im so sorry
           ];
 
           monitor = [
@@ -109,8 +109,8 @@ in {
           ];
 
           general = {
-            gaps_in = 0;
-            gaps_out = 0;
+            gaps_in = 4;
+            gaps_out = 8;
             border_size = 1;
             "col.active_border" = "rgba(E98FC8aa)";
             "col.inactive_border" = "rgba(595959aa)";
@@ -118,7 +118,7 @@ in {
           };
 
           decoration = {
-            rounding = 0;
+            rounding = 12;
             blur = {
               enabled = true;
               size = 3;

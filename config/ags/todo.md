@@ -7,6 +7,7 @@
 - settings box
 - desktop things?
 - notifications?
+- powermenu
 - other useful things...
 
 # Design decisions to make
