@@ -75,7 +75,7 @@
 
     # engineering bullshit apps
     cura
-    #    kicad
+    kicad
 
     # removed in favor of:
     # https://codeberg.org/tropf/nix-inkstitch
@@ -162,7 +162,7 @@
 
   users.groups.wireshark = {};
   users.groups.plugdev = {};
-  users.users.sylkos.extraGroups = ["wireshark" "plugdev"];
+  users.users.sylkos.extraGroups = ["wireshark" "plugdev" "dialout"];
 
   programs.wireshark = {
     enable = true;
