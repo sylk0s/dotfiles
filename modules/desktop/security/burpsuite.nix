@@ -7,15 +7,15 @@
 }:
 with lib;
 with lib.my; let
-  cfg = config.modules.desktop.apps.cutter;
+  cfg = config.modules.desktop.security.burpsuite;
 in {
-  options.modules.desktop.apps.cutter = {
+  options.modules.desktop.security.burpsuite = {
     enable = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
-      (cutter.withPlugins (ps: with ps; [jsdec rz-ghidra sigdb]))
+      burpsuite
     ];
   };
 }

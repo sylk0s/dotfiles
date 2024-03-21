@@ -35,6 +35,7 @@ in {
       socat
       jq
       acpi
+      busybox
     ];
 
     #home-manager.users.${config.user.name} = {

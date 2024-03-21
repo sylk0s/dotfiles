@@ -95,7 +95,7 @@ in {
           exec-once = [
             "ags"
             "/home/sylkos/dotfiles/config/scripts/wallpaper.sh"
-            "nmcli con up NUwaveB" # im so sorry
+            "nm-applet"
           ];
 
           monitor = [
