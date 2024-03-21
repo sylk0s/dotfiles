@@ -2,10 +2,12 @@
   pkgs,
   config,
   lib,
+  inputs,
   ...
 }: {
   imports = [
     ./hardware-configuration.nix
+    inputs.nixos-hardware.nixosModules.dell-xps-15-9520
   ];
 
   #boot.kernelParams = [ "nomodeset" ];
@@ -128,8 +130,8 @@
   networking.networkmanager.enable = true;
 
   # trying IWD to see if it works better with eduroam/WPA Enterprise
-  networking.wireless.iwd.enable = true;
-  networking.networkmanager.wifi.backend = "iwd";
+  #networking.wireless.iwd.enable = true;
+  #networking.networkmanager.wifi.backend = "iwd";
 
   services.gnome.gnome-keyring.enable = true;
 

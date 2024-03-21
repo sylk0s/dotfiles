@@ -16,6 +16,8 @@
     nix-matlab = {
       url = "gitlab:doronbehar/nix-matlab";
     };
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
   outputs = inputs @ {
@@ -24,6 +26,7 @@
     hyprland,
     nix-matlab,
     agenix,
+    nixos-hardware,
     ...
   }: let
     inherit (lib.my) mapModules mapModulesRec mapHosts;

@@ -260,6 +260,22 @@
         "type": "gitlab"
       }
     },
+    "nixos-hardware": {
+      "locked": {
+        "lastModified": 1710783728,
+        "narHash": "sha256-eIsfu3c9JUBgm3cURSKTXLEI9Dlk1azo+MWKZVqrmkc=",
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "rev": "1e679b9a9970780cd5d4dfe755a74a8f96d33388",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "master",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1703013332,
@@ -345,6 +361,7 @@
         "home-manager": "home-manager_2",
         "hyprland": "hyprland",
         "nix-matlab": "nix-matlab",
+        "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_5"
       }
     },
