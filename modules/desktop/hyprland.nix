@@ -96,6 +96,7 @@ in {
             "ags"
             "/home/sylkos/dotfiles/config/scripts/wallpaper.sh"
             "nm-applet"
+            "blueman-applet"
           ];
 
           monitor = [

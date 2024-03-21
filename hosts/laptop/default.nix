@@ -62,6 +62,8 @@
     };
     hardware = {
       audio.enable = true;
+      bluetooth.enable = true;
+      wifi.enable = true;
     };
   };
 
@@ -84,11 +86,9 @@
     libsodium
   ];
 
-  networking.networkmanager.enable = true;
 
   services = {
     gnome.gnome-keyring.enable = true;
-    blueman.enable = true;
   };
 
   #   nmcli connection add \
@@ -96,8 +96,6 @@
   #       wifi-sec.key-mgmt wpa-eap 802-1x.eap peap 802-1x.identity "USERNAME" \
   #        THERE WAS ALSO SOMETHING HERE BUT I FORGOT IT BUT IWD PROMPTS YOU TO ADD IT SO...
   #       802-1x.private-key-password "..." 802-1x.phase2-auth mschapv2
-
-  hardware.bluetooth.enable = true;
 
   # time.timeZone = "Europe/Budapest";
 

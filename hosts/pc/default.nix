@@ -41,8 +41,7 @@
 
   # TODO remove all of these :3
   environment.systemPackages = with pkgs; [
-    brightnessctl
-    #pavucontrol
+
   ];
 
   # TODO CPU?
@@ -99,7 +98,4 @@
   ];
 
   networking.networkmanager.enable = true;
-
-  networking.wireless.iwd.enable = true;
-  networking.networkmanager.wifi.backend = "iwd";
 }

@@ -13,7 +13,6 @@ in {
     user.packages = with pkgs; [
       gimp
       icon-library
-      networkmanagerapplet
       brightnessctl
     ];
   };
