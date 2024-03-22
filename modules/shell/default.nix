@@ -36,6 +36,7 @@ in {
       jq
       acpi
       busybox
+      libnotify
     ];
 
     #home-manager.users.${config.user.name} = {

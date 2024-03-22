@@ -226,9 +226,9 @@ in {
               (salt "exec" "Q" "ags quit; ags")
 
               # screenshot keybinds
-              (sal "E" "grim -g \"$(slurp)\" - | wl-copy --type image/png")
-              (sal "R" "grim -g \"$(slurp)\" ~/Pictures/Screenshots/sc-$(date +%s).png")
-              (sal "F" "grim -o ~/Pictures/Screenshots/sc-$(date +%s).png")
+              (sal "E" "${configDir}/scripts/screenshot.sh sel-clip")
+              (sal "R" "${configDir}/scripts/screenshot.sh sel-file")
+              (sal "F" "${configDir}/scripts/screenshot.sh full-file")
 
               # misc TODO sort
               (sal "X" "${config.dotfiles.configDir}/eww/scripts/lock")
