@@ -3,6 +3,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     hyprland.url = "github:hyprwm/Hyprland/";
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -24,6 +28,7 @@
     self,
     nixpkgs,
     hyprland,
+    hyprland-plugins,
     nix-matlab,
     agenix,
     nixos-hardware,

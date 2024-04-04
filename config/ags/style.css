@@ -22,6 +22,16 @@ label {
     font-weight: bold;
 }
 
+slider {
+ /* padding: 4px;*/
+  border-radius: 6px;
+}
+
+levelbar {
+  padding: 4px;
+  border-radius: 6px;
+}
+
 .workspaces button {
       all: unset;
       font-size: 0pt;
@@ -77,6 +87,19 @@ label {
     color: yellow;
 }
 
+.battery {
+  padding: 4px;
+  border-radius: 6px;
+}
+
+.battery-label {
+  padding: 0px;
+}
+
+.batter-bar {
+  padding: 4px;
+  border-radius: 10px;
+}
 
 levelbar block,
 highlight {

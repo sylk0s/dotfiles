@@ -18,7 +18,8 @@ in {
       clang
       llvmPackages.bintools
       rustup
-      libcxxabi # for FireDBG <3
+# this is outdated :P
+      # libcxxabi # for FireDBG <3
     ];
 
     env.PATH = ["$(${pkgs.yarn}/bin/yarn global bin)" "$CARGO_HOME/bin"];

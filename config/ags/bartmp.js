@@ -154,15 +154,21 @@ function Volume() {
 
 function BatteryLabel() {
     const value = battery.bind("percent").as(p => p > 0 ? p / 100 : 0)
-    const icon = battery.bind("percent").as(p =>
-        `battery-level-${Math.floor(p / 10) * 10}-symbolic`)
+    const icon = Utils.merge([battery.bind("charging"), battery.bind("percent")], (charging, percent) => {
+      return `battery-level-${Math.floor(percent / 10) * 10}${charging? '-charging':''}-symbolic`;
+    })
 
     return Widget.Box({
         class_name: "battery",
         visible: battery.bind("available"),
         children: [
             Widget.Icon({ icon }),
+            Widget.Label({
+              class_name: "battery-label",
+              label: battery.bind("percent").as(p => `${p}%`),
+            }),
             Widget.LevelBar({
+                class_name: "batter-bar",
                 widthRequest: 140,
                 vpack: "center",
                 value,

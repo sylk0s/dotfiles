@@ -91,6 +91,10 @@ in {
         xwayland.enable = true;
         package = hyprland;
 
+        plugins = [
+          inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+        ];
+
         settings = {
           exec-once = [
             "ags"
@@ -167,7 +171,7 @@ in {
           };
 
           gestures = {
-            workspace_swipe = false;
+            workspace_swipe = true;
           };
 
           misc = {
@@ -246,6 +250,7 @@ in {
 
               (base "workspace" "mouse_down" "e+1")
               (base "workspace" "mouse_up" "e-1")
+              "SUPER, grave, hyprexpo:expo, toggle"
             ]
             # ++ (map (i: (map (j: swpfocus (toString j) (toString i [0]))) i [1]) dirs)
             # ++ (map (i: (map (j: mvfocus (toString j) (toString i [0]))) i [1]) dirs)
@@ -256,6 +261,19 @@ in {
             "SUPER, mouse:272, movewindow"
             "SUPER, mouse:273, resizewindow"
           ];
+
+          plugin = {
+            hyperexpo = {
+              columns = 3;
+              gap_size = 5;
+              bg_col = "rgba(111111)";
+              workspace_method = "static 1";
+
+              enable_gesture = true;
+              gesture_distance = 300;
+              gesture_positive = true;
+            };
+          };
         };
         # extraConfig = ''
         #       # hyprland config here
