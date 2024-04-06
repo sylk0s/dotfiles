@@ -25,10 +25,8 @@ in {
     user.packages = with pkgs; [
       btop
       htop
-      neofetch
       zip
       unzip
-      bat
       fd
       ripgrep
       fzf

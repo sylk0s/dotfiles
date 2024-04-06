@@ -31,8 +31,8 @@
       security = {
         cutter.enable = true;
         wireshark.enable = true;
-        ghidra.enable = false;
-        burpsuite.enable = false;
+        ghidra.enable = true;
+        burpsuite.enable = true;
       };
       gaming = {
         steam.enable = true;
