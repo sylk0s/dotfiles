@@ -29,7 +29,7 @@
         virtualbox.enable = true;
       };
       security = {
-        cutter.enable = true;
+#        cutter.enable = true;
         wireshark.enable = true;
         ghidra.enable = true;
         burpsuite.enable = true;
@@ -81,7 +81,7 @@
     #inkscape-with-extensions
     #python311Packages.pygobject3
 
-    jetbrains.clion
+    #jetbrains.clion
 
     libsodium
   ];

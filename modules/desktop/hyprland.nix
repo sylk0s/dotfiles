@@ -41,7 +41,6 @@ in {
         };
       };
     };
-
     # whats going on here? why are there both here...
     programs.hyprland = {
       enable = true;
@@ -87,7 +86,7 @@ in {
 
       wayland.windowManager.hyprland = {
         enable = true;
-        enableNvidiaPatches = cfg.nvidia; #if you have nvidia
+        #enableNvidiaPatches = cfg.nvidia; #if you have nvidia
         xwayland.enable = true;
         package = hyprland;
 
@@ -106,7 +105,7 @@ in {
           monitor = [
             "DP-1,1920x1080,1200x288,1"
             "HDMI-A-1,1920x1200,0x0,1,transform,3"
-            ",preferred,auto,1"
+            ",preferred,auto-left,1"
           ];
 
           env = [
