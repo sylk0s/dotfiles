@@ -68,6 +68,8 @@ in {
       grim
       swappy
       imagemagick
+      xdg-desktop-portal-hyprland
+      xwaylandvideobridge
     ];
 
     security.pam.services.swaylock = {
@@ -105,7 +107,8 @@ in {
           monitor = [
             "DP-1,1920x1080,1200x288,1"
             "HDMI-A-1,1920x1200,0x0,1,transform,3"
-            ",preferred,auto-left,1"
+            "DP-7,preferred,auto-left,1"
+            ",preferred,auto,1"
           ];
 
           env = [
@@ -217,9 +220,12 @@ in {
               (base "fullscreen" "F" "")
 
               # apps
-              (app "Z" "discord")
+              (app "Z" "webcord")
               (app "F" "firefox")
               (app "E" "thunar")
+              (app "X" "signal-desktop")
+              (app "C" "spotify")
+              (app "R" "code")
               (base "exec" "Tab" "${pkgs.alacritty}/bin/alacritty")
 
               # ags

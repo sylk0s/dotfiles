@@ -26,10 +26,10 @@
           profileName = "ahpu6nkm";
         };
         intellij.enable = true;
-        virtualbox.enable = true;
+        virtualbox.enable = false;
       };
       security = {
-#        cutter.enable = true;
+        cutter.enable = false;
         wireshark.enable = true;
         ghidra.enable = true;
         burpsuite.enable = true;
@@ -57,7 +57,7 @@
       matlab.enable = false;
       racket.enable = true;
       haskell.enable = true;
-      arduino.enable = true;
+      arduino.enable = false;
       embedded.enable = true;
     };
     hardware = {
@@ -73,8 +73,8 @@
     acpi
 
     # engineering bullshit apps
-    cura
-    kicad
+    # cura
+    # kicad
 
     # removed in favor of:
     # https://codeberg.org/tropf/nix-inkstitch
@@ -83,9 +83,10 @@
 
     #jetbrains.clion
 
-    libsodium
+    # libsodium
+    sshfs
+    webcord
   ];
-
 
   services = {
     gnome.gnome-keyring.enable = true;
