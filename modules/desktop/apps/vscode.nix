@@ -61,12 +61,6 @@ in {
           ]
           ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
             {
-              name = "cargo";
-              publisher = "panicbit";
-              version = "0.2.3";
-              sha256 = "sha256-B0oLZE8wtygTaUX9/qOBg9lJAjUUg2i7B2rfSWJerEU=";
-            }
-            {
               name = "catppuccin-vsc-icons";
               publisher = "Catppuccin";
               version = "0.30.0";

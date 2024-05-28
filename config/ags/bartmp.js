@@ -167,12 +167,12 @@ function BatteryLabel() {
               class_name: "battery-label",
               label: battery.bind("percent").as(p => `${p}%`),
             }),
-            Widget.LevelBar({
-                class_name: "batter-bar",
-                widthRequest: 140,
-                vpack: "center",
-                value,
-            }),
+            // Widget.LevelBar({
+            //     class_name: "batter-bar",
+            //     widthRequest: 140,
+            //     vpack: "center",
+            //     value,
+            // }),
         ],
     })
 }

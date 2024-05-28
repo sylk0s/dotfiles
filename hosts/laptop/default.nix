@@ -85,7 +85,6 @@
 
     # libsodium
     sshfs
-    webcord
   ];
 
   services = {

@@ -96,6 +96,18 @@ levelbar {
   padding: 0px;
 }
 
+.applauncher {
+    border: 1px solid @theme_fg_color;
+    background-color: @theme_bg_color;
+    border-radius: 8px;
+    margin: 24px;
+}
+
+.launcher {
+
+    margin: 24px;
+}
+
 .batter-bar {
   padding: 4px;
   border-radius: 10px;
