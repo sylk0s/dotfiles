@@ -15,7 +15,7 @@ with lib.sylkos; {
       dir =
         mkOpt path
         (removePrefix "/mnt"
-          (findFirst pathExists (toString ../.) [
+          (findFirst pathExists (toString ../../.) [
             "/mnt/etc/dotfiles"
             "/etc/dotfiles"
             "/home/${config.user.name}/dotfiles"

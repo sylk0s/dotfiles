@@ -71,6 +71,5 @@ with lib.sylkos; {
     git
     neovim
     curl
-    pciutils
   ];
 }

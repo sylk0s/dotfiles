@@ -35,6 +35,7 @@ in {
       acpi
       busybox
       libnotify
+      pciutils
     ];
 
     #home-manager.users.${config.user.name} = {

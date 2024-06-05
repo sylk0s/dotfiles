@@ -99,7 +99,7 @@ in {
         settings = {
           exec-once = [
             "ags"
-            "/home/sylkos/dotfiles/config/scripts/wallpaper.sh"
+            "${config.dotfiles.configDir}/scripts/wallpaper.sh"
             "nm-applet"
             "blueman-applet"
           ];
