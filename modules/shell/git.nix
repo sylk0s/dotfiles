@@ -13,19 +13,12 @@ in {
   options.modules.shell.git = {
     enable = mkBoolOpt true;
     userName = mkStrOpt "sylk0s";
-    userEmail = mkStrOpt "sylkos49@gmail.com";
+    userEmail = mkStrOpt "julia@sylkos.xyz";
   };
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
       gh
-      #gitAndTools.git-annex
-      #unstable.gitAndTools.gh
-      #gitAndTools.git-open
-      #gitAndTools.diff-so-fancy
-      #(mkIf config.modules.shell.gnupg.enable
-      #  gitAndTools.git-crypt)
-      #act
     ];
 
     home.configFile = {

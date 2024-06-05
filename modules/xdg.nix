@@ -12,20 +12,20 @@
     xdg = {
       enable = true;
 
-      desktopEntries = {
-        thunar-settings = {
-          name = "thunar-settings";
-          genericName = "File Explorer";
-          exec = "thunar %U";
-          terminal = false;
-        };
-        thunar-bulk-rename = {
-          name = "thunar-bulk-rename";
-          genericName = "File Explorer";
-          exec = "thunar %U";
-          terminal = false;
-        };
-      };
+      #   desktopEntries = {
+      #     thunar-settings = {
+      #       name = "thunar-settings";
+      #       genericName = "File Explorer";
+      #       exec = "thunar %U";
+      #       terminal = false;
+      #     };
+      #     thunar-bulk-rename = {
+      #       name = "thunar-bulk-rename";
+      #       genericName = "File Explorer";
+      #       exec = "thunar %U";
+      #       terminal = false;
+      #     };
+      #   };
 
       mimeApps = {
         enable = true;
@@ -53,9 +53,6 @@
         };
       };
     };
-
-    # pam.sessionVariables.TERMINAL = "alacritty";
-    # programs.bash.enable = true;
   };
 
   environment = {
@@ -72,26 +69,12 @@
       TERMINAL = "alacritty";
     };
     variables = {
-      # Conform more programs to XDG conventions. The rest are handled by their
-      # respective modules.
       __GL_SHADER_DISK_CACHE_PATH = "$XDG_CACHE_HOME/nv";
-      ASPELL_CONF = ''
-        per-conf $XDG_CONFIG_HOME/aspell/aspell.conf;
-        personal $XDG_CONFIG_HOME/aspell/en_US.pws;
-        repl $XDG_CONFIG_HOME/aspell/en.prepl;
-      '';
       CUDA_CACHE_PATH = "$XDG_CACHE_HOME/nv";
       HISTFILE = "$XDG_DATA_HOME/bash/history";
       INPUTRC = "$XDG_CONFIG_HOME/readline/inputrc";
       LESSHISTFILE = "$XDG_CACHE_HOME/lesshst";
       WGETRC = "$XDG_CONFIG_HOME/wgetrc";
-
-      # Tools I don't use
-      # SUBVERSION_HOME = "$XDG_CONFIG_HOME/subversion";
-      # BZRPATH         = "$XDG_CONFIG_HOME/bazaar";
-      # BZR_PLUGIN_PATH = "$XDG_DATA_HOME/bazaar";
-      # BZR_HOME        = "$XDG_CACHE_HOME/bazaar";
-      # ICEAUTHORITY    = "$XDG_CACHE_HOME/ICEauthority";
     };
 
     # Move ~/.Xauthority out of $HOME (setting XAUTHORITY early isn't enough)

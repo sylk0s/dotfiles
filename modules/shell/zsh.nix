@@ -17,7 +17,7 @@ in {
     programs.zsh = {
       enable = true;
       shellAliases = {
-        update = "sudo nixos-rebuild switch --flake .#";
+        # update = "sudo nixos-rebuild switch --flake .#";
         # xterm = "alacritty";
       };
       histSize = 10000;
@@ -25,11 +25,8 @@ in {
       ohMyZsh = {
         enable = true;
         plugins = [
-          "git"
-          "thefuck"
           "rust"
           "aliases"
-          "command-not-found"
           "copybuffer"
           "copyfile"
           "encode64"
@@ -42,6 +39,6 @@ in {
       };
     };
 
-    programs.thefuck.enable = true;
+    users.defaultUserShell = pkgs.zsh;
   };
 }

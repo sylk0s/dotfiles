@@ -83,8 +83,6 @@ with lib.sylkos; {
       };
     };
 
-    users.defaultUserShell = pkgs.zsh;
-
     users.users.${config.user.name} = mkAliasDefinitions options.user;
 
     nix.settings = let
