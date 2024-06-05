@@ -13,7 +13,7 @@ in {
     enable = mkBoolOpt true;
   };
 
-  config = mkIf (cfg.enable && config.modules.hardware.audio.enable) {
+  config = mkIf (cfg.enable && config.modules.audio.enable) {
     user.packages = with pkgs; [
       pavucontrol
     ];

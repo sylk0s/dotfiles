@@ -57,14 +57,16 @@
       matlab.enable = false;
       racket.enable = true;
       haskell.enable = true;
-      arduino.enable = false;
       embedded.enable = true;
     };
-    hardware = {
-      audio.enable = true;
-      bluetooth.enable = true;
-      wifi.enable = true;
+
+    shell = {
+      eza.enable = true;
     };
+
+    audio.enable = true;
+    bluetooth.enable = true;
+    network.enable = true;
   };
 
   # TODO remove all of these :3

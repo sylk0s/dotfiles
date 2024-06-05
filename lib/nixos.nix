@@ -20,7 +20,7 @@ in {
           networking.hostName = mkDefault (removeSuffix ".nix" (baseNameOf path));
         }
 
-        ../. # /default.nix for all hosts
+        ../hosts # /defaults for all hosts
 
         (import path) # config for the host specifically
       ];

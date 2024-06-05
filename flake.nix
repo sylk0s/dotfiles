@@ -72,7 +72,7 @@
     overlays = mapModules ./overlays import;
 
     # Exports all of the modules from this flake
-    nixosModules = import ./. // mapModulesRec ./modules import;
+    nixosModules = mapModulesRec ./modules import;
 
     # Imports the hosts from the default.nix in each folder of ./hosts
     nixosConfigurations = mapHosts ./hosts;

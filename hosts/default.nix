@@ -11,11 +11,11 @@ with lib.sylkos; {
   # Import the home-manager module and all my custom modules
   imports =
     [inputs.home-manager.nixosModules.home-manager]
-    ++ (mapModulesRec (toString ./modules) import);
+    ++ (mapModulesRec (toString ../modules) import);
 
   nixpkgs.config.allowUnfree = true;
 
-  environment.variables.DOTFILES = config.dotfiles.dir;
+  #environment.variables.DOTFILES = config.dotfiles.dir;
   environment.variables.DOTFILES_BIN = config.dotfiles.binDir;
 
   # TODO
