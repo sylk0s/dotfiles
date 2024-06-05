@@ -6,7 +6,7 @@
   ...
 }:
 with lib;
-with lib.my; let
+with lib.sylkos; let
   cfg = config.modules.hardware.wifi;
 in {
   options.modules.hardware.wifi = {

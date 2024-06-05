@@ -6,7 +6,7 @@
   ...
 }:
 with lib;
-with lib.my; let
+with lib.sylkos; let
   cfg = config.modules.desktop.gaming.mc;
 in {
   options.modules.desktop.gaming.mc = with types; {

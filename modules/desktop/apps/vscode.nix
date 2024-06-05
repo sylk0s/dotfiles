@@ -6,7 +6,7 @@
   ...
 }:
 with lib;
-with lib.my; let
+with lib.sylkos; let
   cfg = config.modules.desktop.apps.vscode;
 in {
   options.modules.desktop.apps.vscode = {
@@ -53,7 +53,7 @@ in {
 
             eugleo.magic-racket
 
-#            ms-vsliveshare.vsliveshare
+            #            ms-vsliveshare.vsliveshare
             catppuccin.catppuccin-vsc
             ms-vscode-remote.remote-ssh
 

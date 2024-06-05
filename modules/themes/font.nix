@@ -7,7 +7,7 @@
   ...
 }:
 with lib;
-with lib.my; let
+with lib.sylkos; let
   cfg = config.modules.themes.fonts;
   font = defaultFamily: defaultSize: {
     family = mkStrOpt defaultFamily;

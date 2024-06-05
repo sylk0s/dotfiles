@@ -7,7 +7,7 @@
   ...
 }:
 with lib;
-with lib.my; let
+with lib.sylkos; let
   cfg = config.modules.desktop.services.eww;
 in {
   options.modules.desktop.services.eww = {

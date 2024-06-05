@@ -7,7 +7,7 @@
   ...
 }:
 with lib;
-with lib.my; let
+with lib.sylkos; let
   colorType =
     lib.types.addCheck lib.types.str (x: !isNull (builtins.match "#[0-9a-fA-F]{6}" x));
   color = defaultColor:

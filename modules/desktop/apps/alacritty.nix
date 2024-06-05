@@ -7,7 +7,7 @@
   ...
 }:
 with lib;
-with lib.my; let
+with lib.sylkos; let
   colorScheme = config.modules.themes.colors;
   fontStyles = config.modules.themes.fonts.styles;
   cfg = config.modules.desktop.apps.alacritty;

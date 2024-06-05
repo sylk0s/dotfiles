@@ -6,7 +6,7 @@
   ...
 }:
 with lib;
-with lib.my; let
+with lib.sylkos; let
   cfg = config.modules.hardware.bluetooth;
 in {
   options.modules.hardware.bluetooth = {

@@ -1,3 +1,4 @@
+# This file contains all of the things I want to be on every system.
 {
   inputs,
   config,
@@ -6,11 +7,13 @@
   ...
 }:
 with lib;
-with lib.my; {
+with lib.sylkos; {
   imports =
     [inputs.home-manager.nixosModules.home-manager]
-    # all personally defined modules
-    ++ (mapModulesRec' (toString ./modules) import);
+    # all personally defined modules imported here
+    ++ (mapModulesRec (toString ./modules) import);
+
+  nixpkgs.config.allowUnfree = true;
 
   environment.variables.DOTFILES = config.dotfiles.dir;
   environment.variables.DOTFILES_BIN = config.dotfiles.binDir;
@@ -25,7 +28,6 @@ with lib.my; {
     registryInputs = mapAttrs (_: v: {flake = v;}) filteredInputs;
   in {
     package = pkgs.nixFlakes;
-    extraOptions = "experimental-features = nix-command flakes";
 
     nixPath = nixPathInputs ++ ["dotfiles=${config.dotfiles.dir}"];
 
@@ -33,7 +35,9 @@ with lib.my; {
 
     settings = {
       # also some options here about keys, subscribers, cachix
-
+      experimental-features = "nix-command flakes";
+      substituters = ["https://hyprland.cachix.org"];
+      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
       auto-optimise-store = true;
     };
   };

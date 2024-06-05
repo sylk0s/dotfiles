@@ -7,7 +7,7 @@
   ...
 }:
 with lib;
-with lib.my; let
+with lib.sylkos; let
   cfg = config.modules.desktop.services.ags;
 in {
   options.modules.desktop.services.ags = {
@@ -33,7 +33,7 @@ in {
         configDir = "${config.dotfiles.configDir}/ags";
         extraPackages = with pkgs; [
           libsoup_3
-          # the following were suggested from the wiki? 
+          # the following were suggested from the wiki?
           gtksourceview
           webkitgtk
           accountsservice

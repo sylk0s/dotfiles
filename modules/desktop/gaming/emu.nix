@@ -6,7 +6,7 @@
   ...
 }:
 with lib;
-with lib.my; let
+with lib.sylkos; let
   cfg = config.modules.desktop.gaming.emu;
 in {
   options.modules.desktop.gaming.emu = with types; {

@@ -7,7 +7,7 @@
   ...
 }:
 with lib;
-with lib.my; {
+with lib.sylkos; {
   options = with types; {
     user = mkOpt attrs {};
 
@@ -56,7 +56,6 @@ with lib.my; {
     in {
       inherit name;
       description = "The primary user account";
-      # TODO remove wireshark from here and move into a module. rn this is a temp fix
       extraGroups = ["wheel" "video" "input" "kvm" "libvirt" "networkmanager"];
       isNormalUser = true;
       home = "/home/${name}";

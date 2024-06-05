@@ -6,7 +6,7 @@
   ...
 }:
 with lib;
-with lib.my; let
+with lib.sylkos; let
   cfg = config.modules.desktop.security.gpg;
 in {
   options.modules.desktop.security.gpg = {

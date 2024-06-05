@@ -6,7 +6,7 @@
   ...
 }:
 with lib;
-with lib.my; let
+with lib.sylkos; let
   cfg = config.modules.dev.rust;
 in {
   options.modules.dev.rust = {
@@ -18,7 +18,7 @@ in {
       clang
       llvmPackages.bintools
       rustup
-# this is outdated :P
+      # this is outdated :P
       # libcxxabi # for FireDBG <3
     ];
 

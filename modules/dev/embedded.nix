@@ -6,7 +6,7 @@
   ...
 }:
 with lib;
-with lib.my; let
+with lib.sylkos; let
   cfg = config.modules.dev.embedded;
 in {
   options.modules.dev.embedded = {
@@ -20,7 +20,7 @@ in {
 
       # on chip debugger
       openocd
-      
+
       screen
       usbutils
 
@@ -35,12 +35,11 @@ in {
       python311Packages.west
     ];
 
-
     services.udev.packages = with pkgs; [
       platformio-core
       openocd
     ];
 
-    users.users.${config.user.name}.extraGroups = [ "dialout" ];
+    users.users.${config.user.name}.extraGroups = ["dialout"];
   };
 }

@@ -6,7 +6,7 @@
   ...
 }:
 with lib;
-with lib.my; let
+with lib.sylkos; let
   cfg = config.modules.desktop.apps.firefox;
 in {
   options.modules.desktop.apps.firefox = with types; {
