@@ -56,16 +56,16 @@ in {
     default = [];
   };
 
-  # TODO fix this ???
-  #   config = {
-  #     # any assertations that should be checked
-  #     assertations = [
-  #       {
-  #         assertion =
-  #           ((length cfg) != 0)
-  #           -> ((length (filter (m: m.primary) cfg)) == 1);
-  #         message = "Exactly one monitor must be set to primary.";
-  #       }
-  #     ];
-  #   };
+  config = mkIf (length cfg != 0) {
+    # TODO Help?
+    # any assertations that should be checked
+    # assertations = [
+    #       # assertion =
+    # #           ((length cfg) != 0)
+    # #           -> ((length (filter (m: m.primary) cfg)) == 1);
+    # #         message = "Exactly one monitor must be set to primary.";
+    #       # ...
+    #     ];
+    # other config ...
+  };
 }

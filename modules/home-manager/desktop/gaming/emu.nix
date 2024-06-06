@@ -14,11 +14,11 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
+    home.packages = with pkgs; [
       dolphin-emu
       lutris
     ];
 
-    services.udev.packages = [pkgs.dolphinEmu];
+    # callback to callbacks/emu.nix
   };
 }

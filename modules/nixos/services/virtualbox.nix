@@ -15,9 +15,15 @@ in {
 
   config = mkIf cfg.enable {
     virtualisation.virtualbox.host.enable = true;
-    #virtualisation.virtualbox.host.enableExtensionPack = true;
+
+    # USB support, but also recompiles a Lot :(
+    # virtualisation.virtualbox.host.enableExtensionPack = true;
     users.extraGroups.vboxusers.members = ["user-with-access-to-virtualbox"];
 
+    userDefaults.extraGroups = ["vboxusers"];
+
     networking.firewall.interfaces."vboxnet0".allowedTCPPorts = [22];
+
+    # currently, all users are able to use this by default if enabled
   };
 }

@@ -1,5 +1,6 @@
 {
   config,
+  osConfig,
   options,
   lib,
   pkgs,
@@ -10,49 +11,41 @@ with lib;
 with lib.sylkos; let
   cfg = config.modules.desktop.services.ags;
 in {
+  imports = [inputs.ags.homeManagerModules.default];
+
   options.modules.desktop.services.ags = {
     enable = mkBoolOpt false;
   };
 
-  config = mkIf (cfg.enable) {
-    user.packages = with pkgs; [
-      sassc
-      gnome.gnome-control-center
-      gnome.gnome-bluetooth
-      inotify-tools
-    ];
-
-    services.upower.enable = true;
-
-    imports = [inputs.ags.homeManagerModules.default];
-
-    programs.ags = {
-      enable = true;
-      configDir = "${config.dotfiles.configDir}/ags";
-      extraPackages = with pkgs; [
-        libsoup_3
-        # the following were suggested from the wiki?
-        gtksourceview
-        webkitgtk
-        accountsservice
+  config = mkMerge [
+    (mkIf (cfg.enable) {
+      home.packages = with pkgs; [
+        sassc
+        gnome.gnome-control-center
+        gnome.gnome-bluetooth
+        inotify-tools
+        networkmanagerapplet
       ];
-    };
 
-    # xdg.desktopEntries."org.gnome.Settings" = {
-    #     name = "Settings";
-    #     comment = "Gnome Control Center";
-    #     icon = "org.gnome.Settings";
-    #     exec = "env XDG_CURRENT_DESKTOP=gnome ${pkgs.gnome.gnome-control-center}/bin/gnome-control-center";
-    #     categories = [ "X-Preferences" ];
-    #     terminal = false;
-    # };
+      programs.ags = {
+        enable = true;
+        configDir = "${osConfig.dotfiles.configDir}/ags";
+        extraPackages = with pkgs; [
+          libsoup_3
+          # the following were suggested from the wiki?
+          gtksourceview
+          webkitgtk
+          accountsservice
+        ];
+      };
 
-    # dconf = {
-    #     settings = {
-    #         "org.gnome.desktop.default-applications" = {
-    #             terminal = "alacritty";
-    #         };
-    #     };
-    # };
-  };
+      # callback to callbacks/upower.nix
+    })
+
+    (mkIf (cfg.enable && osConfig.modules.network.enable) {
+      home.packages = with pkgs; [
+        networkmanagerapplet
+      ];
+    })
+  ];
 }

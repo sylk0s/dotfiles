@@ -14,15 +14,15 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
-      bat
-    ];
+    programs.bat = {
+      enable = true;
+      config.theme = "ansi";
+    };
 
-    shellAliases = {
-      cat = "bat --theme ansi -P -p";
-      cata = "bat --theme ansi -P";
-      catv = "bat --theme ansi -P -A";
-      bat = "bat --theme ansi";
+    home.shellAliases = {
+      cat = "bat -P -p";
+      cata = "bat -P";
+      catv = "bat -P -A";
     };
   };
 }

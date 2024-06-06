@@ -14,8 +14,10 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
+    home.packages = with pkgs; [
       webcord
     ];
+
+    # TODO whatever addition stuff i want
   };
 }

@@ -10,13 +10,10 @@ with lib.sylkos; let
   cfg = config.modules.dev.python;
   my-python-packages = ps:
     with ps; [
-      # other python packages
-      ipykernel
       numpy
       pip
       matplotlib
       scipy
-      cloudflare
       requests
       python-dotenv
     ];
@@ -26,7 +23,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
+    home.packages = with pkgs; [
       (python3.withPackages my-python-packages)
     ];
   };

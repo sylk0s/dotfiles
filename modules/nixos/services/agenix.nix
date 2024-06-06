@@ -15,8 +15,8 @@ in {
   };
 
   config = mkIf (cfg.enable) {
-    user.packages = [
-      inputs.agenix.packages.x86_64-linux.default
-    ];
+    #  = [
+    #   inputs.agenix.packages.x86_64-linux.default
+    # ];
   };
 }

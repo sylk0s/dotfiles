@@ -1,5 +1,6 @@
 {
   config,
+  osConfig,
   options,
   lib,
   pkgs,
@@ -14,12 +15,14 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
-      neofetch
-    ];
+    home = {
+      packages = with pkgs; [
+        neofetch
+      ];
 
-    shellAliases = {
-      neofetch = "neofetch --config ${config.dotfiles.configDir}/neofetch/config.conf";
+      shellAliases = {
+        neofetch = "neofetch --config ${osConfig.dotfiles.configDir}/neofetch/config.conf";
+      };
     };
   };
 }

@@ -1,5 +1,6 @@
 {
   config,
+  osConfig,
   options,
   lib,
   pkgs,
@@ -8,7 +9,7 @@
 with lib;
 with lib.sylkos; let
   cfg = config.modules.shell.git;
-  configDir = config.dotfiles.configDir;
+  configDir = osConfig.dotfiles.configDir;
 in {
   options.modules.shell.git = {
     enable = mkBoolOpt true;
@@ -17,11 +18,10 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
-      gh
-    ];
+    # TODO update this
+    programs.gh.enable = true;
 
-    home.configFile = {
+    xdg.configFile = {
       "git/config".source = "${configDir}/git/config";
       "git/ignore".source = "${configDir}/git/ignore";
       "git/attributes".source = "${configDir}/git/attributes";
@@ -31,7 +31,7 @@ in {
       enable = true;
       userName = cfg.userName;
       userEmail = cfg.userEmail;
-      ignores = ["/.vscode" "/.pio" "/__pycache__" ".envrc" ".direnv" ".env"];
+      ignores = ["/.vscode" "/.pio" "/__pycache__" ".envrc" ".direnv" ".env" "/target"];
     };
 
     #modules.shell.zsh.rcFiles = [ "${configDir}/git/aliases.zsh" ];

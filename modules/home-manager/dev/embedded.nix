@@ -14,7 +14,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
+    home.packages = with pkgs; [
       # gcc for arm embedded (duh)
       gcc-arm-embedded
 
@@ -35,12 +35,6 @@ in {
       python311Packages.west
     ];
 
-    # TODO
-    services.udev.packages = with pkgs; [
-      platformio-core
-      openocd
-    ];
-
-    extraGroups = ["dialout"];
+    # callback to callbacks/embedded.nix
   };
 }

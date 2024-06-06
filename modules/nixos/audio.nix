@@ -54,6 +54,7 @@ in {
       serviceConfig.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
     };
 
+    userDefaults.extraGroups = ["audio"];
     # TODO graphical control applications
   };
 }

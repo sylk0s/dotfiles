@@ -1,5 +1,6 @@
 {
   config,
+  osConfig,
   options,
   lib,
   pkgs,
@@ -13,8 +14,8 @@ in {
     enable = mkBoolOpt true;
   };
 
-  config = mkIf (cfg.enable && config.modules.audio.enable) {
-    user.packages = with pkgs; [
+  config = mkIf (cfg.enable && osConfig.modules.audio.enable) {
+    home.packages = with pkgs; [
       pavucontrol
     ];
   };

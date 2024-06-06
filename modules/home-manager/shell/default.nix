@@ -22,7 +22,7 @@ in {
     # this is stuff that should probably be on every system but
     # can be turned off, unlike actually important things like git and neovim
     # TODO
-    user.packages = with pkgs; [
+    home.packages = with pkgs; [
       btop
       htop
       zip

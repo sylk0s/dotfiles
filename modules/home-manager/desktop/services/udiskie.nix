@@ -14,10 +14,7 @@ in {
   };
 
   config = mkIf (cfg.enable) {
-    services.udisks2 = {
-      enable = true;
-    };
-
+    # TODO remove this maybe ???
     nixpkgs.overlays = [
       (self: super: {
         udiskie = super.udiskie.override {
@@ -43,5 +40,7 @@ in {
       enable = true;
       automount = true;
     };
+
+    # callback to callbacks/udisks2.nix
   };
 }

@@ -14,12 +14,13 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
+    home.packages = with pkgs; [
       tomlplusplus
       prismlauncher
     ];
 
-    home.dataFile."PrismLauncher/themes/theme.json".text = ''
+    # TODO
+    xdg.dataFile."PrismLauncher/themes/theme.json".text = ''
       {
           "colors": {
               "AlternateBase": "#1e1e2e",
@@ -43,7 +44,7 @@ in {
       }
     '';
 
-    home.dataFile."PrismLauncher/themes/themeStyle.css".text = ''
+    xdg.dataFile."PrismLauncher/themes/themeStyle.css".text = ''
       QToolTip {
           color: #cdd6f4;
           background-color: #313244;

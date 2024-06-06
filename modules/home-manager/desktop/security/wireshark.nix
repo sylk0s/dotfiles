@@ -12,19 +12,7 @@ in {
     enable = mkBoolOpt false;
   };
 
-  config = mkIf cfg.enable {
-    users = {
-      groups.wireshark = {};
-      groups.plugdev = {};
-      users.${config.user.name}.extraGroups = [
-        "wireshark"
-        "plugdev"
-      ];
-    };
-
-    programs.wireshark = {
-      enable = true;
-      package = pkgs.wireshark;
-    };
-  };
+  # this one is... weird
+  # this is just a callback, but i wanna be able to configure it so i can assert stuff about gui later
+  # callback to callbacks/wireshark.nix
 }

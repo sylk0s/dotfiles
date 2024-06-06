@@ -18,10 +18,11 @@ in {
       enable = true;
     };
 
-    users.users.${config.user.name}.extraGroups = ["docker"];
+    userDefaults.extraGroups = ["docker"];
 
-    user.packages = with pkgs; [
-      docker-compose
-    ];
+    # TODO figure this bit out
+    # user.packages = with pkgs; [
+    #   docker-compose
+    # ];
   };
 }

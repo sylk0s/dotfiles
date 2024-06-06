@@ -14,11 +14,12 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
+    home.packages = with pkgs; [
       zathura
     ];
 
-    home.configFile."zathura/zathurarc".text = ''
+    # TODO, colorify this
+    xdg.configFile."zathura/zathurarc".text = ''
       set default-fg "#CDD6F4"
       set default-bg "#1E1E2E"
 

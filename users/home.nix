@@ -3,6 +3,7 @@
   inputs,
   lib,
   outputs,
+  osConfig,
   ...
 }:
 with lib.sylkos; {
@@ -11,6 +12,8 @@ with lib.sylkos; {
 
   programs.home-manager.enable = true;
   programs.git.enable = true;
+
+  nixpkgs.config.allowUnfree = true;
 
   home = {
     stateVersion = lib.mkDefault "21.05";

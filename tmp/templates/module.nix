@@ -6,9 +6,9 @@
 }:
 with lib;
 with lib.sylkos; let
-  cfg = config.modules.aaa.bbb;
+  cfg = config.modules.aaa;
 in {
-  options.modules.aaa.bbb = {
+  options.modules.aaa = {
     enable = mkBoolOpt true;
   };
 

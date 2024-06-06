@@ -31,19 +31,31 @@ in {
   };
 
   config = {
+    # TODO
+    # nix.settings = let
+    #   users = ["root" config.user.name];
+    # in {
+    #   trusted-users = users;
+    #   allowed-users = users;
+    # };
+
     # creates users from the user list above
     users.users = listToAttrs (map (
         user: {
           name = user.name;
           value = {
-            home = "/home/${user.name}";
+            home = mkDefault "/home/${user.name}";
             # TODO secrets
             # initialPassword = "password";
             isNormalUser = true;
             extraGroups =
-              if user.priviledged
-              then ["wheel"]
-              else [];
+              (
+                if user.priviledged
+                then ["wheel"]
+                else []
+              )
+              ++ ["video" "input"]
+              ++ config.userDefaults.extraGroups;
           };
         }
       )
@@ -66,7 +78,7 @@ in {
               # sets up user's info
               home = {
                 username = user.name;
-                homeDirectory = "/home/${user.name}";
+                homeDirectory = mkDefault "/home/${user.name}";
               };
             };
           }

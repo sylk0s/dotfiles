@@ -14,12 +14,15 @@ in {
     tui.enable = mkBoolOpt false; # TODO
   };
 
+  # TODO
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
+    home.packages = with pkgs; [
       # spotify-tui is fine for selecting and playing music, but incomplete. We
       # still occasionally need the official client for more sophisticated
       # search and the "made for you" playlists.
       spotify
+
+      # Callback to callbacks/spotify.nix
 
       # # services.spotifyd doesn't work so we'll have to roll our own spotifyd +
       # # spotify-tui solution. The dbus interface doesn't work, though, so we
@@ -79,7 +82,7 @@ in {
       #    esac
       # '')
     ];
-    networking.firewall.allowedTCPPorts = [57621];
+
     #   systemd.user.services.spotifyd.serviceConfig =
     #     let spotifydConf = pkgs.writeText "spotifyd.conf" ''
     #         [global]

@@ -1,5 +1,5 @@
 {
-  options,
+  osConfig,
   config,
   lib,
   pkgs,
@@ -9,77 +9,53 @@
 with lib;
 with lib.sylkos; let
   cfg = config.modules.desktop.hyprland;
-  configDir = config.dotfiles.configDir;
+  configDir = osConfig.dotfiles.configDir;
 
   # change this for nvidia
   hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
 in {
+  imports = [inputs.hyprland.homeManagerModules.default];
+
   options.modules.desktop.hyprland = {
     enable = mkBoolOpt false;
     nvidia = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {
-    # services.xserver = {
-    #   enable = true;
-    #   displayManager.lightdm = {
-    #     enable = true;
-    #     greeters.enso.enable = true;
-    #     defaultSession = "hyprland";
-    #     background = "${config.dotfiles.configDir}/assets/wallpapers/hekatewhistler.jpeg";
-    #     #wayland = true;
-    #   };
-    #   excludePackages = [pkgs.xterm];
-    # };
+    home = {
+      # other hyprland specific packages
+      packages = with pkgs; [
+        wofi
+        slurp
+        swww
+        swaylock-effects
+        hyprpicker
+        wl-gammactl
+        wl-clipboard
+        grim
+        swappy
+        imagemagick
+        xdg-desktop-portal-hyprland
+        xwaylandvideobridge
+      ];
 
-    services.greetd = {
-      enable = true;
-      settings = {
-        default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
-          user = "greeter";
-        };
+      sessionVariables = {
+        LIBVA_DRIVER_NAME = "nvidia";
+        XDG_SESSION_TYPE = "wayland";
+        GBM_BACKEND = "nvidia-drm";
+        __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+        WLR_NO_HARDWARE_CURSORS = "1";
       };
     };
 
-    # this is the hyprland module
-    programs.hyprland = {
-      enable = true;
-      #   enableNvidiaPatches = cfg.nvidia;
-      xwayland.enable = true;
-    };
-
-    env = {
-      LIBVA_DRIVER_NAME = "nvidia";
-      XDG_SESSION_TYPE = "wayland";
-      GBM_BACKEND = "nvidia-drm";
-      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-      WLR_NO_HARDWARE_CURSORS = "1";
-    };
-
-    # other hyprland specific packages
-    user.packages = with pkgs; [
-      wofi
-      slurp
-      swww
-      swaylock-effects
-      hyprpicker
-      wl-gammactl
-      wl-clipboard
-      grim
-      swappy
-      imagemagick
-      xdg-desktop-portal-hyprland
-      xwaylandvideobridge
-    ];
-
-    security.pam.services.swaylock = {
-      text = ''
-        # PAM configuration file for the swaylock screen locker. By default, it includes
-        # the 'login' configuration file (see /etc/pam.d/login)
-        auth include login
-      '';
-    };
+    # TODO
+    # security.pam.services.swaylock = {
+    #   text = ''
+    #     # PAM configuration file for the swaylock screen locker. By default, it includes
+    #     # the 'login' configuration file (see /etc/pam.d/login)
+    #     auth include login
+    #   '';
+    # };
 
     # this is the hm module
     wayland.windowManager.hyprland = {
@@ -95,7 +71,7 @@ in {
       settings = {
         exec-once = [
           "ags"
-          "${config.dotfiles.configDir}/scripts/wallpaper.sh"
+          "${configDir}/scripts/wallpaper.sh"
           "nm-applet"
           "blueman-applet"
         ];
@@ -236,7 +212,7 @@ in {
             (sal "F" "${configDir}/scripts/screenshot.sh full-file")
 
             # misc TODO sort
-            (sal "X" "${config.dotfiles.configDir}/eww/scripts/lock")
+            (sal "X" "${configDir}/eww/scripts/lock")
 
             # movement
 

@@ -1,5 +1,6 @@
 {
   config,
+  osConfig,
   options,
   lib,
   pkgs,
@@ -20,9 +21,9 @@ in {
         # update = "sudo nixos-rebuild switch --flake .#";
         # xterm = "alacritty";
       };
-      histSize = 10000;
+      history.size = 10000;
 
-      ohMyZsh = {
+      oh-my-zsh = {
         enable = true;
         plugins = [
           "rust"
@@ -34,11 +35,12 @@ in {
           "lol"
           "web-search"
         ];
+
         theme = "powerlevel10k/powerlevel10k";
-        custom = "${config.dotfiles.configDir}/oh-my-zsh/";
+        custom = "${osConfig.dotfiles.configDir}/oh-my-zsh/";
       };
     };
 
-    users.defaultUserShell = pkgs.zsh;
+    # users.defaultUserShell = pkgs.zsh;
   };
 }

@@ -1,7 +1,7 @@
 # Configuration for EWW (Elkowar's Wacky Widgets)
 {
   config,
-  options,
+  osConfig,
   lib,
   pkgs,
   ...
@@ -48,10 +48,10 @@ in {
       programs.eww = {
         enable = true;
         package = cfg.package;
-        configDir = "${config.dotfiles.configDir}/eww";
+        configDir = "${osConfig.dotfiles.configDir}/eww";
       };
 
-      user.packages = with pkgs; [
+      home.packages = with pkgs; [
         jq
         socat
       ];

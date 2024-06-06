@@ -14,17 +14,23 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
-      clang
-      llvmPackages.bintools
-      rustup
-      # this is outdated :P
-      # libcxxabi # for FireDBG <3
-    ];
+    home = {
+      # todo soup up rust config
+      packages = with pkgs; [
+        clang
+        llvmPackages.bintools
+        rustup
+        # this is outdated :P
+        # libcxxabi # for FireDBG <3
+      ];
 
-    env.PATH = ["$(${pkgs.yarn}/bin/yarn global bin)" "$CARGO_HOME/bin"];
+      sessionVariables = {
+        # TODO what???
+        #PATH = ["$(${pkgs.yarn}/bin/yarn global bin)" "$CARGO_HOME/bin"];
 
-    env.RUSTUP_HOME = "$XDG_DATA_HOME/rustup";
-    env.CARGO_HOME = "$XDG_DATA_HOME/cargo";
+        RUSTUP_HOME = "$XDG_DATA_HOME/rustup";
+        CARGO_HOME = "$XDG_DATA_HOME/cargo";
+      };
+    };
   };
 }

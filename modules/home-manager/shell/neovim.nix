@@ -1,5 +1,6 @@
 {
   config,
+  osConfig,
   options,
   lib,
   pkgs,
@@ -20,27 +21,31 @@ in {
   # https://vonheikemen.github.io/devlog/tools/setup-nvim-lspconfig-plus-nvim-cmp/
 
   config = mkIf cfg.enable {
-    env.EDITOR = "nvim";
+    home = {
+      packages = with pkgs; [
+        # LSP
+        lua-language-server
+        rust-analyzer
+        java-language-server
+        nodePackages.pyright
+        nodePackages.typescript-language-server
+        nodePackages.bash-language-server
+        clang-tools_17
+        cmake-language-server
+        dockerfile-language-server-nodejs
+        statix
+        alejandra
+        nil
 
-    user.packages = with pkgs; [
-      # LSP
-      lua-language-server
-      rust-analyzer
-      java-language-server
-      nodePackages.pyright
-      nodePackages.typescript-language-server
-      nodePackages.bash-language-server
-      clang-tools_17
-      cmake-language-server
-      dockerfile-language-server-nodejs
-      statix
-      alejandra
-      nil
+        # Deps of telescope
+        ripgrep
+        fd
+      ];
 
-      # Deps of telescope
-      ripgrep
-      fd
-    ];
+      sessionVariables = {
+        EDITOR = "nvim";
+      };
+    };
 
     programs = {
       neovim = {
@@ -113,7 +118,7 @@ in {
                     }
                 },
                 dev = {
-                    path = "${pkgs.vimUtils.packDir config.home-manager.users.${config.user.name}.programs.neovim.finalPackage.passthru.packpathDirs}/pack/myNeovimPackages/start",
+                    path = "${pkgs.vimUtils.packDir config.programs.neovim.finalPackage.passthru.packpathDirs}/pack/myNeovimPackages/start",
                     patterns = {"folke", "catppuccin", "nvim-treesitter", "hrsh7th", "saadparwaiz1", "L3MON4D3", "neovim", "mfussenegger", "rafamadriz", "windwp", "nvim-tree", "nvim-lua", "nvim-telescope", "goolord" },
                 },
                 install = {
@@ -129,7 +134,7 @@ in {
 
     xdg.configFile."nvim/lua" = {
       recursive = true;
-      source = "${config.dotfiles.configDir}/nvim/lua";
+      source = "${osConfig.dotfiles.configDir}/nvim/lua";
     };
   };
 }

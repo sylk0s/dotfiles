@@ -11,7 +11,7 @@
   ];
 
   modules = {
-    #audio.enable = true;
+    audio.enable = true;
     bluetooth.enable = true;
     network.enable = true;
 
@@ -19,7 +19,7 @@
       {
         name = "sylkos";
         priviledged = true;
-        config = ../../users/sylkos;
+        config = "${config.dotfiles.dir}/users/sylkos";
       }
     ];
 

@@ -14,9 +14,10 @@ in {
   };
 
   config = mkIf cfg.enable {
-    programs.steam.enable = true;
+    # TODO
+    # eventually i wanna move this here
 
-    # better for steam proton games
-    systemd.extraConfig = "DefaultLimitNOFILE=1048576";
+    # for now...
+    # callback to callbacks/steam.nix
   };
 }

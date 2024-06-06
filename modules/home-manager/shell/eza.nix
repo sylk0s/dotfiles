@@ -14,11 +14,13 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
-      eza
-    ];
+    programs.eza = {
+      enable = true;
+      enableZshIntegration = true;
+      # TODO explore these
+    };
 
-    shellAliases = {
+    home.shellAliases = {
       ll = "eza -ll";
       tree = "eza --tree";
     };

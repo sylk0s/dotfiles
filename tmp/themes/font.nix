@@ -33,30 +33,31 @@ in {
   # TODO add some option here for a light font install
   config = lib.mkIf (cfg.enable) {
     fonts = {
-      packages = with pkgs; [
-        inter
-        (nerdfonts.override {
-          fonts = [
-            "Ubuntu"
-            "Mononoki"
-          ];
-        })
-        julia-mono
-        ibm-plex
-        noto-fonts
-        noto-fonts-cjk
-        noto-fonts-emoji
-      ];
+      #   packages = with pkgs; [
+      #     inter
+      #     (nerdfonts.override {
+      #       fonts = [
+      #         "Ubuntu"
+      #         "Mononoki"
+      #       ];
+      #     })
+      #     julia-mono
+      #     ibm-plex
+      #     noto-fonts
+      #     noto-fonts-cjk
+      #     noto-fonts-emoji
+      #   ];
       fontconfig = let
         styles = cfg.styles;
       in {
         enable = true;
-        antialias = true;
-        hinting = {
-          enable = true;
-          style = "medium";
-          autohint = false;
-        };
+        #TODO
+        #antialias = true;
+        # hinting = {
+        #   enable = true;
+        #   style = "medium";
+        #   autohint = false;
+        # };
         defaultFonts = {
           sansSerif = ["${styles.main.family} ${toString styles.main.size}"];
           serif = ["${styles.serif.family} ${toString styles.serif.size}"];
@@ -64,7 +65,8 @@ in {
           emoji = ["${styles.emoji.family} ${toString styles.emoji.size}"];
         };
       };
-      enableDefaultPackages = true;
+      #TODO
+      #enableDefaultPackages = true;
     };
   };
 }

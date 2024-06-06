@@ -14,11 +14,10 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
+    home.packages = with pkgs; [
       xfce.thunar
     ];
 
-    services.tumbler.enable = true;
-    services.gvfs.enable = true;
+    # callback into callbacks/thunar.nix
   };
 }

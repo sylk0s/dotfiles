@@ -1,10 +1,12 @@
 {
+  self,
   lib,
   inputs,
   outputs,
   ...
 }:
-with lib; let
+with lib;
+with lib.sylkos; let
 in rec {
   # mkHome :: User -> Host -> { name = Home }
   mkHome = user:
@@ -29,4 +31,7 @@ in rec {
       hmConfigs
       ++ (map (user: nameValuePair name (mkHome user)) host.modules.users)
   ) [] (import dir));
+
+  anyUsers = pred: users:
+    any (user: pred user.value) (attrsToList users);
 }

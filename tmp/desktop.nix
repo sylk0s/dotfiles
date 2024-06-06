@@ -9,7 +9,8 @@ with lib;
 with lib.sylkos; let
   cfg = config.modules.desktop;
 in {
-  config = mkIf config.services.xserver.enable {
+  config = {
+    #mkIf config.services.xserver.enable {
     assertions = [
       {
         assertion = (countAttrs (n: v: n == "enable" && value) cfg) < 2;

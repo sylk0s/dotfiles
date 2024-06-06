@@ -25,11 +25,8 @@ in {
 
     networking.networkmanager.enable = true;
 
-    # TODO Expand here with more netowrking things
+    userDefaults.extraGroups = ["networkmanager"];
 
-    # TODO Update this to be in HM
-    # environment.systemPackages = with pkgs; [
-    #   networkmanagerapplet
-    # ];
+    # TODO Expand here with more netowrking things
   };
 }

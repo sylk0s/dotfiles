@@ -15,7 +15,7 @@
           profileName = "ahpu6nkm";
         };
         intellij.enable = true;
-        virtualbox.enable = false;
+        #virtualbox.enable = false;
       };
       security = {
         cutter.enable = false;
@@ -32,18 +32,20 @@
         ags = {
           enable = true;
         };
-        docker.enable = true;
+        #docker.enable = true;
         dunst.enable = false;
-        agenix.enable = false;
+        #agenix.enable = false;
       };
     };
     dev = {
       python.enable = true;
-      rust.enable = true;
+      # TODO Hello?
+      #rust.enable = true;
       julia.enable = true;
       java.enable = true;
-      c.enable = true;
-      matlab.enable = false;
+      # TODO Hello?
+      #c.enable = true;
+      #matlab.enable = false;
       racket.enable = true;
       haskell.enable = true;
       embedded.enable = true;

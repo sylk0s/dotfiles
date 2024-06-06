@@ -14,12 +14,12 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
+    home.packages = with pkgs; [
       clang
       gcc
       gdb
       cmake
-      llvmPackages.libcxx
+      #llvmPackages.libcxx
     ];
   };
 }
