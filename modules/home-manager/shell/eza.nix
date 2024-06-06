@@ -18,7 +18,7 @@ in {
       eza
     ];
 
-    environment.shellAliases = {
+    shellAliases = {
       ll = "eza -ll";
       tree = "eza --tree";
     };

@@ -27,13 +27,11 @@ in {
       "git/attributes".source = "${configDir}/git/attributes";
     };
 
-    home-manager.users.${config.user.name} = {
-      programs.git = {
-        enable = true;
-        userName = cfg.userName;
-        userEmail = cfg.userEmail;
-        ignores = ["/.vscode" "/.pio" "/__pycache__" ".envrc" ".direnv" ".env"];
-      };
+    programs.git = {
+      enable = true;
+      userName = cfg.userName;
+      userEmail = cfg.userEmail;
+      ignores = ["/.vscode" "/.pio" "/__pycache__" ".envrc" ".direnv" ".env"];
     };
 
     #modules.shell.zsh.rcFiles = [ "${configDir}/git/aliases.zsh" ];

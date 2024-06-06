@@ -20,10 +20,10 @@ in {
 
   config = lib.mkIf (cfg.enable) {
     # hicolor is the fallback theme
-    environment.systemPackages = with pkgs; [libnotify hicolor-icon-theme];
+    user.packages = with pkgs; [libnotify hicolor-icon-theme];
 
     # home manager configuration
-    home-manager.users.${config.user.name}.services.dunst = {
+    services.dunst = {
       enable = true;
       package = pkgs.dunst;
       iconTheme = {

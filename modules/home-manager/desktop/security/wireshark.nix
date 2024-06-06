@@ -15,7 +15,7 @@ in {
   config = mkIf cfg.enable {
     users = {
       groups.wireshark = {};
-      groups.plugdev = {}; # I'm pretty sure that plugdev needed for this...
+      groups.plugdev = {};
       users.${config.user.name}.extraGroups = [
         "wireshark"
         "plugdev"

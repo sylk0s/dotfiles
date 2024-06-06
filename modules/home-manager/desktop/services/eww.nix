@@ -44,15 +44,14 @@ in {
   in
     lib.mkIf (cfg.enable) {
       # home manager configuration
-      home-manager.users.${config.user.name} = {
-        programs.eww = {
-          enable = true;
-          package = cfg.package;
-          configDir = "${config.dotfiles.configDir}/eww";
-        };
+
+      programs.eww = {
+        enable = true;
+        package = cfg.package;
+        configDir = "${config.dotfiles.configDir}/eww";
       };
 
-      environment.systemPackages = with pkgs; [
+      user.packages = with pkgs; [
         jq
         socat
       ];

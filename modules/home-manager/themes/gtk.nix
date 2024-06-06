@@ -25,32 +25,30 @@ in {
   };
 
   config = mkIf (srv.xserver.enable || config.modules.desktop.hyprland.enable) {
-    home-manager.users.${config.user.name} = {
-      gtk = {
-        enable = true;
+    gtk = {
+      enable = true;
 
-        iconTheme = {
-          name = cfg.iconTheme.name;
-          package = cfg.iconTheme.package;
-        };
+      iconTheme = {
+        name = cfg.iconTheme.name;
+        package = cfg.iconTheme.package;
+      };
 
-        theme = {
-          name = "Catppuccin-Mocha-Compact-Lavender-Dark";
-          package = pkgs.catppuccin-gtk.override {
-            accents = ["lavender"];
-            size = "compact";
-            tweaks = [];
-            variant = "mocha";
-          };
+      theme = {
+        name = "Catppuccin-Mocha-Compact-Lavender-Dark";
+        package = pkgs.catppuccin-gtk.override {
+          accents = ["lavender"];
+          size = "compact";
+          tweaks = [];
+          variant = "mocha";
         };
+      };
 
-        gtk3.extraConfig = {
-          gtk-application-prefer-dark-theme = 1;
-        };
+      gtk3.extraConfig = {
+        gtk-application-prefer-dark-theme = 1;
+      };
 
-        gtk4.extraConfig = {
-          gtk-application-prefer-dark-theme = 1;
-        };
+      gtk4.extraConfig = {
+        gtk-application-prefer-dark-theme = 1;
       };
     };
   };

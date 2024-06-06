@@ -18,7 +18,7 @@ in {
       bat
     ];
 
-    environment.shellAliases = {
+    shellAliases = {
       cat = "bat --theme ansi -P -p";
       cata = "bat --theme ansi -P";
       catv = "bat --theme ansi -P -A";

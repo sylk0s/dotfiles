@@ -14,10 +14,8 @@ with lib.sylkos; {
     [
       ../users # user definitions
       inputs.home-manager.nixosModules.home-manager
-      #../users/home.nix # user defaults
     ]
-    ++ (mapModulesRec ../modules/nixos import); # imports all nixos modules
-  #++ (map (user: import user.config) config.modules.users); # imports all user level config
+    ++ outputs.nixosModules; # imports all nixos modules
 
   nixpkgs.config.allowUnfree = true;
 

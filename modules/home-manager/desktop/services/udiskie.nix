@@ -39,7 +39,7 @@ in {
       })
     ];
 
-    home-manager.users.${config.user.name}.services.udiskie = {
+    services.udiskie = {
       enable = true;
       automount = true;
     };

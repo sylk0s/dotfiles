@@ -37,9 +37,5 @@ in {
       libnotify
       pciutils
     ];
-
-    #home-manager.users.${config.user.name} = {
-    #
-    #};
   };
 }

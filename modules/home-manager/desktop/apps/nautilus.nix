@@ -18,7 +18,7 @@ in {
       gnome.nautilus
     ];
 
-    environment.sessionVariables = {
+    env = {
       GTK_THEME = "Catppuccin-Mocha-Compact-Lavender-Dark";
     };
 

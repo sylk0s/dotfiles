@@ -18,7 +18,7 @@ in {
       neofetch
     ];
 
-    environment.shellAliases = {
+    shellAliases = {
       neofetch = "neofetch --config ${config.dotfiles.configDir}/neofetch/config.conf";
     };
   };

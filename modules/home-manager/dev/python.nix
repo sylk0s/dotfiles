@@ -26,7 +26,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
+    user.packages = with pkgs; [
       (python3.withPackages my-python-packages)
     ];
   };
