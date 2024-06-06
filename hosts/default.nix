@@ -1,6 +1,7 @@
 # This file contains all of the things I want to be on every system.
 {
   inputs,
+  outputs,
   config,
   lib,
   pkgs,
@@ -10,13 +11,18 @@ with lib;
 with lib.sylkos; {
   # Import the home-manager module and all my custom modules
   imports =
-    [inputs.home-manager.nixosModules.home-manager]
-    ++ (mapModulesRec (toString ../modules) import);
+    [
+      ../users # user definitions
+      inputs.home-manager.nixosModules.home-manager
+      #../users/home.nix # user defaults
+    ]
+    ++ (mapModulesRec ../modules/nixos import); # imports all nixos modules
+  #++ (map (user: import user.config) config.modules.users); # imports all user level config
 
   nixpkgs.config.allowUnfree = true;
 
   #environment.variables.DOTFILES = config.dotfiles.dir;
-  environment.variables.DOTFILES_BIN = config.dotfiles.binDir;
+  #environment.variables.DOTFILES_BIN = config.dotfiles.binDir;
 
   # TODO
   nix = let
@@ -31,15 +37,12 @@ with lib.sylkos; {
     # registry = registryInputs // {dotfiles.flake = inputs.self;};
 
     settings = {
-      # also some options here about keys, subscribers, cachix
       experimental-features = "nix-command flakes";
-      #   substituters = ["https://hyprland.cachix.org"];
-      #   trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
       auto-optimise-store = true;
     };
   };
 
-  # TODO
+  # TODO what is this
   # system.configurationRevision = with inputs; mkIf (self ? rev) self.rev;
   system.stateVersion = "21.05";
 

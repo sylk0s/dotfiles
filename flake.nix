@@ -47,7 +47,7 @@
     ...
   }: let
     inherit (self) outputs;
-    inherit (lib.sylkos) mapModules mapModulesRec mapHosts forAllSystems;
+    inherit (lib.sylkos) mapModules mapModulesRec mapHosts forAllSystems mapHmConfigs;
 
     # extend the current library with my own functions
     lib =
@@ -72,11 +72,16 @@
     overlays = mapModules ./overlays import;
 
     # Exports all of the modules from this flake
-    nixosModules = mapModulesRec ./modules import;
+    # TODO should we include both hm and nixos in here?
+    # TODO remove with lib;
+    nixosModules = mapModulesRec ./modules/nixos import;
+
+    # Exports all of the modules from home-manager
+    homeManagerModules = mapModulesRec ./modules/home-manager import;
 
     # Imports the hosts from the default.nix in each folder of ./hosts
     nixosConfigurations = mapHosts ./hosts;
 
-    # TODO add a home-manager entry point up here
+    # homeManagerConfiguration = mapHmConfigs ./hosts;
   };
 }

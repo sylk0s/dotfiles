@@ -25,6 +25,7 @@ with lib.sylkos; {
       modulesDir = mkOpt path "${config.dotfiles.dir}/modules";
       themesDir = mkOpt path "${config.dotfiles.modulesDir}/themes";
       nvimDir = mkOpt path "${config.dotfiles.dir}/config/nvim";
+      userDir = mkOpt path "${config.dotfiles.dir}/users";
     };
 
     home = {

@@ -1,0 +1,86 @@
+# Defaults and config for each user
+{
+  config,
+  options,
+  lib,
+  inputs,
+  outputs,
+  ...
+}:
+with lib;
+with lib.sylkos; let
+  cfg = config.modules.users;
+in {
+  options.modules.users = mkOption {
+    type = types.listOf (
+      types.submodule {
+        options = {
+          name = mkOption {
+            type = types.str;
+          };
+          priviledged = mkOption {
+            type = types.bool;
+            default = false;
+          };
+          config = mkOption {
+            type = types.path;
+          };
+        };
+      }
+    );
+  };
+
+  config = {
+    # creates users from the user list above
+    users.users = listToAttrs (map (
+        user: {
+          name = user.name;
+          value = {
+            home = "/home/${user.name}";
+            # TODO secrets
+            # initialPassword = "password";
+            isNormalUser = true;
+            extraGroups =
+              if user.priviledged
+              then ["wheel"]
+              else [];
+          };
+        }
+      )
+      cfg);
+
+    # DO THIS ONLY IF home-manager is a nixos module
+    # sets up home manager for all the users above
+    home-manager = {
+      extraSpecialArgs = {inherit inputs outputs;};
+      # for each user, generate a home-manager config
+      users = listToAttrs (map (
+          # maps to attr pair
+          user: {
+            name = user.name;
+            value = {
+              imports = [
+                ./home.nix # default config for every user
+                user.config # user specific config file
+              ];
+              # sets up user's info
+              home = {
+                username = user.name;
+                homeDirectory = "/home/${user.name}";
+              };
+            };
+          }
+        )
+        cfg);
+    };
+
+    #   any assertations that should be checked
+    # assertations = [
+    #   {
+    #     assertion = true;
+    #     message = "";
+    #   }
+    # ];
+    #   other config ...
+  };
+}

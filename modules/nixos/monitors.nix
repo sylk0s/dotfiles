@@ -56,15 +56,16 @@ in {
     default = [];
   };
 
-  config = {
-    # any assertations that should be checked
-    assertations = [
-      {
-        assertion =
-          ((length this) != 0)
-          -> ((length (filter (m: m.primary) this)) == 1);
-        message = "Exactly one monitor must be set to primary.";
-      }
-    ];
-  };
+  # TODO fix this ???
+  #   config = {
+  #     # any assertations that should be checked
+  #     assertations = [
+  #       {
+  #         assertion =
+  #           ((length cfg) != 0)
+  #           -> ((length (filter (m: m.primary) cfg)) == 1);
+  #         message = "Exactly one monitor must be set to primary.";
+  #       }
+  #     ];
+  #   };
 }

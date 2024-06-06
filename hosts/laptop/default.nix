@@ -11,62 +11,70 @@
   ];
 
   modules = {
-    desktop = {
-      hyprland = {
-        enable = true;
-      };
-      media.spotify.enable = true;
-      social = {
-        discord.enable = true;
-        signal.enable = true;
-      };
-      apps = {
-        firefox = {
-          enable = true;
-          profileName = "ahpu6nkm";
-        };
-        intellij.enable = true;
-        virtualbox.enable = false;
-      };
-      security = {
-        cutter.enable = false;
-        wireshark.enable = true;
-        ghidra.enable = true;
-        burpsuite.enable = true;
-      };
-      gaming = {
-        steam.enable = true;
-        mc.enable = true;
-        emu.enable = false;
-      };
-      services = {
-        ags = {
-          enable = true;
-        };
-        docker.enable = true;
-        dunst.enable = false;
-        agenix.enable = false;
-      };
-    };
-    dev = {
-      python.enable = true;
-      rust.enable = true;
-      julia.enable = true;
-      java.enable = true;
-      c.enable = true;
-      matlab.enable = false;
-      racket.enable = true;
-      haskell.enable = true;
-      embedded.enable = true;
-    };
-
-    shell = {
-      eza.enable = true;
-    };
-
-    audio.enable = true;
+    #audio.enable = true;
     bluetooth.enable = true;
     network.enable = true;
+
+    users = [
+      {
+        name = "sylkos";
+        priviledged = true;
+        config = ../../users/sylkos;
+      }
+    ];
+
+    # desktop = {
+    #   hyprland = {
+    #     enable = true;
+    #   };
+    #   media.spotify.enable = true;
+    #   social = {
+    #     discord.enable = true;
+    #     signal.enable = true;
+    #   };
+    #   apps = {
+    #     firefox = {
+    #       enable = true;
+    #       profileName = "ahpu6nkm";
+    #     };
+    #     intellij.enable = true;
+    #     virtualbox.enable = false;
+    #   };
+    #   security = {
+    #     cutter.enable = false;
+    #     wireshark.enable = true;
+    #     ghidra.enable = true;
+    #     burpsuite.enable = true;
+    #   };
+    #   gaming = {
+    #     steam.enable = true;
+    #     mc.enable = true;
+    #     emu.enable = false;
+    #   };
+    #   services = {
+    #     ags = {
+    #       enable = true;
+    #     };
+    #     docker.enable = true;
+    #     dunst.enable = false;
+    #     agenix.enable = false;
+    #   };
+    # };
+    # dev = {
+    #   python.enable = true;
+    #   rust.enable = true;
+    #   julia.enable = true;
+    #   java.enable = true;
+    #   c.enable = true;
+    #   matlab.enable = false;
+    #   racket.enable = true;
+    #   haskell.enable = true;
+    #   embedded.enable = true;
+    # };
+
+    # shell = {
+    #   eza.enable = true;
+    # };
   };
 
   # TODO remove all of these :3
@@ -109,6 +117,9 @@
         insmod part_gpt
         insmod fat
         search --no-floppy --fs-uuid --set=root 0037-42F6
+        echo ""
+        echo ""
+        echo ""
         echo 'Loading Arch Linux'
         linux /vmlinuz-linux root=/dev/mapper/vg0-root rw cryptdevice=/dev/nvme1n1p7:cryptlvm root=/dev/vg0/root loglevel=3 quiet
         echo 'Loading initial ramdisk ...'
