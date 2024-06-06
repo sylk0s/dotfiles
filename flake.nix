@@ -20,10 +20,10 @@
 
     # hyprland related stuffs
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
+    # hyprland-plugins = {
+    #   url = "github:hyprwm/hyprland-plugins";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
 
     # ags for wayland bar/widets
     ags.url = "github:Aylur/ags";
@@ -45,7 +45,7 @@
     nixpkgs,
     home-manager,
     hyprland,
-    hyprland-plugins,
+    #hyprland-plugins,
     ags,
     agenix,
     nixos-hardware,

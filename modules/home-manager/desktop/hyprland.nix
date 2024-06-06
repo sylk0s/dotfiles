@@ -64,9 +64,10 @@ in {
       xwayland.enable = true;
       package = hyprland;
 
-      plugins = [
-        inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
-      ];
+      # TODO
+      #   plugins = [
+      #     inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+      #   ];
 
       settings = {
         exec-once = [
@@ -227,7 +228,7 @@ in {
 
             (base "workspace" "mouse_down" "e+1")
             (base "workspace" "mouse_up" "e-1")
-            "SUPER, grave, hyprexpo:expo, toggle"
+            # "SUPER, grave, hyprexpo:expo, toggle"
           ]
           # ++ (map (i: (map (j: swpfocus (toString j) (toString i [0]))) i [1]) dirs)
           # ++ (map (i: (map (j: mvfocus (toString j) (toString i [0]))) i [1]) dirs)
