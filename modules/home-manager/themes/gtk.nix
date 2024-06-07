@@ -13,6 +13,7 @@ in {
   options.modules.themes.gtk = {
     enable = mkBoolOpt true;
     iconTheme = {
+      name = mkStrOpt "Papirus-Dark";
       package = lib.mkOption {
         type = lib.types.package;
         default = pkgs.catppuccin-papirus-folders.override {
@@ -20,11 +21,22 @@ in {
           accent = "lavender";
         };
       };
-      name = mkStrOpt "Papirus-Dark";
+    };
+    theme = {
+      name = mkStrOpt "Catppuccin-Mocha-Compact-Lavender-Dark";
+      package = lib.mkOption {
+        type = lib.types.package;
+        default = pkgs.catppuccin-gtk.override {
+          accents = ["lavender"];
+          size = "compact";
+          tweaks = [];
+          variant = "mocha";
+        };
+      };
     };
   };
 
-  config = mkIf (srv.xserver.enable || config.modules.desktop.hyprland.enable) {
+  config = mkIf (config.modules.desktop.hyprland.enable) {
     gtk = {
       enable = true;
 
@@ -34,13 +46,8 @@ in {
       };
 
       theme = {
-        name = "Catppuccin-Mocha-Compact-Lavender-Dark";
-        package = pkgs.catppuccin-gtk.override {
-          accents = ["lavender"];
-          size = "compact";
-          tweaks = [];
-          variant = "mocha";
-        };
+        name = cfg.theme.name;
+        package = cfg.theme.package;
       };
 
       gtk3.extraConfig = {

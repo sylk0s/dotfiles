@@ -8,8 +8,7 @@
 }:
 with lib;
 with lib.sylkos; let
-  colorType =
-    lib.types.addCheck lib.types.str (x: !isNull (builtins.match "#[0-9a-fA-F]{6}" x));
+  colorType = lib.types.addCheck lib.types.str (x: !isNull (builtins.match "#[0-9a-fA-F]{6}" x));
   color = defaultColor:
     lib.mkOption {
       type = colorType;
@@ -20,6 +19,7 @@ in {
   options.modules.themes.colors = {
     enable = mkBoolOpt true;
 
+    # TODO replace this later
     # cattpuccin
     colors = {
       color0 = color "#45475A";

@@ -18,8 +18,6 @@ in {
     programs.zsh = {
       enable = true;
       shellAliases = {
-        # update = "sudo nixos-rebuild switch --flake .#";
-        # xterm = "alacritty";
       };
       history.size = 10000;
 
@@ -40,7 +38,5 @@ in {
         custom = "${osConfig.dotfiles.configDir}/oh-my-zsh/";
       };
     };
-
-    # users.defaultUserShell = pkgs.zsh;
   };
 }
