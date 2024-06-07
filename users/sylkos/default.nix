@@ -4,6 +4,9 @@
       hyprland = {
         enable = true;
       };
+      # gnome = {
+      #   enable = true;
+      # };
       media.spotify.enable = true;
       social = {
         discord.enable = true;

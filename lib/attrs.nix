@@ -20,4 +20,6 @@ with lib; rec {
   #   (name -> value -> { name = any; value = any; })
   #   attrs
   mapFilterAttrs = pred: f: attrs: filterAttrs pred (mapAttrs' f attrs);
+
+  filterMapAttrs = pred: f: attrs: mapAttrs' f (filterAttrs pred attrs);
 }

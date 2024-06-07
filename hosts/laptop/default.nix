@@ -18,7 +18,7 @@
     services = {
       docker.enable = true;
       gpg.enable = true;
-      virtualbox.enable = true;
+      # virtualbox.enable = true;
     };
 
     users = [

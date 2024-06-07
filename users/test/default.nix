@@ -1,7 +1,7 @@
 {config, ...}: {
   modules = {
     desktop = {
-      hyprland = {
+      gnome = {
         enable = true;
       };
       social = {
