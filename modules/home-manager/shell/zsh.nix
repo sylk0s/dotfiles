@@ -34,8 +34,8 @@ in {
           "web-search"
         ];
 
-        theme = "powerlevel10k/powerlevel10k";
-        custom = "${osConfig.dotfiles.configDir}/oh-my-zsh/";
+        # theme = "powerlevel10k/powerlevel10k";
+        # custom = "${osConfig.dotfiles.configDir}/oh-my-zsh/";
       };
     };
   };
