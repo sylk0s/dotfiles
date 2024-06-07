@@ -6,7 +6,7 @@
   ...
 }: {
   imports = [
-    # PUT HW CONF HERE!
+    ./hardware-configuration.nix
   ];
 
   modules = {
@@ -18,7 +18,7 @@
       {
         name = "sylkos";
         priviledged = true;
-        config = "${config.dotfiles.dir}/users/sylkos";
+        config = "${config.dotfiles.dir}/users/test";
       }
     ];
   };

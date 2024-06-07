@@ -9,7 +9,7 @@ with lib;
 with lib.sylkos; let
   cfg = config.modules.desktop.services.docker;
 in {
-  options.modules.desktop.services.docker = {
+  options.modules.services.docker = {
     enable = mkBoolOpt false;
   };
 

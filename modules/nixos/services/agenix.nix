@@ -10,7 +10,7 @@ with lib;
 with lib.sylkos; let
   cfg = config.modules.desktop.services.agenix;
 in {
-  options.modules.desktop.services.agenix = {
+  options.modules.services.agenix = {
     enable = mkBoolOpt false;
   };
 

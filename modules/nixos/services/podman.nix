@@ -9,7 +9,7 @@ with lib;
 with lib.sylkos; let
   cfg = config.modules.desktop.services.podman;
 in {
-  options.modules.desktop.services.podman = {
+  options.modules.services.podman = {
     enable = mkBoolOpt false;
   };
 

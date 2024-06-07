@@ -9,7 +9,7 @@ with lib;
 with lib.sylkos; let
   cfg = config.modules.desktop.security.gpg;
 in {
-  options.modules.desktop.security.gpg = {
+  options.modules.services.gpg = {
     enable = mkBoolOpt true;
   };
 

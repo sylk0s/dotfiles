@@ -9,7 +9,7 @@ with lib;
 with lib.sylkos; let
   cfg = config.modules.desktop.apps.virtualbox;
 in {
-  options.modules.desktop.apps.virtualbox = {
+  options.modules.services.virtualbox = {
     enable = mkBoolOpt false;
   };
 
