@@ -4,44 +4,49 @@ this is a log for everything im doing to make this work
 - connect to the internet (this is why i like gnome iso... it's easy)
 
 ```
-# cryptsetup luksFormat /dev/sda2
-# cryptsetup luksOpen /dev/sda2 test_crypt
-# mkfs.btrfs /dev/mapper/test_crypt
-# mount -t btrfs /dev/mapper/test_crypt /mnt
+# sudo cryptsetup luksFormat /dev/sda2
+# sudo cryptsetup luksOpen /dev/sda2 test_crypt
+# sudo mkfs.btrfs /dev/mapper/test_crypt -L test_fs
+# sudo mount -t btrfs /dev/disk/by-label/test_fs /mnt
 
-# btrfs subvolume create /mnt/root
-# btrfs subvolume create /mnt/home
-# btrfs subvolume create /mnt/nix
-# btrfs subvolume create /mnt/persist
-# btrfs subvolume create /mnt/log
-# btrfs subvolume create /mnt/swap
+# sudo btrfs subvolume create /mnt/root
+# sudo btrfs subvolume create /mnt/home
+# sudo btrfs subvolume create /mnt/nix
+# sudo btrfs subvolume create /mnt/persist
+# sudo btrfs subvolume create /mnt/log
+# sudo btrfs subvolume create /mnt/swap
 
-# btrfs subvolume snapshot -r /mnt/root /mnt/root-blank
+# sudo btrfs subvolume snapshot -r /mnt/root /mnt/root-blank
 
-# umount /mnt
+# sudo umount /mnt
 
-# mount -o subvol=root,compress=zstd,noatime /dev/mapper/test_crypt /mnt
-# mkdir /mnt/home
-# mount -o subvol=home,compress=zstd,noatime /dev/mapper/test_crypt /mnt/home
-# mkdir /mnt/nix
-# mount -o subvol=nix,compress=zstd,noatime /dev/mapper/test_crypt /mnt/nix
-# mkdir /mnt/persist
-# mount -o subvol=persist,compress=zstd,noatime /dev/mapper/test_crypt /mnt/persist
-# mkdir -p /mnt/var/log
-# mount -o subvol=log,compress=zstd,noatime /dev/mapper/test_crypt /mnt/var/log
+# sudo mount -o subvol=root,compress=zstd,noatime /dev/disk/by-label/test_fs /mnt
+# sudo mkdir /mnt/home
+# sudo mount -o subvol=home,compress=zstd,noatime /dev/disk/by-label/test_fs /mnt/home
+# sudo mkdir /mnt/nix
+# sudo mount -o subvol=nix,compress=zstd,noatime /dev/disk/by-label/test_fs /mnt/nix
+# sudo mkdir /mnt/persist
+# sudo mount -o subvol=persist,compress=zstd,noatime /dev/disk/by-label/test_fs /mnt/persist
+# sudo mkdir -p /mnt/var/log
+# sudo mount -o subvol=log,compress=zstd,noatime /dev/disk/by-label/test_fs /mnt/var/log
 
-# mkdir /swap
-# mount -o subvol=swap /dev/mapper/test_crypt /swap
+# sudo mkdir /swap
+# sudo mount -o subvol=swap /dev/disk/by-label/test_fs /swap
+# sudo truncate -s 0 /swap/swapfile
+# sudo chattr +C /swap/swapfile
+# sudo fallocate -l 4G /swap/swapfile
+# sudo chmod 0600 /swap/swapfile
+# sudo mkswap /swap/swapfile
 see btrfs.readthedocs.io/en/latest/Swapfile.html for mroe info about why below is broken
-# btrfs filesystem mkswapfile --size=8g --uuid clear /swap/swapfile
+// this shouls work but doesn't# btrfs filesystem mkswapfile --size=8g --uuid clear /swap/swapfile
 
-# mkfs.vfat -n BOOT /dev/sda1
-# mkdir /mnt/boot
-# mount /dev/sda1 /mnt/boot
+# sudo mkfs.fat -F 32 -n NIXBOOT /dev/sda1
+# sudo mkdir /mnt/boot
+# sudo mount /dev/sda1 /mnt/boot
 
-# nixos-generate-config --root /mnt
+# sudo nixos-generate-config --root /mnt
 
-# vim /mnt/etc/nixos/hardware-configuration.nix
+# sudo vim /mnt/etc/nixos/hardware-configuration.nix
 - added compression to each filesystems."path".options
 - added boot.supportedFilesystems
 - added neededForBoot to log
@@ -49,7 +54,7 @@ see btrfs.readthedocs.io/en/latest/Swapfile.html for mroe info about why below i
 
 # TODO the ephemerality part
 
-# vim /mnt/etc/nixos/configuration.nix
+# sudo vim /mnt/etc/nixos/configuration.nix
 - changed user to sylkos
 - enabled git and vim for user
 - removed gnome
@@ -59,7 +64,8 @@ see btrfs.readthedocs.io/en/latest/Swapfile.html for mroe info about why below i
 
 # TODO add labels to hardware config
 
-# cd /mnt
-# nixos-install
+$ cd /mnt
+# sudo nixos-install
+
 - reboot
 ```
