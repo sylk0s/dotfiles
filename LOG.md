@@ -4,10 +4,15 @@ this is a log for everything im doing to make this work
 - connect to the internet (this is why i like gnome iso... it's easy)
 
 ```
-# sudo cryptsetup luksFormat /dev/sda2
+# sudo cryptsetup luksFormat /dev/sda2 --label test_fs
 # sudo cryptsetup luksOpen /dev/sda2 test_crypt
-# sudo mkfs.btrfs /dev/mapper/test_crypt -L test_fs
+# sudo mkfs.btrfs /dev/mapper/test_crypt -L test
 # sudo mount -t btrfs /dev/disk/by-label/test_fs /mnt
+
+note for labels:
+${hostname}_fs = name of luks encrypted volume
+${hostname}_crypt = name in /dev/mapper of this volume
+${hostname} = name of btrfs filesystem volume
 
 # sudo btrfs subvolume create /mnt/root
 # sudo btrfs subvolume create /mnt/home
