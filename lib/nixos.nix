@@ -1,29 +1,38 @@
 {
   inputs,
+  outputs,
   lib,
-  pkgs,
+  # pkgs,
   ...
 }:
 with lib;
-with lib.my; let
-  sys = "x86_64-linux";
+with lib.sylkos; let
+  # aaa
 in {
-  mkHost = path: attrs @ {system ? sys, ...}:
+  # creates a host given a config directory
+  mkHost = path:
     nixosSystem {
-      inherit system;
-      specialArgs = {inherit lib inputs system;};
+      specialArgs = {inherit inputs outputs;};
       modules = [
+        # sets up the right hostname for this host
         {
-          nixpkgs.pkgs = pkgs;
+          # nixpkgs.pkgs = pkgs; # figure out what this is actually doing
           networking.hostName = mkDefault (removeSuffix ".nix" (baseNameOf path));
         }
-        (filterAttrs (n: v: !elem n ["system"]) attrs)
-        ../. # /default.nix
-        (import path)
+
+        ../hosts # /defaults for all hosts
+
+        (import path) # config for the host specifically
       ];
     };
 
-  mapHosts = dir: attrs @ {system ? system, ...}:
-    mapModules dir
-    (hostPath: mkHost hostPath attrs);
+  # map over all the host dirs in a /hosts directory, creating a host for each
+  mapHosts = dir:
+    mapModules dir (hostPath: mkHost hostPath);
+
+  systems = ["x86_64-linux"];
+
+  # This is a function that generates an attribute by calling a function you
+  # pass to it, with each system as an argument
+  forAllSystems = genAttrs systems;
 }

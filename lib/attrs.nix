@@ -5,14 +5,7 @@ with lib; rec {
   attrsToList = attrs:
     mapAttrsToList (name: value: {inherit name value;}) attrs;
 
-  # mapFilterAttrs ::
-  #   (name -> value -> bool)
-  #   (name -> value -> { name = any; value = any; })
-  #   attrs
-  mapFilterAttrs = pred: f: attrs: filterAttrs pred (mapAttrs' f attrs);
-
-  # Generate an attribute set by mapping a function over a list of values.
-  genAttrs' = values: f: listToAttrs (map f values);
+  # TODO remove these if not needed from the rest of the code
 
   # anyAttrs :: (name -> value -> bool) attrs
   anyAttrs = pred: attrs:
@@ -21,4 +14,12 @@ with lib; rec {
   # countAttrs :: (name -> value -> bool) attrs
   countAttrs = pred: attrs:
     count (attr: pred attr.name attr.value) (attrsToList attrs);
+
+  # mapFilterAttrs ::
+  #   (name -> value -> bool)
+  #   (name -> value -> { name = any; value = any; })
+  #   attrs
+  mapFilterAttrs = pred: f: attrs: filterAttrs pred (mapAttrs' f attrs);
+
+  filterMapAttrs = pred: f: attrs: mapAttrs' f (filterAttrs pred attrs);
 }

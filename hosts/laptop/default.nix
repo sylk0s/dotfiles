@@ -11,60 +11,23 @@
   ];
 
   modules = {
-    desktop = {
-      hyprland = {
-        enable = true;
-      };
-      media.spotify.enable = true;
-      social = {
-        discord.enable = true;
-        signal.enable = true;
-      };
-      apps = {
-        firefox = {
-          enable = true;
-          profileName = "ahpu6nkm";
-        };
-        intellij.enable = true;
-        virtualbox.enable = false;
-      };
-      security = {
-        cutter.enable = false;
-        wireshark.enable = true;
-        ghidra.enable = true;
-        burpsuite.enable = true;
-      };
-      gaming = {
-        steam.enable = true;
-        mc.enable = true;
-        emu.enable = false;
-      };
-      services = {
-        ags = {
-          enable = true;
-        };
-        docker.enable = true;
-        dunst.enable = false;
-        agenix.enable = false;
-      };
+    audio.enable = true;
+    bluetooth.enable = true;
+    network.enable = true;
+
+    services = {
+      docker.enable = true;
+      gpg.enable = true;
+      # virtualbox.enable = true;
     };
-    dev = {
-      python.enable = true;
-      rust.enable = true;
-      julia.enable = true;
-      java.enable = true;
-      c.enable = true;
-      matlab.enable = false;
-      racket.enable = true;
-      haskell.enable = true;
-      arduino.enable = false;
-      embedded.enable = true;
-    };
-    hardware = {
-      audio.enable = true;
-      bluetooth.enable = true;
-      wifi.enable = true;
-    };
+
+    users = [
+      {
+        name = "sylkos";
+        priviledged = true;
+        config = "${config.dotfiles.dir}/users/sylkos";
+      }
+    ];
   };
 
   # TODO remove all of these :3
@@ -99,21 +62,6 @@
 
   # time.timeZone = "Europe/Budapest";
 
-  # idk if I need these still
-  services.udev.extraRules = ''
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3744", MODE:="0666", SYMLINK+="stlinkv1_%n"
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374a", MODE:="0666", SYMLINK+="stlinkv2-1_%n"
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", MODE:="0666", SYMLINK+="stlinkv2-1_%n"
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3752", MODE:="0666", SYMLINK+="stlinkv2-1_%n"
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3748", MODE:="0666", SYMLINK+="stlinkv2_%n"
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3752", MODE:="0666", SYMLINK+="stlinkv3_%n"
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3753", MODE:="0666", SYMLINK+="stlinkv3_%n"
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3754", MODE:="0666", SYMLINK+="stlinkv3_%n"
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374d", MODE:="0666", SYMLINK+="stlinkv3_%n"
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374e", MODE:="0666", SYMLINK+="stlinkv3_%n"
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374f", MODE:="0666", SYMLINK+="stlinkv3_%n"
-  '';
-
   # find arch :3
   boot.loader.grub.extraEntries = ''
     menuentry "Arch Linux (on /dev/nvme1n1p7)" --class arch --class os {
@@ -122,6 +70,9 @@
         insmod part_gpt
         insmod fat
         search --no-floppy --fs-uuid --set=root 0037-42F6
+        echo ""
+        echo ""
+        echo ""
         echo 'Loading Arch Linux'
         linux /vmlinuz-linux root=/dev/mapper/vg0-root rw cryptdevice=/dev/nvme1n1p7:cryptlvm root=/dev/vg0/root loglevel=3 quiet
         echo 'Loading initial ramdisk ...'
