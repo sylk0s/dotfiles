@@ -30,12 +30,12 @@ in {
       fd
       ripgrep
       fzf
-      socat
-      jq
-      acpi
-      busybox
-      libnotify
-      pciutils
+      #socat
+      #jq
+      #acpi
+      #busybox
+      #libnotify
+      #pciutils
     ];
   };
 }

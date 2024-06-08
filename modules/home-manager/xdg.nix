@@ -10,7 +10,7 @@
 with lib; {
   ### A tidy $HOME is a tidy mind
   xdg = {
-    enable = true;
+    enable = mkDefault true;
 
     #   desktopEntries = {
     #     thunar-settings = {

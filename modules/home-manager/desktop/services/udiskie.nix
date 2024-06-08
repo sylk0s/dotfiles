@@ -10,7 +10,7 @@ with lib.sylkos; let
   cfg = config.modules.desktop.services.udiskie;
 in {
   options.modules.desktop.services.udiskie = {
-    enable = mkBoolOpt true;
+    enable = mkBoolOpt false;
   };
 
   config = mkIf (cfg.enable) {

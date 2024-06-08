@@ -10,7 +10,7 @@ with lib.sylkos; let
   cfg = config.modules.desktop.apps.zathura;
 in {
   options.modules.desktop.apps.zathura = {
-    enable = mkBoolOpt true;
+    enable = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {

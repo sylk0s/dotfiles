@@ -10,7 +10,7 @@ with lib.sylkos; let
   cfg = config.modules.desktop.apps.vscode;
 in {
   options.modules.desktop.apps.vscode = {
-    enable = mkBoolOpt true;
+    enable = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {

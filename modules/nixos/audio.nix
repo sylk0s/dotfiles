@@ -10,7 +10,7 @@ with lib.sylkos; let
   cfg = config.modules.audio;
 in {
   options.modules.audio = {
-    enable = mkBoolOpt true;
+    enable = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {

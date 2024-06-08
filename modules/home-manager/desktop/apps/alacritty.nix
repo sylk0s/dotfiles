@@ -13,7 +13,7 @@ with lib.sylkos; let
   cfg = config.modules.desktop.apps.alacritty;
 in {
   options.modules.desktop.apps.alacritty = {
-    enable = mkBoolOpt true;
+    enable = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {

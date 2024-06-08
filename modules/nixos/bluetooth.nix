@@ -9,7 +9,7 @@ with lib.sylkos; let
   cfg = config.modules.bluetooth;
 in {
   options.modules.bluetooth = {
-    enable = mkBoolOpt true;
+    enable = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {
