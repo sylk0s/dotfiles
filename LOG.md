@@ -11,9 +11,9 @@ this is a log for everything im doing to make this work
 
 
 // LVM
-# sudo vgcreate root_vg /dev/mapper/test_fs
-# sudo lvcreate -n swap_v -L 16G
-# sudo lvcreate -n root_v -l +100%FREE
+# sudo vgcreate root_vg /dev/mapper/test_crypt
+# sudo lvcreate -n swap_v -L 16G test_crypt
+# sudo lvcreate -n root_v -l +100%FREE test_crypt
 
 
 // btrfs
@@ -57,18 +57,11 @@ this is a log for everything im doing to make this work
 
 # sudo vim /mnt/etc/nixos/hardware-configuration.nix
 - added compression to each filesystems."path".options
-- added boot.supportedFilesystems
 - added neededForBoot to log
-- added swap
 
 
-# sudo vim /mnt/etc/nixos/configuration.nix
-- changed user to sylkos
-- enabled git and vim for user
-- removed gnome
-- enabled network-manager
-- enabled locale
-- enabled keyboard layout
+# sudo rm /mnt/etc/nixos/configuration.nix
+# sudo cp dotfiles/tmp/configuration.nix /mnt/etc/nixos/
 
 
 $ cd /mnt
