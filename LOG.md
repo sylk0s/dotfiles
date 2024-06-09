@@ -3,6 +3,7 @@ this is a log for everything im doing to make this work
 - boot into gnome iso
 - connect to the internet (this is why i like gnome iso... it's easy)
 
+- check the drive setup PLS
 ```
 // luks
 # sudo cryptsetup luksFormat /dev/sdb2 --label test_fs
@@ -42,13 +43,13 @@ this is a log for everything im doing to make this work
 
 // boot partition
 # sudo mkfs.vfat -F 32 -n NIXBOOT /dev/sdb1
-# sudo mkdir /mnt/boot
-# sudo mount NIXBOOT /mnt/boot
+# sudo mkdir -p /mnt/boot/efi
+# sudo mount /dev/sdb1 /mnt/boot/efi
 
 
 // swap file
-# mkswap /dev/root_vg/swap_v
-# swapon /dev/root_vg/swap_v
+# sudo mkswap /dev/root_vg/swap_v
+# sudo swapon /dev/root_vg/swap_v
 
 
 # sudo nixos-generate-config --root /mnt
