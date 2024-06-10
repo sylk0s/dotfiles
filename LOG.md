@@ -3,7 +3,7 @@ this is a log for everything im doing to make this work
 - boot into gnome iso
 - connect to the internet (this is why i like gnome iso... it's easy)
 
-- check the drive setup PLS
+- check the drive setup PLS to make sure it's sda or sdb...
 ```
 // luks
 # sudo cryptsetup luksFormat /dev/sdb2 --label test_fs
@@ -12,8 +12,8 @@ this is a log for everything im doing to make this work
 
 // LVM
 # sudo vgcreate root_vg /dev/mapper/test_crypt
-# sudo lvcreate -n swap_v -L 16G test_crypt
-# sudo lvcreate -n root_v -l +100%FREE test_crypt
+# sudo lvcreate -n swap_v -L 16G root_vg
+# sudo lvcreate -n root_v -l +100%FREE root_vg
 
 
 // btrfs
@@ -57,16 +57,15 @@ this is a log for everything im doing to make this work
 
 # sudo vim /mnt/etc/nixos/hardware-configuration.nix
 - added compression to each filesystems."path".options
-- added neededForBoot to log
+- added neededForBoot to log and persist
 
-
+// copy the premade configuration.nix
 # sudo rm /mnt/etc/nixos/configuration.nix
 # sudo cp dotfiles/tmp/configuration.nix /mnt/etc/nixos/
 
 
 $ cd /mnt
 # sudo nixos-install
-
 
 - reboot
 ```

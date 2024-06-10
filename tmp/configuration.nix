@@ -9,6 +9,7 @@
     supportedFilesystems = ["btrfs"];
     loader = {
       efi.canTouchEfiVariables = true;
+      efi.efiSysMountPoint = "/boot/efi";
       grub = {
         enable = true;
         device = "nodev";
@@ -19,7 +20,7 @@
     };
     initrd = {
       luks.devices = {
-        "crypt_test" = {
+        "test_crypt" = {
           device = "/dev/disk/by-uuid/UUID";
           preLVM = true;
         };
