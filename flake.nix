@@ -38,6 +38,8 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    impermanence.url = "github:nixos-community/impermanence";
   };
 
   outputs = inputs @ {

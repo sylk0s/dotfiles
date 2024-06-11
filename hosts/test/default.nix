@@ -14,6 +14,7 @@
     #    audio.enable = true;
     #    bluetooth.enable = true;
     network.enable = true;
+    impermanence = true;
 
     users = [
       {

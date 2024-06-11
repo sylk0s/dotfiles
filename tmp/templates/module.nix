@@ -9,7 +9,7 @@ with lib.sylkos; let
   cfg = config.modules.aaa;
 in {
   options.modules.aaa = {
-    enable = mkBoolOpt true;
+    enable = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {
