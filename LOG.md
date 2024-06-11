@@ -43,8 +43,8 @@ this is a log for everything im doing to make this work
 
 // boot partition
 # sudo mkfs.vfat -F 32 -n NIXBOOT /dev/sdb1
-# sudo mkdir -p /mnt/boot/efi
-# sudo mount /dev/sdb1 /mnt/boot/efi
+# sudo mkdir /mnt/boot
+# sudo mount /dev/sdb1 /mnt/boot
 
 
 // swap file

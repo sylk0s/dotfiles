@@ -9,12 +9,12 @@
     supportedFilesystems = ["btrfs"];
     loader = {
       efi.canTouchEfiVariables = true;
-      efi.efiSysMountPoint = "/boot/efi";
+      efi.efiSysMountPoint = "/boot";
       grub = {
         enable = true;
         device = "nodev";
         efiSupport = true;
-        enableCryptodisk = true;
+        copyKernels = true;
         configurationLimit = 10;
       };
     };
