@@ -38,6 +38,7 @@ in {
     #   trusted-users = users;
     #   allowed-users = users;
     # };
+    users.mutableUsers = false;
 
     # creates users from the user list above
     users.users = listToAttrs (map (

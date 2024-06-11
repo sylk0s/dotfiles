@@ -27,7 +27,7 @@ in {
       cut -f9 -d ' ' |
       while read subvolume; do
         echo "deleting /$subvolume subvolume..."
-        btrfs subvolume delete "/btrfs_tmp/root/$subvolume"
+        btrfs subvolume delete "/btrfs_tmp/$subvolume"
       done &&
       echo "deleting /root subvolume" &&
       btrfs subvolume delete /btrfs_tmp/root &&

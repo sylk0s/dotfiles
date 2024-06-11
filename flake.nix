@@ -40,6 +40,8 @@
     };
 
     impermanence.url = "github:nix-community/impermanence";
+
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
   outputs = inputs @ {
