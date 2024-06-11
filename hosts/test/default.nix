@@ -11,8 +11,8 @@
   ];
 
   modules = {
-#    audio.enable = true;
-#    bluetooth.enable = true;
+    #    audio.enable = true;
+    #    bluetooth.enable = true;
     network.enable = true;
 
     users = [
@@ -24,14 +24,16 @@
     ];
   };
 
-#  initrd = {
-#    luks.devices = {
-#      "test_crypt" = {
-#        device = "/dev/disk/by-uuid/UUID";
-#        preLVM = true;
-#      };
-#    };
-#  };
+  boot = {
+    initrd = {
+      luks.devices = {
+        "test_crypt" = {
+          device = "/dev/disk/by-uuid/adff35ba-a59f-44d8-adeb-322ba5c681cf";
+          preLVM = true;
+        };
+      };
+    };
+  };
 
   boot.supportedFilesystems = ["btrfs"];
 }

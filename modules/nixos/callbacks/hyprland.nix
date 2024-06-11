@@ -9,6 +9,11 @@ with lib.sylkos; {
   config = mkIf (anyUsers (user: user.modules.desktop.hyprland.enable) config.home-manager.users) {
     hardware.opengl.enable = true;
 
+    programs.hyprland = {
+      enable = true;
+      xwayland.enable = true;
+    };
+
     # this is needed because otherwise I *can't* use my password for this
     # TODO revisit locking stuff
     security.pam.services.swaylock = {
