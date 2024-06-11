@@ -18,16 +18,16 @@ in {
   };
 
   config = mkIf cfg.enable {
-    boot.initrd.postDeviceCommands = mkBefore ''
+    boot.initrd.postDeviceCommands = mkAfter ''
       mkdir /btrfs_tmp
-      mount -t btrfs -o subvol=root /dev/root_vg/root_v /btrfs_tmp
+      mount -t btrfs /dev/root_vg/root_v /btrfs_tmp
 
       echo "deleting recursively" &&
       btrfs subvolume list -o /btrfs_tmp/root |
       cut -f9 -d ' ' |
       while read subvolume; do
         echo "deleting /$subvolume subvolume..."
-        btrfs subvolume delete "/btrfs_tmp/$subvolume"
+        btrfs subvolume delete "/btrfs_tmp/root/$subvolume"
       done &&
       echo "deleting /root subvolume" &&
       btrfs subvolume delete /btrfs_tmp/root &&
@@ -70,9 +70,10 @@ in {
         "/etc/ssh"
         "/var/lib/bluetooth"
       ];
-      # files = [
-      #   "/etc/"
-      # ];
+      files = [
+        "/etc/passwd"
+        "/etc/shadow"
+      ];
     };
   };
 }

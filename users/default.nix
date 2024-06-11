@@ -46,7 +46,7 @@ in {
           value = {
             home = mkDefault "/home/${user.name}";
             # TODO secrets
-            # initialPassword = "password";
+            initialPassword = "password";
             isNormalUser = true;
             extraGroups =
               (
