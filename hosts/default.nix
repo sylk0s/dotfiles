@@ -50,7 +50,7 @@ with lib.sylkos; {
     loader = {
       efi = {
         canTouchEfiVariables = mkDefault true;
-        efiSysMountPoint = mkDefault "/boot/efi";
+        efiSysMountPoint = mkDefault "/boot";
       };
 
       grub = {
@@ -59,6 +59,7 @@ with lib.sylkos; {
         efiSupport = true;
         useOSProber = mkDefault true;
         configurationLimit = mkDefault 10;
+        copyKernels = true; # TODO make this dependent on encryption maybe
       };
 
       timeout = null;

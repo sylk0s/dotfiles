@@ -18,6 +18,7 @@
         configurationLimit = 10;
       };
     };
+
     initrd = {
       luks.devices = {
         "test_crypt" = {

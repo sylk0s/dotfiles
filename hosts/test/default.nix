@@ -22,4 +22,15 @@
       }
     ];
   };
+
+  initrd = {
+    luks.devices = {
+      "test_crypt" = {
+        device = "/dev/disk/by-uuid/UUID";
+        preLVM = true;
+      };
+    };
+  };
+
+  supportedFilesystems = ["btrfs"];
 }
