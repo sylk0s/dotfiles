@@ -7,14 +7,13 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    ./configuration.nix
   ];
 
   modules = {
     #    audio.enable = true;
     #    bluetooth.enable = true;
     network.enable = true;
-    impermanence = true;
+    impermanence.enable = true;
 
     users = [
       {

@@ -2,6 +2,7 @@
   config,
   options,
   lib,
+  inputs,
   ...
 }:
 with lib;
@@ -17,16 +18,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # any assertations that should be checked
-    # assertations = [
-    #   {
-    #     assertion = true;
-    #     message = "";
-    #   }
-    #   # ...
-    # ];
-    # other config ...
-
     boot.initrd.postDeviceCommands = mkAfter ''
       mkdir /btrfs_tmp
       mount -t btrfs /dev/root_vg/root_v /btrfs_tmp
@@ -61,7 +52,6 @@ in {
         "/etc/NetworkManager/system-connections/"
         "/etc/ssh"
         "/var/lib/bluetooth"
-        "/var/log"
       ];
       # files = [
       #   "/etc/"
