@@ -22,6 +22,7 @@ in {
       mkdir /btrfs_tmp
       mount -t btrfs -o subvol=root /dev/root_vg/root_v /btrfs_tmp
 
+      echo "deleting recursively" &&
       btrfs subvolume list -o /btrfs_tmp/root |
       cut -f9 -d ' ' |
       while read subvolume; do
@@ -29,9 +30,8 @@ in {
         btrfs subvolume delete "/btrfs_tmp/$subvolume"
       done &&
       echo "deleting /root subvolume" &&
-      btrfs subvolume delete /btrfs_tmp/root
-
-      echo "restoring blank snapshot"
+      btrfs subvolume delete /btrfs_tmp/root &&
+      echo "restoring blank snapshot" &&
       btrfs subvolume snapshot /btrfs_tmp/root-blank /btrfs_tmp/root
 
       umount /btrfs_tmp
