@@ -39,7 +39,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    impermanence.url = "github:nixos-community/impermanence";
+    impermanence.url = "github:nix-community/impermanence";
   };
 
   outputs = inputs @ {
