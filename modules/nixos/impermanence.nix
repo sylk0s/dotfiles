@@ -53,19 +53,19 @@ in {
       umount /btrfs_tmp
       rmdir /btrfs_tmp
     '';
-  };
 
-  environment.persistence."/persist" = {
-    enable = true;
-    hideMounts = true;
-    directories = [
-      "/etc/NetworkManager/system-connections/"
-      "/etc/ssh"
-      "/var/lib/bluetooth"
-      "/var/log"
-    ];
-    # files = [
-    #   "/etc/"
-    # ];
+    environment.persistence."/persist" = {
+      enable = true;
+      hideMounts = true;
+      directories = [
+        "/etc/NetworkManager/system-connections/"
+        "/etc/ssh"
+        "/var/lib/bluetooth"
+        "/var/log"
+      ];
+      # files = [
+      #   "/etc/"
+      # ];
+    };
   };
 }
