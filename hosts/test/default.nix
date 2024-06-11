@@ -7,11 +7,12 @@
 }: {
   imports = [
     ./hardware-configuration.nix
+    ./configuration.nix
   ];
 
   modules = {
-    audio.enable = true;
-    bluetooth.enable = true;
+#    audio.enable = true;
+#    bluetooth.enable = true;
     network.enable = true;
 
     users = [
@@ -32,5 +33,5 @@
 #    };
 #  };
 
-  supportedFilesystems = ["btrfs"];
+  boot.supportedFilesystems = ["btrfs"];
 }

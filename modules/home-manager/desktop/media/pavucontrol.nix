@@ -11,7 +11,7 @@ with lib.sylkos; let
   cfg = config.modules.desktop.media.pavucontrol;
 in {
   options.modules.desktop.media.pavucontrol = {
-    enable = mkBoolOpt true;
+    enable = mkBoolOpt false;
   };
 
   config = mkIf (cfg.enable && osConfig.modules.audio.enable) {
