@@ -54,15 +54,16 @@ in {
       ]
       ++ (map (user:
         optionalString user.createHome ''
-          echo "creating /${user.home}"
-          mkdir -p /btrfs_tmp/${user.home}
-          chown -R ${user.name}:${user.group} /btrfs_tmp/${user.home}
-          chmod ${user.homeMode} /btrfs_tmp/${user.home}
+          echo "creating ${user.home}"
+          mkdir -p /btrfs_tmp${user.home}
+          chown -R ${user.name}:${user.group} /btrfs_tmp${user.home}
+          chmod ${user.homeMode} /btrfs_tmp${user.home}
 
-          if [[ ! -e /btrfs_tmp/persist/${user.home} ]]; then
-            mkdir -p /btrfs_tmp/persist/${user.home}
-            chown -R ${user.name}:${user.group} /btrfs_tmp/persist/${user.home}
-            chmod ${user.homeMode} /btrfs_tmp/persist/${user.home}
+          if [[ ! -e /btrfs_tmp/persist${user.home} ]]; then
+            echo "no persist dir for ${user.name}, creating..."
+            mkdir -p /btrfs_tmp/persist${user.home}
+            chown -R ${user.name}:${user.group} /btrfs_tmp/persist${user.home}
+            chmod ${user.homeMode} /btrfs_tmp/persist${user.home}
           fi
 
           echo "setup env for ${user.name}"
