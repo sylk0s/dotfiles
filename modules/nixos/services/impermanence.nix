@@ -20,7 +20,7 @@ in {
   config = mkIf cfg.enable {
     programs.fuse.userAllowOther = true;
 
-    boot.initrd.postDeviceCommands = mkBefore concatLines ([
+    boot.initrd.postDeviceCommands = mkBefore (concatLines ([
         ''
           mkdir /btrfs_tmp
           mount -t btrfs /dev/root_vg/root_v /btrfs_tmp
@@ -57,13 +57,14 @@ in {
           mkdir -p /persist/${user.home}
           chown -R ${user.name}:${user.group} /persist/${user.home}
           chmod ${user.homeMode} /persist/${user.home}
+          echo "setup env for ${user.name}"
         '') (attrValues config.users.users))
       ++ [
         ''
           umount /btrfs_tmp
           rmdir /btrfs_tmp
         ''
-      ]);
+      ]));
 
     environment.persistence."/persist" = {
       enable = true;
