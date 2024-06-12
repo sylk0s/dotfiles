@@ -22,6 +22,8 @@ in {
       mkdir /btrfs_tmp
       mount -t btrfs /dev/root_vg/root_v /btrfs_tmp
 
+      users=$(ls -1 /btrfs/home)
+
       echo "deleting root recursively" &&
       btrfs subvolume list -o /btrfs_tmp/root |
       cut -f9 -d ' ' |
@@ -46,6 +48,13 @@ in {
       echo "restoring blank snapshot" &&
       btrfs subvolume snapshot /btrfs_tmp/root-blank /btrfs_tmp/home
 
+      echo "recreating user directories" &&
+      users |
+      while read user; do
+        echo "adding /home/$user"
+        mkdir /btrfs_tmp/home/$user
+      done
+
       umount /btrfs_tmp
       rmdir /btrfs_tmp
     '';
@@ -59,8 +68,6 @@ in {
         "/var/lib/bluetooth"
       ];
       files = [
-        "/etc/passwd"
-        "/etc/shadow"
       ];
     };
   };
