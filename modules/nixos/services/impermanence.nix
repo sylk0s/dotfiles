@@ -88,16 +88,18 @@ in {
     system.activationScripts.persistent-dir.text = concatLines (map (user:
       # optionalString user.createHome
       ''
-        echo "creating ${user.home}"
-        mkdir -p ${user.home}
-        chown -R ${user.name}:${user.group} ${user.home}
-        chmod ${user.homeMode} ${user.home}
+        if [[ ! -eq ${user.home} /var/empty ]]; then
+          echo "creating ${user.home}"
+          mkdir -p ${user.home}
+          chown -R ${user.name}:${user.group} ${user.home}
+          chmod ${user.homeMode} ${user.home}
 
-        if [[ ! -e /persist${user.home} ]]; then
-          echo "no persist dir for ${user.name}, creating..."
-          mkdir -p /persist${user.home}
-          chown -R ${user.name}:${user.group} /persist${user.home}
-          chmod ${user.homeMode} /persist${user.home}
+          if [[ ! -e /persist${user.home} ]]; then
+            echo "no persist dir for ${user.name}, creating..."
+            mkdir -p /persist${user.home}
+            chown -R ${user.name}:${user.group} /persist${user.home}
+            chmod ${user.homeMode} /persist${user.home}
+          fi
         fi
 
         echo "setup env for ${user.name}"
