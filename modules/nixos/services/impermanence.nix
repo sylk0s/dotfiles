@@ -54,6 +54,7 @@ in {
       ]
       ++ (map (user:
         optionalString user.createHome ''
+          echo "creating /${user.home}"
           mkdir -p /btrfs_tmp/${user.home}
           chown -R ${user.name}:${user.group} /btrfs_tmp/${user.home}
           chmod ${user.homeMode} /btrfs_tmp/${user.home}
