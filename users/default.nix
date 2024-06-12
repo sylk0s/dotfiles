@@ -55,6 +55,7 @@ in {
               else null;
             hashedPasswordFile = pass;
             isNormalUser = true;
+            createHome = true;
             extraGroups =
               (
                 if user.priviledged
