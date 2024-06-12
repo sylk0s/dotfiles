@@ -18,6 +18,7 @@
     services = {
       docker.enable = true;
       gpg.enable = true;
+      sops.enable = true;
       # virtualbox.enable = true;
     };
 

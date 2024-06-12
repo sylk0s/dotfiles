@@ -42,12 +42,17 @@ in {
 
     # creates users from the user list above
     users.users = listToAttrs (map (
-        user: {
+        user: let
+          pass = config.sops.secrets."passwords/${user.name}".path;
+        in {
           name = user.name;
           value = {
             home = mkDefault "/home/${user.name}";
-            # TODO secrets
-            initialPassword = "password";
+            initialPassword =
+              if pass == null
+              then "${user.name}"
+              else null;
+            hashedPasswordFile = pass;
             isNormalUser = true;
             extraGroups =
               (

@@ -18,6 +18,9 @@
           profileName = "ahpu6nkm";
         };
         intellij.enable = true;
+        alacritty.enable = true;
+        vscode.enable = true;
+        thunar.enable = true;
       };
       #   security = {
       #     cutter.enable = false;

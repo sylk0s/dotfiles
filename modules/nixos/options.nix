@@ -18,6 +18,7 @@ in {
         ]));
       modulesDir = mkOpt types.path "${config.dotfiles.dir}/modules";
       configDir = mkOpt types.path "${config.dotfiles.dir}/config";
+      secretsDir = mkOpt types.path "${config.dotfiles.dir}/secrets";
     };
 
     # TODO confirm this is merging

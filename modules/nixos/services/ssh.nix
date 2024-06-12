@@ -25,7 +25,6 @@ in {
     services.openssh = {
       enable = true;
       # TODO this is bad. don't do this ever
-      AllowUsers = [];
       ports = [30022];
       openFirewall = false;
     };

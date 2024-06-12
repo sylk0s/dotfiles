@@ -2,17 +2,18 @@
   config,
   options,
   lib,
+  inputs,
   ...
 }:
 with lib;
 with lib.sylkos; let
-  cfg = config.modules.sops-nix;
+  cfg = config.modules.services.sops;
 in {
   imports = [
     inputs.sops-nix.nixosModules.sops
   ];
 
-  options.modules.sops-nix = {
+  options.modules.services.sops = {
     enable = mkBoolOpt false;
   };
 
@@ -26,5 +27,16 @@ in {
     #   # ...
     # ];
     # other config ...
+
+    sops = {
+      validateSopsFiles = false;
+      defaultSopsFile = "${config.dotfiles.secretsDir}/secrets.yaml";
+      gnupg.sshKeyPaths = ["/etc/ssh/ssh_host_rsa_key"];
+    };
+
+    # TODO better secret management
+    sops.secrets."passwords/sylkos" = {
+      neededForUsers = true;
+    };
   };
 }
