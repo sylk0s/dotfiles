@@ -43,7 +43,8 @@ in {
     # creates users from the user list above
     users.users = listToAttrs (map (
         user: let
-          pass = config.sops.secrets."passwords/${user.name}".path;
+          # pass = config.sops.secrets."passwords/${user.name}".path;
+          pass = null;
         in {
           name = user.name;
           value = {

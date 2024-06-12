@@ -35,5 +35,6 @@
     };
   };
 
+  home-manager.backupFileExtension = "backup";
   boot.supportedFilesystems = ["btrfs"];
 }
