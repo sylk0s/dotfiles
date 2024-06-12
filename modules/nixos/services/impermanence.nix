@@ -18,7 +18,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    boot.initrd.postDeviceCommands = mkAfter ''
+    boot.initrd.postDeviceCommands = mkBefore ''
       mkdir /btrfs_tmp
       mount -t btrfs /dev/root_vg/root_v /btrfs_tmp
 
@@ -70,5 +70,16 @@ in {
       files = [
       ];
     };
+
+    system.activationScripts.persistent-dir.text = let
+      mkHomePersist = user:
+        optionalString user.createHome ''
+          mkdir -p /persist/${user.home}
+          chown ${user.name}:${user.group} /persist/${user.home}
+          chmod ${user.homeMode} /persist/${user.home}
+        '';
+      users = attrValues config.users.users;
+    in
+      concatLines (map mkHomePersist users);
   };
 }
