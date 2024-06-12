@@ -52,22 +52,20 @@ in {
           btrfs subvolume snapshot /btrfs_tmp/root-blank /btrfs_tmp/home
         ''
       ]
-      ++ (map (user:
-        optionalString user.createHome ''
-          echo "creating ${user.home}"
-          mkdir -p /btrfs_tmp${user.home}
-          chown -R ${user.name}:${user.group} /btrfs_tmp${user.home}
-          chmod ${user.homeMode} /btrfs_tmp${user.home}
-
-          if [[ ! -e /btrfs_tmp/persist${user.home} ]]; then
-            echo "no persist dir for ${user.name}, creating..."
-            mkdir -p /btrfs_tmp/persist${user.home}
-            chown -R ${user.name}:${user.group} /btrfs_tmp/persist${user.home}
-            chmod ${user.homeMode} /btrfs_tmp/persist${user.home}
-          fi
-
-          echo "setup env for ${user.name}"
-        '') (attrValues config.users.users))
+      # ++ (map (user:
+      #   optionalString user.createHome ''
+      #     echo "creating ${user.home}"
+      #     mkdir -p /btrfs_tmp${user.home}
+      #     chown -R ${user.name}:${user.group} /btrfs_tmp${user.home}
+      #     chmod ${user.homeMode} /btrfs_tmp${user.home}
+      #     if [[ ! -e /btrfs_tmp/persist${user.home} ]]; then
+      #       echo "no persist dir for ${user.name}, creating..."
+      #       mkdir -p /btrfs_tmp/persist${user.home}
+      #       chown -R ${user.name}:${user.group} /btrfs_tmp/persist${user.home}
+      #       chmod ${user.homeMode} /btrfs_tmp/persist${user.home}
+      #     fi
+      #     echo "setup env for ${user.name}"
+      #   '') (attrValues config.users.users))
       ++ [
         ''
           umount /btrfs_tmp
@@ -87,15 +85,22 @@ in {
       ];
     };
 
-    # system.activationScripts.persistent-dir.text = let
-    #   mkHomePersist = user:
-    #     optionalString user.createHome ''
-    #       mkdir -p /persist/${user.home}
-    #       chown -R ${user.name}:${user.group} /persist/${user.home}
-    #       chmod ${user.homeMode} /persist/${user.home}
-    #     '';
-    #   users = attrValues config.users.users;
-    # in
-    #   concatLines (map mkHomePersist users);
+    system.activationScripts.persistent-dir.text = concatLines (map (user:
+      # optionalString user.createHome
+      ''
+        echo "creating ${user.home}"
+        mkdir -p ${user.home}
+        chown -R ${user.name}:${user.group} ${user.home}
+        chmod ${user.homeMode} ${user.home}
+
+        if [[ ! -e /persist${user.home} ]]; then
+          echo "no persist dir for ${user.name}, creating..."
+          mkdir -p /persist${user.home}
+          chown -R ${user.name}:${user.group} /persist${user.home}
+          chmod ${user.homeMode} /persist${user.home}
+        fi
+
+        echo "setup env for ${user.name}"
+      '') (attrValues config.users.users));
   };
 }
