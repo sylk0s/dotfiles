@@ -38,6 +38,7 @@ in {
         ".ssh"
         # TODO more...
       ];
+      allowOther = true;
     };
   };
 }

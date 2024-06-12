@@ -18,6 +18,8 @@ in {
   };
 
   config = mkIf cfg.enable {
+    programs.fuse.userAllowOther = true;
+
     boot.initrd.postDeviceCommands = mkBefore ''
       mkdir /btrfs_tmp
       mount -t btrfs /dev/root_vg/root_v /btrfs_tmp
