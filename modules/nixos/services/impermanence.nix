@@ -32,8 +32,6 @@ in {
           wantedBy = ["initrd.target"];
           requires = [
             cfg.device
-            # for luks
-            "systemd-cryptsetup@${config.networking.hostName}.service"
           ];
           after = [
             cfg.device
