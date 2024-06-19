@@ -15,6 +15,7 @@ in {
 
   options.modules.impermanence = {
     enable = mkBoolOpt false;
+    device = mkOpt types.str "dev-root_vg-root_v";
   };
 
   config = mkIf cfg.enable {
@@ -29,7 +30,13 @@ in {
         services.restore-root = {
           description = "Rollback btrfs rootfs";
           wantedBy = ["initrd.target"];
+          requires = [
+            cfg.device
+            # for luks
+            "systemd-cryptsetup@${config.networking.hostName}.service"
+          ];
           after = [
+            cfg.device
             # for luks
             "systemd-cryptsetup@${config.networking.hostName}.service"
           ];
