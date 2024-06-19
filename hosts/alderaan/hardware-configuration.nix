@@ -18,45 +18,45 @@
   boot.extraModulePackages = [];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/1369c751-6fe8-4fe7-bf7a-897ab761564d";
+    device = "/dev/disk/by-uuid/08703d79-63b2-49f0-a098-c249945de2cc";
     fsType = "btrfs";
     options = ["subvol=root" "compress=zstd"];
   };
 
   fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/1369c751-6fe8-4fe7-bf7a-897ab761564d";
+    device = "/dev/disk/by-uuid/08703d79-63b2-49f0-a098-c249945de2cc";
     fsType = "btrfs";
     neededForBoot = true; # this is needed to make createHome work :P
     options = ["subvol=home" "compress=zstd"];
   };
 
   fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/1369c751-6fe8-4fe7-bf7a-897ab761564d";
+    device = "/dev/disk/by-uuid/08703d79-63b2-49f0-a098-c249945de2cc";
     fsType = "btrfs";
     options = ["subvol=nix" "compress=zstd" "noatime"];
   };
 
   fileSystems."/persist" = {
-    device = "/dev/disk/by-uuid/1369c751-6fe8-4fe7-bf7a-897ab761564d";
+    device = "/dev/disk/by-uuid/08703d79-63b2-49f0-a098-c249945de2cc";
     fsType = "btrfs";
     options = ["subvol=persist" "compress=zstd"];
     neededForBoot = true;
   };
 
   fileSystems."/var/log" = {
-    device = "/dev/disk/by-uuid/1369c751-6fe8-4fe7-bf7a-897ab761564d";
+    device = "/dev/disk/by-uuid/08703d79-63b2-49f0-a098-c249945de2cc";
     fsType = "btrfs";
     options = ["subvol=log" "compress=zstd"];
     neededForBoot = true;
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/7F7D-B178";
+    device = "/dev/disk/by-uuid/EA45-CA81";
     fsType = "vfat";
   };
 
   swapDevices = [
-    {device = "/dev/disk/by-uuid/837f2703-ecbb-4b1f-8425-5d609fd6c13e";}
+    {device = "/dev/disk/by-uuid/c680d3d6-43c5-49fd-b8fa-a599652325ab";}
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

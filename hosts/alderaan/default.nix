@@ -13,10 +13,10 @@
     #    audio.enable = true;
     #    bluetooth.enable = true;
     network.enable = true;
+    impermanence.enable = true;
     services = {
       sops.enable = true;
       gpg.enable = true;
-      impermanence.enable = true;
     };
 
     users = [
@@ -32,7 +32,7 @@
     initrd = {
       luks.devices = {
         "test_crypt" = {
-          device = "/dev/disk/by-uuid/adff35ba-a59f-44d8-adeb-322ba5c681cf";
+          device = "/dev/disk/by-uuid/1cc8bd73-a0f2-47d5-b9b2-b1dd5d0c0aa4";
           preLVM = true;
         };
       };
