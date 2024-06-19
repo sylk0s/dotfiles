@@ -15,7 +15,7 @@ in {
 
   options.modules.impermanence = {
     enable = mkBoolOpt false;
-    device = mkOpt types.str "dev-root_vg-root_v";
+    device = mkOpt types.str "dev-root_vg-root_v.device";
   };
 
   config = mkIf cfg.enable {
