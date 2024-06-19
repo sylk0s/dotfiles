@@ -13,7 +13,11 @@
     #    audio.enable = true;
     #    bluetooth.enable = true;
     network.enable = true;
-    impermanence.enable = true;
+    services = {
+      sops.enable = true;
+      gpg.enable = true;
+      impermanence.enable = true;
+    };
 
     users = [
       {

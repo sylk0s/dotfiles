@@ -34,6 +34,7 @@
   networking.networkmanager.enable = true;
 
   users.users.sylkos = {
+    initialPassword = "sylkos";
     isNormalUser = true;
     extraGroups = ["wheel"];
   };

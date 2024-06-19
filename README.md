@@ -17,6 +17,8 @@ Nix Flake which contains configs for most of my more recent systems. Uses module
     - add the uuid of the disk to the thing
 - `cd /mnt`
 - `sudo nixos-install`
+- copy and setup dots. will be easier now with some creature comforts
+  - copy uuids, copy hardware-config, write host file
 - reboot into new system
 - clone dots
   - `git clone https://github.com/sylk0s/dotfiles`
@@ -26,10 +28,9 @@ Nix Flake which contains configs for most of my more recent systems. Uses module
   - `gpg --edit-key {KEY} trust quit` (this is to modify the permission level of the key)
   - `gpg --list-keys`
 - update sops with passwd
-  - get the ssh fingerprint using `nix-shell -p ssh-to-pgp --run "ssh-to-pgp -i /etc/ssh/ssh_host_rsa_key -o machine_name.asc"`
+  - get the ssh fingerprint using `nix-shell -p ssh-to-age --run "cat /etc/ssh/ssh_host_ed25519_key.pub | ssh-to-age"`
   - add to `.sops.yaml`
   - run `nix-shell -p sops --run "sops updatekeys secrets.yaml"`
-- create host file...
 - rebuild into new system (this should just... work now) 
 
 ## Installation

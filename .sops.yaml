@@ -1,9 +1,10 @@
 keys:
   - &user_sylkos 8C04FBD390300C3AE3306CD98984B68ABBC5733D
-  - &machine_laptop 6602bed49196f09067753016e238d192e4679d2e
+  - &machine_laptop age1gtnnryknqlhdhajjaffk90q034tvrf09p5g3xgdqecl2epkv0y4qeucx7f
 creation_rules:
   - path_regex: secrets/secrets.yaml$
     key_groups:
     - pgp:
       - *user_sylkos
+      age:
       - *machine_laptop

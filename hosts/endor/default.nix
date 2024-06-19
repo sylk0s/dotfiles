@@ -31,6 +31,8 @@
     ];
   };
 
+  home-manager.backupFileExtension = "backup";
+
   # TODO remove all of these :3
   environment.systemPackages = with pkgs; [
     # laptopy things

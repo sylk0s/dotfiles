@@ -19,6 +19,7 @@ in {
   };
 
   config = mkIf cfg.enable {
+    # TODO
     programs.fuse.userAllowOther = true;
 
     boot.initrd = {
