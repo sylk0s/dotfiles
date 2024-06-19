@@ -1,3 +1,4 @@
+# TODO the shebang
 
 if [ "$1" == "sel-clip" ]; then
   # copies selection to clipboard

@@ -5,6 +5,25 @@ Nix Flake which contains configs for most of my more recent systems. Uses module
 
 // ## Hosts
 
+## TMP Installation
+
+- Run `config/scripts/install.sh` for a lvm on luks btrfs install (designed for impermanence)
+- Modify config as is needed
+  - `sudo nvim /mnt/etc/nixos/hardware-configuration.nix`
+    - add `"compress=zstd"` to all btrfs subvols, `"noatime"` to nix, and `neededForBoot = true;` to persist, logs, and home
+  - `sudo rm /mnt/etc/nixos/configuration.nix`
+  - `sudo cp dotfiles/tmp/configuration.nix /mnt/etc/nixos/`
+  - `sudo nvim /mnt/etc/nixos/configuration.nix`
+    - add the uuid of the disk to the thing
+- `cd /mnt`
+- `sudo nixos-install`
+- reboot into new system
+- clone dots
+- copy gpg key onto system and into gnupg
+- update sops with passwd
+- create host file...
+- rebuild into new system (this should just... work now) 
+
 ## Installation
 I typically use the gnome install enviornment, since it's just a bit easier to use than minimal, but either are fine. With the gnome install, I install the minimal environment & partiton accordingly and then clone this repo and run the following command.
 ```bash

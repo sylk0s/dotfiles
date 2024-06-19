@@ -42,4 +42,17 @@
     git
     vim
   ];
+
+  services.openssh = {
+    enable = true;
+    # TODO this is bad. don't do this ever
+    ports = [30022];
+    openFirewall = false;
+  };
+
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+  services.pcscd.enable = true;
 }
