@@ -15,10 +15,11 @@
     bluetooth.enable = true;
     network.enable = true;
 
+    impermanence.enable = true;
     services = {
-      docker.enable = true;
+      #docker.enable = true;
       gpg.enable = true;
-      sops.enable = true;
+      #sops.enable = true;
       # virtualbox.enable = true;
     };
 
@@ -26,44 +27,23 @@
       {
         name = "sylkos";
         priviledged = true;
-        config = "${config.dotfiles.dir}/users/sylkos";
+        config = "${config.dotfiles.dir}/users/test";
       }
     ];
   };
 
+	boot = {
+	    initrd = {
+	      luks.devices = {
+		"crypt" = {
+		  device = "/dev/disk/by-uuid/998f2dd7-0a0a-41c2-b8b5-fdcb957f7b87";
+		  preLVM = true;
+		};
+	      };
+	    };
+	  };
+
   home-manager.backupFileExtension = "backup";
-
-  # TODO remove all of these :3
-  environment.systemPackages = with pkgs; [
-    # laptopy things
-    acpi
-
-    # engineering bullshit apps
-    # cura
-    # kicad
-
-    # removed in favor of:
-    # https://codeberg.org/tropf/nix-inkstitch
-    #inkscape-with-extensions
-    #python311Packages.pygobject3
-
-    #jetbrains.clion
-
-    # libsodium
-    sshfs
-  ];
-
-  services = {
-    gnome.gnome-keyring.enable = true;
-  };
-
-  #   nmcli connection add \
-  #       type wifi con-name "MySSID" ifname wlp0s20f3 ssid "MySSID" -- \
-  #       wifi-sec.key-mgmt wpa-eap 802-1x.eap peap 802-1x.identity "USERNAME" \
-  #        THERE WAS ALSO SOMETHING HERE BUT I FORGOT IT BUT IWD PROMPTS YOU TO ADD IT SO...
-  #       802-1x.private-key-password "..." 802-1x.phase2-auth mschapv2
-
-  # time.timeZone = "Europe/Budapest";
 
   # find arch :3
   boot.loader.grub.extraEntries = ''
