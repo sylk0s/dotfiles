@@ -27,11 +27,7 @@ in {
       systemd.services.restore-root = {
         description = "Rollback btrfs rootfs";
         wantedBy = ["initrd.target"];
-        requires = [
-          "dev-vda3" # TODO change this correctly
-        ];
         after = [
-          "dev-vda3" # TODO change this correctly
           # for luks
           "systemd-cryptsetup@${config.networking.hostName}.service"
         ];
