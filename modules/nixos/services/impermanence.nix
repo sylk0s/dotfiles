@@ -29,9 +29,9 @@ in {
         wantedBy = ["initrd.target"];
         after = [
           # for luks
-          "systemd-cryptsetup@${config.networking.hostName}.service"
+          "cryptsetup.target"
         ];
-        before = ["sysroot.mount"];
+        before = ["-.mount"];
         unitConfig.DefaultDependencies = "no";
         serviceConfig.Type = "oneshot";
         script =
