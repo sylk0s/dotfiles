@@ -17,9 +17,9 @@
 
     impermanence.enable = true;
     services = {
-      #docker.enable = true;
+      docker.enable = true;
       gpg.enable = true;
-      #sops.enable = true;
+      sops.enable = true;
       # virtualbox.enable = true;
     };
 
@@ -27,7 +27,7 @@
       {
         name = "sylkos";
         priviledged = true;
-        config = "${config.dotfiles.dir}/users/test";
+        config = "${config.dotfiles.dir}/users/sylkos";
       }
     ];
   };

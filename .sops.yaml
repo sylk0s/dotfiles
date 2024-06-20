@@ -1,6 +1,7 @@
 keys:
   - &user_sylkos 8C04FBD390300C3AE3306CD98984B68ABBC5733D
   - &machine_alderaan age1kq7m2w4ttqrcluczdrvfxzk5kmp2qn6fes0hxte2pv9u25al7qvqkvszzy
+  - &machine_endor age1fedteecj7x380gfcktp3nn52rnjvjmdscw49f4096gcrc5ztaycqp3es8n
 creation_rules:
   - path_regex: secrets/secrets.yaml$
     key_groups:
@@ -8,3 +9,4 @@ creation_rules:
       - *user_sylkos
       age:
       - *machine_alderaan
+      - *machine_endor

@@ -60,5 +60,7 @@
     shell = {
       eza.enable = true;
     };
+    
+    impermanence.enable = true;
   };
 }

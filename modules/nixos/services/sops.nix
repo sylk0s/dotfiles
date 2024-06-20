@@ -31,7 +31,7 @@ in {
     sops = {
       validateSopsFiles = false;
       defaultSopsFile = "${config.dotfiles.secretsDir}/secrets.yaml";
-      gnupg.sshKeyPaths = ["/etc/ssh/ssh_host_rsa_key"];
+      age.sshKeyPaths = ["/persist/etc/ssh/ssh_host_ed25519_key"];
     };
 
     # TODO better secret management
