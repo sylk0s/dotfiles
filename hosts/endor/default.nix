@@ -20,6 +20,7 @@
       docker.enable = true;
       gpg.enable = true;
       sops.enable = true;
+      kdeconnect.enable = true;
       # virtualbox.enable = true;
     };
 

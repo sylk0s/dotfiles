@@ -7,6 +7,8 @@ Nix Flake which contains configs for most of my more recent systems. Uses module
 
 ## TMP Installation
 
+- clone dots
+  - `git clone https://github.com/sylk0s/dotfiles`
 - Run `config/scripts/install.sh` for a lvm on luks btrfs install (designed for impermanence)
 - Modify config as is needed
   - `sudo nvim /mnt/etc/nixos/hardware-configuration.nix`
@@ -14,14 +16,17 @@ Nix Flake which contains configs for most of my more recent systems. Uses module
   - `sudo rm /mnt/etc/nixos/configuration.nix`
   - `sudo cp dotfiles/tmp/configuration.nix /mnt/etc/nixos/`
   - `sudo nvim /mnt/etc/nixos/configuration.nix`
-    - add the uuid of the disk to the thing
+    - add the uuid of the disk to the config file's crypt setup
 - `cd /mnt`
 - `sudo nixos-install`
 - copy and setup dots. will be easier now with some creature comforts
   - copy uuids, copy hardware-config, write host file
+  - disable sops and sops-password #TODO auto
 - reboot into new system
-- clone dots
-  - `git clone https://github.com/sylk0s/dotfiles`
+- impermanence
+  - create /persist/home/sylkos (and other users ofc)
+  - move in dots
+- rebuild and reboot, ensure everything is where we expect and persists
 - copy gpg key onto system and into gnupg
   - `gpg --import public.key`
   - `gpg --import private.key`
@@ -31,7 +36,8 @@ Nix Flake which contains configs for most of my more recent systems. Uses module
   - get the ssh fingerprint using `nix-shell -p ssh-to-age --run "cat /etc/ssh/ssh_host_ed25519_key.pub | ssh-to-age"`
   - add to `.sops.yaml`
   - run `nix-shell -p sops --run "sops updatekeys secrets.yaml"`
-- rebuild into new system (this should just... work now) 
+  - re-enable sops
+- rebuild into final system :3
 
 ## Installation
 I typically use the gnome install enviornment, since it's just a bit easier to use than minimal, but either are fine. With the gnome install, I install the minimal environment & partiton accordingly and then clone this repo and run the following command.

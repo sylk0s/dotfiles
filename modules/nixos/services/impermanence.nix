@@ -36,6 +36,7 @@ in {
           ];
           after = [
             cfg.device
+            #"systemd-hibernate-resume.service"
             # for luks
             "systemd-cryptsetup@${config.networking.hostName}.service"
           ];

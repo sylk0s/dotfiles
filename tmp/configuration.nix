@@ -21,7 +21,7 @@
 
     initrd = {
       luks.devices = {
-        "test_crypt" = {
+        "crypt" = {
           device = "/dev/disk/by-uuid/UUID";
           preLVM = true;
         };
