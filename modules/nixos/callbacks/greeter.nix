@@ -33,7 +33,7 @@ with lib.sylkos; {
         GTK = {
           application_prefer_dark_theme = true;
           icon_theme_name = "Papirus-Dark";
-          theme_name = "Catppuccin-Mocha-Compact-Lavender-Dark";
+          theme_name = "catppuccin-mocha-lavender-compact+default";
         };
 
         commands = {
@@ -42,5 +42,9 @@ with lib.sylkos; {
         };
       };
     };
+
+    # boot.plymouth = {
+    #   enable = true;
+    # };
   };
 }

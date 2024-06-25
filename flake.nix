@@ -20,16 +20,13 @@
 
     # hyprland related stuffs
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    # hyprland-plugins = {
-    #   url = "github:hyprwm/hyprland-plugins";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
 
     # ags for wayland bar/widets
     ags.url = "github:Aylur/ags";
-
-    # agenix for secret encryption
-    agenix.url = "github:ryantm/agenix";
 
     # hardware specific configs
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
@@ -39,20 +36,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # nur.url = github:nix-community/NUR;
+
     impermanence.url = "github:nix-community/impermanence";
 
     sops-nix.url = "github:Mic92/sops-nix";
+
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs = inputs @ {
     self,
     nixpkgs,
     home-manager,
-    hyprland,
-    #hyprland-plugins,
-    ags,
-    agenix,
-    nixos-hardware,
     ...
   }: let
     inherit (self) outputs;

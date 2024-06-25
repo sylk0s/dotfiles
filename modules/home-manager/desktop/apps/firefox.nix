@@ -3,6 +3,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 with lib;
@@ -27,13 +28,55 @@ in {
     programs.firefox = {
       enable = true;
       profiles.${config.home.username} = {
+        extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
+          ublock-origin
+          stylus
+        ];
         # TODO
-        # extensions = with inputs.firefox-addons; [
-        #   ublock-origin
-        # ];
-        # TODO
-        bookmarks = {};
+        bookmarks = [
+          {
+            name = "Bar";
+            toolbar = true;
+            bookmarks = [
+              {
+                name = "noogle";
+                url = "https://noogle.dev/";
+              }
+              {
+                name = "homepkgs";
+                url = "https://home-manager-options.extranix.com/";
+              }
+              {
+                name = "pkgs";
+                url = "https://search.nixos.org/options";
+              }
+              {
+                name = "github";
+                url = "https://github.com";
+              }
+              {
+                name = "dotfiles";
+                url = "https://github.com/sylk0s/dotfiles";
+              }
+            ];
+          }
+        ];
         settings = {
+          ### This is all aesthetic stuff
+          # for tiling window managers expands to the size of the window
+          "full-screen-api.ignore-widgets" = true;
+
+          # tab open behavior
+          "browser.search.openintab" = true;
+          "browser.link.open_newwindow" = 3;
+          "browser.link.open_newwindow.restriction" = 0;
+
+          # imprermanance stuffs
+          "browser.download.panel.shown" = true;
+          "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+          # "browser.startup.homepage" = "https://start.duckduckgo.com";
+
+          ### Everything below is a Security minded config setting
           # Default to dark theme in DevTools panel
           "devtools.theme" = "dark";
           # Enable ETP for decent security (makes firefox containers and many
@@ -185,13 +228,6 @@ in {
           "extensions.formautofill.creditCards.available" = false;
           "extensions.formautofill.creditCards.enabled" = false;
           "extensions.formautofill.heuristics.enabled" = false;
-          # for tiling window managers expands to the size of the window
-          "full-screen-api.ignore-widgets" = true;
-
-          # tab open behavior
-          "browser.search.openintab" = true;
-          "browser.link.open_newwindow" = 3;
-          "browser.link.open_newwindow.restriction" = 0;
         };
       };
     };

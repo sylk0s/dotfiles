@@ -33,9 +33,11 @@ in {
           wantedBy = ["initrd.target"];
           requires = [
             cfg.device
+            #"systemd-hibernate-resume.service"
           ];
           after = [
             cfg.device
+            #"local-fs-pre.target"
             #"systemd-hibernate-resume.service"
             # for luks
             "systemd-cryptsetup@${config.networking.hostName}.service"

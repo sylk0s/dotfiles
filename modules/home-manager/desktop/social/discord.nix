@@ -14,10 +14,21 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      webcord
-    ];
+    home = {
+      packages = with pkgs; [
+        # discord
+        # webcord
+        vesktop
+      ];
 
-    # TODO whatever addition stuff i want
+      persistence."/persist/home/${config.home.username}" = {
+        directories = [
+          ".config/vesktop/sessionData"
+          ".config/vesktop/settings"
+        ];
+      };
+    };
+
+    xdg.configFile."vesktop/themes/catppuccin.css".text = ''@import url("https://catppuccin.github.io/discord/dist/catppuccin-mocha-pink.theme.css");'';
   };
 }

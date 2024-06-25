@@ -33,16 +33,23 @@
     ];
   };
 
-	boot = {
-	    initrd = {
-	      luks.devices = {
-		"crypt" = {
-		  device = "/dev/disk/by-uuid/998f2dd7-0a0a-41c2-b8b5-fdcb957f7b87";
-		  preLVM = true;
-		};
-	      };
-	    };
-	  };
+  boot = {
+    initrd = {
+      luks.devices = {
+        "crypt" = {
+          device = "/dev/disk/by-uuid/998f2dd7-0a0a-41c2-b8b5-fdcb957f7b87";
+          preLVM = true;
+        };
+      };
+    };
+  };
+
+  # TODO
+  catppuccin = {
+    enable = true;
+    accent = "lavender";
+    flavor = "mocha";
+  };
 
   home-manager.backupFileExtension = "backup";
 

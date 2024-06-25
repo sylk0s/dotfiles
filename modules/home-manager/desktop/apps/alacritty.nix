@@ -64,30 +64,30 @@ in {
           ct = colorScheme.types;
         in {
           draw_bold_text_with_bright_colors = true;
-          primary = {
-            background = ct.background;
-            foreground = ct.foreground;
-          };
-          normal = {
-            black = cc.color0;
-            red = cc.color1;
-            green = cc.color2;
-            yellow = cc.color3;
-            blue = cc.color4;
-            magenta = cc.color5;
-            cyan = cc.color6;
-            white = cc.color7;
-          };
-          bright = {
-            black = cc.color8;
-            red = cc.color9;
-            green = cc.color10;
-            yellow = cc.color11;
-            blue = cc.color12;
-            magenta = cc.color13;
-            cyan = cc.color14;
-            white = cc.color15;
-          };
+          # primary = {
+          #   background = ct.background;
+          #   foreground = ct.foreground;
+          # };
+          # normal = {
+          #   black = cc.color0;
+          #   red = cc.color1;
+          #   green = cc.color2;
+          #   yellow = cc.color3;
+          #   blue = cc.color4;
+          #   magenta = cc.color5;
+          #   cyan = cc.color6;
+          #   white = cc.color7;
+          # };
+          # bright = {
+          #   black = cc.color8;
+          #   red = cc.color9;
+          #   green = cc.color10;
+          #   yellow = cc.color11;
+          #   blue = cc.color12;
+          #   magenta = cc.color13;
+          #   cyan = cc.color14;
+          #   white = cc.color15;
+          # };
         };
 
         # selection settings

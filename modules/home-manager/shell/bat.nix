@@ -16,7 +16,7 @@ in {
   config = mkIf cfg.enable {
     programs.bat = {
       enable = true;
-      config.theme = "ansi";
+      # config.theme = "ansi";
     };
 
     home.shellAliases = {

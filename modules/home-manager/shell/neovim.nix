@@ -27,7 +27,8 @@ in {
         lua-language-server
         rust-analyzer
         java-language-server
-        nodePackages.pyright
+        #TODO
+        #nodePackages.pyright
         nodePackages.typescript-language-server
         nodePackages.bash-language-server
         clang-tools_17

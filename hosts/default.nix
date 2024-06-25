@@ -14,6 +14,7 @@ with lib.sylkos; {
     [
       ../users # user definitions
       inputs.home-manager.nixosModules.home-manager
+      # inputs.nur.nixosModules.nur
     ]
     ++ outputs.nixosModules; # imports all nixos modules
 
