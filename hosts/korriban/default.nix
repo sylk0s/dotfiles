@@ -25,7 +25,7 @@
     users = [
       {
         name = "sylkos";
-        priviledged = true;
+        privileged = true;
         config = "${config.dotfiles.dir}/users/sylkos";
       }
     ];

@@ -18,7 +18,7 @@ in {
           name = mkOption {
             type = types.str;
           };
-          priviledged = mkOption {
+          privileged = mkOption {
             type = types.bool;
             default = false;
           };
@@ -58,7 +58,7 @@ in {
             createHome = true;
             extraGroups =
               (
-                if user.priviledged
+                if user.privileged
                 then ["wheel"]
                 else []
               )
