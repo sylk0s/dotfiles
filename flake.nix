@@ -36,8 +36,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # nur.url = github:nix-community/NUR;
-
     impermanence.url = "github:nix-community/impermanence";
 
     sops-nix.url = "github:Mic92/sops-nix";
@@ -77,7 +75,6 @@
     overlays = mapModules ./overlays import;
 
     # Exports all of the modules from this flake
-    # TODO should we include both hm and nixos in here?
     # TODO remove with lib;
     nixosModules = mapModulesRec ./modules/nixos import;
 

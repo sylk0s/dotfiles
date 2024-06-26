@@ -71,10 +71,16 @@ in {
           "browser.link.open_newwindow" = 3;
           "browser.link.open_newwindow.restriction" = 0;
 
+          # extensions
+          "extensions.ublock-origin.enabled" = true;
+          "extensions.stylus.enabled" = true;
+          "extensions.pocket.enabled" = false;
+
           # imprermanance stuffs
           "browser.download.panel.shown" = true;
           "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
-          # "browser.startup.homepage" = "https://start.duckduckgo.com";
+          "browser.aboutwelcome.enabled" = false;
+          "browser.startup.homepage" = "about:blank";
 
           ### Everything below is a Security minded config setting
           # Default to dark theme in DevTools panel
@@ -140,8 +146,6 @@ in {
           "browser.onboarding.enabled" = false; # "New to Firefox? Let's get started!" tour
           "browser.aboutConfig.showWarning" = false; # Warning when opening about:config
           "media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
-          "extensions.pocket.enabled" = false;
-          "extensions.shield-recipe-client.enabled" = false;
           "reader.parse-on-load.enabled" = false; # "reader view"
 
           # Security-oriented defaults

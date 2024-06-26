@@ -16,8 +16,7 @@ with lib.sylkos; let
 in {
   imports = [inputs.hyprland.homeManagerModules.default];
 
-  # callback for openGL support...
-  # TODO maybe just callback hyprland programs instead?
+  # callback for hyprland system support
 
   options.modules.desktop.hyprland = {
     enable = mkBoolOpt false;
@@ -52,7 +51,6 @@ in {
       xwayland.enable = true;
       package = hyprland;
 
-      # TODO
       plugins = [
         inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
       ];
@@ -200,7 +198,6 @@ in {
             (sal "R" "${configDir}/scripts/screenshot.sh sel-file")
             (sal "F" "${configDir}/scripts/screenshot.sh full-file")
 
-            # misc TODO sort
             (sal "X" "${configDir}/eww/scripts/lock")
 
             # movement

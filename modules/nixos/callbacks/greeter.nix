@@ -13,38 +13,51 @@ with lib.sylkos; {
     #   enable = true;
     #   settings = {
     #     default_session = {
-    #       command = "cage -s -- regreet";
-    #       user = "greeter";
+    #       command = "Hyprland";
     #     };
     #   };
     # };
 
-    programs.regreet = {
-      enable = true;
+    # environment.etc."greetd/environments".text = ''
+    #   Hyprland
+    #   zsh
+    #   bash
+    # '';
 
-      cageArgs = ["-s" "-m" "last"];
+    # programs.regreet = {
+    #   enable = true;
 
-      settings = {
-        background = {
-          path = "${config.dotfiles.configDir}/assets/wallpapers/astro.png";
-          fit = "Contain";
-        };
+    #   cageArgs = ["-s" "-m" "last"];
 
-        GTK = {
-          application_prefer_dark_theme = true;
-          icon_theme_name = "Papirus-Dark";
-          theme_name = "catppuccin-mocha-lavender-compact+default";
-        };
+    #   settings = {
+    #     background = {
+    #       path = "${config.dotfiles.configDir}/assets/wallpapers/astro.png";
+    #       fit = "Contain";
+    #     };
 
-        commands = {
-          reboot = ["systemctl" "reboot"];
-          poweroff = ["systemctl" "poweroff"];
-        };
+    #     GTK = {
+    #       application_prefer_dark_theme = true;
+    #       icon_theme_name = "Papirus-Dark";
+    #       theme_name = "catppuccin-mocha-lavender-compact+default";
+    #     };
+
+    #     commands = {
+    #       reboot = ["systemctl" "reboot"];
+    #       poweroff = ["systemctl" "poweroff"];
+    #     };
+    #   };
+    # };
+
+    services.displayManager = {
+      sddm = {
+        enable = true;
+        wayland.enable = true;
+        package = pkgs.kdePackages.sddm;
       };
     };
 
-    # boot.plymouth = {
-    #   enable = true;
-    # };
+    boot.plymouth = {
+      enable = true;
+    };
   };
 }

@@ -1,8 +1,7 @@
 # Bugs
-- vsc crashing
-- desktop env is weird (copying... etc with xwayland)
 - dots not tied to a user
 - TODOs
+- startup (systemd)
 
 
 # Impermanence/etc
@@ -18,7 +17,6 @@
 
 # General Config
 - kdeconnect
-- plymouth
 - battery utils
 - starship
     - possible transient prompt with different shell?

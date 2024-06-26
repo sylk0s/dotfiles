@@ -30,10 +30,5 @@ in {
         message = "Can't enable a desktop app without a desktop environment";
       }
     ];
-
-    # TODO
-    # user.packages = with pkgs; [
-    #   gnome.gnome-characters
-    # ];
   };
 }
