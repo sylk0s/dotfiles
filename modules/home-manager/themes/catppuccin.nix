@@ -18,7 +18,7 @@ in {
   ];
 
   config = mkIf cfg.enabled {
-    #   # assertations = [
+    #   # assertions = [
     #   #   {
     #   #     assertion = true;
     #   #     message = "";

@@ -58,8 +58,8 @@ in {
 
   config = mkIf (length cfg != 0) {
     # TODO Help?
-    # any assertations that should be checked
-    # assertations = [
+    # any assertions that should be checked
+    # assertions = [
     #       # assertion =
     # #           ((length cfg) != 0)
     # #           -> ((length (filter (m: m.primary) cfg)) == 1);
