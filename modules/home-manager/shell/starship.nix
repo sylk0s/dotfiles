@@ -13,9 +13,9 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # TODO assertations here about zsh?
-    # any assertations that should be checked
-    # assertations = [
+    # TODO assertions here about zsh?
+    # any assertions that should be checked
+    # assertions = [
     #   {
     #     assertion = true;
     #     message = "";

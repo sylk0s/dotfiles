@@ -11,7 +11,7 @@ with lib.sylkos; let
 in {
   config = {
     assertions = [
-      # add some assertation about only having one shell enabled?
+      # add some assertion about only having one shell enabled?
       #{
       #  assertion = (countAttrs (n: v: n == "enable" && value) cfg) < 2;
       #  message = "Can't have more than one desktop environment enabled at a time";

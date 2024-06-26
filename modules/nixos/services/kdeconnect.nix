@@ -13,8 +13,8 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # any assertations that should be checked
-    #assertations = [
+    # any assertions that should be checked
+    #assertions = [
     #  {
     #    assertion = true;
     #    message = "";
