@@ -6,9 +6,8 @@
   inputs,
   outputs,
   ...
-}:
-with lib;
-with lib.sylkos; let
+}: let
+  inherit (lib) types mkOption listToAttrs map mkDefault;
   cfg = config.modules.users;
 in {
   options.modules.users = mkOption {

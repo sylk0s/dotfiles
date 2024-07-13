@@ -5,18 +5,19 @@
   outputs,
   osConfig,
   ...
-}:
-with lib.sylkos; {
+}: let
+  inherit (lib) mkDefault;
+in {
   #imports = mapModulesRec ../modules/home-manager import;
   imports = outputs.homeManagerModules;
 
-  programs.home-manager.enable = true;
-  programs.git.enable = true;
+  programs.home-manager.enable = mkDefault true;
+  programs.git.enable = mkDefault true;
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = mkDefault true;
 
   home = {
-    stateVersion = lib.mkDefault "21.05";
+    stateVersion = mkDefault "21.05";
     #   sessionPath = ["$HOME/.local/bin"];
     #   sessionVariables = {
     #     FLAKE = "$HOME/Documents/NixConfig";

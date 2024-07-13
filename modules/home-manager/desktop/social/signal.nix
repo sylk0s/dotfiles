@@ -14,8 +14,15 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      signal-desktop
-    ];
+    home = {
+      packages = with pkgs; [
+        signal-desktop
+      ];
+      persistence."/persist/home/${config.home.username}" = {
+        directories = [
+          ".config/Signal"
+        ];
+      };
+    };
   };
 }

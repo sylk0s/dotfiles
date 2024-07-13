@@ -3,9 +3,9 @@
   options,
   lib,
   ...
-}:
-with lib;
-with lib.sylkos; let
+}: let
+  inherit (lib) mkIf;
+  inherit (lib.sylkos) mkBoolOpt;
   cfg = config.modules.aaa;
 in {
   options.modules.aaa = {

@@ -53,6 +53,8 @@
 
   home-manager.backupFileExtension = "backup";
 
+  # time.timeZone = "Europe/Budapest";
+
   # find arch :3
   boot.loader.grub.extraEntries = ''
     menuentry "Arch Linux (on /dev/nvme1n1p7)" --class arch --class os {

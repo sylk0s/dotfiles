@@ -23,8 +23,9 @@ in {
 
       persistence."/persist/home/${config.home.username}" = {
         directories = [
-          ".config/vesktop/sessionData"
-          ".config/vesktop/settings"
+          ".config/vesktop"
+          # ".config/vesktop/sessionData"
+          # ".config/vesktop/settings"
         ];
       };
     };

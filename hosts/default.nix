@@ -6,9 +6,9 @@
   lib,
   pkgs,
   ...
-}:
-with lib;
-with lib.sylkos; {
+}: let
+  inherit (lib) mkDefault;
+in {
   # Import the home-manager module and all my custom modules
   imports =
     [
@@ -18,7 +18,7 @@ with lib.sylkos; {
     ]
     ++ outputs.nixosModules; # imports all nixos modules
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = mkDefault true;
 
   #environment.variables.DOTFILES = config.dotfiles.dir;
   #environment.variables.DOTFILES_BIN = config.dotfiles.binDir;
@@ -36,8 +36,8 @@ with lib.sylkos; {
     # registry = registryInputs // {dotfiles.flake = inputs.self;};
 
     settings = {
-      experimental-features = "nix-command flakes";
-      auto-optimise-store = true;
+      experimental-features = mkDefault "nix-command flakes";
+      auto-optimise-store = mkDefault true;
     };
   };
 
@@ -57,22 +57,23 @@ with lib.sylkos; {
       grub = {
         enable = mkDefault true;
         devices = ["nodev"];
-        efiSupport = true;
+        efiSupport = mkDefault true;
         useOSProber = mkDefault true;
         configurationLimit = mkDefault 10;
-        copyKernels = true; # TODO make this dependent on encryption maybe
+        copyKernels = mkDefault true; # TODO make this dependent on encryption maybe
       };
 
-      timeout = null;
+      timeout = mkDefault null;
     };
   };
 
   time.timeZone = mkDefault "America/New_York";
   i18n.defaultLocale = mkDefault "en_US.UTF-8";
 
-  environment.systemPackages = with pkgs; [
-    git
-    neovim
-    curl
-  ];
+  environment.systemPackages = with pkgs;
+    mkDefault [
+      git
+      neovim
+      curl
+    ];
 }

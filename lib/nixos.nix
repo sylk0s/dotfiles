@@ -4,11 +4,10 @@
   lib,
   # pkgs,
   ...
-}:
-with lib;
-with lib.sylkos; let
-  # aaa
-in {
+}: let
+  inherit (lib) nixosSystem mkDefault genAttrs removeSuffix;
+  inherit (lib.sylkos) mapModules;
+in rec {
   # creates a host given a config directory
   mkHost = path:
     nixosSystem {

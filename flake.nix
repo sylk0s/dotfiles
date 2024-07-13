@@ -31,15 +31,19 @@
     # hardware specific configs
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
+    # declaritive hyprland
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # ephemeral filesystem
     impermanence.url = "github:nix-community/impermanence";
 
+    # secret management
     sops-nix.url = "github:Mic92/sops-nix";
 
+    # theming
     catppuccin.url = "github:catppuccin/nix";
   };
 

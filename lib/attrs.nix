@@ -1,6 +1,6 @@
-{lib, ...}:
-with builtins;
-with lib; rec {
+{lib, ...}: let
+  inherit (lib) mapAttrsToList any count filterAttrs mapAttrs';
+in rec {
   # attrsToList
   attrsToList = attrs:
     mapAttrsToList (name: value: {inherit name value;}) attrs;

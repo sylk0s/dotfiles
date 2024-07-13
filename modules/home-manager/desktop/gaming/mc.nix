@@ -14,10 +14,17 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      tomlplusplus
-      prismlauncher
-    ];
+    home = {
+      packages = with pkgs; [
+        tomlplusplus
+        prismlauncher
+      ];
+      persistence."/persist/home/${config.home.username}" = {
+        directories = [
+          ".local/share/PrismLauncher"
+        ];
+      };
+    };
 
     # TODO
     xdg.dataFile."PrismLauncher/themes/theme.json".text = ''

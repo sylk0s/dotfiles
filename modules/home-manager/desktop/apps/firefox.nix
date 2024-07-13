@@ -19,10 +19,19 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.sessionVariables = {
-      # Prevent auto-creation of ~/Desktop. The trailing slash is necessary; see
-      # https://bugzilla.mozilla.org/show_bug.cgi?id=1082717
-      XDG_DESKTOP_DIR = "$HOME/";
+    home = {
+      sessionVariables = {
+        # Prevent auto-creation of ~/Desktop. The trailing slash is necessary; see
+        # https://bugzilla.mozilla.org/show_bug.cgi?id=1082717
+        XDG_DESKTOP_DIR = "$HOME/";
+      };
+
+      # TODO don't
+      persistence."/persist/home/${config.home.username}" = {
+        directories = [
+          ".mozilla/firefox/${config.home.username}"
+        ];
+      };
     };
 
     programs.firefox = {
@@ -50,6 +59,7 @@ in {
                 name = "pkgs";
                 url = "https://search.nixos.org/options";
               }
+
               {
                 name = "github";
                 url = "https://github.com";
@@ -57,6 +67,15 @@ in {
               {
                 name = "dotfiles";
                 url = "https://github.com/sylk0s/dotfiles";
+              }
+
+              {
+                name = "simplenote";
+                url = "https://app.simplenote.com";
+              }
+              {
+                name = "calendar";
+                url = "https://calendar.google.com/";
               }
             ];
           }

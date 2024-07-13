@@ -11,16 +11,11 @@ with lib.sylkos; let
   desktopNum = countAttrs (n: v: v ? enable && v.enable) (filterAttrs (n: v: n != "enable") cfg);
 in {
   options.modules.desktop = {
-    enable = mkBoolOpt (desktopNum == 1);
+    enable = mkBoolOpt (desktopNum >= 1);
   };
 
   config = {
     assertions = [
-      {
-        assertion = desktopNum < 2;
-
-        message = "Can't have more than one desktop environment enabled at a time";
-      }
       {
         assertion =
           cfg.enable

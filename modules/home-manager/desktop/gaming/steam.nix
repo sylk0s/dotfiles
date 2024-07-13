@@ -19,5 +19,12 @@ in {
 
     # for now...
     # callback to callbacks/steam.nix
+    home.persistence."/persist/home/${config.home.username}" = {
+      directories = [
+        ".steam"
+        ".local/share/Steam/"
+        ".local/share/vulkan/"
+      ];
+    };
   };
 }
