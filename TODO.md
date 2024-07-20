@@ -21,7 +21,7 @@
 - starship
     - possible transient prompt with different shell?
 - bspwm
-- firefox declaritive
+- firefox declarative
 - greeter options
 - spanish keyboard
 - port PC
@@ -39,7 +39,7 @@
 
 ## Install
 - bootstrapping process
-- declaritive fs management (disko)
+- declarative fs management (disko)
 - secrets/gpg bootstrapping
 
 ## Documentation
