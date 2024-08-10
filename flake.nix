@@ -3,10 +3,10 @@
 
   # these only affect this flake, not the whole system
   # adds the additional cachix repo so we don't have to build from scratch
-  nixConfig = {
-    extra-substituters = ["https://cosmic.cachix.org/" "https://hyprland.cachix.org"];
-    extra-trusted-public-keys = ["cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-  };
+  # nixConfig = {
+  #   extra-substituters = ["https://cosmic.cachix.org/" "https://hyprland.cachix.org"];
+  #   extra-trusted-public-keys = ["cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+  # };
 
   inputs = {
     # default nix pkgs repo

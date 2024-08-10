@@ -51,9 +51,9 @@ in {
       xwayland.enable = true;
       package = hyprland;
 
-      plugins = [
-        inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
-      ];
+      # plugins = [
+      #   inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+      # ];
 
       settings = {
         exec-once = [
@@ -139,9 +139,9 @@ in {
           force_default_wallpaper = 0;
         };
 
-        windowrulev2 = [
-          "fakefullscreen, class:^(code-url-handler)$"
-        ];
+        # windowrulev2 = [
+        #   "fakefullscreen, class:^(code-url-handler)$"
+        # ];
 
         bind = let
           binding = mod: cmd: key: arg: "${mod}, ${key}, ${cmd}, ${arg}";
@@ -213,7 +213,7 @@ in {
 
             (base "workspace" "mouse_down" "e+1")
             (base "workspace" "mouse_up" "e-1")
-            "SUPER, grave, hyprexpo:expo, toggle"
+            # "SUPER, grave, hyprexpo:expo, toggle"
           ]
           # ++ (map (i: (map (j: swpfocus (toString j) (toString i [0]))) i [1]) dirs)
           # ++ (map (i: (map (j: mvfocus (toString j) (toString i [0]))) i [1]) dirs)
@@ -225,18 +225,18 @@ in {
           "SUPER, mouse:273, resizewindow"
         ];
 
-        plugin = {
-          hyperexpo = {
-            columns = 3;
-            gap_size = 5;
-            bg_col = "rgba(111111)";
-            workspace_method = "static 1";
+        # plugin = {
+        #   hyperexpo = {
+        #     columns = 3;
+        #     gap_size = 5;
+        #     bg_col = "rgba(111111)";
+        #     workspace_method = "static 1";
 
-            enable_gesture = true;
-            gesture_distance = 300;
-            gesture_positive = true;
-          };
-        };
+        #     enable_gesture = true;
+        #     gesture_distance = 300;
+        #     gesture_positive = true;
+        #   };
+        # };
       };
     };
   };

@@ -14,13 +14,13 @@ in {
   };
 
   config = mkIf cfg.enable {
-    programs.thunderbird = {
-      enable = true;
-      profiles = {
-        "${config.home.username}" = {
-          name = "${config.home.username}";
-        };
-      };
-    };
+    # programs.thunderbird = {
+    #   enable = true;
+    #   profiles = {
+    #     "${config.home.username}" = {
+    #       name = "${config.home.username}";
+    #     };
+    #   };
+    # };
   };
 }

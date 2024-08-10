@@ -11,6 +11,7 @@
       # gnome = {
       #   enable = true;
       # };
+      # cosmic.enable = true;
       media.spotify.enable = true;
       social = {
         discord.enable = true;

@@ -13,7 +13,7 @@ with lib.sylkos; {
   config = mkIf (anyUsers (user: user.modules.desktop.cosmic.enable) config.home-manager.users) {
     services.desktopManager = {
       cosmic.enable = true;
-      cosmic-greeter.enable = true;
     };
+    services.displayManager.cosmic-greeter.enable = true;
   };
 }
