@@ -1,60 +1,69 @@
-# Bugs
+# Dotfiles TODO
+
+## Bugs
+
 - dots not tied to a user
 - TODOs
 - startup (systemd)
 
 
-# Impermanence/etc
+## Impermanence/etc
+
 - home FS setup for users
     - systemd service WIP
 - encrypt/partition scripts
 - filesystem laptop
 
 
-# SOPS
+## SOPS
+
 - add any needed keys/multi-user support/better auto integration
 
 
-# General Config
-- kdeconnect
+## General Config
+
 - battery utils
 - starship
     - possible transient prompt with different shell?
 - bspwm
-- firefox declaritive
+- firefox declarwative
 - greeter options
 - spanish keyboard
-- port PC
 - general purpose thinkpad Config
 - more users
 - mail
 
 
-# Architecture
+## Architecture
+
 - shells
 - pkgs
 - more interop (defaults from parent enabled)
 - nix-shell shell?
 - fail safe defaults
 
-## Install
+### Install
+
 - bootstrapping process
 - declaritive fs management (disko)
 - secrets/gpg bootstrapping
 
-## Documentation
+### Documentation
+
 - update explaination docs
 - blog
 - install process
 - secret process
 
 
-# Validation
+## Validation
+
 - test multiuser
 - test multi wm
 
 
-# Non-Nix
+## Non-Nix
+
 - thinkpad
 - extra encrypt partition
 - gpg bootstrap drive?

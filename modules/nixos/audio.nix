@@ -43,6 +43,11 @@ in {
             "bluez5.enable-hw-volume" = true;
             "bluez5.roles" = ["hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag"];
           };
+          "10-disable-camera" = {
+            "wireplumber.profiles" = {
+              main."monitor.libcamera" = "disabled";
+            };
+          };
         };
       };
     };

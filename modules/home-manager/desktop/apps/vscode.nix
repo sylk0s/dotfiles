@@ -16,6 +16,12 @@ in {
   config = mkIf cfg.enable {
     # TODO move to home-manager module
     home = {
+      persistence."/persist/home/${config.home.username}" = {
+        directories = [
+          ".config/Code"
+        ];
+      };
+
       packages = with pkgs; [
         (vscode-with-extensions.override {
           vscodeExtensions = with vscode-extensions;

@@ -16,6 +16,10 @@ in {
   config = mkIf cfg.enable {
     # TODO
     # eventually i wanna move this here
+    home.packages = with pkgs; [
+      steam-tui
+      steamPackages.steamcmd
+    ];
 
     # for now...
     # callback to callbacks/steam.nix

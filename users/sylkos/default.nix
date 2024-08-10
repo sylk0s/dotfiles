@@ -15,6 +15,7 @@
       social = {
         discord.enable = true;
         signal.enable = true;
+        thunderbird.enable = true;
       };
       apps = {
         firefox = {
@@ -25,6 +26,7 @@
         alacritty.enable = true;
         vscode.enable = true;
         thunar.enable = true;
+        zed.enable = true;
       };
       #   security = {
       #     cutter.enable = false;
@@ -41,6 +43,7 @@
         ags = {
           enable = true;
         };
+        kdeconnect.enable = true;
         # dunst.enable = false;
       };
     };
@@ -60,7 +63,11 @@
     shell = {
       eza.enable = true;
     };
-    
+
     impermanence.enable = true;
   };
+
+  home.packages = with pkgs; [
+    kicad
+  ];
 }
