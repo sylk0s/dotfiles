@@ -67,3 +67,10 @@
 - thinkpad
 - extra encrypt partition
 - gpg bootstrap drive?
+
+## Even more security things
+
+- disko
+- yubikey based encryption
+- encrypted boot partition?
+- gpg key on yubikey

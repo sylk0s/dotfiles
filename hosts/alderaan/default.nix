@@ -6,7 +6,8 @@
   ...
 }: {
   imports = [
-    ./hardware-configuration.nix
+    #./hardware-configuration.nix
+    ./disko.nix
   ];
 
   modules = {
@@ -28,16 +29,16 @@
     ];
   };
 
-  boot = {
-    initrd = {
-      luks.devices = {
-        "test_crypt" = {
-          device = "/dev/disk/by-uuid/1cc8bd73-a0f2-47d5-b9b2-b1dd5d0c0aa4";
-          preLVM = true;
-        };
-      };
-    };
-  };
+  # boot = {
+  #   initrd = {
+  #     luks.devices = {
+  #       "test_crypt" = {
+  #         device = "/dev/disk/by-uuid/1cc8bd73-a0f2-47d5-b9b2-b1dd5d0c0aa4";
+  #         preLVM = true;
+  #       };
+  #     };
+  #   };
+  # };
 
   home-manager.backupFileExtension = "backup";
   boot.supportedFilesystems = ["btrfs"];

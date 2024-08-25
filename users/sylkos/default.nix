@@ -17,6 +17,7 @@
         discord.enable = true;
         signal.enable = true;
         thunderbird.enable = true;
+        fractal.enable = true;
       };
       apps = {
         firefox = {

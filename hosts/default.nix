@@ -43,6 +43,13 @@ in {
     };
   };
 
+  nixpkgs = {
+    overlays = [
+      (import ./grub_overlay.nix)
+    ];
+    hostPlatform.system = "x86_64-linux";
+  };
+
   # TODO what is this
   # system.configurationRevision = with inputs; mkIf (self ? rev) self.rev;
   system.stateVersion = "21.05";
@@ -53,7 +60,7 @@ in {
     loader = {
       efi = {
         canTouchEfiVariables = mkDefault true;
-        efiSysMountPoint = mkDefault "/boot";
+        efiSysMountPoint = mkDefault "/boot/efi";
       };
 
       grub = {
@@ -62,7 +69,8 @@ in {
         efiSupport = mkDefault true;
         useOSProber = mkDefault true;
         configurationLimit = mkDefault 10;
-        copyKernels = mkDefault true; # TODO make this dependent on encryption maybe
+        #copyKernels = mkDefault true; # TODO make this dependent on encryption maybe
+        enableCryptodisk = mkDefault true;
       };
 
       timeout = mkDefault null;
