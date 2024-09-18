@@ -1,37 +1,33 @@
 {
-  self,
   lib,
   inputs,
-  outputs,
   ...
 }: let
-  inherit (lib) homeManagerConfiguration fold map nameValuePair any;
-  inherit (lib.sylkos) attrsToList;
+  inherit (lib) listToAttrs mkDefault any;
+  inherit (attrs) attrs-to-list;
+
+  attrs = import ./attrs.nix {inherit lib attrs;};
 in rec {
-  # mkHome :: User -> Host -> { name = Home }
-  # mkHome = user:
-  #   lib.homeManagerConfiguration {
-  #     modules = [
-  #       {
-  #         home = {
-  #           username = user.name;
-  #           homeDirectory = "/home/${user.name}";
-  #         };
-  #       }
-  #       "${config.userDir}/home.nix"
-  #       (import user.config)
-  #     ];
-  #   };
+  # mk-home :: UserConfig -> HomeManagerConfig (AttrSet -> AttrSet)
+  mk-home = user: {
+    imports = [
+      ../users/home.nix
+      user.config
+    ];
+    home = {
+      username = user.name;
+      homeDirectory = mkDefault "/home/${user.name}";
+    };
+  };
 
-  # mapHmConfigs :: Path -> [Home]
-  # mapHmConfigs = dir: let
-  #   name = "${user.name}@${host.name}";
-  # in (fold (
-  #   host: hmConfigs:
-  #     hmConfigs
-  #     ++ (map (user: nameValuePair name (mkHome user)) host.modules.users)
-  # ) [] (import dir));
+  # mk-homes :: List[UserConfig] -> HomeManagerConfigAttrSet (List[AttrSet -> AttrSet])
+  mk-homes = users:
+    listToAttrs (map (user: {
+        name = user.name;
+        value = mk-home user;
+      })
+      users);
 
-  anyUsers = pred: users:
-    any (user: pred user.value) (attrsToList users);
+  any-user = pred: users:
+    any (user: pred user.value) (attrs-to-list users);
 }

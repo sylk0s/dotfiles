@@ -1,4 +1,4 @@
-# Defaults and config for each user
+`# Defaults and config for each user
 {
   config,
   options,
@@ -23,6 +23,12 @@ in {
           };
           config = mkOption {
             type = types.path;
+          };
+          password = mkOption {
+            type = types.path;
+          };
+          extra-groups = mkOption {
+            type = types.listOf types.str;
           };
         };
       }

@@ -1,26 +1,10 @@
 {
-  inputs,
-  outputs,
   lib,
-  # pkgs,
+  inputs,
   ...
 }: let
-  inherit (lib) makeExtensible attrValues foldr;
-  inherit (modules) mapModules;
+  inherit (lib) map foldl';
 
-  # this needs to be here because it is used in this file to import... itself
-  modules = import ./modules.nix {
-    inherit lib inputs;
-    self.attrs = import ./attrs.nix {
-      inherit lib;
-      self = {};
-    };
-  };
-
-  sylkoslib = makeExtensible (self:
-    mapModules ./.
-    (file: import file {inherit self lib inputs outputs;}));
+  modules = import ./modules.nix {inherit lib inputs;};
 in
-  sylkoslib.extend
-  (self: super:
-    foldr (a: b: a // b) {} (attrValues super))
+  foldl' (a: b: a // b) {} (map (module: import module {inherit lib inputs;}) (modules.all-modules-in-dir ./.))

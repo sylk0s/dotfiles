@@ -65,39 +65,29 @@
     ...
   }: let
     inherit (self) outputs;
-    inherit (lib.sylkos) mapModules mapModulesRec mapHosts forAllSystems mapHmConfigs;
-
-    # extend the current library with my own functions
-    lib =
-      nixpkgs.lib.extend
-      (self: super: {
-        sylkos = import ./lib {
-          inherit inputs outputs;
-          lib = self;
-        };
-      });
+    lib = nixpkgs.lib;
   in {
-    # exports my library with my own functions
-    lib = lib.sylkos;
+    lib = lib;
+
+    sylib = import ./lib {inherit lib inputs;};
 
     # Custom pkgs
-    packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+    # packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
 
     # Formatter for nix files
-    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+    # formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
     # Custom overlays
-    overlays = mapModules ./overlays import;
+    # overlays = mapModules ./overlays import;
 
     # Exports all of the modules from this flake
-    # TODO remove with lib;
-    nixosModules = mapModulesRec ./modules/nixos import;
+    nixosModules = {...}: {imports = outputs.sylib.mapModulesRec ./modules/nixos;};
 
     # Exports all of the modules from home-manager
-    homeManagerModules = mapModulesRec ./modules/home-manager import;
+    homeManagerModules = {...}: {imports = outputs.sylib.mapModulesRec ./modules/home-manager;};
 
     # Imports the hosts from the default.nix in each folder of ./hosts
-    nixosConfigurations = mapHosts ./hosts;
+    nixosConfigurations = (({...}: {a = outputs.sylib.mapHosts ./hosts;}) {inherit self inputs outputs lib;}).a;
 
     # homeManagerConfiguration = mapHmConfigs ./hosts;
   };

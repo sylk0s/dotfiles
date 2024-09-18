@@ -9,4 +9,4 @@ swww img -o DP-1 /home/sylkos/dotfiles/config/assets/wallpapers/hekatewhistler.j
 #swww img -o HDMI-A-1 /home/sylkos/dotfiles/config/assets/wallpapers/aenami-space.jpg
 
 # laptop
-swww img -o eDP-1 /home/sylkos/dotfiles/config/assets/wallpapers/alena-aenami-budapest.jpg
+swww img -o eDP-1 /home/sylkos/dotfiles/config/assets/wallpapers/alena-aenami-far-from-tomorrow-1080px.jpg

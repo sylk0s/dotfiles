@@ -1,25 +1,19 @@
-{lib, ...}: let
-  inherit (lib) mapAttrsToList any count filterAttrs mapAttrs';
+{
+  lib,
+  inputs,
+  ...
+}: let
+  inherit (lib) any count mapAttrsToList;
 in rec {
-  # attrsToList
-  attrsToList = attrs:
+  attrs-to-list = attrs:
     mapAttrsToList (name: value: {inherit name value;}) attrs;
 
-  # TODO remove these if not needed from the rest of the code
+  # map-list-to-attrs :: Fn -> List[T, V] -> AttrSet
+  # map-list-to-attrs = fn: list: ;
 
-  # anyAttrs :: (name -> value -> bool) attrs
-  anyAttrs = pred: attrs:
-    any (attr: pred attr.name attr.value) (attrsToList attrs);
+  any-attrs = pred: attrs:
+    any (attr: pred attr.name attr.value) (attrs-to-list attrs);
 
-  # countAttrs :: (name -> value -> bool) attrs
-  countAttrs = pred: attrs:
-    count (attr: pred attr.name attr.value) (attrsToList attrs);
-
-  # mapFilterAttrs ::
-  #   (name -> value -> bool)
-  #   (name -> value -> { name = any; value = any; })
-  #   attrs
-  mapFilterAttrs = pred: f: attrs: filterAttrs pred (mapAttrs' f attrs);
-
-  filterMapAttrs = pred: f: attrs: mapAttrs' f (filterAttrs pred attrs);
+  count-attrs = pred: attrs:
+    count (attr: pred attr.name attr.value) (attrs-to-list attrs);
 }

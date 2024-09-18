@@ -1,37 +1,54 @@
 {
-  inputs,
-  outputs,
   lib,
-  # pkgs,
+  inputs,
   ...
 }: let
-  inherit (lib) nixosSystem mkDefault genAttrs removeSuffix;
-  inherit (lib.sylkos) mapModules;
+  inherit (modules) map-modules;
+  inherit (lib) mkDefault nixosSystem removeSuffix listToAttrs;
+
+  modules = import ./modules.nix {inherit lib inputs;};
 in rec {
-  # creates a host given a config directory
-  mkHost = path:
+  # mk-host :: Path -> SpecialArgs -> NixosSystem (Path -> AttrSet -> AttrSet)
+  mk-host = special-args: path:
     nixosSystem {
-      specialArgs = {inherit inputs outputs;};
+      specialArgs = special-args;
       modules = [
-        # sets up the right hostname for this host
         {
-          # nixpkgs.pkgs = pkgs; # figure out what this is actually doing
           networking.hostName = mkDefault (removeSuffix ".nix" (baseNameOf path));
         }
-
-        ../hosts # /defaults for all hosts
-
-        (import path) # config for the host specifically
+        ../hosts
+        (import path)
       ];
     };
 
-  # map over all the host dirs in a /hosts directory, creating a host for each
-  mapHosts = dir:
-    mapModules dir (hostPath: mkHost hostPath);
+  # mk-hosts :: Path -> SpecialArgs -> NixosSystemAttrSet (Path -> AttrSet -> AttrSet)
+  mk-hosts = special-args: path: map-modules (mk-host special-args) path;
 
-  systems = ["x86_64-linux"];
+  # mk-user :: UserConfig -> NixosUser
+  mk-user = user: extra-groups: {
+    home = mkDefault "/home/${user.name}";
+    initialPassword =
+      if user.password == null
+      then "${user.name}"
+      else null;
+    hashedPasswordFile = user.password;
+    isNormalUser = true;
+    createHome = true;
+    extraGroups =
+      (
+        if user.privileged
+        then ["wheel"]
+        else []
+      )
+      ++ extra-groups
+      ++ user.extra-groups;
+  };
 
-  # This is a function that generates an attribute by calling a function you
-  # pass to it, with each system as an argument
-  forAllSystems = genAttrs systems;
+  # mk-users :: List[UserConfig] -> NixosUserAttrSet (List[AttrSet] -> AttrSet)
+  mk-users = users: extra-groups:
+    listToAttrs (map (user: {
+        name = user.name;
+        value = mk-user user extra-groups;
+      })
+      users);
 }

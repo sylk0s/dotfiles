@@ -1,45 +1,36 @@
 {
-  self,
   lib,
   inputs,
   ...
 }: let
-  inherit (builtins) attrValues readDir pathExists concatLists;
-  inherit (lib) id mapAttrsToList filterAttrs hasPrefix hasSuffix nameValuePair removeSuffix;
-  inherit (self.attrs) mapFilterAttrs;
-in rec {
-  # map over modules
-  # Path -> Fn -> AttrSet { name, (fn path) }
-  mapModules = dir: fn:
-    mapFilterAttrs
-    # this predicate removes any files that could not be parsed into modules
-    (n: v: v != null && !(hasPrefix "_" n))
-    # maps over all the files that are modules and flags the ones that don't match
-    (n: v: let
-      path = "${toString dir}/${n}";
-    in
-      # case for a module as a directory with default.nix included
-      if v == "directory" && pathExists "${path}/default.nix"
-      then nameValuePair n (fn path)
-      # case for individual files
-      else if (v == "regular") && (n != "default.nix") && (hasSuffix ".nix" n)
-      then nameValuePair (removeSuffix ".nix" n) (fn path)
-      # catchall case which gets removed if invalid later
-      else nameValuePair "" null)
-    # this is the dir being mapped
-    (readDir dir);
+  inherit (lib) filter pathExists hasSuffix;
+  inherit (builtins) readDir;
 
-  # maps over modules recursively including the default.nix
-  # Path -> Fn -> (fn path)
-  mapModulesRec = dir: fn: let
-    dirs =
-      mapAttrsToList
-      (k: _: "${dir}/${k}")
-      (filterAttrs
-        (n: v: v == "directory" && !(hasPrefix "_" n))
-        (readDir dir));
-    files = attrValues (mapModules dir id);
-    paths = files ++ concatLists (map (d: mapModulesRec d id) dirs);
-  in
-    map fn paths;
+  inherit (attrs) attrs-to-list;
+
+  attrs = import ./attrs.nix {inherit lib inputs;};
+
+  is-module = a:
+    (a.value == "directory" && pathExists "${a.name}/default.nix")
+    || (a.value == "regular" && hasSuffix ".nix" a.name && !(hasSuffix "default.nix" a.name));
+
+  is-directory = a: (a.value == "directory");
+
+  get-path = a: ./. + "/${a.name}";
+
+  get-paths-for-filter = pred: path: (map get-path (filter pred (attrs-to-list (readDir path))));
+
+  all-dirs-in-dir = path: get-paths-for-filter is-directory path;
+in rec {
+  # all-modules-in-dir :: Path -> List[Path]
+  all-modules-in-dir = path: get-paths-for-filter is-module path;
+
+  # all-modules-in-dir-rec :: Path -> List[Path]
+  all-modules-in-dir-rec = path: (all-modules-in-dir path) ++ (map all-modules-in-dir-rec (all-dirs-in-dir path));
+
+  # map-modules :: Path -> Fn -> List[Path]
+  map-modules = fn: path: (map fn (all-modules-in-dir path));
+
+  # map-modules :: Path -> Fn -> List[Path]
+  map-modules-rec = fn: path: (map fn (all-modules-in-dir-rec path));
 }
