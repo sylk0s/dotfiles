@@ -28,7 +28,8 @@
       {
         name = "sylkos";
         privileged = true;
-        config = "${config.dotfiles.dir}/users/sylkos";
+        # config = "${config.dotfiles.dir}/users/sylkos";
+        config = "/home/sylkos/dotfiles/users/sylkos";
       }
     ];
   };
