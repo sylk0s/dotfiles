@@ -33,7 +33,6 @@ in rec {
   # mk-hosts :: Path -> SpecialArgs -> NixosSystemAttrSet (Path -> AttrSet -> AttrSet)
   mk-hosts = special-args: modules: path: listToAttrs (map-modules (mk-host special-args modules path) path);
 
-  # a
   # mk-user :: UserConfig -> NixosUser
   mk-user = extra-groups: user: let
     name = user.name;
