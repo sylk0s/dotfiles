@@ -2,15 +2,16 @@
   config,
   options,
   lib,
+  sylib,
   pkgs,
   ...
-}:
-with lib;
-with lib.sylkos; let
+}: let
+  inherit (lib) mkIf;
+  inherit (sylib) mk-enable;
   cfg = config.modules.desktop.security.ghidra;
 in {
   options.modules.desktop.security.ghidra = {
-    enable = mkBoolOpt false;
+    enable = mk-enable false;
   };
 
   config = mkIf cfg.enable {

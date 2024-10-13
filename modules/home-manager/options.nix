@@ -3,9 +3,7 @@
   options,
   lib,
   ...
-}:
-with lib;
-with lib.sylkos; let
+}: let
 in {
   options = {
   };

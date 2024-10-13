@@ -3,18 +3,19 @@
   osConfig,
   options,
   lib,
+  sylib,
   pkgs,
   inputs,
   ...
-}:
-with lib;
-with lib.sylkos; let
+}: let
+  inherit (lib) mkIf mkMerge;
+  inherit (sylib) mk-enable;
   cfg = config.modules.desktop.services.ags;
 in {
   imports = [inputs.ags.homeManagerModules.default];
 
   options.modules.desktop.services.ags = {
-    enable = mkBoolOpt false;
+    enable = mk-enable false;
   };
 
   config = mkMerge [

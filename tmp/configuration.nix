@@ -9,9 +9,9 @@
   fileSystems."/var/log".neededForBoot = true;
 
   nixpkgs = {
-    overlays = [
-      (import ./grub_overlay.nix)
-    ];
+    # overlays = [
+    #   (import ./grub_overlay.nix)
+    # ];
     hostPlatform.system = "x86_64-linux";
   };
 

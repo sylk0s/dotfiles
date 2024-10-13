@@ -2,16 +2,17 @@
   config,
   options,
   lib,
+  sylib,
   pkgs,
   ...
-}:
-with lib;
-with lib.sylkos; let
+}: let
+  inherit (lib) filterAttrs isAttrs;
+  inherit (sylib) mk-enable any-attrs count-attrs;
   cfg = config.modules.desktop;
-  desktopNum = countAttrs (n: v: v ? enable && v.enable) (filterAttrs (n: v: n != "enable") cfg);
+  desktop-num = count-attrs (n: v: v ? enable && v.enable) (filterAttrs (n: v: n != "enable") cfg);
 in {
   options.modules.desktop = {
-    enable = mkBoolOpt (desktopNum >= 1);
+    enable = mk-enable (desktop-num >= 1);
   };
 
   config = {
@@ -19,8 +20,8 @@ in {
       {
         assertion =
           cfg.enable
-          || !(anyAttrs
-            (n: v: isAttrs v && (anyAttrs (n: v: isAttrs v && v.enable) v))
+          || !(any-attrs
+            (n: v: isAttrs v && (any-attrs (n: v: isAttrs v && v.enable) v))
             cfg);
         message = "Can't enable a desktop app without a desktop environment";
       }

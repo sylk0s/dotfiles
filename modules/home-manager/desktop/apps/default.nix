@@ -4,9 +4,7 @@
   lib,
   pkgs,
   ...
-}:
-with lib;
-with lib.sylkos; let
+}: let
   cfg = config.modules.desktop.apps;
 in {
   config = {

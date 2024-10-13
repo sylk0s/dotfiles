@@ -2,15 +2,16 @@
   config,
   options,
   lib,
+  sylib,
   pkgs,
   ...
-}:
-with lib;
-with lib.sylkos; let
+}: let
+  inherit (lib) mkIf;
+  inherit (sylib) mk-enable;
   cfg = config.modules.dev.arduino;
 in {
   options.modules.dev.arduino = {
-    enable = mkBoolOpt false;
+    enable = mk-enable false;
   };
 
   config = mkIf cfg.enable {

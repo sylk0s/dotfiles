@@ -2,14 +2,16 @@
   config,
   options,
   lib,
+  sylib,
   ...
-}:
-with lib;
-with lib.sylkos; let
+}: let
   cfg = config.modules.ssh;
+
+  inherit (lib) mkIf;
+  inherit (sylib) mk-enable;
 in {
   options.modules.ssh = {
-    enable = mkBoolOpt true;
+    enable = mk-enable true;
   };
 
   config = mkIf cfg.enable {

@@ -2,12 +2,14 @@
   osConfig,
   config,
   lib,
+  sylib,
   pkgs,
   inputs,
   ...
-}:
-with lib;
-with lib.sylkos; let
+}: let
+  inherit (lib) mkIf map toString;
+  inherit (sylib) mk-enable mk-bool-opt;
+
   cfg = config.modules.desktop.hyprland;
   configDir = osConfig.dotfiles.configDir;
 
@@ -19,8 +21,8 @@ in {
   # callback for hyprland system support
 
   options.modules.desktop.hyprland = {
-    enable = mkBoolOpt false;
-    nvidia = mkBoolOpt false;
+    enable = mk-enable false;
+    nvidia = mk-bool-opt false;
   };
 
   config = mkIf cfg.enable {

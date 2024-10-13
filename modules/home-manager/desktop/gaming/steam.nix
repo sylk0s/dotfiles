@@ -2,15 +2,16 @@
   options,
   config,
   lib,
+  sylib,
   pkgs,
   ...
-}:
-with lib;
-with lib.sylkos; let
+}: let
+  inherit (lib) mkIf;
+  inherit (sylib) mk-enable;
   cfg = config.modules.desktop.gaming.steam;
 in {
   options.modules.desktop.gaming.steam = with types; {
-    enable = mkBoolOpt false;
+    enable = mk-enable false;
   };
 
   config = mkIf cfg.enable {

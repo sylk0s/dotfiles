@@ -1,19 +1,21 @@
 {
   lib,
+  sylib,
   config,
   pkgs,
   ...
-}:
-with lib;
-with lib.sylkos; {
+}: let
+  inherit (lib) mkIf mkMerge listToAttrs nameValuePair;
+  inherit (sylib) any-users attrs-to-list;
+in {
   config = mkMerge [
     {
       # sets any user's shells to nix which have the config set
       users.users =
-        listToAttrs (map (user: nameValuePair "${user.name}" {shell = pkgs.zsh;}) (attrsToList config.home-manager.users));
+        listToAttrs (map (user: nameValuePair "${user.name}" {shell = pkgs.zsh;}) (attrs-to-list config.home-manager.users));
     }
 
-    (mkIf (anyUsers (user: user.modules.shell.zsh.enable) config.home-manager.users) {
+    (mkIf (any-users (user: user.modules.shell.zsh.enable) config.home-manager.users) {
       programs.zsh.enable = true;
     })
   ];

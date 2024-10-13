@@ -2,15 +2,16 @@
   config,
   options,
   lib,
+  sylib,
   pkgs,
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (lib.sylkos) mkBoolOpt;
+  inherit (sylib) mk-enable;
   cfg = config.modules.desktop.services.kdeconnect;
 in {
   options.modules.desktop.services.kdeconnect = {
-    enable = mkBoolOpt false;
+    enable = mk-enable false;
   };
 
   config = mkIf cfg.enable {

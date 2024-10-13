@@ -2,16 +2,16 @@
   config,
   osConfig,
   options,
-  lib,
+  sylib,
   pkgs,
   ...
-}:
-with lib;
-with lib.sylkos; let
+}: let
+  inherit (lib) mkIf;
+  inherit (sylib) mk-enable;
   cfg = config.modules.desktop.media.pavucontrol;
 in {
   options.modules.desktop.media.pavucontrol = {
-    enable = mkBoolOpt config.modules.desktop.enable;
+    enable = mk-enable config.modules.desktop.enable;
   };
 
   config = mkIf (cfg.enable && osConfig.modules.audio.enable) {

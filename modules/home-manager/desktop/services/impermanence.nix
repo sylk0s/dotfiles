@@ -2,11 +2,12 @@
   config,
   options,
   lib,
+  sylib,
   inputs,
   ...
-}:
-with lib;
-with lib.sylkos; let
+}: let
+  inherit (lib) mkIf;
+  inherit (sylib) mk-enable;
   cfg = config.modules.impermanence;
 in {
   imports = [
@@ -14,7 +15,7 @@ in {
   ];
 
   options.modules.impermanence = {
-    enable = mkBoolOpt false;
+    enable = mk-enable false;
   };
 
   config = mkIf cfg.enable {

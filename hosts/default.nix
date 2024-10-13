@@ -1,22 +1,20 @@
 # This file contains all of the things I want to be on every system.
 {
   inputs,
-  outputs,
   config,
   lib,
+  sylib,
   pkgs,
   ...
 }: let
   inherit (lib) mkDefault;
 in {
   # Import the home-manager module and all my custom modules
-  imports =
-    [
-      ../users # user definitions
-      inputs.home-manager.nixosModules.home-manager
-      # inputs.nur.nixosModules.nur
-    ]
-    ++ outputs.nixosModules; # imports all nixos modules
+  imports = lib.trace "importing default host file" [
+    ../users # user definitions
+    inputs.home-manager.nixosModules.home-manager
+    # inputs.nur.nixosModules.nur
+  ];
 
   nixpkgs.config.allowUnfree = mkDefault true;
 
@@ -42,11 +40,11 @@ in {
       trusted-public-keys = ["cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
     };
   };
-
+  #a
   nixpkgs = {
-    overlays = [
-      (import ./grub_overlay.nix)
-    ];
+    # overlays = [
+    #   (import ./grub_overlay.nix)
+    # ];
     hostPlatform.system = "x86_64-linux";
   };
 

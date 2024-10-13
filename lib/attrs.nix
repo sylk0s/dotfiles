@@ -1,8 +1,4 @@
-{
-  lib,
-  inputs,
-  ...
-}: let
+{lib, ...}: let
   inherit (lib) any count mapAttrsToList;
 in rec {
   attrs-to-list = attrs:

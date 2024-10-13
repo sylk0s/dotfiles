@@ -2,14 +2,15 @@
   config,
   options,
   lib,
+  sylib,
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (lib.sylkos) mkBoolOpt;
+  inherit (sylib) mk-enable;
   cfg = config.modules.aaa;
 in {
   options.modules.aaa = {
-    enable = mkBoolOpt false;
+    enable = mk-enable false;
   };
 
   config = mkIf cfg.enable {

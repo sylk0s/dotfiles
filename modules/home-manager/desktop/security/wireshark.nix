@@ -1,15 +1,16 @@
 {
   config,
   lib,
+  sylib,
   pkgs,
   ...
-}:
-with lib;
-with lib.sylkos; let
+}: let
+  inherit (lib) mkIf;
+  inherit (sylib) mk-enable;
   cfg = config.modules.desktop.security.wireshark;
 in {
   options.modules.desktop.security.wireshark = {
-    enable = mkBoolOpt false;
+    enable = mk-enable false;
   };
 
   # this one is... weird

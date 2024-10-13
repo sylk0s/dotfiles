@@ -2,16 +2,17 @@
   config,
   options,
   lib,
+  sylib,
   pkgs,
   ...
-}:
-with lib;
-with lib.sylkos; let
+}: let
+  inherit (lib) mkIf;
+  inherit (sylib) mk-enable mk-bool-opt;
   cfg = config.modules.desktop.media.spotify;
 in {
   options.modules.desktop.media.spotify = {
-    enable = mkBoolOpt false;
-    tui.enable = mkBoolOpt false; # TODO
+    enable = mk-enable false;
+    tui.enable = mk-bool-opt false; # TODO
   };
 
   # TODO

@@ -2,11 +2,13 @@
   config,
   options,
   lib,
+  sylib,
   inputs,
   ...
-}:
-with lib;
-with lib.sylkos; let
+}: let
+  inherit (lib) mkIf;
+  inherit (sylib) mk-enable;
+
   cfg = config.modules.services.sops;
 in {
   imports = [
@@ -14,7 +16,7 @@ in {
   ];
 
   options.modules.services.sops = {
-    enable = mkBoolOpt false;
+    enable = mk-enable false;
   };
 
   config = mkIf cfg.enable {

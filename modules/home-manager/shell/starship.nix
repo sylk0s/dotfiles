@@ -2,14 +2,16 @@
   config,
   options,
   lib,
+  sylib,
   ...
-}:
-with lib;
-with lib.sylkos; let
+}: let
+  inherit (lib) mkIf;
+  inherit (sylib) mk-enable;
+
   cfg = config.modules.shell.starship;
 in {
   options.modules.shell.starship = {
-    enable = mkBoolOpt true;
+    enable = mk-enable true;
   };
 
   config = mkIf cfg.enable {

@@ -2,14 +2,15 @@
   config,
   options,
   lib,
+  sylib,
   ...
-}:
-with lib;
-with lib.sylkos; let
+}: let
+  inherit (lib) mkIf;
+  inherit (sylib) mk-bool-opt;
   cfg = config.modules.desktop.gnome;
 in {
   options.modules.desktop.gnome = {
-    enable = mkBoolOpt false;
+    enable = mk-bool-opt false;
   };
 
   config = mkIf cfg.enable {

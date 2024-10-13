@@ -3,18 +3,19 @@
   osConfig,
   options,
   lib,
+  sylib,
   pkgs,
   ...
-}:
-with lib;
-with lib.sylkos; let
+}: let
+  inherit (lib) mkIf;
+  inherit (sylib) mk-enable;
   cfg = config.modules.shell.git;
   configDir = osConfig.dotfiles.configDir;
 in {
   options.modules.shell.git = {
-    enable = mkBoolOpt true;
-    userName = mkStrOpt "sylk0s";
-    userEmail = mkStrOpt "julia@sylkos.xyz";
+    enable = mk-enable true;
+    userName = mk-str-opt "sylk0s";
+    userEmail = mk-str-opt "julia@sylkos.xyz";
   };
 
   config = mkIf cfg.enable {

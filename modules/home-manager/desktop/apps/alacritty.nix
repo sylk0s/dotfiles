@@ -3,17 +3,18 @@
   config,
   options,
   lib,
+  sylib,
   pkgs,
   ...
-}:
-with lib;
-with lib.sylkos; let
+}: let
+  inherit (lib) mkIf;
+  inherit (sylib) mk-enable;
   colorScheme = config.modules.themes.colors;
   fontStyles = config.modules.themes.fonts.styles;
   cfg = config.modules.desktop.apps.alacritty;
 in {
   options.modules.desktop.apps.alacritty = {
-    enable = mkBoolOpt false;
+    enable = mk-enable false;
   };
 
   config = mkIf cfg.enable {

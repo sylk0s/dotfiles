@@ -3,10 +3,11 @@
   config,
   options,
   lib,
+  sylib,
   ...
-}:
-with lib;
-with lib.sylkos; let
+}: let
+  inherit (lib) mkIf mkOption types length;
+
   cfg = config.modules.monitors;
 in {
   options.modules.monitors = mkOption {

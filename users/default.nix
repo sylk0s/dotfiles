@@ -1,16 +1,16 @@
-`# Defaults and config for each user
+# Defaults and config for each user
 {
   config,
   options,
   lib,
+  sylib,
   inputs,
-  outputs,
   ...
 }: let
   inherit (lib) types mkOption listToAttrs map mkDefault;
   cfg = config.modules.users;
 in {
-  options.modules.users = mkOption {
+  options.modules.users = lib.trace "making users option" mkOption {
     type = types.listOf (
       types.submodule {
         options = {
@@ -68,6 +68,7 @@ in {
                 else []
               )
               ++ ["video" "input"]
+              ++ user.extra-groups
               ++ config.userDefaults.extraGroups;
           };
         }
@@ -77,7 +78,7 @@ in {
     # DO THIS ONLY IF home-manager is a nixos module
     # sets up home manager for all the users above
     home-manager = {
-      extraSpecialArgs = {inherit inputs outputs;};
+      extraSpecialArgs = {inherit inputs sylib;};
       # for each user, generate a home-manager config
       users = listToAttrs (map (
           # maps to attr pair

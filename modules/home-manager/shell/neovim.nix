@@ -3,15 +3,17 @@
   osConfig,
   options,
   lib,
+  sylib,
   pkgs,
   ...
-}:
-with lib;
-with lib.sylkos; let
+}: let
+  inherit (lib) mkIf;
+  inherit (sylib) mk-enable;
+
   cfg = config.modules.shell.neovim;
 in {
   options.modules.shell.neovim = {
-    enable = mkBoolOpt true;
+    enable = mk-enable true;
   };
 
   # Some links

@@ -1,12 +1,14 @@
 {
   lib,
+  sylib,
   config,
   pkgs,
   ...
-}:
-with lib;
-with lib.sylkos; {
-  config = mkIf (anyUsers (user: user.modules.desktop.hyprland.enable) config.home-manager.users) {
+}: let
+  inherit (lib) mkIf;
+  inherit (sylib) any-users;
+in {
+  config = mkIf (any-users (user: user.modules.desktop.hyprland.enable) config.home-manager.users) {
     # TODO use something besides this
     # TODO also use plymouth for pretty splash
     # services.greetd = {

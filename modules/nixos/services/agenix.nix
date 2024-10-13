@@ -2,16 +2,17 @@
   config,
   options,
   lib,
+  sylib,
   pkgs,
   inputs,
   ...
-}:
-with lib;
-with lib.sylkos; let
+}: let
+  inherit (lib) mkIf;
+  inherit (sylib) mk-enable;
   cfg = config.modules.services.agenix;
 in {
   options.modules.services.agenix = {
-    enable = mkBoolOpt false;
+    enable = mk-enable false;
   };
 
   config = mkIf (cfg.enable) {

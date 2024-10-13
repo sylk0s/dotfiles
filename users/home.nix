@@ -2,14 +2,13 @@
 {
   inputs,
   lib,
-  outputs,
+  sylib,
   osConfig,
   ...
 }: let
   inherit (lib) mkDefault;
 in {
-  #imports = mapModulesRec ../modules/home-manager import;
-  imports = outputs.homeManagerModules;
+  imports = sylib.map-modules import ../modules/home-manager;
 
   programs.home-manager.enable = mkDefault true;
   programs.git.enable = mkDefault true;

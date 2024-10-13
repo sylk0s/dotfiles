@@ -2,20 +2,18 @@
   options,
   config,
   lib,
+  sylib,
   pkgs,
   inputs,
   ...
-}:
-with lib;
-with lib.sylkos; let
+}: let
   cfg = config.modules.desktop.apps.firefox;
+  inherit (lib) mkIf;
+  inherit (sylib) mk-enable mk-str-opt;
 in {
   options.modules.desktop.apps.firefox = with types; {
-    enable = mkBoolOpt false;
-    profileName = mkStrOpt config.user.name;
-
-    #userChrome  = mkOpt' lines "" "CSS Styles for Firefox's interface";
-    #userContent = mkOpt' lines "" "Global CSS Styles for websites";
+    enable = mk-enable false;
+    profileName = mk-str-opt config.user.name;
   };
 
   config = mkIf cfg.enable {

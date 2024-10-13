@@ -2,11 +2,12 @@
   config,
   options,
   lib,
+  sylib,
   inputs,
   ...
-}:
-with lib;
-with lib.sylkos; let
+}: let
+  inherit (lib) mkIf types;
+  inherit (sylib) mk-enable mk-opt;
   cfg = config.modules.impermanence;
 in {
   imports = [
@@ -14,8 +15,8 @@ in {
   ];
 
   options.modules.impermanence = {
-    enable = mkBoolOpt false;
-    device = mkOpt types.str "dev-root_vg-root_v.device";
+    enable = mk-enable false;
+    device = mk-opt types.str "dev-root_vg-root_v.device";
   };
 
   config = mkIf cfg.enable {

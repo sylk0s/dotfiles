@@ -3,24 +3,25 @@
   config,
   osConfig,
   lib,
+  sylib,
   pkgs,
   ...
-}:
-with lib;
-with lib.sylkos; let
+}: let
+  inherit (lib) mkIf mkOption types;
+  inherit (sylib) mk-enable mk-str-opt;
   cfg = config.modules.desktop.services.eww;
 in {
   options.modules.desktop.services.eww = {
-    enable = mkBoolOpt false;
+    enable = mk-enable false;
 
     # Override to pkgs.eww for non-wayland DE
-    package = lib.mkOption {
-      type = lib.types.package;
+    package = mkOption {
+      type = types.package;
       default = pkgs.eww-wayland;
     };
 
     # layout name... probably later should implement this as the script or something
-    layout = mkStrOpt "leftbar";
+    layout = mk-str-opt "leftbar";
   };
 
   config = let
@@ -42,7 +43,7 @@ in {
       #pkgs.wireplumber
     ];
   in
-    lib.mkIf (cfg.enable) {
+    mkIf (cfg.enable) {
       # home manager configuration
 
       programs.eww = {

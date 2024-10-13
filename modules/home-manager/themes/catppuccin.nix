@@ -2,15 +2,17 @@
   config,
   options,
   lib,
+  sylib,
   inputs,
   ...
-}:
-with lib;
-with lib.sylkos; let
+}: let
+  inherit (lib) mkIf;
+  inherit (sylib) mk-enable;
+
   cfg = config.modules.themes.catppuccin;
 in {
   options.modules.themes.catppuccin = {
-    enabled = mkBoolOpt true;
+    enabled = mk-enable true;
   };
 
   imports = [

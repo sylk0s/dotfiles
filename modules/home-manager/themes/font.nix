@@ -3,14 +3,16 @@
   config,
   options,
   lib,
+  sylib,
   pkgs,
   ...
-}:
-with lib;
-with lib.sylkos; let
+}: let
+  inherit (lib) mkIf;
+  inherit (sylib) mk-enable mk-str-opt;
+
   cfg = config.modules.themes.fonts;
   font = defaultFamily: defaultSize: {
-    family = mkStrOpt defaultFamily;
+    family = mk-str-opt defaultFamily;
     size = lib.mkOption {
       type = lib.types.int;
       default = defaultSize;
@@ -18,7 +20,7 @@ with lib.sylkos; let
   };
 in {
   options.modules.themes.fonts = {
-    enable = mkBoolOpt true;
+    enable = mk-enable true;
 
     styles = {
       main = font "Ubuntu Nerd Font" 11;

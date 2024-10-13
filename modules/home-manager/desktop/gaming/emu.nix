@@ -2,15 +2,14 @@
   options,
   config,
   lib,
+  sylib,
   pkgs,
   ...
-}:
-with lib;
-with lib.sylkos; let
+}: let
   cfg = config.modules.desktop.gaming.emu;
 in {
   options.modules.desktop.gaming.emu = with types; {
-    enable = mkBoolOpt false;
+    enable = mk-enable false;
   };
 
   config = mkIf cfg.enable {

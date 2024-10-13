@@ -61,15 +61,15 @@
   outputs = inputs @ {
     self,
     nixpkgs,
-    home-manager,
     ...
   }: let
-    inherit (self) outputs;
     lib = nixpkgs.lib;
+    sylib = import ./lib {inherit lib inputs;};
+    module-paths = sylib.all-modules-in-dir-rec ./modules/nixos;
   in {
     lib = lib;
 
-    sylib = import ./lib {inherit lib inputs;};
+    sylib = sylib;
 
     # Custom pkgs
     # packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
@@ -81,14 +81,22 @@
     # overlays = mapModules ./overlays import;
 
     # Exports all of the modules from this flake
-    nixosModules = {...}: {imports = outputs.sylib.mapModulesRec ./modules/nixos;};
+    nixosModules = {...}: {imports = module-paths;};
 
     # Exports all of the modules from home-manager
-    homeManagerModules = {...}: {imports = outputs.sylib.mapModulesRec ./modules/home-manager;};
+    # homeManagerModules = {...}: {imports = outputs.sylib.all-modules-in-dir-rec ./modules/home-manager;};
 
     # Imports the hosts from the default.nix in each folder of ./hosts
-    nixosConfigurations = (({...}: {a = outputs.sylib.mapHosts ./hosts;}) {inherit self inputs outputs lib;}).a;
+    nixosConfigurations =
+      sylib.mk-hosts {
+        inherit inputs sylib;
+      }
+      module-paths
+      ./hosts;
 
     # homeManagerConfiguration = mapHmConfigs ./hosts;
   };
 }
+#a
+#a
+

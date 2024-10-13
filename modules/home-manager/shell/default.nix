@@ -2,11 +2,10 @@
   config,
   options,
   lib,
+  sylib,
   pkgs,
   ...
-}:
-with lib;
-with lib.sylkos; let
+}: let
   cfg = config.modules.shell;
 in {
   config = {

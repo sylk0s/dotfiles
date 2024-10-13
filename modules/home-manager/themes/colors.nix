@@ -3,11 +3,13 @@
   config,
   options,
   lib,
+  sylib,
   pkgs,
   ...
-}:
-with lib;
-with lib.sylkos; let
+}: let
+  inherit (lib) mkIf isNull;
+  inherit (sylib) mk-enable;
+
   colorType = lib.types.addCheck lib.types.str (x: !isNull (builtins.match "#[0-9a-fA-F]{6}" x));
   color = defaultColor:
     lib.mkOption {
@@ -17,7 +19,7 @@ with lib.sylkos; let
   cfg = config.modules.themes.colors;
 in {
   options.modules.themes.colors = {
-    enable = mkBoolOpt true;
+    enable = mk-enable true;
 
     # TODO replace this later
     # cattpuccin

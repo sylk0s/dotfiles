@@ -2,15 +2,21 @@
   lib,
   config,
   inputs,
+  sylib,
   ...
-}:
-with lib;
-with lib.sylkos; {
-  imports = [
+}: let
+  inherit (lib) mkIf;
+  inherit (sylib) any-user;
+in {
+  imports = lib.trace "import catppuccin" [
     inputs.catppuccin.nixosModules.catppuccin
   ];
 
-  config =
-    mkIf (anyUsers (user: user.modules.themes.catppuccin) config.home-manager.users) {
+  config = mkIf (any-user (user: user.modules.themes.catppuccin) config.home-manager.users) {
+    catppuccin = {
+      enable = true;
+      accent = "lavender";
+      flavor = "mocha";
     };
+  };
 }
