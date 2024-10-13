@@ -6,9 +6,9 @@
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (sylib) any-users;
+  inherit (sylib) any-user;
 in {
-  config = mkIf (any-users (user: user.modules.desktop.security.wireshark.enable) config.home-manager.users) {
+  config = mkIf (any-user (user: user.modules.desktop.security.wireshark.enable) config.home-manager.users) {
     users.groups.plugdev = {};
     userDefaults.extraGroups = [
       "wireshark"

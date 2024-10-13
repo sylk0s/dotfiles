@@ -6,9 +6,9 @@
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (sylib) any-users;
+  inherit (sylib) any-user;
 in {
-  config = mkIf (any-users (user: user.modules.desktop.hyprland.enable) config.home-manager.users) {
+  config = mkIf (any-user (user: user.modules.desktop.hyprland.enable) config.home-manager.users) {
     # TODO use something besides this
     # TODO also use plymouth for pretty splash
     # services.greetd = {

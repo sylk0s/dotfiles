@@ -5,9 +5,9 @@
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (sylib) any-users;
+  inherit (sylib) any-user;
 in {
-  config = mkIf (any-users (user: user.modules.desktop.services.ags.enable) config.home-manager.users) {
+  config = mkIf (any-user (user: user.modules.desktop.services.ags.enable) config.home-manager.users) {
     services.upower.enable = true;
   };
 }

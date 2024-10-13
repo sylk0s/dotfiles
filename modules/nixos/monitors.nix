@@ -42,7 +42,7 @@ in {
             type = types.int;
             default = 0;
           };
-          enabled = mkOption {
+          enable = mkOption {
             type = types.bool;
             default = true;
           };

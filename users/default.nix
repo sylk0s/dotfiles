@@ -8,6 +8,7 @@
   ...
 }: let
   inherit (lib) types mkOption listToAttrs map mkDefault;
+  inherit (sylib) mk-homes all-modules-in-dir-rec;
   cfg = config.modules.users;
 in {
   options.modules.users = lib.trace "making users option" mkOption {
@@ -68,7 +69,7 @@ in {
                 else []
               )
               ++ ["video" "input"]
-              ++ user.extra-groups
+              # ++ user.extra-groups
               ++ config.userDefaults.extraGroups;
           };
         }
@@ -77,27 +78,31 @@ in {
 
     # DO THIS ONLY IF home-manager is a nixos module
     # sets up home manager for all the users above
-    home-manager = {
+    home-manager = let
+      module-paths = sylib.all-modules-in-dir-rec ../modules/home-manager;
+    in {
       extraSpecialArgs = {inherit inputs sylib;};
       # for each user, generate a home-manager config
-      users = listToAttrs (map (
-          # maps to attr pair
-          user: {
-            name = user.name;
-            value = {
-              imports = [
-                ./home.nix # default config for every user
-                user.config # user specific config file
-              ];
-              # sets up user's info
-              home = {
-                username = user.name;
-                homeDirectory = mkDefault "/home/${user.name}";
-              };
-            };
-          }
-        )
-        cfg);
+      users = mk-homes module-paths ./home.nix cfg;
+
+      # listToAttrs (map (
+      #     # maps to attr pair
+      #     user: {
+      #       name = user.name;
+      #       value = {
+      #         imports = [
+      #           ./home.nix # default config for every user
+      #           user.config # user specific config file
+      #         ];
+      #         # sets up user's info
+      #         home = {
+      #           username = user.name;
+      #           homeDirectory = mkDefault "/home/${user.name}";
+      #         };
+      #       };
+      #     }
+      #   )
+      #   cfg);
     };
 
     #   any assertions that should be checked

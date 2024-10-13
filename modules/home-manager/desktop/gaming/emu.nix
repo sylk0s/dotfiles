@@ -7,8 +7,11 @@
   ...
 }: let
   cfg = config.modules.desktop.gaming.emu;
+
+  inherit (lib) mkIf;
+  inherit (sylib) mk-enable;
 in {
-  options.modules.desktop.gaming.emu = with types; {
+  options.modules.desktop.gaming.emu = {
     enable = mk-enable false;
   };
 

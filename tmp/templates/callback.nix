@@ -5,9 +5,9 @@
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (sylib) any-users;
+  inherit (sylib) any-user;
 in {
   config =
-    mkIf (any-users (user: user.modules.<AAA>.enable) config.home-manager.users) {
+    mkIf (any-user (user: user.modules.<AAA>.enable) config.home-manager.users) {
     };
 }

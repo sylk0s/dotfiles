@@ -8,7 +8,7 @@
   ...
 }: let
   cfg = config.modules.desktop.apps.firefox;
-  inherit (lib) mkIf;
+  inherit (lib) mkIf types;
   inherit (sylib) mk-enable mk-str-opt;
 in {
   options.modules.desktop.apps.firefox = with types; {

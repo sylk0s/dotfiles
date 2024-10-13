@@ -12,7 +12,7 @@ in {
     inputs.catppuccin.nixosModules.catppuccin
   ];
 
-  config = mkIf (any-user (user: user.modules.themes.catppuccin) config.home-manager.users) {
+  config = mkIf (any-user (user: user.modules.themes.catppuccin.enable) config.home-manager.users) {
     catppuccin = {
       enable = true;
       accent = "lavender";

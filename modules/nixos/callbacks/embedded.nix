@@ -6,9 +6,9 @@
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (sylib) any-users;
+  inherit (sylib) any-user;
 in {
-  config = mkIf (any-users (user: user.modules.dev.embedded.enable) config.home-manager.users) {
+  config = mkIf (any-user (user: user.modules.dev.embedded.enable) config.home-manager.users) {
     services.udev.packages = with pkgs; [
       platformio-core
       openocd

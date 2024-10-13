@@ -8,7 +8,7 @@
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (sylib) mk-enable;
+  inherit (sylib) mk-enable mk-str-opt;
   cfg = config.modules.shell.git;
   configDir = osConfig.dotfiles.configDir;
 in {

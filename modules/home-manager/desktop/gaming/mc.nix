@@ -10,7 +10,7 @@
   inherit (sylib) mk-enable;
   cfg = config.modules.desktop.gaming.mc;
 in {
-  options.modules.desktop.gaming.mc = with types; {
+  options.modules.desktop.gaming.mc = {
     enable = mk-enable false;
   };
 

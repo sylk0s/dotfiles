@@ -10,7 +10,7 @@
   inherit (sylib) mk-enable;
   cfg = config.modules.desktop.gaming.steam;
 in {
-  options.modules.desktop.gaming.steam = with types; {
+  options.modules.desktop.gaming.steam = {
     enable = mk-enable false;
   };
 

@@ -12,14 +12,14 @@
   cfg = config.modules.themes.catppuccin;
 in {
   options.modules.themes.catppuccin = {
-    enabled = mk-enable true;
+    enable = mk-enable true;
   };
 
   imports = [
     inputs.catppuccin.homeManagerModules.catppuccin
   ];
 
-  config = mkIf cfg.enabled {
+  config = mkIf cfg.enable {
     #   # assertions = [
     #   #   {
     #   #     assertion = true;

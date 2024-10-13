@@ -6,7 +6,7 @@
   ...
 }: let
   inherit (lib) mkIf mkMerge listToAttrs nameValuePair;
-  inherit (sylib) any-users attrs-to-list;
+  inherit (sylib) any-user attrs-to-list;
 in {
   config = mkMerge [
     {
@@ -15,7 +15,7 @@ in {
         listToAttrs (map (user: nameValuePair "${user.name}" {shell = pkgs.zsh;}) (attrs-to-list config.home-manager.users));
     }
 
-    (mkIf (any-users (user: user.modules.shell.zsh.enable) config.home-manager.users) {
+    (mkIf (any-user (user: user.modules.shell.zsh.enable) config.home-manager.users) {
       programs.zsh.enable = true;
     })
   ];

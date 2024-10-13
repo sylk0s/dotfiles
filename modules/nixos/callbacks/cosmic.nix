@@ -6,13 +6,13 @@
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (sylib) any-users;
+  inherit (sylib) any-user;
 in {
   imports = [
     inputs.nixos-cosmic.nixosModules.default
   ];
 
-  config = mkIf (any-users (user: user.modules.desktop.cosmic.enable) config.home-manager.users) {
+  config = mkIf (any-user (user: user.modules.desktop.cosmic.enable) config.home-manager.users) {
     services.desktopManager = {
       cosmic.enable = true;
     };

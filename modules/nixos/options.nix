@@ -5,7 +5,8 @@
   sylib,
   ...
 }: let
-  inherit (lib) mkIf types findFirst pathExists toString removePrefix;
+  inherit (builtins) toString;
+  inherit (lib) mkIf types findFirst pathExists removePrefix;
   inherit (sylib) mk-enable mk-opt;
 in {
   options = {
@@ -17,9 +18,9 @@ in {
           "/etc/dotfiles"
           "/home/sylkos/dotfiles"
         ])) "Directory of the dotfiles";
-      modulesDir = mk-opt types.path "${config.dotfiles.dir}/modules";
-      configDir = mk-opt types.path "${config.dotfiles.dir}/config";
-      secretsDir = mk-opt types.path "${config.dotfiles.dir}/secrets";
+      modulesDir = mk-opt types.path "${config.dotfiles.dir}/modules" "Path to modules";
+      configDir = mk-opt types.path "${config.dotfiles.dir}/config" "Path to no-nix config";
+      secretsDir = mk-opt types.path "${config.dotfiles.dir}/secrets" "Path to secrets";
     };
 
     # TODO confirm this is merging

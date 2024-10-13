@@ -7,6 +7,9 @@
   ...
 }: let
   cfg = config.modules.desktop.social.signal;
+
+  inherit (lib) mkIf;
+  inherit (sylib) mk-enable;
 in {
   options.modules.desktop.social.signal = {
     enable = mk-enable false;

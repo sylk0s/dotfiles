@@ -2,6 +2,7 @@
   config,
   osConfig,
   options,
+  lib,
   sylib,
   pkgs,
   ...

@@ -8,7 +8,7 @@
 }: let
   inherit (lib) mkDefault;
 in {
-  imports = sylib.map-modules import ../modules/home-manager;
+  # imports = sylib.map-modules import ../modules/home-manager;
 
   programs.home-manager.enable = mkDefault true;
   programs.git.enable = mkDefault true;

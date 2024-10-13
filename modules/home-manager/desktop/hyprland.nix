@@ -7,7 +7,8 @@
   inputs,
   ...
 }: let
-  inherit (lib) mkIf map toString;
+  inherit (builtins) toString;
+  inherit (lib) mkIf map;
   inherit (sylib) mk-enable mk-bool-opt;
 
   cfg = config.modules.desktop.hyprland;
