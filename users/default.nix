@@ -11,7 +11,7 @@
   inherit (sylib) mk-homes all-modules-in-dir-rec;
   cfg = config.modules.users;
 in {
-  options.modules.users = lib.trace "making users option" mkOption {
+  options.modules.users = mkOption {
     type = types.listOf (
       types.submodule {
         options = {

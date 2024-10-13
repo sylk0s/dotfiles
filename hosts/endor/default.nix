@@ -10,7 +10,7 @@
     inputs.nixos-hardware.nixosModules.dell-xps-15-9520
   ];
 
-  modules = lib.trace "eval endor config file" {
+  modules = {
     audio.enable = true;
     bluetooth.enable = true;
     network.enable = true;

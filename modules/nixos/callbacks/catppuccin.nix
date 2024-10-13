@@ -8,7 +8,7 @@
   inherit (lib) mkIf;
   inherit (sylib) any-user;
 in {
-  imports = lib.trace "import catppuccin" [
+  imports = [
     inputs.catppuccin.nixosModules.catppuccin
   ];
 

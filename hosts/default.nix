@@ -10,7 +10,7 @@
   inherit (lib) mkDefault;
 in {
   # Import the home-manager module and all my custom modules
-  imports = lib.trace "importing default host file" [
+  imports = [
     ../users # user definitions
     inputs.home-manager.nixosModules.home-manager
     # inputs.nur.nixosModules.nur
