@@ -1,15 +1,7 @@
 # Default home-manager config for each user's home
-{
-  inputs,
-  lib,
-  sylib,
-  osConfig,
-  ...
-}: let
+{lib, ...}: let
   inherit (lib) mkDefault;
 in {
-  # imports = sylib.map-modules import ../modules/home-manager;
-
   programs.home-manager.enable = mkDefault true;
   programs.git.enable = mkDefault true;
 
