@@ -22,8 +22,8 @@ in {
     (mkIf (cfg.enable) {
       home.packages = with pkgs; [
         sassc
-        gnome.gnome-control-center
-        gnome.gnome-bluetooth
+        gnome-control-center
+        gnome-bluetooth
         inotify-tools
         networkmanagerapplet
       ];

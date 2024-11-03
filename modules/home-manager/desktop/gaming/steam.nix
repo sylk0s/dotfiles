@@ -19,7 +19,7 @@ in {
     # eventually i wanna move this here
     home.packages = with pkgs; [
       steam-tui
-      steamPackages.steamcmd
+      steamcmd
     ];
 
     # for now...

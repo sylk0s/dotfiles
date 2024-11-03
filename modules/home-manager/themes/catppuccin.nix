@@ -34,6 +34,11 @@ in {
       enable = true;
       accent = "lavender";
       flavor = "mocha";
+      pointerCursor = {
+        enable = true;
+        accent = "lavender";
+        flavor = "mocha";
+      };
     };
 
     gtk = {
@@ -42,11 +47,6 @@ in {
         enable = true;
         accent = "lavender";
         flavor = "mocha";
-        cursor = {
-          enable = true;
-          accent = "lavender";
-          flavor = "mocha";
-        };
         icon = {
           enable = true;
           accent = "lavender";

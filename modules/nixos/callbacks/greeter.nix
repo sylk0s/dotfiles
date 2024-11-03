@@ -50,13 +50,13 @@ in {
     #   };
     # };
 
-    services.displayManager = {
-      sddm = {
-        enable = true;
-        wayland.enable = true;
-        package = pkgs.kdePackages.sddm;
-      };
-    };
+    # services.displayManager = {
+    #   sddm = {
+    #     enable = true;
+    #     wayland.enable = true;
+    #     # package = pkgs.kdePackages.sddm;
+    #   };
+    # };
 
     boot.plymouth = {
       enable = true;

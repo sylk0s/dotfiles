@@ -46,20 +46,18 @@
           enable = true;
         };
         kdeconnect.enable = true;
-        # dunst.enable = false;
+        dunst.enable = false;
       };
     };
     dev = {
       python.enable = true;
-      # TODO Hello?
-      #rust.enable = true;
+      rust.enable = true;
       julia.enable = true;
       java.enable = true;
-      # TODO Hello?
-      #c.enable = true;
-      racket.enable = true;
+      c.enable = true;
+      racket.enable = false;
       haskell.enable = true;
-      embedded.enable = true;
+      embedded.enable = false;
     };
 
     shell = {

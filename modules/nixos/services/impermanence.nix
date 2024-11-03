@@ -119,6 +119,7 @@ in {
         "/etc/NetworkManager/system-connections/"
         "/etc/ssh"
         "/var/lib/bluetooth"
+        "/var/lib/nixos" # for user and group ids
       ];
       files = [
       ];

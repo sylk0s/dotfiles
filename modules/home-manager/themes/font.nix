@@ -40,7 +40,7 @@ in {
       julia-mono
       ibm-plex
       noto-fonts
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       noto-fonts-emoji
     ];
 

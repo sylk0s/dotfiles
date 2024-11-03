@@ -8,19 +8,16 @@
 }: let
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
-  cfg = config.modules.dev.c;
+
+  cfg = config.modules.dev.ocaml;
 in {
-  options.modules.dev.c = {
+  options.modules.dev.ocaml = {
     enable = mk-enable false;
   };
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      # clang
-      # gcc
-      # gdb
-      cmake
-      #llvmPackages.libcxx
+      ocaml
     ];
   };
 }

@@ -19,19 +19,30 @@ in {
     home = {
       # todo soup up rust config
       packages = with pkgs; [
-        clang
+        # rust toolchain
+        cargo
+        rustc
+        rustfmt
+        clippy
+        rust-analyzer
+
+        # for lld
         llvmPackages.bintools
-        rustup
-        # this is outdated :P
-        # libcxxabi # for FireDBG <3
       ];
 
       sessionVariables = {
-        # TODO what???
-        #PATH = ["$(${pkgs.yarn}/bin/yarn global bin)" "$CARGO_HOME/bin"];
-
         RUSTUP_HOME = "$XDG_DATA_HOME/rustup";
-        CARGO_HOME = "$XDG_DATA_HOME/cargo";
+        CARGO_HOME = "$HOME/.local/state/cargo";
+      };
+
+      sessionPath = [
+        "$CARGO_HOME/bin"
+      ];
+
+      persistence."/persist/home/${config.home.username}" = {
+        directories = [
+          ".local/state/cargo"
+        ];
       };
     };
   };
