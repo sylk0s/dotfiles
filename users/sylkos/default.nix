@@ -58,6 +58,7 @@
       racket.enable = false;
       haskell.enable = true;
       embedded.enable = false;
+      ocaml.enable = true;
     };
 
     shell = {

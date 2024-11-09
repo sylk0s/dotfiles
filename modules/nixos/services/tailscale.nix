@@ -3,24 +3,18 @@
   options,
   lib,
   sylib,
-  pkgs,
   ...
 }: let
+  cfg = config.modules.services.tailscale;
+
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
-  cfg = config.modules.dev.c;
 in {
-  options.modules.dev.c = {
+  options.modules.services.tailscale = {
     enable = mk-enable false;
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      # clang
-      (lib.hiPrio gcc)
-      gdb
-      gnumake
-      cmake
-    ];
+    services.tailscale.enable = true;
   };
 }

@@ -52,7 +52,6 @@ in {
 
               mikestead.dotenv
 
-              serayuzgur.crates
               tamasfe.even-better-toml
               rust-lang.rust-analyzer
 

@@ -22,6 +22,7 @@
       docker.enable = true;
       gpg.enable = true;
       sops.enable = true;
+      tailscale.enable = true;
     };
 
     users = [
