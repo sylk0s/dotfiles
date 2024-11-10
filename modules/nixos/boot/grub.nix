@@ -7,7 +7,7 @@
   inputs,
   ...
 }: let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf mkDefault;
   inherit (sylib) mk-enable;
 
   cfg = config.modules.grub;
