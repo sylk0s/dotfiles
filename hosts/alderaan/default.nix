@@ -15,6 +15,7 @@
     #    bluetooth.enable = true;
     network.enable = true;
     impermanence.enable = true;
+    grub.enable = true;
     services = {
       sops.enable = true;
       gpg.enable = true;

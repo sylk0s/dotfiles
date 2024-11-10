@@ -22,6 +22,8 @@
       # virtualbox.enable = true;
     };
 
+    grub.enable = true;
+
     users = [
       {
         name = "sylkos";

@@ -18,6 +18,7 @@
     flipper.enable = true;
 
     impermanence.enable = true;
+    lanzaboote.enable = true;
     services = {
       docker.enable = true;
       gpg.enable = true;

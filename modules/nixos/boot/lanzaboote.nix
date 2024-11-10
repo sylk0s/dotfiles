@@ -1,0 +1,33 @@
+{
+  config,
+  options,
+  lib,
+  sylib,
+  pkgs,
+  inputs,
+  ...
+}: let
+  inherit (lib) mkIf;
+  inherit (sylib) mk-enable;
+
+  cfg = config.modules.lanzaboote;
+in {
+  imports = [inputs.lanzaboote.nixosModules.lanzaboote];
+
+  options.modules.lanzaboote = {
+    enable = mk-enable false;
+  };
+
+  config = mkIf cfg.enable {
+    boot = {
+      initrd.systemd.enable = true;
+
+      loader.systemd-boot.enable = lib.mkForce false;
+
+      lanzaboote = {
+        enable = true;
+        pkiBundle = "/etc/secureboot";
+      };
+    };
+  };
+}

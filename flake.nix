@@ -56,6 +56,8 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    lanzaboote.url = "github:nix-community/lanzaboote";
   };
 
   outputs = inputs @ {
