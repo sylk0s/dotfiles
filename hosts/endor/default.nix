@@ -18,7 +18,8 @@
     flipper.enable = true;
 
     impermanence.enable = true;
-    lanzaboote.enable = true;
+    # lanzaboote.enable = true;
+    grub.enable = true;
     services = {
       docker.enable = true;
       gpg.enable = true;
