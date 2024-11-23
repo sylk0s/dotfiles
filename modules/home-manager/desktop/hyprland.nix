@@ -60,7 +60,7 @@ in {
 
       settings = {
         exec-once = [
-          "ags"
+          # "ags"
           "${configDir}/scripts/wallpaper.sh"
           "nm-applet"
           "blueman-applet"
@@ -94,10 +94,12 @@ in {
             passes = 1;
             new_optimizations = true;
           };
-          drop_shadow = true;
-          shadow_range = 4;
-          shadow_render_power = 3;
-          "col.shadow" = "rgba(1a1a1aee)";
+          shadow = {
+            enabled = true;
+            range = 4;
+            render_power = 3;
+            color = "rgba(1a1a1aee)";
+          };
         };
 
         animations = {
@@ -189,9 +191,10 @@ in {
             (app "C" "spotify")
             (app "R" "code")
             (base "exec" "Tab" "${pkgs.alacritty}/bin/alacritty")
+            (base "exec" "R" "wofi")
 
             # ags
-            (ag "R" "applauncher")
+            # (ag "R" "applauncher")
             (ag "escape" "powermenu")
             (ag "E" "overview")
             (salt "exec" "Q" "ags quit; ags")
