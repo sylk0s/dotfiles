@@ -61,6 +61,7 @@ in {
       settings = {
         exec-once = [
           # "ags"
+          # "waybar"
           "${configDir}/scripts/wallpaper.sh"
           "nm-applet"
           "blueman-applet"
@@ -191,7 +192,7 @@ in {
             (app "C" "spotify")
             (app "R" "code")
             (base "exec" "Tab" "${pkgs.alacritty}/bin/alacritty")
-            (base "exec" "R" "wofi")
+            (base "exec" "R" "wofi --show run")
 
             # ags
             # (ag "R" "applauncher")

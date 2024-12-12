@@ -41,13 +41,14 @@
       #  mc.enable = true;
       #  emu.enable = false;
       #};
-      #services = {
-      #  ags = {
-      #    enable = true;
-      #  };
-      #  kdeconnect.enable = true;
-      #  dunst.enable = false;
-      #};
+      services = {
+        #  ags = {
+        #    enable = true;
+        #  };
+        #  kdeconnect.enable = true;
+        #  dunst.enable = false;
+        waybar.enable = true;
+      };
     };
     dev = {
       #python.enable = true;

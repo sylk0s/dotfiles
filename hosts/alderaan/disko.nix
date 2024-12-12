@@ -1,14 +1,9 @@
-{inputs, ...}: {
-  imports = [inputs.disko.nixosModules.disko];
-
-  fileSystems."/persist".neededForBoot = true;
-  fileSystems."/var/log".neededForBoot = true;
-
+{
   disko.devices = {
     disk = {
       main = {
         type = "disk";
-        device = "/dev/sdX";
+        device = "/dev/sdb";
         content = {
           type = "gpt";
           partitions = {

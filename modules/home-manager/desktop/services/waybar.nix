@@ -25,7 +25,9 @@ in {
           position = "top";
           height = 30;
 
-          modules-center = ["clock" "battery" "network" "wlr/taskbar" "hyprland/workspaces" "tray"];
+          modules-left = ["hyprland/workspaces"];
+          modules-center = ["clock"];
+          modules-right = ["battery" "tray"];
 
           "battery" = {
             "tooltip-format" = "{time}";
