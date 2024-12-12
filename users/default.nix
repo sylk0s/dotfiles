@@ -22,9 +22,6 @@ in {
             type = types.bool;
             default = false;
           };
-          config = mkOption {
-            type = types.path;
-          };
           password = mkOption {
             type = types.nullOr types.path;
             default = null;

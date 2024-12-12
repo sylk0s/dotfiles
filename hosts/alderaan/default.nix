@@ -3,6 +3,7 @@
   config,
   lib,
   inputs,
+  self,
   ...
 }: {
   imports = [
@@ -15,7 +16,10 @@
     network.enable = true;
     #impermanence.enable = true;
     #grub.enable = true;
-    disko.enable = true;
+    disko = {
+      enable = true;
+      disko-config = ./disko.nix;
+    };
     #services = {
     #sops.enable = true;
     #gpg.enable = true;
@@ -25,21 +29,9 @@
       {
         name = "sylkos";
         privileged = true;
-        config = "${config.dotfiles.dir}/users/test";
       }
     ];
   };
-
-  # boot = {
-  #   initrd = {
-  #     luks.devices = {
-  #       "test_crypt" = {
-  #         device = "/dev/disk/by-uuid/1cc8bd73-a0f2-47d5-b9b2-b1dd5d0c0aa4";
-  #         preLVM = true;
-  #       };
-  #     };
-  #   };
-  # };
 
   home-manager.backupFileExtension = "backup";
   boot.supportedFilesystems = ["btrfs"];

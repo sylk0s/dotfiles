@@ -83,7 +83,7 @@
     # overlays = mapModules ./overlays import;
 
     # Exports all of the modules from this flake
-    nixosModules = {...}: {imports = module-paths;};
+    # nixosModules = {...}: {imports = module-paths;};
 
     # Exports all of the modules from home-manager
     # homeManagerModules = {...}: {imports = outputs.sylib.all-modules-in-dir-rec ./modules/home-manager;};

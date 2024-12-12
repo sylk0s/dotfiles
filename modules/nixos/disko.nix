@@ -2,6 +2,7 @@
   inputs,
   sylib,
   config,
+  lib,
   ...
 }: let
   inherit (sylib) mk-enable mk-opt;
@@ -16,10 +17,10 @@ in {
     disko-config = mk-opt (types.nullOr types.str) null "The path to the disko config";
   };
 
-  fileSystems."/persist".neededForBoot = true;
-  fileSystems."/var/log".neededForBoot = true;
-
-  config = mkIf cgf.enable {
+  config = mkIf cfg.enable {
     inherit (import config.modules.disko.disko-config);
+
+    fileSystems."/persist".neededForBoot = true;
+    fileSystems."/var/log".neededForBoot = true;
   };
 }
