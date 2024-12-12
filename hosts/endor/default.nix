@@ -31,7 +31,6 @@
       {
         name = "sylkos";
         privileged = true;
-        config = ../../users/sylkos;
       }
     ];
   };

@@ -27,7 +27,7 @@
 
     users = [
       {
-        name = "sylkos";
+        name = "test";
         privileged = true;
       }
     ];
