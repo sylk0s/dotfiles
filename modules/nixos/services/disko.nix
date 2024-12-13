@@ -6,7 +6,7 @@
   inputs,
   ...
 }: let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf types mkOption;
   inherit (sylib) mk-enable;
   cfg = config.modules.services.disko;
 in {
@@ -14,10 +14,18 @@ in {
 
   options.modules.services.disko = {
     enable = mk-enable false;
-    # config =
+    config = mkOption {
+      type = types.nullOr types.path;
+      default = null;
+    };
   };
 
-  config =
-    mkIf cfg.enable {
+  config = mkIf cfg.enable {
+    inherit (import cfg.config);
+
+    fileSystems = {
+      "/persist".neededForBoot = true;
+      "/var/log".neededForBoot = true;
     };
+  };
 }

@@ -15,10 +15,10 @@
     #    bluetooth.enable = true;
     network.enable = true;
     #impermanence.enable = true;
-    #grub.enable = true;
+    grub.enable = true;
     disko = {
       enable = true;
-      disko-config = ./disko.nix;
+      config = ./disko.nix;
     };
     #services = {
     #sops.enable = true;
