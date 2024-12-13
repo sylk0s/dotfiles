@@ -7,7 +7,7 @@
   ...
 }: {
   imports = [
-    #./hardware-configuration.nix
+    ./hardware-configuration.nix
   ];
 
   modules = {
@@ -15,7 +15,8 @@
     #    bluetooth.enable = true;
     network.enable = true;
     #impermanence.enable = true;
-    grub.enable = true;
+    # grub.enable = true;
+    lanzaboote.enable = true;
     services.disko = {
       enable = true;
       config-file = ./disko.nix;
@@ -34,7 +35,7 @@
     ];
   };
 
-  boot.loader.grub.enableCryptodisk = false;
+  # boot.loader.grub.enableCryptodisk = false;
 
   home-manager.backupFileExtension = "backup";
   boot.supportedFilesystems = ["btrfs"];
