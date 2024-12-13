@@ -31,6 +31,7 @@
       {
         name = "sylkos";
         privileged = true;
+        config = "${inputs.self.outPath}/users/sylkos";
       }
     ];
   };

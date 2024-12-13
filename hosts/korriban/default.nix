@@ -28,7 +28,7 @@
       {
         name = "sylkos";
         privileged = true;
-        config = "${config.dotfiles.dir}/users/sylkos";
+        config = "${inputs.self.outPath}/users/sylkos";
       }
     ];
   };

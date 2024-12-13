@@ -13,7 +13,7 @@ in rec {
     imports =
       [
         default
-        ../users/${user.name}
+        user.config
       ]
       ++ modules;
     home = {

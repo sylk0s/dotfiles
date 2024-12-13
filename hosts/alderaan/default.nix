@@ -29,6 +29,7 @@
       {
         name = "test";
         privileged = true;
+        config = "${inputs.self.outPath}/users/test";
       }
     ];
   };

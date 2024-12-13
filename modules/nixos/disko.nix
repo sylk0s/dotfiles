@@ -14,7 +14,7 @@ in {
 
   options.modules.disko = {
     enable = mk-enable false;
-    disko-config = mk-opt (types.nullOr types.str) null "The path to the disko config";
+    disko-config = mk-opt (types.nullOr types.path) null "The path to the disko config";
   };
 
   config = mkIf cfg.enable {
