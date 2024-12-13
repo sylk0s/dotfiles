@@ -18,7 +18,7 @@
     grub.enable = true;
     services.disko = {
       enable = true;
-      config = ./disko.nix;
+      config-file = ./disko.nix;
     };
     #services = {
     #sops.enable = true;

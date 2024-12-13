@@ -21,6 +21,9 @@
     # lanzaboote.enable = true;
     grub.enable = true;
     services = {
+      disko = {
+        enable = false;
+      };
       docker.enable = true;
       gpg.enable = true;
       sops.enable = true;

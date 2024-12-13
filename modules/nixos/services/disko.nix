@@ -8,20 +8,20 @@
 }: let
   inherit (lib) mkIf types mkOption;
   inherit (sylib) mk-enable;
+
   cfg = config.modules.services.disko;
 in {
   imports = [inputs.disko.nixosModules.disko];
 
   options.modules.services.disko = {
     enable = mk-enable false;
-    config = mkOption {
-      type = types.nullOr types.path;
-      default = null;
+    config-file = mkOption {
+      type = types.path;
     };
   };
 
   config = mkIf cfg.enable {
-    inherit (import cfg.config) disko;
+    inherit (import cfg.config-file) disko;
 
     fileSystems = {
       "/persist".neededForBoot = true;
