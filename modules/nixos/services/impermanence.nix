@@ -65,7 +65,7 @@ in {
         ];
         after = [
           # LUKS/TPM process
-          "systemd-cryptsetup@enc.service"
+          "systemd-cryptsetup@crypt.service"
         ];
         before = [
           "sysroot.mount"

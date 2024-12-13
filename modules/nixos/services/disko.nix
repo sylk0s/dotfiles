@@ -21,7 +21,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    inherit (import cfg.config);
+    inherit (import cfg.config) disko;
 
     fileSystems = {
       "/persist".neededForBoot = true;

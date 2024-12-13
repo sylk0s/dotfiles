@@ -16,7 +16,7 @@
     network.enable = true;
     #impermanence.enable = true;
     grub.enable = true;
-    disko = {
+    services.disko = {
       enable = true;
       config = ./disko.nix;
     };
