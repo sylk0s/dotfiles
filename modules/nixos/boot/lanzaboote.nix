@@ -20,6 +20,8 @@ in {
 
   config = mkIf cfg.enable {
     boot = {
+      bootspec.enable = true;
+
       initrd.systemd.enable = true;
 
       loader.systemd-boot.enable = lib.mkForce false;
@@ -29,5 +31,9 @@ in {
         pkiBundle = "/etc/secureboot";
       };
     };
+
+    environment.systemPackages = [
+      pkgs.sbctl
+    ];
   };
 }
