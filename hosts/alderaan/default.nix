@@ -34,6 +34,8 @@
     ];
   };
 
+  boot.loader.grub.enableCryptodisk = false;
+
   home-manager.backupFileExtension = "backup";
   boot.supportedFilesystems = ["btrfs"];
 }

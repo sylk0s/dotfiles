@@ -16,7 +16,7 @@ in {
 
   options.modules.impermanence = {
     enable = mk-enable false;
-    device = mk-opt types.str "dev-root_vg-root_v.device";
+    device = mk-opt types.str "dev-root_vg-root_v.device" "device to wait for where everything mounts";
   };
 
   config = mkIf cfg.enable {
@@ -25,6 +25,7 @@ in {
 
     boot.initrd = {
       enable = true;
+      systemd.enable = true;
       supportedFilesystems = ["btrfs"];
       # postDeviceCommands = ''
       #   mkdir /btrfs_tmp
@@ -66,6 +67,7 @@ in {
         after = [
           # LUKS/TPM process
           "systemd-cryptsetup@crypt.service"
+          "initrd-root-device.target"
         ];
         before = [
           "sysroot.mount"
