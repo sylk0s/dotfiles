@@ -21,6 +21,7 @@
     };
 
     # lanzaboote.enable = true;
+    systemd-boot.enable = true;
     services = {
       disko = {
         enable = true;
