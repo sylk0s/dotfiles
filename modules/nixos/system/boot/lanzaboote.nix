@@ -27,17 +27,22 @@ in {
       loader.systemd-boot.enable = lib.mkForce false;
 
       # efi options from grub
-      efi = {
+      loader.efi = {
         canTouchEfiVariables = mkDefault true;
-        efiSysMountPoint = mkDefault "/boot/efi";
+        efiSysMountPoint = mkDefault "/efi";
       };
 
       # latest kernal packages
-
       lanzaboote = {
         enable = true;
         pkiBundle = "/etc/secureboot";
       };
+    };
+
+    environment.persistence."/persist" = {
+      directories = [
+        "/etc/secureboot"
+      ];
     };
 
     environment.systemPackages = [

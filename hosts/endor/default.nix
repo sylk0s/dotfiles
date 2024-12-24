@@ -19,10 +19,11 @@
       enable = true;
       device = "cryptid";
     };
+
     # lanzaboote.enable = true;
     services = {
       disko = {
-        enable = false;
+        enable = true;
         config-file = ./disko.nix;
       };
     };

@@ -8,17 +8,54 @@ Nix Flake which contains configs for most of my more recent systems. Uses module
 ## TMP Installation
 
 - clone dots
-  - `git clone https://github.com/sylk0s/dotfiles`
-- Run `config/scripts/install.sh` for a lvm on luks btrfs install (designed for impermanence)
-- Modify config as is needed
-  - `sudo nvim /mnt/etc/nixos/hardware-configuration.nix`
-    - add `"compress=zstd"` to all btrfs subvols, `"noatime"` to nix, and `neededForBoot = true;` to persist, logs, and home
-  - `sudo rm /mnt/etc/nixos/configuration.nix`
-  - `sudo cp dotfiles/tmp/configuration.nix /mnt/etc/nixos/`
-  - `sudo nvim /mnt/etc/nixos/configuration.nix`
-    - add the uuid of the disk to the config file's crypt setup
-- `cd /mnt`
-- `sudo nixos-install`
+
+```bash
+git clone https://github.com/sylk0s/dotfiles
+```
+
+- format with disko
+
+```bash
+sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode disko hosts/<host-name>/disko.nix
+```
+
+- verify
+
+```bash
+lsblk
+```
+
+- Generate the hardware config file
+
+```bash
+sudo nixos-generate-config --no-filesystem --root /mnt
+```
+
+- Copy hardware config
+
+```bash
+sudo cp /mnt/etc/nixos/hardware-config.nix dotfiles/hosts/<host-name>
+```
+
+- Copy all dotfiles over to the root fs. I do this so I have it after reboot.
+
+```bash
+sudo cp -r dotfiles /mnt/etc/nixos/
+```
+
+- Change to the new dotfiles
+
+```bash
+cd /mnt/etc/nixos/dotfiles
+```
+
+- Install with the flake
+
+```bash
+sudo nixos-install --flake .#<host-name> --root /mnt
+```
+
+/* OLD THINGS
 - copy and setup dots. will be easier now with some creature comforts
   - copy uuids, copy hardware-config, write host file
   - disable sops and sops-password #TODO auto
@@ -39,6 +76,8 @@ Nix Flake which contains configs for most of my more recent systems. Uses module
   - re-enable sops
 - rebuild into final system :3
 
+*/
+
 ## Installation
 I typically use the gnome install enviornment, since it's just a bit easier to use than minimal, but either are fine. With the gnome install, I install the minimal environment & partiton accordingly and then clone this repo and run the following command.
 ```bash
@@ -49,9 +88,6 @@ Note: the `--install-bootloader` arg may be omitted in certain cases depending o
 ### After installation
 - regenerate SSH keys
 - setup folder structure (projects, tools)
-
-## Other Quirks
-- VS Code with Wayland has a strange bug (will crash) with the options bar at the top, currently, it's set up to disable that. To access, push tab.
 
 ## Usage
 
