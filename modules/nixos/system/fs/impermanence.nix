@@ -1,12 +1,12 @@
 {
   config,
-  options,
   lib,
   sylib,
   inputs,
   ...
 }: let
-  inherit (lib) mkIf types;
+  inherit (lib) mkIf types mapAttrsToList;
+  inherit (builtins) foldl';
   inherit (sylib) mk-enable mk-opt;
   cfg = config.modules.impermanence;
 in {
@@ -45,91 +45,52 @@ in {
         ];
         unitConfig.DefaultDependencies = "no";
         serviceConfig.Type = "oneshot";
-        script = ''
+        script = let
+          # list of users on this system
+          users = foldl' (acc: x: "${acc}${x}\n") "" (mapAttrsToList (name: _val: name) config.users.users);
+        in ''
           mkdir /btrfs_tmp
-          mount -t btrfs /dev/root_vg/root_v /btrfs_tmp
+          mount /dev/mapper/${cfg.device} /btrfs_tmp
 
-          echo "deleting root recursively" &&
-          btrfs subvolume list -o /btrfs_tmp/root |
-          cut -f9 -d ' ' |
-          while read subvolume; do
-            echo "deleting /$subvolume subvolume..."
-            btrfs subvolume delete "/btrfs_tmp/$subvolume"
-          done &&
-          echo "deleting /root subvolume" &&
-          btrfs subvolume delete /btrfs_tmp/root &&
-          echo "restoring blank snapshot" &&
-          btrfs subvolume snapshot /btrfs_tmp/root-blank /btrfs_tmp/root
+          # create the user persistent dirs if needed for HM
 
-          echo "deleting home recursively" &&
-          btrfs subvolume list -o /btrfs_tmp/home |
-          cut -f9 -d ' ' |
-          while read subvolume; do
-            echo "deleting /$subvolume subvolume..."
-            btrfs subvolume delete "/btrfs_tmp/$subvolume"
-          done &&
-          echo "deleting /home subvolume" &&
-          btrfs subvolume delete /btrfs_tmp/home &&
-          echo "restoring blank snapshot" &&
-          btrfs subvolume snapshot /btrfs_tmp/root-blank /btrfs_tmp/home
+          timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%-d_%H:%M:%S")
 
+          # reset root
+          if [[ -e /btrfs_tmp/root ]]; then
+              mkdir -p /btrfs_tmp/old_roots
+              mv /btrfs_tmp/root "/btrfs_tmp/old_roots/$timestamp"
+          fi
+
+          # reset home
+          for user in ${users}; do
+              if [[ -e /btrfs_tmp/home/$user]]; then
+               mkdir -p /btrfs_tmp/old_homes
+               mv /btrfs_tmp/home/$user "/btrfs_tmp/old_homes/$user_$timestamp"
+              fi
+          done
+
+          delete_subvolume_recursively() {
+              IFS=$'\n'
+              for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
+                  delete_subvolume_recursively "/btrfs_tmp/$i"
+              done
+              btrfs subvolume delete "$1"
+          }
+
+          for i in $(find /btrfs_tmp/old_roots/ -maxdepth 1 -mtime +30); do
+              delete_subvolume_recursively "$i"
+          done
+
+          for i in $(find /btrfs_tmp/old_homes/ -maxdepth 1 -mtime +30); do
+              delete_subvolume_recursively "$i"
+          done
+
+          btrfs subvolume create /btrfs_tmp/root
+          btrfs subvolume create /btrfs_tmp/home
           umount /btrfs_tmp
-          rmdir /btrfs_tmp
         '';
       };
-
-      # systemd = {
-      #   # enable = true;
-      #   services.restore-root = {
-      #     description = "Rollback btrfs rootfs";
-      #     wantedBy = ["initrd.target"];
-      #     requires = [
-      #       cfg.device
-      #       #"systemd-hibernate-resume.service"
-      #     ];
-      #     after = [
-      #       cfg.device
-      #       #"local-fs-pre.target"
-      #       #"systemd-hibernate-resume.service"
-      #       # for luks
-      #       "systemd-cryptsetup@${config.networking.hostName}.service"
-      #     ];
-      #     before = ["sysroot.mount"];
-      #     unitConfig.DefaultDependencies = "no";
-      #     serviceConfig.Type = "oneshot";
-      #     script = ''
-      #       mkdir /btrfs_tmp
-      #       mount -t btrfs /dev/root_vg/root_v /btrfs_tmp
-
-      #       echo "deleting root recursively" &&
-      #       btrfs subvolume list -o /btrfs_tmp/root |
-      #       cut -f9 -d ' ' |
-      #       while read subvolume; do
-      #         echo "deleting /$subvolume subvolume..."
-      #         btrfs subvolume delete "/btrfs_tmp/$subvolume"
-      #       done &&
-      #       echo "deleting /root subvolume" &&
-      #       btrfs subvolume delete /btrfs_tmp/root &&
-      #       echo "restoring blank snapshot" &&
-      #       btrfs subvolume snapshot /btrfs_tmp/root-blank /btrfs_tmp/root
-
-      #       echo "deleting home recursively" &&
-      #       btrfs subvolume list -o /btrfs_tmp/home |
-      #       cut -f9 -d ' ' |
-      #       while read subvolume; do
-      #         echo "deleting /$subvolume subvolume..."
-      #         btrfs subvolume delete "/btrfs_tmp/$subvolume"
-      #       done &&
-      #       echo "deleting /home subvolume" &&
-      #       btrfs subvolume delete /btrfs_tmp/home &&
-      #       echo "restoring blank snapshot" &&
-      #       btrfs subvolume snapshot /btrfs_tmp/root-blank /btrfs_tmp/home
-
-      #       umount /btrfs_tmp
-      #       rmdir /btrfs_tmp
-      #     '';
-      #   };
-      # };
     };
 
     environment.persistence."/persist" = {
