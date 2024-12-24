@@ -47,7 +47,7 @@ in {
         serviceConfig.Type = "oneshot";
         script = let
           # list of users on this system
-          users = foldl' (acc: x: "${acc}${x}\n") "" (mapAttrsToList (name: _val: name) config.users.users);
+          users = foldl' (acc: x: "${acc} ${x}") "" (mapAttrsToList (name: _val: name) config.users.users);
         in ''
           mkdir /btrfs_tmp
           mount /dev/mapper/${cfg.device} /btrfs_tmp
@@ -64,9 +64,9 @@ in {
 
           # reset home
           for user in ${users}; do
-              if [[ -e /btrfs_tmp/home/$user]]; then
-               mkdir -p /btrfs_tmp/old_homes
-               mv /btrfs_tmp/home/$user "/btrfs_tmp/old_homes/$user_$timestamp"
+              if [[ -e /btrfs_tmp/home/$user ]]; then
+                 mkdir -p /btrfs_tmp/old_homes
+                 mv /btrfs_tmp/home/$user "/btrfs_tmp/old_homes/$(user)_$(timestamp)"
               fi
           done
 
