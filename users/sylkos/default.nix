@@ -36,11 +36,11 @@
       #     ghidra.enable = true;
       #     burpsuite.enable = true;
       #   };
-      #gaming = {
-      #  steam.enable = true;
-      #  mc.enable = true;
-      #  emu.enable = false;
-      #};
+      gaming = {
+        steam.enable = true;
+        #  mc.enable = true;
+        #  emu.enable = false;
+      };
       services = {
         #  ags = {
         #    enable = true;
@@ -69,7 +69,8 @@
     impermanence.enable = true;
   };
 
-  #home.packages = with pkgs; [
-  #  kicad
-  #];
+  home.packages = with pkgs; [
+    kicad
+    brightnessctl
+  ];
 }

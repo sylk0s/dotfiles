@@ -16,7 +16,7 @@ in {
 
   options.modules.impermanence = {
     enable = mk-enable false;
-    device = mk-opt types.str "dev-root_vg-root_v.device" "device to wait for where everything mounts";
+    device = mk-opt types.str "cryptid" "label of luks partition";
   };
 
   config = mkIf cfg.enable {
@@ -66,7 +66,7 @@ in {
         ];
         after = [
           # LUKS/TPM process
-          "systemd-cryptsetup@crypt.service"
+          "systemd-cryptsetup@${cfg.device}.service"
           "initrd-root-device.target"
         ];
         before = [

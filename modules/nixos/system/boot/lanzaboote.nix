@@ -26,6 +26,10 @@ in {
 
       loader.systemd-boot.enable = lib.mkForce false;
 
+      # efi options from grub
+
+      # latest kernal packages
+
       lanzaboote = {
         enable = true;
         pkiBundle = "/etc/secureboot";
