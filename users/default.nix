@@ -60,6 +60,7 @@ in {
       extraSpecialArgs = {inherit inputs sylib;};
       # for each user, generate a home-manager config
       users = mk-homes module-paths ./home.nix cfg;
+      backupFileExtension = "backup";
     };
   };
 }

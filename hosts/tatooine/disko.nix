@@ -3,7 +3,7 @@
     disk = {
       main = {
         type = "disk";
-        device = "/dev/sda";
+        device = "/dev/<disk-name>";
         content = {
           type = "gpt";
           partitions = {
@@ -15,7 +15,7 @@
               content = {
                 type = "filesystem";
                 format = "vfat";
-                mountpoint = "/boot/efi";
+                mountpoint = "/efi";
                 mountOptions = [
                   "defaults"
                 ];
