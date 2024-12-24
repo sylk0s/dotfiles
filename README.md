@@ -55,6 +55,9 @@ cd /mnt/etc/nixos/dotfiles
 sudo nixos-install --flake .#<host-name> --root /mnt
 ```
 
+Notes:
+- will need to create `/persist/home/<user>` and chmod for each
+
 /* OLD THINGS
 - copy and setup dots. will be easier now with some creature comforts
   - copy uuids, copy hardware-config, write host file
