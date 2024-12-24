@@ -5,6 +5,7 @@
   lib,
   sylib,
   pkgs,
+  inputs,
   ...
 }: let
   inherit (lib) mkIf;
@@ -23,9 +24,9 @@ in {
     programs.gh.enable = true;
 
     xdg.configFile = {
-      "git/config".source = "${configDir}/git/config";
-      "git/ignore".source = "${configDir}/git/ignore";
-      "git/attributes".source = "${configDir}/git/attributes";
+      "git/config".source = "${inputs.self.outPath}/config/git/config";
+      "git/ignore".source = "${inputs.self.outPath}/config/git/ignore";
+      "git/attributes".source = "${inputs.self.outPath}/config/git/attributes";
     };
 
     programs.git = {

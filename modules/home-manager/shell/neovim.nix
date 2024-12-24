@@ -5,6 +5,7 @@
   lib,
   sylib,
   pkgs,
+  inputs,
   ...
 }: let
   inherit (lib) mkIf;
@@ -137,7 +138,7 @@ in {
 
     xdg.configFile."nvim/lua" = {
       recursive = true;
-      source = "${osConfig.dotfiles.configDir}/nvim/lua";
+      source = "${inputs.self.outPath}/config/nvim/lua";
     };
   };
 }

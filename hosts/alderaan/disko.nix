@@ -1,14 +1,9 @@
-{inputs, ...}: {
-  imports = [inputs.disko.nixosModules.disko];
-
-  fileSystems."/persist".neededForBoot = true;
-  fileSystems."/var/log".neededForBoot = true;
-
+{
   disko.devices = {
     disk = {
       main = {
         type = "disk";
-        device = "/dev/sdX";
+        device = "/dev/sda";
         content = {
           type = "gpt";
           partitions = {
@@ -20,7 +15,7 @@
               content = {
                 type = "filesystem";
                 format = "vfat";
-                mountpoint = "/boot/efi";
+                mountpoint = "/efi";
                 mountOptions = [
                   "defaults"
                 ];

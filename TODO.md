@@ -1,10 +1,19 @@
 # Dotfiles TODO
 
 - do the refactors to make it look nice
-- first, get disko working on machines and in an integrated config
+    - make impermanence nice actually
+    - make sops work again fr maybe with yubikey
+        - encrypted firefox
+    - do all the nice and fancy assertation linkage
+- get disko working on machines
+    - get disko working on alderaan
+    - swap endor to disko
 - then do tpm + secure boot
 - make defaults nice & clean options
 - then do the bootstrapped install
+- clean modules, remove things that aren't as needed
+- matrix
+- rebind swaylock
 
 ## Bugs
 

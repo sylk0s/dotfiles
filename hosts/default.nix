@@ -52,29 +52,6 @@ in {
   # system.configurationRevision = with inputs; mkIf (self ? rev) self.rev;
   system.stateVersion = "21.05";
 
-  boot = {
-    kernelPackages = mkDefault pkgs.linuxPackages_latest;
-
-    loader = {
-      efi = {
-        canTouchEfiVariables = mkDefault true;
-        efiSysMountPoint = mkDefault "/boot/efi";
-      };
-
-      grub = {
-        enable = mkDefault true;
-        devices = ["nodev"];
-        efiSupport = mkDefault true;
-        useOSProber = mkDefault true;
-        configurationLimit = mkDefault 10;
-        #copyKernels = mkDefault true; # TODO make this dependent on encryption maybe
-        enableCryptodisk = mkDefault true;
-      };
-
-      timeout = mkDefault null;
-    };
-  };
-
   time.timeZone = mkDefault "America/New_York";
   i18n.defaultLocale = mkDefault "en_US.UTF-8";
 

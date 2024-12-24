@@ -18,7 +18,12 @@
     flipper.enable = true;
 
     impermanence.enable = true;
+    # lanzaboote.enable = true;
+    grub.enable = true;
     services = {
+      disko = {
+        enable = false;
+      };
       docker.enable = true;
       gpg.enable = true;
       sops.enable = true;
@@ -29,8 +34,7 @@
       {
         name = "sylkos";
         privileged = true;
-        # config = "${config.dotfiles.dir}/users/sylkos";
-        config = "/home/sylkos/dotfiles/users/sylkos";
+        config = "${inputs.self.outPath}/users/sylkos";
       }
     ];
   };
@@ -46,7 +50,6 @@
     };
   };
 
-  # TODO
   catppuccin = {
     enable = true;
     accent = "lavender";

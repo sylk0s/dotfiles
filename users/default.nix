@@ -23,7 +23,8 @@ in {
             default = false;
           };
           config = mkOption {
-            type = types.path;
+            type = types.nullOr types.path;
+            default = null;
           };
           password = mkOption {
             type = types.nullOr types.path;
@@ -54,7 +55,7 @@ in {
     # DO THIS ONLY IF home-manager is a nixos module
     # sets up home manager for all the users above
     home-manager = let
-      module-paths = sylib.all-modules-in-dir-rec ../modules/home-manager;
+      module-paths = sylib.all-modules-in-dir-rec "${inputs.self.outPath}/modules/home-manager";
     in {
       extraSpecialArgs = {inherit inputs sylib;};
       # for each user, generate a home-manager config

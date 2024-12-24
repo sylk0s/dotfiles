@@ -1,25 +1,26 @@
 {config, ...}: {
   modules = {
     desktop = {
-      hyprland = {
-        enable = true;
-      };
-      social = {
-        discord.enable = true;
-      };
-      apps = {
-        firefox = {
-          enable = true;
-        };
-        alacritty.enable = true;
-      };
-      services = {
-        ags = {
-          enable = true;
-        };
-      };
+      #hyprland = {
+      #  enable = true;
+      #};
+      # social = {
+      #   discord.enable = true;
+      # };
+      #apps = {
+      #  firefox = {
+      #    enable = true;
+      #  };
+      #  alacritty.enable = true;
+      #};
+      #services = {
+      # ags = {
+      #   enable = true;
+      # };
+      #  waybar.enable = true;
+      #};
     };
     shell.eza.enable = true;
-    impermanence.enable = true;
+    # impermanence.enable = true;
   };
 }
