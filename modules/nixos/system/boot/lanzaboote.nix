@@ -27,6 +27,10 @@ in {
       loader.systemd-boot.enable = lib.mkForce false;
 
       # efi options from grub
+      efi = {
+        canTouchEfiVariables = mkDefault true;
+        efiSysMountPoint = mkDefault "/boot/efi";
+      };
 
       # latest kernal packages
 
