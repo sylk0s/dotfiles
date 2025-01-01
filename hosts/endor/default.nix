@@ -1,10 +1,4 @@
-{
-  pkgs,
-  config,
-  lib,
-  inputs,
-  ...
-}: {
+{inputs, ...}: {
   imports = [
     ./hardware-configuration.nix
     inputs.nixos-hardware.nixosModules.dell-xps-15-9520
@@ -15,13 +9,9 @@
     bluetooth.enable = true;
     network.enable = true;
 
-    impermanence = {
-      enable = true;
-      device = "cryptid";
-    };
-
-    # lanzaboote.enable = true;
     systemd-boot.enable = true;
+
+    impermanence.enable = true;
     services = {
       disko = {
         enable = true;
