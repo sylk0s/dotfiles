@@ -46,7 +46,7 @@ in rec {
         else null;
       hashedPasswordFile =
         if sops.enabled
-        then sops.path
+        then sops.paths."${name}"
         else null;
       isNormalUser = true;
       createHome = true;

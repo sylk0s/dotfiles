@@ -7,9 +7,8 @@
   inputs,
   ...
 }: let
-  inherit (lib) types mkOption listToAttrs map mkDefault mkMerge;
+  inherit (lib) types mkOption listToAttrs map mkDefault mkMerge mkIf;
   inherit (sylib) mk-homes all-modules-in-dir-rec mk-users;
-  inherit (builtins) listToAttrs;
   cfg = config.modules.users;
 in {
   options.modules.users = mkOption {
@@ -56,7 +55,11 @@ in {
         # sops config struct for user config
         sops = {
           enabled = config.modules.services.sops.enable;
-          path = config.sops.secrets."passwords/${user.name}".path;
+          paths = listToAttrs (map (user: {
+              name = user.name;
+              value = config.sops.secrets."passwords/${user.name}".path;
+            })
+            cfg.users);
         };
       in
         mk-users config.userDefaults.extraGroups sops cfg;
