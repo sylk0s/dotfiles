@@ -47,6 +47,23 @@ in {
 
     programs.swaylock.enable = true;
 
+    services.hyprpaper = {
+      enable = true;
+      settings = {
+        ipc = "on";
+        splash = false;
+        preload = [
+          "${inputs.self.outPath}/config/assets/wallpapers/alena-aenami-far-from-tomorrow-1080px.jpg"
+          "${inputs.self.outPath}/config/assets/wallpapers/nix-black-4k.png"
+        ];
+
+        wallpaper = [
+          "eDP-1, ${inputs.self.outPath}/config/assets/wallpapers/alena-aenami-far-from-tomorrow-1080px.jpg"
+          ", ${inputs.self.outPath}/config/assets/wallpapers/nix-black-4k.png"
+        ];
+      };
+    };
+
     # this is the hm module
     wayland.windowManager.hyprland = {
       enable = true;
@@ -60,9 +77,6 @@ in {
 
       settings = {
         exec-once = [
-          # "ags"
-          # "waybar"
-          "${configDir}/scripts/wallpaper.sh"
           "nm-applet"
           "blueman-applet"
         ];
