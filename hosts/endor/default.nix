@@ -17,6 +17,7 @@
         enable = true;
         config-file = ./disko.nix;
       };
+      sops.enable = true;
     };
 
     users = [

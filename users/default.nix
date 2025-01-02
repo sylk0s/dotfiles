@@ -59,7 +59,7 @@ in {
               name = user.name;
               value = config.sops.secrets."passwords/${user.name}".path;
             })
-            cfg.users);
+            cfg);
         };
       in
         mk-users config.userDefaults.extraGroups sops cfg;
@@ -84,7 +84,7 @@ in {
               neededForUsers = true;
             };
           })
-          cfg.users);
+          cfg);
       }
     )
   ];
