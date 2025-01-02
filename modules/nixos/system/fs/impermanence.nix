@@ -5,7 +5,7 @@
   inputs,
   ...
 }: let
-  inherit (lib) mkIf types mapAttrsToList;
+  inherit (lib) mkIf types mkDefault;
   inherit (builtins) foldl';
   inherit (sylib) mk-enable mk-opt;
   cfg = config.modules.impermanence;
@@ -20,14 +20,13 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # TODO
-    programs.fuse.userAllowOther = true;
+    programs.fuse.userAllowOther = mkDefault true;
 
     security.sudo.extraConfig = "Defaults lecture=never"; # avoid getting lectured on rollback
 
     boot.initrd = {
-      enable = true;
-      systemd.enable = true;
+      enable = mkDefault true;
+      systemd.enable = mkDefault true;
       supportedFilesystems = ["btrfs"];
 
       systemd.services.rollback = {
@@ -63,12 +62,10 @@ in {
           fi
 
           # reset home
-          for user in ${users}; do
-              if [[ -e /btrfs_tmp/home/$user ]]; then
-                 mkdir -p /btrfs_tmp/old_homes
-                 mv /btrfs_tmp/home/$user "/btrfs_tmp/old_homes/$(user)_$(timestamp)"
-              fi
-          done
+          if [[ -e /btrfs_tmp/home ]]; then
+              mkdir -p /btrfs_tmp/old_homes
+              mv /btrfs_tmp/home "/btrfs_tmp/old_homes/$timestamp"
+          fi
 
           delete_subvolume_recursively() {
               IFS=$'\n'
@@ -95,10 +92,10 @@ in {
           # creates user home directories
           # see https://github.com/NixOS/nixpkgs/issues/6481
           # will be fixed by https://github.com/NixOS/nixpkgs/pull/223932
-          for user in ${users}; do
-              mkdir /home/$user
-              chown $user /home/$user
-          done
+          # for user in ${users}; do
+          #     mkdir /btrfs_tmp/home/$user
+          #     chown $user /btrfs_tmp/home/$user
+          # done
 
           umount /btrfs_tmp
         '';

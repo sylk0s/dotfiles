@@ -22,7 +22,7 @@ in {
     boot = {
       bootspec.enable = true;
 
-      initrd.systemd.enable = true;
+      initrd.systemd.enable = mkDefault true;
 
       loader.systemd-boot.enable = lib.mkForce false;
 
