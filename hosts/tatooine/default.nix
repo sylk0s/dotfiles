@@ -7,24 +7,17 @@
   ...
 }: {
   imports = [
-    ./hardware-configuration.nix
+    ./hardware-configuration.nix # does not exist yet, needs to be created
   ];
 
   modules = {
-    #    audio.enable = true;
-    #    bluetooth.enable = true;
     network.enable = true;
-    #impermanence.enable = true;
-    # grub.enable = true;
-    lanzaboote.enable = true;
+    impermanence.enable = true;
+    systemd-boot.enable = true;
     services.disko = {
       enable = true;
       config-file = ./disko.nix;
     };
-    #services = {
-    #sops.enable = true;
-    #gpg.enable = true;
-    #};
 
     users = [
       {
@@ -34,8 +27,6 @@
       }
     ];
   };
-
-  # boot.loader.grub.enableCryptodisk = false;
 
   boot.supportedFilesystems = ["btrfs"];
 }

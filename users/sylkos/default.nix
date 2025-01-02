@@ -15,14 +15,14 @@
       # media.spotify.enable = true;
       social = {
         discord.enable = true;
-        signal.enable = true;
+        #  signal.enable = true;
         #thunderbird.enable = true;
         #fractal.enable = true;
       };
       apps = {
         firefox = {
           enable = true;
-          profileName = "ahpu6nkm";
+          #   profileName = "ahpu6nkm";
         };
         #intellij.enable = true;
         alacritty.enable = true;
@@ -70,7 +70,7 @@
   };
 
   home.packages = with pkgs; [
-    kicad
+    #kicad
     brightnessctl
   ];
 }

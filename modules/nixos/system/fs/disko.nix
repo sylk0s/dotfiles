@@ -26,6 +26,7 @@ in {
     fileSystems = {
       "/persist".neededForBoot = true;
       "/var/log".neededForBoot = true;
+      "/home".neededForBoot = true;
     };
   };
 }
