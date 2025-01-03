@@ -32,11 +32,7 @@ in {
 
   config = lib.mkIf (cfg.enable) {
     home.packages = with pkgs; [
-      (nerdfonts.override {
-        fonts = [
-          "Ubuntu"
-        ];
-      })
+      nerd-fonts.ubuntu
       julia-mono
       ibm-plex
       noto-fonts
