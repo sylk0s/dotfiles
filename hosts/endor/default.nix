@@ -19,6 +19,9 @@
         config-file = ./disko.nix;
       };
       sops.enable = true;
+      docker.enable = true;
+      gpg.enable = true;
+      ssh.enable = true;
     };
 
     users = [
