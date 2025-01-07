@@ -8,7 +8,7 @@
   ...
 }: let
   inherit (builtins) toString;
-  inherit (lib) mkIf map;
+  inherit (lib) mkIf map filter;
   inherit (sylib) mk-enable mk-bool-opt;
 
   cfg = config.modules.desktop.hyprland;
@@ -81,17 +81,45 @@ in {
           "blueman-applet"
         ];
 
-        monitor = [
-          "DP-1,1920x1080,1200x288,1"
-          "HDMI-A-1,1920x1200,0x0,1,transform,3"
-          "DP-7,preferred,auto-left,1"
-          ",preferred,auto,1"
-        ];
+        # constructs monitor config from my monitor options
+        monitor =
+          (map (
+            m:
+              "${m.name},"
+              + (
+                if m.width != 0 && m.height != 0
+                then
+                  (
+                    "${m.width}x${m.height}"
+                    + (
+                      if m.refresh-rate
+                      then "@${m.refresh-rate}"
+                      else ""
+                    )
+                  )
+                else "preferred,"
+              )
+              + (
+                if m.x-off != 0 && m.y-off != 0
+                then "${m.x-off}x${m.y-off}"
+                else "auto-down,"
+              )
+              + "${m.scale}"
+              + (
+                if m.transform == 0
+                then ""
+                else "transform,${m.transform}"
+              )
+              + (
+                if m.mirror != ""
+                then "mirror,${m.mirror}"
+                else ""
+              )
+          ) (filter (m: m.enable) osConfig.sylk.system.monitors))
+          ++ [",preferred,auto-up,1"];
 
         env = [
           "XCURSOR_SIZE,24"
-          "LIBVA_DRIVER_NAME,nvidia"
-          "__GLX_VENDOR_LIBRARY_NAME,nvidia"
         ];
 
         general = {

@@ -9,9 +9,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
-  cfg = config.modules.services.agenix;
+  cfg = config.sylk.services.agenix;
 in {
-  options.modules.services.agenix = {
+  options.sylk.services.agenix = {
     enable = mk-enable false;
   };
 

@@ -9,9 +9,9 @@
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
 
-  cfg = config.modules.services.gpg;
+  cfg = config.sylk.services.gpg;
 in {
-  options.modules.services.gpg = {
+  options.sylk.services.gpg = {
     enable = mk-enable true;
   };
 

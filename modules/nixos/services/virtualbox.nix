@@ -9,9 +9,9 @@
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
 
-  cfg = config.modules.services.virtualbox;
+  cfg = config.sylk.services.virtualbox;
 in {
-  options.modules.services.virtualbox = {
+  options.sylk.services.virtualbox = {
     enable = mk-enable false;
   };
 

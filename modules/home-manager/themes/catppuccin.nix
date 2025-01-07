@@ -29,21 +29,18 @@ in {
     #   # ];
 
     #   # callback
+    gtk.enable = true;
 
     catppuccin = {
       enable = true;
       accent = "lavender";
       flavor = "mocha";
-      pointerCursor = {
+      cursors = {
         enable = true;
         accent = "lavender";
         flavor = "mocha";
       };
-    };
-
-    gtk = {
-      enable = true;
-      catppuccin = {
+      gtk = {
         enable = true;
         accent = "lavender";
         flavor = "mocha";

@@ -9,11 +9,11 @@
   inherit (lib) mkIf types mkOption;
   inherit (sylib) mk-enable;
 
-  cfg = config.modules.services.disko;
+  cfg = config.sylk.system.fs.disko;
 in {
   imports = [inputs.disko.nixosModules.disko];
 
-  options.modules.services.disko = {
+  options.sylk.system.fs.disko = {
     enable = mk-enable false;
     config-file = mkOption {
       type = types.path;

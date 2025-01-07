@@ -8,9 +8,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
-  cfg = config.modules.services.podman;
+  cfg = config.sylk.services.podman;
 in {
-  options.modules.services.podman = {
+  options.sylk.services.podman = {
     enable = mk-enable false;
   };
 

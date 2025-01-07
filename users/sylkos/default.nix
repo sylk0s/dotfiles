@@ -45,7 +45,7 @@
         #    enable = true;
         #  };
         #  kdeconnect.enable = true;
-        #  dunst.enable = false;
+        dunst.enable = false;
         waybar.enable = true;
       };
     };

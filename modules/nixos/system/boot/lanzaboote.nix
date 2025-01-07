@@ -10,11 +10,11 @@
   inherit (lib) mkIf mkDefault;
   inherit (sylib) mk-enable;
 
-  cfg = config.modules.lanzaboote;
+  cfg = config.sylk.system.boot.lanzaboote;
 in {
   imports = [inputs.lanzaboote.nixosModules.lanzaboote];
 
-  options.modules.lanzaboote = {
+  options.sylk.system.boot.lanzaboote = {
     enable = mk-enable false;
   };
 

@@ -5,12 +5,12 @@
   sylib,
   ...
 }: let
-  cfg = config.modules.ssh;
+  cfg = config.sylk.ssh;
 
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
 in {
-  options.modules.ssh = {
+  options.sylk.ssh = {
     enable = mk-enable true;
   };
 

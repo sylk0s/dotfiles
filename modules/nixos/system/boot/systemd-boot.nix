@@ -7,9 +7,9 @@
   inherit (lib) mkIf mkDefault;
   inherit (sylib) mk-enable;
 
-  cfg = config.modules.systemd-boot;
+  cfg = config.sylk.system.boot.systemd-boot;
 in {
-  options.modules.systemd-boot = {
+  options.sylk.system.boot.systemd-boot = {
     enable = mk-enable false;
   };
 
@@ -18,7 +18,10 @@ in {
       initrd.systemd.enable = mkDefault true;
 
       loader = {
-        systemd-boot.enable = mkDefault true;
+        systemd-boot = {
+          enable = mkDefault true;
+          configurationLimit = mkDefault 8;
+        };
 
         # efi options from grub
         efi = {

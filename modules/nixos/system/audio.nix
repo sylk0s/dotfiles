@@ -6,38 +6,37 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf mkMerge;
   inherit (sylib) mk-enable;
 
-  cfg = config.modules.audio;
+  cfg = config.sylk.system.audio;
 in {
-  options.modules.audio = {
+  options.sylk.system.audio = {
     enable = mk-enable false;
   };
 
-  config = mkIf cfg.enable {
-    # any assertions that should be checked
-    # assertions = [
-    #   {
-    #     assertion = true;
-    #     message = "";
-    #   }
-    #   # ...
-    # ];
+  config = mkIf cfg.enable (
+    mkMerge [
+      {
+        security.rtkit.enable = true;
 
-    security.rtkit.enable = true;
-
-    services = {
-      pipewire = {
-        enable = true;
-        alsa = {
-          enable = true;
-          support32Bit = true;
+        services = {
+          pipewire = {
+            enable = true;
+            alsa = {
+              enable = true;
+              support32Bit = true;
+            };
+            pulse.enable = true;
+            jack.enable = true;
+          };
         };
-        pulse.enable = true;
-        jack.enable = true;
 
-        # TODO tie this into bluetooth support
+        userDefaults.extraGroups = ["audio"];
+      }
+
+      # bluetooth audio config
+      (mkIf config.sylk.system.bluetooth {
         wireplumber.extraConfig = {
           "monitor.bluez.properties" = {
             "bluez5.enable-sbc-xq" = true;
@@ -51,17 +50,14 @@ in {
             };
           };
         };
-      };
-    };
 
-    systemd.user.services.mpris-proxy = {
-      description = "Mpris proxy";
-      after = ["network.target" "sound.target"];
-      wantedBy = ["default.target"];
-      serviceConfig.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
-    };
-
-    userDefaults.extraGroups = ["audio"];
-    # TODO graphical control applications
-  };
+        systemd.user.services.mpris-proxy = {
+          description = "Mpris proxy";
+          after = ["network.target" "sound.target"];
+          wantedBy = ["default.target"];
+          serviceConfig.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
+        };
+      })
+    ]
+  );
 }

@@ -15,7 +15,7 @@ in {
     inputs.sops-nix.nixosModules.sops
   ];
 
-  options.modules.services.sops = {
+  options.sylk.services.sops = {
     enable = mk-enable false;
   };
 

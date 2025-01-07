@@ -8,13 +8,13 @@
   inherit (lib) mkIf types mkDefault;
   inherit (builtins) foldl';
   inherit (sylib) mk-enable mk-opt;
-  cfg = config.modules.impermanence;
+  cfg = config.sylk.system.fs.impermanence;
 in {
   imports = [
     inputs.impermanence.nixosModules.impermanence
   ];
 
-  options.modules.impermanence = {
+  options.sylk.system.fs.impermanence = {
     enable = mk-enable false;
     device = mk-opt types.str "cryptid" "label of luks partition";
   };
