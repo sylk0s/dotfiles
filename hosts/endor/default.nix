@@ -39,6 +39,7 @@
           name = "eDP-1";
           primary = true;
           enable = true;
+          switch = "Lid Switch";
         }
       ];
     };

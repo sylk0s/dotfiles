@@ -23,7 +23,7 @@ in {
         mainBar = {
           layer = "top";
           position = "top";
-          height = 30;
+          height = 25;
 
           modules-left = ["hyprland/workspaces"];
           modules-center = ["clock"];
@@ -34,11 +34,6 @@ in {
           };
           "clock" = {
             "tooltip-format" = "{:%c}";
-          };
-          "network" = {
-            "format-wifi" = "{icon}";
-            "format-icons" = ["󰤟" "󰤢" "󰤥" "󰤨"];
-            "tooltip-format-wifi" = "{essid} ({signalStrength}%)";
           };
         };
       };

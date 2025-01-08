@@ -26,6 +26,8 @@ in {
   };
 
   config = let
+    # Generates the monitor string used to enable a monitor
+    # Used by both initial monitor setting, and by the lid switch
     monitor-str = (
       m:
         "${builtins.toString m.name},"
@@ -109,38 +111,30 @@ in {
 
           listener = [
             {
-              timeout = 30; # 2.5min.
-              on-timeout = "notify-send -a \"Idle 1\" dimming screen"; # set monitor backlight to minimum, avoid 0 on OLED monitor.
+              timeout = 150; # 2.5m
+              on-timeout = "${pkgs.libnotify}/bin/notify-send -a \"Idle\" \"Dimming screen\""; # set monitor backlight to minimum, avoid 0 on OLED monitor.
             }
-            # {
-            #   timeout = 60; # 2.5min.
-            #   on-timeout = "brightnessctl -s set 1"; # set monitor backlight to minimum, avoid 0 on OLED monitor.
-            #   on-resume = "brightnessctl -r"; # monitor backlight restore.
-            # }
-            # {
-            #   timeout = 90; # 5min
-            #   on-timeout = "loginctl lock-session"; # lock screen when timeout has passed
-            # }
             {
-              timeout = 45; # 5min.
-              on-timeout = "notify-send -a \"Idle 2\" turning off screen"; # set monitor backlight to minimum, avoid 0 on OLED monitor.
+              timeout = 150; # 2.5m
+              on-timeout = "${pkgs.brightnessctl}/bin/brightnessctl -s set 1"; # set monitor backlight to minimum, avoid 0 on OLED monitor.
+              on-resume = "${pkgs.brightnessctl}/bin/brightnessctl -r"; # monitor backlight restore.
             }
-            # {
-            #   timeout = 120; # 5.5min
-            #   on-timeout = "hyprctl dispatch dpms off"; # screen off when timeout has passed
-            #   on-resume = "hyprctl dispatch dpms on"; # screen on when activity is detected after timeout has fired.
-            # }
             {
-              timeout = 60; # 2.5min.
-              on-timeout = "notify-send -a \"Idle 3\" locking session"; # set monitor backlight to minimum, avoid 0 on OLED monitor.
+              timeout = 290; # 2m 50s
+              on-timeout = "${pkgs.libnotify}/bin/notify-send -a \"Idle\" \"Locking screen in 10s\"";
             }
-            # {
-            #   timeout = 150; # 10min
-            #   on-timeout = "systemctl suspend"; # suspend pc
-            # }
             {
-              timeout = 90; # 2.5min.
-              on-timeout = "notify-send -a \"Idle 4\" sleeping"; # set monitor backlight to minimum, avoid 0 on OLED monitor.
+              timeout = 300; # 5m
+              on-timeout = "loginctl lock-session"; # lock screen when timeout has passed
+            }
+            {
+              timeout = 360; # 6m
+              on-timeout = "hyprctl dispatch dpms off"; # screen off when timeout has passed
+              on-resume = "hyprctl dispatch dpms on"; # screen on when activity is detected after timeout has fired.
+            }
+            {
+              timeout = 600; # 10 mins
+              on-timeout = "systemctl suspend";
             }
           ];
         };
