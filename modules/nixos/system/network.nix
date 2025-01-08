@@ -18,6 +18,6 @@ in {
   config = mkIf cfg.enable {
     networking.networkmanager.enable = true;
 
-    userDefaults.extraGroups = ["networkmanager"];
+    sylk.userDefaults.extraGroups = ["networkmanager"];
   };
 }

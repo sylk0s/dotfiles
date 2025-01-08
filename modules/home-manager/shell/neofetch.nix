@@ -5,6 +5,7 @@
   lib,
   sylib,
   pkgs,
+  inputs,
   ...
 }: let
   inherit (lib) mkIf;
@@ -23,7 +24,7 @@ in {
       ];
 
       shellAliases = {
-        neofetch = "neofetch --config ${osConfig.dotfiles.configDir}/neofetch/config.conf";
+        neofetch = "neofetch --config ${inputs.self.outPath}/config//neofetch/config.conf";
       };
     };
   };

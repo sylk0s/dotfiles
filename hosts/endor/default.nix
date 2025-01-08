@@ -13,7 +13,15 @@
       audio.enable = true;
       bluetooth.enable = true;
       network.enable = true;
-      nvidia.enable = true;
+
+      nvidia = {
+        enable = true;
+        prime = {
+          enable = true;
+          intel-bus-id = "PCI:0:2:0";
+          nvidia-bus-id = "PCI:1:0:0";
+        };
+      };
 
       boot.systemd-boot.enable = true;
 

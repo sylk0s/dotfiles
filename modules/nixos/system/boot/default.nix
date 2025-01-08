@@ -8,8 +8,8 @@
   inherit (lib) length filter;
   inherit (sylib) attrs-to-list;
 
-  bootloaders = attrs-to-list config.sylk.boot;
-  enabled-bootloaders = filter (bl: bl.enable) bootloaders;
+  bootloaders = attrs-to-list config.sylk.system.boot;
+  enabled-bootloaders = filter (bl: bl.value.enable) bootloaders;
   enabled-bootloader-names = foldl' (s: bl: "${bl.name} ${s}") "" enabled-bootloaders;
 in {
   config = {

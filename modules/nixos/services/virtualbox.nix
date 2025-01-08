@@ -22,7 +22,7 @@ in {
     # virtualisation.virtualbox.host.enableExtensionPack = true;
     users.extraGroups.vboxusers.members = ["user-with-access-to-virtualbox"];
 
-    userDefaults.extraGroups = ["vboxusers"];
+    sylk.userDefaults.extraGroups = ["vboxusers"];
 
     networking.firewall.interfaces."vboxnet0".allowedTCPPorts = [22];
 

@@ -19,7 +19,7 @@ in {
       enable = true;
     };
 
-    userDefaults.extraGroups = ["docker"];
+    sylk.userDefaults.extraGroups = ["docker"];
 
     # TODO figure this bit out
     # user.packages = with pkgs; [

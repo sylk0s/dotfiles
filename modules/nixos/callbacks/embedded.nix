@@ -14,6 +14,6 @@ in {
       openocd
     ];
 
-    userDefaults.extraGroups = ["dialout"];
+    sylk.userDefaults.extraGroups = ["dialout"];
   };
 }

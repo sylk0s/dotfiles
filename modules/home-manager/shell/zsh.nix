@@ -5,6 +5,7 @@
   lib,
   sylib,
   pkgs,
+  inputs,
   ...
 }: let
   inherit (lib) mkIf;
@@ -37,7 +38,7 @@ in {
         ];
 
         # theme = "powerlevel10k/powerlevel10k";
-        # custom = "${osConfig.dotfiles.configDir}/oh-my-zsh/";
+        # custom = "${inputs.self.outPath}/config/oh-my-zsh/";
       };
     };
   };

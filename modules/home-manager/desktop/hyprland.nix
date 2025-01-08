@@ -12,7 +12,6 @@
   inherit (sylib) mk-enable mk-bool-opt;
 
   cfg = config.modules.desktop.hyprland;
-  configDir = osConfig.dotfiles.configDir;
 
   # change this for nvidia
   hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -85,15 +84,15 @@ in {
         monitor =
           (map (
             m:
-              "${m.name},"
+              "${builtins.toString m.name},"
               + (
                 if m.width != 0 && m.height != 0
                 then
                   (
-                    "${m.width}x${m.height}"
+                    "${builtins.toString m.width}x${builtins.toString m.height}"
                     + (
                       if m.refresh-rate
-                      then "@${m.refresh-rate}"
+                      then "@${builtins.toString m.refresh-rate}"
                       else ""
                     )
                   )
@@ -101,18 +100,18 @@ in {
               )
               + (
                 if m.x-off != 0 && m.y-off != 0
-                then "${m.x-off}x${m.y-off}"
+                then "${builtins.toString m.x-off}x${builtins.toString m.y-off}"
                 else "auto-down,"
               )
-              + "${m.scale}"
+              + "${builtins.toString m.scale}"
               + (
                 if m.transform == 0
                 then ""
-                else "transform,${m.transform}"
+                else "transform,${builtins.toString m.transform}"
               )
               + (
                 if m.mirror != ""
-                then "mirror,${m.mirror}"
+                then "mirror,${builtins.toString m.mirror}"
                 else ""
               )
           ) (filter (m: m.enable) osConfig.sylk.system.monitors))
@@ -245,11 +244,11 @@ in {
             (salt "exec" "Q" "ags quit; ags")
 
             # screenshot keybinds
-            (sal "E" "${configDir}/scripts/screenshot.sh sel-clip")
-            (sal "R" "${configDir}/scripts/screenshot.sh sel-file")
-            (sal "F" "${configDir}/scripts/screenshot.sh full-file")
+            (sal "E" "${inputs.self.outPath}/config/scripts/screenshot.sh sel-clip")
+            (sal "R" "${inputs.self.outPath}/config/scripts/screenshot.sh sel-file")
+            (sal "F" "${inputs.self.outPath}/config/scripts/screenshot.sh full-file")
 
-            (sal "X" "${configDir}/eww/scripts/lock")
+            (sal "X" "${inputs.self.outPath}/eww/scripts/lock")
 
             # movement
 

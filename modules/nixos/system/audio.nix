@@ -32,12 +32,12 @@ in {
           };
         };
 
-        userDefaults.extraGroups = ["audio"];
+        sylk.userDefaults.extraGroups = ["audio"];
       }
 
       # bluetooth audio config
-      (mkIf config.sylk.system.bluetooth {
-        wireplumber.extraConfig = {
+      (mkIf config.sylk.system.bluetooth.enable {
+        services.pipewire.wireplumber.extraConfig = {
           "monitor.bluez.properties" = {
             "bluez5.enable-sbc-xq" = true;
             "bluez5.enable-msbc" = true;

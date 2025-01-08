@@ -57,7 +57,7 @@ in {
             description = "Enable this monitor";
           };
           transform = mkOption {
-            type = types.int.between 0 7;
+            type = types.ints.between 0 7;
             default = 0;
             description = ''
               0 -> normal (no transforms)
@@ -89,7 +89,7 @@ in {
   };
 
   config = mkIf (length cfg != 0) {
-    assertion =
+    assertions =
       [
         {
           assertion = ((length cfg) != 0) -> (length (filter (m: m.primary) cfg) == 1);
@@ -97,18 +97,18 @@ in {
         }
       ]
       # Assertions for each monitor
-      ++ concatLists map (
-        m: [
-          {
-            assertion = m.mirror == "" || (any (m2: m.mirror == m2.name) cfg);
-            message = "\"${m.name}\" failed to mirror \"${m.mirror}\" because \"${m.mirror}\" does not exist.";
-          }
-          {
-            assertion = len (filter (m2: m2.name == m.name) cfg) == 1;
-            message = "\"${m.name}\" has an overlapping name with another monitor";
-          }
-        ]
-      )
-      cfg;
+      ++ concatLists (map (
+          m: [
+            {
+              assertion = m.mirror == "" || (any (m2: m.mirror == m2.name) cfg);
+              message = "\"${m.name}\" failed to mirror \"${m.mirror}\" because \"${m.mirror}\" does not exist.";
+            }
+            {
+              assertion = length (filter (m2: m2.name == m.name) cfg) == 1;
+              message = "\"${m.name}\" has an overlapping name with another monitor";
+            }
+          ]
+        )
+        cfg);
   };
 }

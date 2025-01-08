@@ -15,7 +15,7 @@ in {
     enable = mk-enable config.modules.desktop.enable;
   };
 
-  config = mkIf (cfg.enable && osConfig.modules.audio.enable) {
+  config = mkIf (cfg.enable && osConfig.sylk.system.audio.enable) {
     home.packages = with pkgs; [
       pavucontrol
     ];

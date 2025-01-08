@@ -10,7 +10,7 @@
 in {
   config = mkIf (any-user (user: user.modules.desktop.security.wireshark.enable) config.home-manager.users) {
     users.groups.plugdev = {};
-    userDefaults.extraGroups = [
+    sylk.userDefaults.extraGroups = [
       "wireshark"
       "plugdev"
     ];

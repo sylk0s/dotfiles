@@ -46,7 +46,7 @@ in {
         serviceConfig.Type = "oneshot";
         script = let
           # list of users on this system
-          users = foldl' (acc: x: "${acc} ${x.name}") "" config.modules.users;
+          users = foldl' (acc: x: "${acc} ${x.name}") "" config.sylk.users;
         in ''
           mkdir /btrfs_tmp
           mount /dev/mapper/${cfg.device} /btrfs_tmp

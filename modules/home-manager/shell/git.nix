@@ -11,7 +11,6 @@
   inherit (lib) mkIf;
   inherit (sylib) mk-enable mk-str-opt;
   cfg = config.modules.shell.git;
-  configDir = osConfig.dotfiles.configDir;
 in {
   options.modules.shell.git = {
     enable = mk-enable true;

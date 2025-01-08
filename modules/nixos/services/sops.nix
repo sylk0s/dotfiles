@@ -9,7 +9,7 @@
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
 
-  cfg = config.modules.services.sops;
+  cfg = config.sylk.services.sops;
 in {
   imports = [
     inputs.sops-nix.nixosModules.sops

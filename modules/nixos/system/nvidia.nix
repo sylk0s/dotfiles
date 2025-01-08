@@ -5,23 +5,25 @@
   config,
   ...
 }: let
-  inherit (lib) types;
-  inherit (sylib) mk-enable mkOption;
+  inherit (lib) types mkIf mkDefault mkMerge mkOption;
+  inherit (sylib) mk-enable;
 
   cfg = config.sylk.system.nvidia;
 in {
   options.sylk.system.nvidia = {
     enable = mk-enable false;
-    prime = types.submodule {
-      options = let
-        pcie-bus = types.strMatching "PCI:0-9:0-9:0-9";
-      in {
-        enable = mk-enable false;
-        intel-bus-id = mkOption {
-          type = pcie-bus;
-        };
-        nvidia-bus-id = mkOption {
-          type = pcie-bus;
+    prime = mkOption {
+      type = types.submodule {
+        options = let
+          pcie-bus = types.strMatching "PCI:[0-9]:[0-9]:[0-9]";
+        in {
+          enable = mk-enable false;
+          intel-bus-id = mkOption {
+            type = pcie-bus;
+          };
+          nvidia-bus-id = mkOption {
+            type = pcie-bus;
+          };
         };
       };
     };
@@ -46,10 +48,10 @@ in {
       ];
 
       # good for hyprland
-      environment.variables = [
-        "LIBVA_DRIVER_NAME,nvidia"
-        "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-      ];
+      environment.variables = {
+        "LIBVA_DRIVER_NAME" = "nvidia";
+        "__GLX_VENDOR_LIBRARY_NAME" = "nvidia";
+      };
 
       # Load nvidia driver for Xorg and Wayland
       services.xserver.videoDrivers = ["nvidia"];
@@ -86,22 +88,22 @@ in {
         package = config.boot.kernelPackages.nvidiaPackages.stable;
       };
     }
-    (mkIf cfg.prime.enable)
-    {
-      # laptop multi gpu switching
-      prime = {
-        offload = {
-          enable = mkDefault true;
-          enableOffloadCmd = mkDefault true;
+    (mkIf cfg.prime.enable
+      {
+        # laptop multi gpu switching
+        hardware.nvidia.prime = {
+          offload = {
+            enable = true;
+            enableOffloadCmd = mkDefault true;
+          };
+
+          # bus ids are handled by nixos hardware
+          # Bus ID of the Intel GPU.
+          intelBusId = mkDefault cfg.prime.intel-bus-id;
+
+          # Bus ID of the NVIDIA GPU.
+          nvidiaBusId = mkDefault cfg.prime.nvidia-bus-id;
         };
-
-        # bus ids are handled by nixos hardware
-        # Bus ID of the Intel GPU.
-        intelBusId = mkDefault cfg.intel-bus-id;
-
-        # Bus ID of the NVIDIA GPU.
-        nvidiaBusId = mkDefault cfg.nvidia-bus-id;
-      };
-    }
+      })
   ]);
 }

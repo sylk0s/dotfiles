@@ -5,6 +5,7 @@
   lib,
   sylib,
   pkgs,
+  inputs,
   ...
 }: let
   inherit (lib) mkIf mkOption types;
@@ -49,7 +50,7 @@ in {
       programs.eww = {
         enable = true;
         package = cfg.package;
-        configDir = "${osConfig.dotfiles.configDir}/eww";
+        configDir = "${inputs.self.outPath}/config/eww";
       };
 
       home.packages = with pkgs; [

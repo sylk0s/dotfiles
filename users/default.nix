@@ -9,9 +9,9 @@
 }: let
   inherit (lib) types mkOption listToAttrs map mkDefault mkMerge mkIf;
   inherit (sylib) mk-homes all-modules-in-dir-rec mk-users;
-  cfg = config.modules.users;
+  cfg = config.sylk.users;
 in {
-  options.modules.users = mkOption {
+  options.sylk.users = mkOption {
     type = types.listOf (
       types.submodule {
         options = {
@@ -54,7 +54,7 @@ in {
       users.users = let
         # sops config struct for user config
         sops = {
-          enabled = config.modules.services.sops.enable;
+          enabled = config.sylk.services.sops.enable;
           paths = listToAttrs (map (user: {
               name = user.name;
               value = config.sops.secrets."passwords/${user.name}".path;
@@ -62,7 +62,7 @@ in {
             cfg);
         };
       in
-        mk-users config.userDefaults.extraGroups sops cfg;
+        mk-users config.sylk.userDefaults.extraGroups sops cfg;
 
       # DO THIS ONLY IF home-manager is a nixos module
       # sets up home manager for all the users above
@@ -76,7 +76,7 @@ in {
       };
     }
     (
-      mkIf config.modules.services.sops.enable {
+      mkIf config.sylk.services.sops.enable {
         # pulls in passwords if sops is enabled
         sops.secrets = listToAttrs (map (user: {
             name = "passwords/${user.name}";
