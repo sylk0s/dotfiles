@@ -80,6 +80,11 @@ in {
             default = "";
             description = "If set, this monitor will mirror the specified one";
           };
+          switch = mkOption {
+            type = types.str;
+            default = "";
+            description = "Switch to trigger enable/disables for this monitor (Used by hyprland)";
+          };
         };
       }
     );

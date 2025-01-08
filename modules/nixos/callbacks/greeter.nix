@@ -51,12 +51,17 @@ in {
     # };
 
     services.displayManager = {
-      sddm = {
+      # sddm = {
+      #   enable = true;
+      #   wayland.enable = true;
+      #   package = pkgs.kdePackages.sddm;
+      # };
+      ly = {
         enable = true;
-        wayland.enable = true;
-        package = pkgs.kdePackages.sddm;
       };
     };
+
+    #systemd.services.display-manager.environment.XDG_CURRENT_DESKTOP = "X-NIXOS-SYSTEMD-AWARE";
 
     boot.plymouth = {
       enable = true;

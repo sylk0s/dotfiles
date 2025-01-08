@@ -26,10 +26,10 @@ in {
     services.dunst = {
       enable = true;
       package = pkgs.dunst;
-      iconTheme = {
-        name = gtkConfig.iconTheme.name;
-        package = gtkConfig.iconTheme.package;
-      };
+      # iconTheme = {
+      #   name = gtkConfig.iconTheme.name;
+      #   package = gtkConfig.iconTheme.package;
+      # };
       settings = let
         ct = colorScheme.types;
         cc = colorScheme.colors;

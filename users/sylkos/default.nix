@@ -45,7 +45,7 @@
         #    enable = true;
         #  };
         #  kdeconnect.enable = true;
-        dunst.enable = false;
+        dunst.enable = true;
         waybar.enable = true;
       };
     };
@@ -70,6 +70,5 @@
 
   home.packages = with pkgs; [
     #kicad
-    brightnessctl
   ];
 }

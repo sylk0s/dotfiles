@@ -7,10 +7,10 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkIf isNull;
+  inherit (lib) mkIf;
   inherit (sylib) mk-enable;
 
-  colorType = lib.types.addCheck lib.types.str (x: !isNull (builtins.match "#[0-9a-fA-F]{6}" x));
+  colorType = lib.types.addCheck lib.types.str (x: !builtins.isNull (builtins.match "#[0-9a-fA-F]{6}" x));
   color = defaultColor:
     lib.mkOption {
       type = colorType;

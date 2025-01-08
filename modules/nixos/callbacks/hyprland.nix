@@ -13,8 +13,12 @@ in {
 
     programs.hyprland = {
       enable = true;
+      withUWSM = true;
       xwayland.enable = true;
     };
+
+    programs.hyprlock.enable = true;
+    security.pam.services.hyprlock = {}; # allows hyprlock to preform auth
 
     environment.sessionVariables = {
       LIBVA_DRIVER_NAME = "nvidia";
@@ -26,6 +30,6 @@ in {
 
     # this is needed because otherwise I *can't* use my password for this
     # TODO revisit locking stuff
-    security.pam.services.swaylock = {};
+    # security.pam.services.swaylock = {};
   };
 }
