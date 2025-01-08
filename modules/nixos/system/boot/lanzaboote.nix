@@ -39,11 +39,9 @@ in {
       };
     };
 
-    environment.persistence."/persist" = {
-      directories = [
-        "/etc/secureboot"
-      ];
-    };
+    sylk.system.fs.impermanence.dirs-to-persist = [
+      "/etc/secureboot"
+    ];
 
     environment.systemPackages = [
       pkgs.sbctl

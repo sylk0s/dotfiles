@@ -24,7 +24,7 @@ in {
     inherit (import cfg.config-file) disko;
 
     fileSystems = {
-      "/persist".neededForBoot = true;
+      "${config.sylk.system.fs.impermanence.persist-dir}".neededForBoot = true;
       "/var/log".neededForBoot = true;
       "/home".neededForBoot = true;
     };

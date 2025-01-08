@@ -26,6 +26,7 @@
       boot.systemd-boot.enable = true;
 
       fs = {
+        ephemeral-btrfs.enable = true;
         impermanence.enable = true;
         disko = {
           enable = true;
