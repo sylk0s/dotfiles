@@ -175,7 +175,7 @@ in {
             dots_center = true;
             outer_color = "rgba(0, 0, 0, 0)";
             inner_color = "rgba(0, 0, 0, 0.2)";
-            font_color = "$foreground";
+            font_color = "rgb(245, 224, 220)";
             fade_on_empty = false;
             rounding = -1;
             check_color = "rgb(204, 136, 34)";
@@ -191,7 +191,7 @@ in {
             {
               monitor = "";
               text = "cmd[update:1000] echo \"$(date +\"%A, %B %d\")\"";
-              color = "rgba(242, 243, 244, 0.75)";
+              color = "rgb(245, 224, 220)";
               font_size = 22;
               font_family = "JetBrains Mono";
               position = "0, 300";
@@ -203,7 +203,7 @@ in {
             {
               monitor = "";
               text = "cmd[update:1000] echo \"$(date +\"%-I:%M\")\"";
-              color = "rgba(242, 243, 244, 0.75)";
+              color = "rgb(245, 224, 220)";
               font_size = 95;
               font_family = "JetBrains Mono Extrabold";
               position = "0, 200";
@@ -219,7 +219,7 @@ in {
               path = "${inputs.self.outPath}/config/assets/julia.png";
               size = 100;
               border_size = 2;
-              border_color = "$foreground";
+              border_color = "rgb(245, 224, 220)";
               position = "0, -100";
               halign = "center";
               valign = "center";

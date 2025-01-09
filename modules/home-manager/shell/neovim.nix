@@ -25,26 +25,30 @@ in {
 
   config = mkIf cfg.enable {
     home = {
-      packages = with pkgs; [
-        # LSP
-        lua-language-server
-        rust-analyzer
-        java-language-server
-        #TODO
-        #nodePackages.pyright
-        nodePackages.typescript-language-server
-        nodePackages.bash-language-server
-        clang-tools_17
-        cmake-language-server
-        dockerfile-language-server-nodejs
-        statix
-        alejandra
-        nil
+      packages = with pkgs;
+        [
+          # LSP
+          lua-language-server
+          rust-analyzer
+          java-language-server
+          #TODO
+          #nodePackages.pyright
+          nodePackages.typescript-language-server
+          nodePackages.bash-language-server
+          clang-tools_17
+          cmake-language-server
+          dockerfile-language-server-nodejs
+          statix
+          alejandra
+          nil
 
-        # Deps of telescope
-        ripgrep
-        fd
-      ];
+          # Deps of telescope
+          ripgrep
+          fd
+        ]
+        ++ (with pkgs.ocamlPackages; [
+          ocaml-lsp
+        ]);
 
       sessionVariables = {
         EDITOR = "nvim";
