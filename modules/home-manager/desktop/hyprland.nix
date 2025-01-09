@@ -235,6 +235,9 @@ in {
         xwayland.enable = true;
         package = hyprland;
 
+        # needed for UWSM
+        systemd.enable = false;
+
         # plugins = [
         #   inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
         # ];
