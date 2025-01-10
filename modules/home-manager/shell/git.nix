@@ -8,9 +8,12 @@
   inputs,
   ...
 }: let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf listToAttrs;
   inherit (sylib) mk-enable mk-str-opt;
   cfg = config.modules.shell.git;
+
+  gits = ["per" "pro" "sch"];
+  for-all-gits = fn: map fn gits;
 in {
   options.modules.shell.git = {
     enable = mk-enable true;
@@ -19,22 +22,65 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # TODO update this
-    programs.gh.enable = true;
-
-    xdg.configFile = {
-      "git/config".source = "${inputs.self.outPath}/config/git/config";
-      "git/ignore".source = "${inputs.self.outPath}/config/git/ignore";
-      "git/attributes".source = "${inputs.self.outPath}/config/git/attributes";
-    };
-
+    # thanks @3ulalia!
     programs.git = {
       enable = true;
+      # sane defaults
       userName = cfg.userName;
       userEmail = cfg.userEmail;
       ignores = ["/.vscode" "/.pio" "/__pycache__" ".envrc" ".direnv" ".env" "/target"];
+      # includes =
+      #   for-all-gits
+      #   (
+      #     x: {
+      #       path = config.sops.secrets."git-config/gh-${x}".path;
+      #       condition = "hasconfig:remote.*.url:git@gh-${x}*/**";
+      #     }
+      #   );
+      extraConfig.init.defaultBranch = "main";
     };
 
-    #modules.shell.zsh.rcFiles = [ "${configDir}/git/aliases.zsh" ];
+    programs.gh = {
+      enable = true;
+      settings.git_protocol = "ssh";
+    };
+
+    # programs.ssh = {
+    #   enable = true;
+    #   compression = true;
+    #   includes = ["config.d/*"];
+    #   matchBlocks = for-all-gits (
+    #     x: {
+    #       host = "gh-${x}";
+    #       hostname = config.sops.secrets."git-urls/gh-${x}".path;
+    #       identityFile = config.sops.secrets."ssh/gh-${x}".path;
+    #       identitiesOnly = true;
+    #     }
+    #   );
+    # };
+
+    # # ssh keys for each git
+    # sops.secrets = listToAttrs for-all-gits (
+    #   x: {
+    #     name = "ssh/gh-${x}";
+    #     value = {};
+    #   }
+    # );
+
+    # # name and email configs for each git
+    # sops.secrets = listToAttrs for-all-gits (
+    #   x: {
+    #     name = "git-config/gh-${x}";
+    #     value = {};
+    #   }
+    # );
+
+    # # github urls
+    # sops.secrets = listToAttrs for-all-gits (
+    #   x: {
+    #     name = "git-urls/gh-${x}";
+    #     value = {};
+    #   }
+    # );
   };
 }
