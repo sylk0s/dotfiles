@@ -18,18 +18,19 @@ in {
     # TODO
     # eventually i wanna move this here
     home.packages = with pkgs; [
-      steam-tui
-      steamcmd
+      # steam-tui
+      # steamcmd
     ];
 
     # for now...
     # callback to callbacks/steam.nix
-    home.persistence."/persist/home/${config.home.username}" = {
-      directories = [
-        ".steam"
-        ".local/share/Steam/"
-        ".local/share/vulkan/"
-      ];
-    };
+    # home.persistence."/persist/home/${config.home.username}" = {
+    #   allowOther = true;
+    #   directories = [
+    #     ".steam"
+    #     ".local/share/Steam/"
+    #     ".local/share/vulkan/"
+    #   ];
+    # };
   };
 }

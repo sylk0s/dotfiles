@@ -67,7 +67,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    mesa
+    # mesa
   ];
 
   # time.timeZone = "Europe/Budapest";
