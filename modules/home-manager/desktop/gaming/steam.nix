@@ -24,11 +24,16 @@ in {
 
     # for now...
     # callback to callbacks/steam.nix
+
+    # Note: turn this off when installing steam,
     # home.persistence."/persist/home/${config.home.username}" = {
     #   allowOther = true;
     #   directories = [
     #     ".steam"
-    #     ".local/share/Steam/"
+    #     {
+    #       directory = ".local/share/Steam";
+    #       method = "symlink";
+    #     }
     #     ".local/share/vulkan/"
     #   ];
     # };
