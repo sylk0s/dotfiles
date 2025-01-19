@@ -10,7 +10,7 @@
   inherit (lib) mkIf;
   inherit (sylib) mk-enable mk-str-opt;
 
-  cfg = config.modules.themes.fonts;
+  cfg = config.sylk.themes.fonts;
   font = defaultFamily: defaultSize: {
     family = mk-str-opt defaultFamily;
     size = lib.mkOption {
@@ -19,7 +19,7 @@
     };
   };
 in {
-  options.modules.themes.fonts = {
+  options.sylk.themes.fonts = {
     enable = mk-enable true;
 
     styles = {

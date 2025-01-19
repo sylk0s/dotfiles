@@ -9,9 +9,9 @@
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
 
-  cfg = config.modules.themes.catppuccin;
+  cfg = config.sylk.themes.catppuccin;
 in {
-  options.modules.themes.catppuccin = {
+  options.sylk.themes.catppuccin = {
     enable = mk-enable true;
   };
 

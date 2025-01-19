@@ -8,9 +8,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (sylib) mk-enable mk-bool-opt;
-  cfg = config.modules.desktop.media.spotify;
+  cfg = config.sylk.desktop.media.spotify;
 in {
-  options.modules.desktop.media.spotify = {
+  options.sylk.desktop.media.spotify = {
     enable = mk-enable false;
     tui.enable = mk-bool-opt false; # TODO
   };

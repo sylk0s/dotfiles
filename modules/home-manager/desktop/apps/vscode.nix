@@ -8,9 +8,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
-  cfg = config.modules.desktop.apps.vscode;
+  cfg = config.sylk.desktop.apps.vscode;
 in {
-  options.modules.desktop.apps.vscode = {
+  options.sylk.desktop.apps.vscode = {
     enable = mk-enable false;
   };
 

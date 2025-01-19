@@ -8,13 +8,13 @@
 }: let
   inherit (lib) mkIf mkMerge;
   inherit (sylib) mk-enable;
-  cfg = config.modules.impermanence;
+  cfg = config.sylk.impermanence;
 in {
   imports = [
     inputs.impermanence.nixosModules.home-manager.impermanence
   ];
 
-  options.modules.impermanence = {
+  options.sylk.impermanence = {
     enable = mk-enable false;
   };
 

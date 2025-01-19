@@ -8,9 +8,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
-  cfg = config.modules.desktop.social.fractal;
+  cfg = config.sylk.desktop.social.fractal;
 in {
-  options.modules.desktop.social.fractal = {
+  options.sylk.desktop.social.fractal = {
     enable = mk-enable false;
   };
 

@@ -10,12 +10,12 @@
 }: let
   inherit (lib) mkIf listToAttrs;
   inherit (sylib) mk-enable mk-str-opt;
-  cfg = config.modules.shell.git;
+  cfg = config.sylk.shell.git;
 
   gits = ["per" "pro" "sch"];
   for-all-gits = fn: map fn gits;
 in {
-  options.modules.shell.git = {
+  options.sylk.shell.git = {
     enable = mk-enable true;
     userName = mk-str-opt "sylk0s";
     userEmail = mk-str-opt "julia@sylkos.xyz";

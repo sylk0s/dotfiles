@@ -6,12 +6,12 @@
   pkgs,
   ...
 }: let
-  cfg = config.modules.desktop.social.signal;
+  cfg = config.sylk.desktop.social.signal;
 
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
 in {
-  options.modules.desktop.social.signal = {
+  options.sylk.desktop.social.signal = {
     enable = mk-enable false;
   };
 

@@ -8,9 +8,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
-  cfg = config.modules.desktop.social.discord;
+  cfg = config.sylk.desktop.social.discord;
 in {
-  options.modules.desktop.social.discord = {
+  options.sylk.desktop.social.discord = {
     enable = mk-enable false;
   };
 

@@ -15,7 +15,7 @@ in {
         listToAttrs (map (user: nameValuePair "${user.name}" {shell = pkgs.zsh;}) (attrs-to-list config.home-manager.users));
     }
 
-    (mkIf (any-user (user: user.modules.shell.zsh.enable) config.home-manager.users) {
+    (mkIf (any-user (user: user.sylk.shell.zsh.enable) config.home-manager.users) {
       programs.zsh.enable = true;
     })
   ];

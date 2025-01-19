@@ -11,7 +11,7 @@
   inherit (lib) mkIf map filter concatLists;
   inherit (sylib) mk-enable mk-bool-opt;
 
-  cfg = config.modules.desktop.hyprland;
+  cfg = config.sylk.desktop.hyprland;
 
   # change this for nvidia
   hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -20,7 +20,7 @@ in {
 
   # callback for hyprland system support
 
-  options.modules.desktop.hyprland = {
+  options.sylk.desktop.hyprland = {
     enable = mk-enable false;
     nvidia = mk-bool-opt false;
   };

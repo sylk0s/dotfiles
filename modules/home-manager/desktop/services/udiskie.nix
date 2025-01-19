@@ -8,9 +8,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
-  cfg = config.modules.desktop.services.udiskie;
+  cfg = config.sylk.desktop.services.udiskie;
 in {
-  options.modules.desktop.services.udiskie = {
+  options.sylk.desktop.services.udiskie = {
     enable = mk-enable false;
   };
 

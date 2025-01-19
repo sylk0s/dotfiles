@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: {
-  modules = {
+  sylk = {
     desktop = {
       hyprland = {
         enable = true;

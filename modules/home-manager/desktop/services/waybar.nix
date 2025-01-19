@@ -6,9 +6,9 @@
   pkgs,
   ...
 }: let
-  cfg = config.modules.desktop.services.waybar;
+  cfg = config.sylk.desktop.services.waybar;
 in {
-  options.modules.desktop.services.waybar = {
+  options.sylk.desktop.services.waybar = {
     enable = lib.mkOption {
       type = lib.types.bool;
       default = false;

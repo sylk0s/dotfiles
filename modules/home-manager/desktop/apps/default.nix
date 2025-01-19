@@ -5,7 +5,7 @@
   pkgs,
   ...
 }: let
-  cfg = config.modules.desktop.apps;
+  cfg = config.sylk.desktop.apps;
 in {
   config = {
     # TODO

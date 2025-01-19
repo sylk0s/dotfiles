@@ -11,9 +11,9 @@
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
 
-  cfg = config.modules.shell.zsh;
+  cfg = config.sylk.shell.zsh;
 in {
-  options.modules.shell.zsh = {
+  options.sylk.shell.zsh = {
     enable = mk-enable true;
   };
 

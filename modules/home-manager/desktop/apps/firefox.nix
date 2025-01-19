@@ -7,11 +7,11 @@
   inputs,
   ...
 }: let
-  cfg = config.modules.desktop.apps.firefox;
+  cfg = config.sylk.desktop.apps.firefox;
   inherit (lib) mkIf types;
   inherit (sylib) mk-enable mk-str-opt;
 in {
-  options.modules.desktop.apps.firefox = with types; {
+  options.sylk.desktop.apps.firefox = with types; {
     enable = mk-enable false;
     profileName = mk-str-opt config.user.name;
   };

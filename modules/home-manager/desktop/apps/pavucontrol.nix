@@ -9,10 +9,10 @@
 }: let
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
-  cfg = config.modules.desktop.media.pavucontrol;
+  cfg = config.sylk.desktop.media.pavucontrol;
 in {
-  options.modules.desktop.media.pavucontrol = {
-    enable = mk-enable config.modules.desktop.enable;
+  options.sylk.desktop.media.pavucontrol = {
+    enable = mk-enable config.sylk.desktop.enable;
   };
 
   config = mkIf (cfg.enable && osConfig.sylk.system.audio.enable) {

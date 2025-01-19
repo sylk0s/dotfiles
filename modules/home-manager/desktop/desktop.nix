@@ -8,10 +8,10 @@
 }: let
   inherit (lib) filterAttrs isAttrs;
   inherit (sylib) mk-enable any-attrs count-attrs;
-  cfg = config.modules.desktop;
+  cfg = config.sylk.desktop;
   desktop-num = count-attrs (n: v: v ? enable && v.enable) (filterAttrs (n: v: n != "enable") cfg);
 in {
-  options.modules.desktop = {
+  options.sylk.desktop = {
     enable = mk-enable (desktop-num >= 1);
   };
 

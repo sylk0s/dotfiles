@@ -6,7 +6,7 @@
   pkgs,
   ...
 }: let
-  cfg = config.modules.shell;
+  cfg = config.sylk.shell;
 in {
   config = {
     assertions = [

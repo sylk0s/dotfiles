@@ -8,9 +8,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
-  cfg = config.modules.desktop.gaming.steam;
+  cfg = config.sylk.desktop.gaming.steam;
 in {
-  options.modules.desktop.gaming.steam = {
+  options.sylk.desktop.gaming.steam = {
     enable = mk-enable false;
   };
 

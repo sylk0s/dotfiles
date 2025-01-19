@@ -6,10 +6,10 @@
   pkgs,
   ...
 }: let
-  cfg = config.modules.themes.gtk;
+  cfg = config.sylk.themes.gtk;
   srv = config.services;
 in {
-  #   options.modules.themes.gtk = {
+  #   options.sylk.themes.gtk = {
   #     enable = mkBoolOpt true;
   #     iconTheme = {
   #       name = mkStrOpt "Papirus-Dark";
@@ -35,7 +35,7 @@ in {
   #     };
   #   };
 
-  #   config = mkIf (config.modules.desktop.hyprland.enable) {
+  #   config = mkIf (config.sylk.desktop.hyprland.enable) {
   #     gtk = {
   #       enable = true;
 

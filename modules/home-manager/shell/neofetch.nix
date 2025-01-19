@@ -11,9 +11,9 @@
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
 
-  cfg = config.modules.shell.neofetch;
+  cfg = config.sylk.shell.neofetch;
 in {
-  options.modules.shell.neofetch = {
+  options.sylk.shell.neofetch = {
     enable = mk-enable true;
   };
 

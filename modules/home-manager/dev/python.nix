@@ -9,7 +9,7 @@
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
 
-  cfg = config.modules.dev.python;
+  cfg = config.sylk.dev.python;
   my-python-packages = ps:
     with ps; [
       numpy
@@ -20,7 +20,7 @@
       python-dotenv
     ];
 in {
-  options.modules.dev.python = {
+  options.sylk.dev.python = {
     enable = mk-enable false;
   };
 

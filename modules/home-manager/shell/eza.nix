@@ -9,9 +9,9 @@
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
 
-  cfg = config.modules.shell.eza;
+  cfg = config.sylk.shell.eza;
 in {
-  options.modules.shell.eza = {
+  options.sylk.shell.eza = {
     enable = mk-enable false;
   };
 

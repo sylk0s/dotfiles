@@ -11,9 +11,9 @@
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
 
-  cfg = config.modules.shell.neovim;
+  cfg = config.sylk.shell.neovim;
 in {
-  options.modules.shell.neovim = {
+  options.sylk.shell.neovim = {
     enable = mk-enable true;
   };
 

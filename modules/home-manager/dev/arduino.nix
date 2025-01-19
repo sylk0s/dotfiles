@@ -8,9 +8,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
-  cfg = config.modules.dev.arduino;
+  cfg = config.sylk.dev.arduino;
 in {
-  options.modules.dev.arduino = {
+  options.sylk.dev.arduino = {
     enable = mk-enable false;
   };
 

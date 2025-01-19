@@ -11,7 +11,7 @@
 
   pkgs-unstable = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in {
-  config = mkIf (any-user (user: user.modules.desktop.gaming.steam.enable) config.home-manager.users) {
+  config = mkIf (any-user (user: user.sylk.desktop.gaming.steam.enable) config.home-manager.users) {
     programs.steam = {
       enable = true;
       remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
@@ -41,6 +41,6 @@ in {
             ];
           };
         })
-        (filter-users (user: user.modules.desktop.gaming.steam.enable) config.home-manager.users));
+        (filter-users (user: user.sylk.desktop.gaming.steam.enable) config.home-manager.users));
   };
 }

@@ -8,9 +8,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
-  cfg = config.modules.desktop.apps.zathura;
+  cfg = config.sylk.desktop.apps.zathura;
 in {
-  options.modules.desktop.apps.zathura = {
+  options.sylk.desktop.apps.zathura = {
     enable = mk-enable false;
   };
 

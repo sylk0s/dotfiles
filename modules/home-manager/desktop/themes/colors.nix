@@ -16,9 +16,9 @@
       type = colorType;
       default = defaultColor;
     };
-  cfg = config.modules.themes.colors;
+  cfg = config.sylk.themes.colors;
 in {
-  options.modules.themes.colors = {
+  options.sylk.themes.colors = {
     enable = mk-enable true;
 
     # TODO replace this later

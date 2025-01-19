@@ -1,5 +1,5 @@
 {config, ...}: {
-  modules = {
+  sylk = {
     desktop = {
       #hyprland = {
       #  enable = true;

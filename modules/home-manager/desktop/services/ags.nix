@@ -10,11 +10,11 @@
 }: let
   inherit (lib) mkIf mkMerge;
   inherit (sylib) mk-enable;
-  cfg = config.modules.desktop.services.ags;
+  cfg = config.sylk.desktop.services.ags;
 in {
   imports = [inputs.ags.homeManagerModules.default];
 
-  options.modules.desktop.services.ags = {
+  options.sylk.desktop.services.ags = {
     enable = mk-enable false;
   };
 
