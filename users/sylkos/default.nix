@@ -8,37 +8,23 @@
       hyprland = {
         enable = true;
       };
-      # gnome = {
-      #   enable = true;
-      # };
-      # cosmic.enable = true;
       # media.spotify.enable = true;
       social = {
         discord.enable = true;
         signal.enable = true;
-        #thunderbird.enable = true;
         #fractal.enable = true;
       };
       apps = {
         firefox = {
           enable = true;
         };
-        #intellij.enable = true;
         alacritty.enable = true;
         vscode.enable = true;
         thunar.enable = true;
-        #zed.enable = true;
       };
-      #   security = {
-      #     cutter.enable = false;
-      #     wireshark.enable = true;
-      #     ghidra.enable = true;
-      #     burpsuite.enable = true;
-      #   };
       gaming = {
         steam.enable = true;
         #  mc.enable = true;
-        #  emu.enable = false;
       };
       services = {
         #  ags = {
@@ -53,12 +39,8 @@
       #python.enable = true;
       #rust.enable = true;
       #julia.enable = true;
-      #java.enable = true;
       #c.enable = true;
-      #racket.enable = false;
-      #haskell.enable = true;
       #embedded.enable = false;
-      #ocaml.enable = true;
     };
 
     shell = {
