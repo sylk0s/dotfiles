@@ -11,32 +11,38 @@
   inherit (sylib) mk-homes all-modules-in-dir-rec mk-users;
   cfg = config.sylk.users;
 in {
-  options.sylk.users = mkOption {
-    type = types.listOf (
-      types.submodule {
-        options = {
-          name = mkOption {
-            type = types.str;
+  options.sylk = {
+    users = mkOption {
+      type = types.listOf (
+        types.submodule {
+          options = {
+            name = mkOption {
+              type = types.str;
+            };
+            privileged = mkOption {
+              type = types.bool;
+              default = false;
+            };
+            config = mkOption {
+              type = types.nullOr types.path;
+              default = null;
+            };
+            password = mkOption {
+              type = types.nullOr types.path;
+              default = null;
+            };
+            extra-groups = mkOption {
+              type = types.listOf types.str;
+              default = [];
+            };
           };
-          privileged = mkOption {
-            type = types.bool;
-            default = false;
-          };
-          config = mkOption {
-            type = types.nullOr types.path;
-            default = null;
-          };
-          password = mkOption {
-            type = types.nullOr types.path;
-            default = null;
-          };
-          extra-groups = mkOption {
-            type = types.listOf types.str;
-            default = [];
-          };
-        };
-      }
-    );
+        }
+      );
+    };
+
+    userDefaults = {
+      extraGroups = mk-opt (types.listOf types.str) [] "Default groups for all users";
+    };
   };
 
   config = mkMerge [

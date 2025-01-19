@@ -16,5 +16,7 @@ in {
 
   config = mkIf cfg.enable {
     services.tailscale.enable = true;
+
+    # going to add more tailscale bullshit later!
   };
 }
