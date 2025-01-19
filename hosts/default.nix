@@ -13,26 +13,14 @@ in {
   imports = [
     ../users # user definitions
     inputs.home-manager.nixosModules.home-manager
-    # inputs.nur.nixosModules.nur
   ];
 
   nixpkgs.config.allowUnfree = mkDefault true;
 
   #environment.variables.DOTFILES = config.dotfiles.dir;
-  #environment.variables.DOTFILES_BIN = config.dotfiles.binDir;
 
   # TODO
-  nix = let
-    # filteredInputs = filterAttrs (n: _: n != "self") inputs;
-    # nixPathInputs = mapAttrsToList (n: v: "${n}=${v}") filteredInputs;
-    # registryInputs = mapAttrs (_: v: {flake = v;}) filteredInputs;
-  in {
-    # package = pkgs.nixFlakes;
-
-    # nixPath = nixPathInputs ++ ["dotfiles=${config.dotfiles.dir}"];
-
-    # registry = registryInputs // {dotfiles.flake = inputs.self;};
-
+  nix = {
     settings = {
       experimental-features = mkDefault "nix-command flakes";
       auto-optimise-store = mkDefault true;
@@ -55,14 +43,10 @@ in {
   };
 
   nixpkgs = {
-    # overlays = [
-    #   (import ./grub_overlay.nix)
-    # ];
     hostPlatform.system = "x86_64-linux";
   };
 
-  # TODO what is this
-  # system.configurationRevision = with inputs; mkIf (self ? rev) self.rev;
+  # TODO should this be system wide or nah
   system.stateVersion = "21.05";
 
   time.timeZone = mkDefault "America/New_York";
