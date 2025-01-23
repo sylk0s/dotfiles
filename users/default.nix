@@ -8,7 +8,7 @@
   ...
 }: let
   inherit (lib) types mkOption listToAttrs map mkDefault mkMerge mkIf;
-  inherit (sylib) mk-homes all-modules-in-dir-rec mk-users;
+  inherit (sylib) mk-homes all-modules-in-dir-rec mk-users mk-opt;
   cfg = config.sylk.users;
 in {
   options.sylk = {

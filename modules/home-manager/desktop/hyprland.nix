@@ -411,12 +411,12 @@ in {
             "SUPER, mouse:273, resizewindow"
           ];
 
-          bindl = concatLists (map (m: [
-            # trigger when the switch is turning on
-            ", switch:on:${m.switch}, exec, hyprctl keyword monitor \"${m.name}, disable\""
-            # trigger when the switch is turning off
-            ", switch:off:${m.switch}, exec, hyprctl keyword monitor \"${monitor-str m}\""
-          ]) (filter (m: m.switch != "") osConfig.sylk.system.monitors));
+          #bindl = concatLists (map (m: [
+          #  # trigger when the switch is turning on
+          #  ", switch:on:${m.switch}, exec, hyprctl keyword monitor \"${m.name}, disable\""
+          #  # trigger when the switch is turning off
+          #  ", switch:off:${m.switch}, exec, hyprctl keyword monitor \"${monitor-str m}\""
+          #]) (filter (m: m.switch != "") osConfig.sylk.system.monitors));
 
           # plugin = {
           #   hyperexpo = {

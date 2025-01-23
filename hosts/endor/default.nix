@@ -45,7 +45,7 @@
     };
 
     services = {
-      sops.enable = true;
+      # sops.enable = true;
       docker.enable = true;
       gpg.enable = true;
     };

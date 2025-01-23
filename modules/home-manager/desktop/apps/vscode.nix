@@ -104,12 +104,12 @@ in {
                 version = "1.4.6";
                 sha256 = "sha256-flWBK+ugrbgy5pEDmGQeUzk1s2sCMQJRgrS3Ku1Oiag=";
               }
-              {
-                name = "platformio-ide";
-                publisher = "platformio";
-                version = "3.3.1";
-                sha256 = "sha256-zBZFpOWJ4JEv6qu9XT1u0uspZ+N2wKrpL3joC+/t/zs=";
-              }
+              #{
+              #  name = "platformio-ide";
+              #  publisher = "platformio";
+              #  version = "3.3.1";
+              #  sha256 = "sha256-zBZFpOWJ4JEv6qu9XT1u0uspZ+N2wKrpL3joC+/t/zs=";
+              #}
               {
                 name = "tex-preview";
                 publisher = "tialki";
