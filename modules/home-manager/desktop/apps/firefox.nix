@@ -5,10 +5,11 @@
   sylib,
   pkgs,
   inputs,
+  secrets,
   ...
 }: let
   cfg = config.sylk.desktop.apps.firefox;
-  inherit (lib) mkIf types;
+  inherit (lib) mkIf types mapAttrsToList;
   inherit (sylib) mk-enable mk-str-opt;
 in {
   options.sylk.desktop.apps.firefox = with types; {
@@ -24,7 +25,6 @@ in {
         XDG_DESKTOP_DIR = "$HOME/";
       };
 
-      # TODO don't
       persistence."/persist/home/${config.home.username}" = {
         directories = [
           ".mozilla/firefox/${config.home.username}"
@@ -39,43 +39,51 @@ in {
           ublock-origin
           stylus
         ];
-        # TODO
         bookmarks = [
           {
             name = "Bar";
             toolbar = true;
-            bookmarks = [
-              {
-                name = "noogle";
-                url = "https://noogle.dev/";
-              }
-              {
-                name = "homepkgs";
-                url = "https://home-manager-options.extranix.com/";
-              }
-              {
-                name = "pkgs";
-                url = "https://search.nixos.org/options";
-              }
+            bookmarks =
+              [
+                {
+                  name = "noogle";
+                  url = "https://noogle.dev/";
+                }
+                {
+                  name = "homepkgs";
+                  url = "https://home-manager-options.extranix.com/";
+                }
+                {
+                  name = "pkgs";
+                  url = "https://search.nixos.org/options";
+                }
 
-              {
-                name = "github";
-                url = "https://github.com";
-              }
-              {
-                name = "dotfiles";
-                url = "https://github.com/sylk0s/dotfiles";
-              }
+                {
+                  name = "github";
+                  url = "https://github.com";
+                }
+                {
+                  name = "dotfiles";
+                  url = "https://github.com/sylk0s/dotfiles";
+                }
 
-              {
-                name = "simplenote";
-                url = "https://app.simplenote.com";
-              }
-              {
-                name = "calendar";
-                url = "https://calendar.google.com/";
-              }
-            ];
+                {
+                  name = "simplenote";
+                  url = "https://app.simplenote.com";
+                }
+                {
+                  name = "calendar";
+                  url = "https://calendar.google.com/";
+                }
+              ]
+              # Gets the attrset of bookmarks and maps it to the format used here
+              ++ (mapAttrsToList (
+                  name: url: {
+                    name = name;
+                    url = url;
+                  }
+                )
+                secrets."${config.home.username}".bookmarks);
           }
         ];
         settings = {

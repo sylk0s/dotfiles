@@ -74,8 +74,14 @@ in {
       # sets up home manager for all the users above
       home-manager = let
         module-paths = sylib.all-modules-in-dir-rec "${inputs.self.outPath}/modules/home-manager";
+
+        secrets = listToAttrs (map (user: {
+            name = user.name;
+            value = builtins.fromJSON (builtins.readFile "${inputs.self.outPath}/secrets/git-crypt/secrets-${user.name}.json");
+          })
+          cfg);
       in {
-        extraSpecialArgs = {inherit inputs sylib;};
+        extraSpecialArgs = {inherit inputs sylib secrets;};
         # for each user, generate a home-manager config
         users = mk-homes module-paths ./home.nix cfg;
         backupFileExtension = "backup";
