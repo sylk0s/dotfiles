@@ -6,12 +6,12 @@
   pkgs,
   ...
 }: let
-  cfg = config.modules.desktop.services.dunst;
-  colorScheme = config.modules.themes.colors;
-  gtkConfig = config.modules.themes.gtk;
-  fontConfig = config.modules.themes.fonts.styles;
+  cfg = config.sylk.desktop.services.dunst;
+  colorScheme = config.sylk.themes.colors;
+  gtkConfig = config.sylk.themes.gtk;
+  fontConfig = config.sylk.themes.fonts.styles;
 in {
-  options.modules.desktop.services.dunst = {
+  options.sylk.desktop.services.dunst = {
     enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
@@ -26,10 +26,10 @@ in {
     services.dunst = {
       enable = true;
       package = pkgs.dunst;
-      iconTheme = {
-        name = gtkConfig.iconTheme.name;
-        package = gtkConfig.iconTheme.package;
-      };
+      # iconTheme = {
+      #   name = gtkConfig.iconTheme.name;
+      #   package = gtkConfig.iconTheme.package;
+      # };
       settings = let
         ct = colorScheme.types;
         cc = colorScheme.colors;

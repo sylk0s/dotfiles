@@ -29,6 +29,8 @@ return {
 
         lspconfig.dockerls.setup{}
 
+        lspconfig.ocamllsp.setup{}
+
         lspconfig.nil_ls.setup{
             autostart = true,
             capabilities = lsp_capabilities,

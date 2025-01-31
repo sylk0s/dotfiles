@@ -10,11 +10,11 @@
 }: let
   inherit (lib) mkIf mkMerge;
   inherit (sylib) mk-enable;
-  cfg = config.modules.desktop.services.ags;
+  cfg = config.sylk.desktop.services.ags;
 in {
   imports = [inputs.ags.homeManagerModules.default];
 
-  options.modules.desktop.services.ags = {
+  options.sylk.desktop.services.ags = {
     enable = mk-enable false;
   };
 
@@ -30,7 +30,7 @@ in {
 
       programs.ags = {
         enable = true;
-        configDir = "${osConfig.dotfiles.configDir}/ags";
+        configDir = "${inputs.self.outPath}/config/ags";
         extraPackages = with pkgs; [
           libsoup_3
           # the following were suggested from the wiki?
@@ -43,7 +43,7 @@ in {
       # callback to callbacks/upower.nix
     })
 
-    (mkIf (cfg.enable && osConfig.modules.network.enable) {
+    (mkIf (cfg.enable && osConfig.sylk.system.network.enable) {
       home.packages = with pkgs; [
         networkmanagerapplet
       ];

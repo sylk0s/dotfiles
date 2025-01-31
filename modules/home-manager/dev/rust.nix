@@ -9,9 +9,9 @@
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
 
-  cfg = config.modules.dev.rust;
+  cfg = config.sylk.dev.rust;
 in {
-  options.modules.dev.rust = {
+  options.sylk.dev.rust = {
     enable = mk-enable false;
   };
 

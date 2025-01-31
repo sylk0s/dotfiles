@@ -6,36 +6,75 @@
   sylib,
   pkgs,
   inputs,
+  secrets,
   ...
 }: let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf listToAttrs;
   inherit (sylib) mk-enable mk-str-opt;
-  cfg = config.modules.shell.git;
-  configDir = osConfig.dotfiles.configDir;
+  cfg = config.sylk.shell.git;
+
+  gits = ["per" "pro" "sch"];
+  for-all-gits = fn: map fn gits;
 in {
-  options.modules.shell.git = {
+  options.sylk.shell.git = {
     enable = mk-enable true;
     userName = mk-str-opt "sylk0s";
     userEmail = mk-str-opt "julia@sylkos.xyz";
   };
 
   config = mkIf cfg.enable {
-    # TODO update this
-    programs.gh.enable = true;
-
-    xdg.configFile = {
-      "git/config".source = "${inputs.self.outPath}/config/git/config";
-      "git/ignore".source = "${inputs.self.outPath}/config/git/ignore";
-      "git/attributes".source = "${inputs.self.outPath}/config/git/attributes";
-    };
-
+    # thanks @3ulalia!
     programs.git = {
       enable = true;
+      # sane defaults
       userName = cfg.userName;
       userEmail = cfg.userEmail;
       ignores = ["/.vscode" "/.pio" "/__pycache__" ".envrc" ".direnv" ".env" "/target"];
+      includes =
+        for-all-gits
+        (
+          x: {
+            path = config.sops.secrets."git-config/gh-${x}".path;
+            condition = "hasconfig:remote.*.url:git@gh-${x}*/**";
+          }
+        );
+      extraConfig.init.defaultBranch = "main";
     };
 
-    #modules.shell.zsh.rcFiles = [ "${configDir}/git/aliases.zsh" ];
+    programs.gh = {
+      enable = true;
+      settings.git_protocol = "ssh";
+    };
+
+    programs.ssh = {
+      enable = true;
+      compression = true;
+      includes = ["config.d/*"];
+      matchBlocks = listToAttrs (for-all-gits (
+        x: {
+          name = "gh-${x}";
+          value = {
+            host = "gh-${x}";
+            hostname = secrets."${config.home.username}".github."${x}-url";
+            identityFile = config.sops.secrets."ssh/gh-${x}".path;
+            identitiesOnly = true;
+          };
+        }
+      ));
+    };
+
+    #cssh keys for each git & names & emails
+    sops.secrets = listToAttrs ((for-all-gits (
+        x: {
+          name = "ssh/gh-${x}";
+          value = {};
+        }
+      ))
+      ++ (for-all-gits (
+        x: {
+          name = "git-config/gh-${x}";
+          value = {};
+        }
+      )));
   };
 }

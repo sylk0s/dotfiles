@@ -9,9 +9,9 @@
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
 
-  cfg = config.modules.shell.bat;
+  cfg = config.sylk.shell.bat;
 in {
-  options.modules.shell.bat = {
+  options.sylk.shell.bat = {
     enable = mk-enable true;
   };
 

@@ -8,9 +8,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
-  cfg = config.modules.desktop.apps.wofi;
+  cfg = config.sylk.desktop.apps.wofi;
 in {
-  options.modules.desktop.apps.wofi = {
+  options.sylk.desktop.apps.wofi = {
     enable = mk-enable false;
   };
 

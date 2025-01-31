@@ -6,9 +6,9 @@
   pkgs,
   ...
 }: let
-  cfg = config.modules.desktop.services.waybar;
+  cfg = config.sylk.desktop.services.waybar;
 in {
-  options.modules.desktop.services.waybar = {
+  options.sylk.desktop.services.waybar = {
     enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
@@ -23,7 +23,7 @@ in {
         mainBar = {
           layer = "top";
           position = "top";
-          height = 30;
+          height = 25;
 
           modules-left = ["hyprland/workspaces"];
           modules-center = ["clock"];
@@ -34,11 +34,6 @@ in {
           };
           "clock" = {
             "tooltip-format" = "{:%c}";
-          };
-          "network" = {
-            "format-wifi" = "{icon}";
-            "format-icons" = ["󰤟" "󰤢" "󰤥" "󰤨"];
-            "tooltip-format-wifi" = "{essid} ({signalStrength}%)";
           };
         };
       };

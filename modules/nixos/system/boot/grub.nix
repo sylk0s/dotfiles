@@ -10,9 +10,9 @@
   inherit (lib) mkIf mkDefault;
   inherit (sylib) mk-enable;
 
-  cfg = config.modules.grub;
+  cfg = config.sylk.system.boot.grub;
 in {
-  options.modules.grub = {
+  options.sylk.system.boot.grub = {
     enable = mk-enable false;
   };
 

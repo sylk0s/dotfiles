@@ -8,9 +8,9 @@
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
 
-  cfg = config.modules.shell.starship;
+  cfg = config.sylk.shell.starship;
 in {
-  options.modules.shell.starship = {
+  options.sylk.shell.starship = {
     enable = mk-enable true;
   };
 

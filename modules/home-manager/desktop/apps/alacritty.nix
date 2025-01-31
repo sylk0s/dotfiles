@@ -9,11 +9,11 @@
 }: let
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
-  colorScheme = config.modules.themes.colors;
-  fontStyles = config.modules.themes.fonts.styles;
-  cfg = config.modules.desktop.apps.alacritty;
+  colorScheme = config.sylk.themes.colors;
+  fontStyles = config.sylk.themes.fonts.styles;
+  cfg = config.sylk.desktop.apps.alacritty;
 in {
-  options.modules.desktop.apps.alacritty = {
+  options.sylk.desktop.apps.alacritty = {
     enable = mk-enable false;
   };
 

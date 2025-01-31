@@ -8,9 +8,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
-  cfg = config.modules.desktop.apps.thunar;
+  cfg = config.sylk.desktop.apps.thunar;
 in {
-  options.modules.desktop.apps.thunar = {
+  options.sylk.desktop.apps.thunar = {
     enable = mk-enable false;
   };
 

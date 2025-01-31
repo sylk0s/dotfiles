@@ -13,43 +13,40 @@ in {
   imports = [
     ../users # user definitions
     inputs.home-manager.nixosModules.home-manager
-    # inputs.nur.nixosModules.nur
   ];
 
   nixpkgs.config.allowUnfree = mkDefault true;
 
   #environment.variables.DOTFILES = config.dotfiles.dir;
-  #environment.variables.DOTFILES_BIN = config.dotfiles.binDir;
 
   # TODO
-  nix = let
-    # filteredInputs = filterAttrs (n: _: n != "self") inputs;
-    # nixPathInputs = mapAttrsToList (n: v: "${n}=${v}") filteredInputs;
-    # registryInputs = mapAttrs (_: v: {flake = v;}) filteredInputs;
-  in {
-    # package = pkgs.nixFlakes;
-
-    # nixPath = nixPathInputs ++ ["dotfiles=${config.dotfiles.dir}"];
-
-    # registry = registryInputs // {dotfiles.flake = inputs.self;};
-
+  nix = {
     settings = {
       experimental-features = mkDefault "nix-command flakes";
       auto-optimise-store = mkDefault true;
-      substituters = ["https://cosmic.cachix.org/" "https://hyprland.cachix.org"];
-      trusted-public-keys = ["cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+      # TODO think of a way to make this nicer
+      trusted-users = ["sylkos"];
+      substituters = [
+        "https://cache.nixos.org"
+        "https://hyprland.cachix.org"
+        "https://nix-community.cachix.org"
+        "https://catppuccin.cachix.org"
+      ];
+
+      trusted-public-keys = [
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU="
+      ];
     };
   };
-  #a
+
   nixpkgs = {
-    # overlays = [
-    #   (import ./grub_overlay.nix)
-    # ];
     hostPlatform.system = "x86_64-linux";
   };
 
-  # TODO what is this
-  # system.configurationRevision = with inputs; mkIf (self ? rev) self.rev;
+  # TODO should this be system wide or nah
   system.stateVersion = "21.05";
 
   time.timeZone = mkDefault "America/New_York";

@@ -8,35 +8,41 @@
   ...
 }: let
   inherit (lib) types mkOption listToAttrs map mkDefault mkMerge mkIf;
-  inherit (sylib) mk-homes all-modules-in-dir-rec mk-users;
-  cfg = config.modules.users;
+  inherit (sylib) mk-homes all-modules-in-dir-rec mk-users mk-opt;
+  cfg = config.sylk.users;
 in {
-  options.modules.users = mkOption {
-    type = types.listOf (
-      types.submodule {
-        options = {
-          name = mkOption {
-            type = types.str;
+  options.sylk = {
+    users = mkOption {
+      type = types.listOf (
+        types.submodule {
+          options = {
+            name = mkOption {
+              type = types.str;
+            };
+            privileged = mkOption {
+              type = types.bool;
+              default = false;
+            };
+            config = mkOption {
+              type = types.nullOr types.path;
+              default = null;
+            };
+            password = mkOption {
+              type = types.nullOr types.path;
+              default = null;
+            };
+            extra-groups = mkOption {
+              type = types.listOf types.str;
+              default = [];
+            };
           };
-          privileged = mkOption {
-            type = types.bool;
-            default = false;
-          };
-          config = mkOption {
-            type = types.nullOr types.path;
-            default = null;
-          };
-          password = mkOption {
-            type = types.nullOr types.path;
-            default = null;
-          };
-          extra-groups = mkOption {
-            type = types.listOf types.str;
-            default = [];
-          };
-        };
-      }
-    );
+        }
+      );
+    };
+
+    userDefaults = {
+      extraGroups = mk-opt (types.listOf types.str) [] "Default groups for all users";
+    };
   };
 
   config = mkMerge [
@@ -54,7 +60,7 @@ in {
       users.users = let
         # sops config struct for user config
         sops = {
-          enabled = config.modules.services.sops.enable;
+          enabled = config.sylk.services.sops.enable;
           paths = listToAttrs (map (user: {
               name = user.name;
               value = config.sops.secrets."passwords/${user.name}".path;
@@ -62,21 +68,27 @@ in {
             cfg);
         };
       in
-        mk-users config.userDefaults.extraGroups sops cfg;
+        mk-users config.sylk.userDefaults.extraGroups sops cfg;
 
       # DO THIS ONLY IF home-manager is a nixos module
       # sets up home manager for all the users above
       home-manager = let
         module-paths = sylib.all-modules-in-dir-rec "${inputs.self.outPath}/modules/home-manager";
+
+        secrets = listToAttrs (map (user: {
+            name = user.name;
+            value = builtins.fromJSON (builtins.readFile "${inputs.self.outPath}/secrets/git-crypt/secrets-${user.name}.json");
+          })
+          cfg);
       in {
-        extraSpecialArgs = {inherit inputs sylib;};
+        extraSpecialArgs = {inherit inputs sylib secrets;};
         # for each user, generate a home-manager config
         users = mk-homes module-paths ./home.nix cfg;
         backupFileExtension = "backup";
       };
     }
     (
-      mkIf config.modules.services.sops.enable {
+      mkIf config.sylk.services.sops.enable {
         # pulls in passwords if sops is enabled
         sops.secrets = listToAttrs (map (user: {
             name = "passwords/${user.name}";

@@ -3,7 +3,7 @@
   inputs,
   ...
 }: let
-  inherit (lib) listToAttrs mkDefault any;
+  inherit (lib) listToAttrs mkDefault any filter;
   inherit (attrs) attrs-to-list;
 
   attrs = import ./attrs.nix {inherit lib attrs;};
@@ -32,4 +32,7 @@ in rec {
 
   any-user = pred: users:
     any (user: pred user.value) (attrs-to-list users);
+
+  filter-users = pref: users:
+    filter (user: pref user.value) (attrs-to-list users);
 }

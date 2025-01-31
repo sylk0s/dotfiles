@@ -8,7 +8,7 @@
   inherit (lib) mkIf;
   inherit (sylib) any-user;
 in {
-  config = mkIf (any-user (user: user.modules.desktop.hyprland.enable) config.home-manager.users) {
+  config = mkIf (any-user (user: user.sylk.desktop.hyprland.enable) config.home-manager.users) {
     # TODO use something besides this
     # TODO also use plymouth for pretty splash
     # services.greetd = {
@@ -50,13 +50,40 @@ in {
     #   };
     # };
 
-    services.displayManager = {
-      sddm = {
-        enable = true;
-        wayland.enable = true;
-        package = pkgs.kdePackages.sddm;
+    # services.greetd = {
+    #   enable = true;
+    # };
+
+    # programs.regreet = {
+    #   enable = true;
+    # };
+
+    # services.displayManager = {
+    # sddm = {
+    #   enable = true;
+    #   wayland.enable = true;
+    #   package = pkgs.kdePackages.sddm;
+    # };
+    # ly = {
+    #   enable = true;
+    #   };
+    # };
+
+    services.greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --remember-session";
+          user = "greeter";
+        };
       };
     };
+
+    sylk.system.fs.impermanence.dirs-to-persist = [
+      "/var/cache/tuigreet"
+    ];
+
+    #systemd.services.display-manager.environment.XDG_CURRENT_DESKTOP = "X-NIXOS-SYSTEMD-AWARE";
 
     boot.plymouth = {
       enable = true;

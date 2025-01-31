@@ -8,9 +8,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
-  cfg = config.modules.services.docker;
+  cfg = config.sylk.services.docker;
 in {
-  options.modules.services.docker = {
+  options.sylk.services.docker = {
     enable = mk-enable false;
   };
 
@@ -19,7 +19,7 @@ in {
       enable = true;
     };
 
-    userDefaults.extraGroups = ["docker"];
+    sylk.userDefaults.extraGroups = ["docker"];
 
     # TODO figure this bit out
     # user.packages = with pkgs; [

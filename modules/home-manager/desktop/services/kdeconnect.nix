@@ -8,9 +8,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
-  cfg = config.modules.desktop.services.kdeconnect;
+  cfg = config.sylk.desktop.services.kdeconnect;
 in {
-  options.modules.desktop.services.kdeconnect = {
+  options.sylk.desktop.services.kdeconnect = {
     enable = mk-enable false;
   };
 

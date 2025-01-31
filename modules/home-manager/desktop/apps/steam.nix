@@ -1,0 +1,41 @@
+{
+  options,
+  config,
+  lib,
+  sylib,
+  pkgs,
+  ...
+}: let
+  inherit (lib) mkIf;
+  inherit (sylib) mk-enable;
+  cfg = config.sylk.desktop.gaming.steam;
+in {
+  options.sylk.desktop.gaming.steam = {
+    enable = mk-enable false;
+  };
+
+  config = mkIf cfg.enable {
+    # TODO
+    # eventually i wanna move this here
+    home.packages = with pkgs; [
+      # steam-tui
+      # steamcmd
+    ];
+
+    # for now...
+    # callback to callbacks/steam.nix
+
+    # Note: turn this off when installing steam,
+    # home.persistence."/persist/home/${config.home.username}" = {
+    #   allowOther = true;
+    #   directories = [
+    #     ".steam"
+    #     {
+    #       directory = ".local/share/Steam";
+    #       method = "symlink";
+    #     }
+    #     ".local/share/vulkan/"
+    #   ];
+    # };
+  };
+}

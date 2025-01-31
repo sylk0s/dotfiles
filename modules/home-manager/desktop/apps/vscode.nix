@@ -8,9 +8,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
-  cfg = config.modules.desktop.apps.vscode;
+  cfg = config.sylk.desktop.apps.vscode;
 in {
-  options.modules.desktop.apps.vscode = {
+  options.sylk.desktop.apps.vscode = {
     enable = mk-enable false;
   };
 
@@ -104,12 +104,12 @@ in {
                 version = "1.4.6";
                 sha256 = "sha256-flWBK+ugrbgy5pEDmGQeUzk1s2sCMQJRgrS3Ku1Oiag=";
               }
-              {
-                name = "platformio-ide";
-                publisher = "platformio";
-                version = "3.3.1";
-                sha256 = "sha256-zBZFpOWJ4JEv6qu9XT1u0uspZ+N2wKrpL3joC+/t/zs=";
-              }
+              #{
+              #  name = "platformio-ide";
+              #  publisher = "platformio";
+              #  version = "3.3.1";
+              #  sha256 = "sha256-zBZFpOWJ4JEv6qu9XT1u0uspZ+N2wKrpL3joC+/t/zs=";
+              #}
               {
                 name = "tex-preview";
                 publisher = "tialki";
@@ -140,12 +140,12 @@ in {
                 version = "0.0.15";
                 sha256 = "sha256-2u4Moixrf94vDLBQzz57dToLbqzz7OenQL6G9BMCn3I=";
               }
-              {
-                name = "firedbg-rust";
-                publisher = "SeaQL";
-                version = "0.1.2";
-                sha256 = "sha256-LKe5Lgp4XUJH0gx3T3mRwKJ5tRKC6mJNx7xpZJNRjDw=";
-              }
+              # {
+              #   name = "firedbg-rust";
+              #   publisher = "SeaQL";
+              #   version = "0.1.2";
+              #   sha256 = "sha256-LKe5Lgp4XUJH0gx3T3mRwKJ5tRKC6mJNx7xpZJNRjDw=";
+              # }
             ];
         })
       ];

@@ -5,14 +5,15 @@
   lib,
   sylib,
   pkgs,
+  inputs,
   ...
 }: let
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
 
-  cfg = config.modules.shell.neofetch;
+  cfg = config.sylk.shell.neofetch;
 in {
-  options.modules.shell.neofetch = {
+  options.sylk.shell.neofetch = {
     enable = mk-enable true;
   };
 
@@ -23,7 +24,7 @@ in {
       ];
 
       shellAliases = {
-        neofetch = "neofetch --config ${osConfig.dotfiles.configDir}/neofetch/config.conf";
+        neofetch = "neofetch --config ${inputs.self.outPath}/config//neofetch/config.conf";
       };
     };
   };

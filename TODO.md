@@ -1,13 +1,9 @@
 # Dotfiles TODO
 
 - do the refactors to make it look nice
-    - make impermanence nice actually
     - make sops work again fr maybe with yubikey
         - encrypted firefox
     - do all the nice and fancy assertation linkage
-- get disko working on machines
-    - get disko working on alderaan
-    - swap endor to disko
 - then do tpm + secure boot
 - make defaults nice & clean options
 - then do the bootstrapped install
@@ -19,23 +15,8 @@
 
 - dots not tied to a user * - (/etc/dotfiles)
 - TODOs
-- startup (systemd) & - maybe as charlie gets to it
-
-## Disko
-
-- write configs for all systems
-- proper inclusion for easy bootstrap
-- move laptop onto encrypted boot
-
-## Impermanence/etc
-
-- home FS setup for users & - part of bootstrapping
-    - systemd service WIP
-- remove first reboot into impermanence
 
 ## SOPS
-
-- add any needed keys/multi-user support/better auto integration
 - remove second reboot into sops
 
 ## Yubikey

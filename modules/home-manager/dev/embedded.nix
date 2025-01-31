@@ -8,9 +8,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
-  cfg = config.modules.dev.embedded;
+  cfg = config.sylk.dev.embedded;
 in {
-  options.modules.dev.embedded = {
+  options.sylk.dev.embedded = {
     enable = mk-enable false;
   };
 

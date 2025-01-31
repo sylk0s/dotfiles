@@ -9,9 +9,9 @@
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
 
-  cfg = config.modules.services.virtualbox;
+  cfg = config.sylk.services.virtualbox;
 in {
-  options.modules.services.virtualbox = {
+  options.sylk.services.virtualbox = {
     enable = mk-enable false;
   };
 
@@ -22,7 +22,7 @@ in {
     # virtualisation.virtualbox.host.enableExtensionPack = true;
     users.extraGroups.vboxusers.members = ["user-with-access-to-virtualbox"];
 
-    userDefaults.extraGroups = ["vboxusers"];
+    sylk.userDefaults.extraGroups = ["vboxusers"];
 
     networking.firewall.interfaces."vboxnet0".allowedTCPPorts = [22];
 

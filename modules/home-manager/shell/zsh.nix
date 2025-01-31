@@ -5,14 +5,15 @@
   lib,
   sylib,
   pkgs,
+  inputs,
   ...
 }: let
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
 
-  cfg = config.modules.shell.zsh;
+  cfg = config.sylk.shell.zsh;
 in {
-  options.modules.shell.zsh = {
+  options.sylk.shell.zsh = {
     enable = mk-enable true;
   };
 
@@ -37,7 +38,7 @@ in {
         ];
 
         # theme = "powerlevel10k/powerlevel10k";
-        # custom = "${osConfig.dotfiles.configDir}/oh-my-zsh/";
+        # custom = "${inputs.self.outPath}/config/oh-my-zsh/";
       };
     };
   };
