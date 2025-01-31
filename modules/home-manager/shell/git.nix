@@ -50,39 +50,31 @@ in {
       enable = true;
       compression = true;
       includes = ["config.d/*"];
-      matchBlocks = for-all-gits (
+      matchBlocks = listToAttrs (for-all-gits (
         x: {
-          host = "gh-${x}";
-          hostname = secrets."${config.home.username}".github."${x}-url";
-          identityFile = config.sops.secrets."ssh/gh-${x}".path;
-          identitiesOnly = true;
+          name = "gh-${x}";
+          value = {
+            host = "gh-${x}";
+            hostname = secrets."${config.home.username}".github."${x}-url";
+            identityFile = config.sops.secrets."ssh/gh-${x}".path;
+            identitiesOnly = true;
+          };
         }
-      );
+      ));
     };
 
-    # # ssh keys for each git
-    sops.secrets = listToAttrs for-all-gits (
-      x: {
-        name = "ssh/gh-${x}";
-        value = {};
-      }
-    );
-
-    # # name and email configs for each git
-    sops.secrets = listToAttrs for-all-gits (
-      x: {
-        name = "git-config/gh-${x}";
-        value = {};
-      }
-    );
-
-    # # github urls
-    # Gave up with this for git-crypt bc raisens
-    # sops.secrets = listToAttrs for-all-gits (
-    #   x: {
-    #     name = "git-urls/gh-${x}";
-    #     value = {};
-    #   }
-    # );
+    #cssh keys for each git & names & emails
+    sops.secrets = listToAttrs ((for-all-gits (
+        x: {
+          name = "ssh/gh-${x}";
+          value = {};
+        }
+      ))
+      ++ (for-all-gits (
+        x: {
+          name = "git-config/gh-${x}";
+          value = {};
+        }
+      )));
   };
 }
