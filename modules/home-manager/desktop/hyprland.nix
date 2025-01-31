@@ -244,8 +244,8 @@ in {
 
         settings = {
           exec-once = [
-            "nm-applet"
-            "blueman-applet"
+            "uwsm app -- nm-applet"
+            "uwsm app -- blueman-applet"
           ];
 
           # constructs monitor config from my monitor options
@@ -364,27 +364,27 @@ in {
               (base "fullscreen" "F" "")
 
               # apps
-              (app "Z" "vesktop")
-              (app "F" "firefox")
-              (app "E" "thunar")
-              (app "X" "signal-desktop")
-              (app "C" "spotify")
-              (app "R" "code")
-              (base "exec" "Tab" "${pkgs.alacritty}/bin/alacritty")
-              (base "exec" "R" "wofi --show run")
+              (app "Z" "uwsm app -- vesktop")
+              (app "F" "uwsm app --firefox")
+              (app "E" "uwsm app -- thunar")
+              (app "X" "uwsm app -- signal-desktop")
+              (app "C" "uwsm app -- spotify")
+              (app "R" "uwsm app -- code")
+              (base "exec" "Tab" "uwsm app -- ${pkgs.alacritty}/bin/alacritty")
+              (base "exec" "R" "uwsm app -- wofi --show run")
 
               # ags
               # (ag "R" "applauncher")
-              (ag "escape" "powermenu")
-              (ag "E" "overview")
-              (salt "exec" "Q" "ags quit; ags")
+              # (ag "escape" "powermenu")
+              # (ag "E" "overview")
+              # (salt "exec" "Q" "ags quit; ags")
 
               # screenshot keybinds
-              (sal "E" "${inputs.self.outPath}/config/scripts/screenshot.sh sel-clip")
-              (sal "R" "${inputs.self.outPath}/config/scripts/screenshot.sh sel-file")
-              (sal "F" "${inputs.self.outPath}/config/scripts/screenshot.sh full-file")
+              (sal "E" "uwsm app --${inputs.self.outPath}/config/scripts/screenshot.sh sel-clip")
+              (sal "R" "uwsm app --${inputs.self.outPath}/config/scripts/screenshot.sh sel-file")
+              (sal "F" "uwsm app -- ${inputs.self.outPath}/config/scripts/screenshot.sh full-file")
 
-              (sal "X" "hyprlock")
+              (sal "X" "uwsm app -- hyprlock")
 
               # movement
 
