@@ -51,6 +51,8 @@
   };
 
   home.packages = with pkgs; [
-    #kicad
+    kicad
+    remmina # RDP client
+    git-crypt # For user secrets that can't be in a file
   ];
 }
