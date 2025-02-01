@@ -54,6 +54,7 @@
       sops.enable = true;
       docker.enable = true;
       gpg.enable = true;
+      git-crypt.enable = true;
     };
     ssh.enable = true;
 

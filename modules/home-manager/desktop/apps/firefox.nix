@@ -41,7 +41,7 @@ in {
             ublock-origin
             stylus
           ];
-          bookmarks = [
+          bookmarks = lib.mkBefore [
             {
               name = "Bar";
               toolbar = true;
@@ -254,15 +254,21 @@ in {
         };
       };
     })
-    (mkIf (osConfig.sylk.git-crypt.enable && cfg.enable) {
-      programs.firefox.profiles.${config.home.username}.bookmarks =
-        mapAttrsToList (
-          name: url: {
-            name = name;
-            url = url;
-          }
-        )
-        secrets."${config.home.username}".bookmarks;
+    (mkIf (osConfig.sylk.services.git-crypt.enable && cfg.enable) {
+      programs.firefox.profiles.${config.home.username}.bookmarks = [
+        {
+          name = "Secret_Bookmarks";
+          toolbar = true;
+          bookmarks =
+            mapAttrsToList (
+              name: url: {
+                name = name;
+                url = url;
+              }
+            )
+            secrets."${config.home.username}".bookmarks;
+        }
+      ];
     })
   ];
 }

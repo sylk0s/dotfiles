@@ -50,6 +50,7 @@ in {
           "/etc/ssh"
           "/var/lib/bluetooth"
           "/var/lib/nixos" # for user and group ids
+          "/var/lib/systemd/backlight"
         ]
         ++ cfg.dirs-to-persist;
       files =

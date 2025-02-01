@@ -39,7 +39,7 @@ in {
         settings.git_protocol = "ssh";
       };
     })
-    (mkIf (osConfig.sylk.git-crypt.enable && cfg.enable && osConfig.sylk.services.sops.enable) {
+    (mkIf (osConfig.sylk.services.git-crypt.enable && cfg.enable && osConfig.sylk.services.sops.enable) {
       programs.git = {
         includes =
           for-all-gits

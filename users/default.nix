@@ -76,7 +76,7 @@ in {
         module-paths = sylib.all-modules-in-dir-rec "${inputs.self.outPath}/modules/home-manager";
 
         secrets =
-          if config.sylk.git-crypt.enable
+          if config.sylk.services.git-crypt.enable
           then
             (listToAttrs (map (user: {
                 name = user.name;

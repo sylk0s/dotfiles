@@ -33,6 +33,7 @@
         #  kdeconnect.enable = true;
         dunst.enable = true;
         waybar.enable = true;
+        #hyprpanel.enable = true;
       };
     };
     dev = {

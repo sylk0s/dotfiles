@@ -7,9 +7,9 @@
   inherit (lib) mkIf types;
   inherit (sylib) mk-enable;
 
-  cfg = config.sylk.git-crypt;
+  cfg = config.sylk.services.git-crypt;
 in {
-  options.sylk.git-crypt = {
+  options.sylk.services.git-crypt = {
     enable = mk-enable true;
   };
 

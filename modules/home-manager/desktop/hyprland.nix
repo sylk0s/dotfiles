@@ -380,8 +380,8 @@ in {
               # (salt "exec" "Q" "ags quit; ags")
 
               # screenshot keybinds
-              (sal "E" "uwsm app --${inputs.self.outPath}/config/scripts/screenshot.sh sel-clip")
-              (sal "R" "uwsm app --${inputs.self.outPath}/config/scripts/screenshot.sh sel-file")
+              (sal "E" "uwsm app -- ${inputs.self.outPath}/config/scripts/screenshot.sh sel-clip")
+              (sal "R" "uwsm app -- ${inputs.self.outPath}/config/scripts/screenshot.sh sel-file")
               (sal "F" "uwsm app -- ${inputs.self.outPath}/config/scripts/screenshot.sh full-file")
 
               (sal "X" "uwsm app -- hyprlock")
@@ -400,6 +400,15 @@ in {
               (base "workspace" "mouse_down" "e+1")
               (base "workspace" "mouse_up" "e-1")
               # "SUPER, grave, hyprexpo:expo, toggle"
+
+              # brightness
+              ",XF86MonBrightnessUp, exec, uwsm app -- brightnessctl set 5%+"
+              ",XF86MonBrightnessDown, exec, uwsm app -- brightnessctl set 5%-"
+
+              # audio
+              ",XF86AudioRaiseVolume, exec, uwsm app -- wpctl set-volume @DEFAULT_SINK@ 5%+"
+              ",XF86AudioLowerVolume, exec, uwsm app -- wpctl set-volume @DEFAULT_SINK@ 5%-"
+              ",XF86AudioMute, exec, uwsm app -- wpctl set-mute @DEFAULT_SINK@ toggle"
             ]
             # ++ (map (i: (map (j: swpfocus (toString j) (toString i [0]))) i [1]) dirs)
             # ++ (map (i: (map (j: mvfocus (toString j) (toString i [0]))) i [1]) dirs)
