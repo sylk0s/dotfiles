@@ -4,8 +4,8 @@
   sylib,
   ...
 }: let
-  inherit (lib) types mkOption;
-  inherit (sylib) mk-enable;
+  inherit (lib) types mkOption mkIf;
+  inherit (sylib) mk-enable mk-str-opt;
 
   cfg = config.sylk.system.hibernate;
 in {
@@ -14,14 +14,16 @@ in {
     resume-offset = mkOption {
       type = types.int;
       default = 0;
-      description = "" "
-
-            " "";
+      description = ''
+        The offset into the swapfile to resume from.
+        Determined from this link according to your FS type:
+        https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate#Acquire_swap_file_offset
+      '';
     };
     resume-device = mk-str-opt "/dev/disk/by-label/NIXROOT";
   };
 
-  config = mkIg cfg.enable {
+  config = mkIf cfg.enable {
     boot = {
       kernelParams = ["resume_offset=${toString cfg.resume-offset}"];
       resumeDevice = cfg.resume-device;

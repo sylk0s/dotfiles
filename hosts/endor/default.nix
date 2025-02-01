@@ -25,6 +25,12 @@
 
       boot.systemd-boot.enable = true;
 
+      hibername = {
+        enable = false;
+        resume-offset = 533760;
+        resume-device = "/dev/disk/by-label/NIXROOT"
+      }
+
       fs = {
         ephemeral-btrfs.enable = true;
         impermanence.enable = true;
