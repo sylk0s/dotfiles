@@ -59,10 +59,10 @@ in {
           fi
 
           # backup persist
-          if [[ -e /btrfs_tmp/persist ]]; then
-              mkdir -p /btrfs_tmp/old_persist
-              cp /btrfs_tmp/persist "/btrfs_tmp/old_persist/$timestamp"
-          fi
+          #if [[ -e /btrfs_tmp/persist ]]; then
+          #    mkdir -p /btrfs_tmp/old_persist
+          #    cp /btrfs_tmp/home "/btrfs_tmp/old_persist/$timestamp"
+          #fi
 
           delete_subvolume_recursively() {
               IFS=$'\n'
@@ -84,9 +84,9 @@ in {
 
           # deletes old saved persist
           # this only saves a week as opposed to the others, which save a month
-          for i in $(find /btrfs_tmp/old_persist/ -maxdepth 1 -mtime +7); do
-              delete_subvolume_recursively "$i"
-          done
+          #for i in $(find /btrfs_tmp/old_persist/ -maxdepth 1 -mtime +7); do
+          #    delete_subvolume_recursively "$i"
+          #done
 
           # recreates subvolumes
           btrfs subvolume create /btrfs_tmp/root
