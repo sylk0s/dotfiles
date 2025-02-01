@@ -58,12 +58,6 @@ in {
               mv /btrfs_tmp/home "/btrfs_tmp/old_homes/$timestamp"
           fi
 
-          # backup persist
-          #if [[ -e /btrfs_tmp/persist ]]; then
-          #    mkdir -p /btrfs_tmp/old_persist
-          #    cp /btrfs_tmp/home "/btrfs_tmp/old_persist/$timestamp"
-          #fi
-
           delete_subvolume_recursively() {
               IFS=$'\n'
               for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
@@ -91,6 +85,12 @@ in {
           # recreates subvolumes
           btrfs subvolume create /btrfs_tmp/root
           btrfs subvolume create /btrfs_tmp/home
+
+          btrfs subvolume snapshot /btrfs_tmp/persist "/btrfs_tmp/old_persist/$timestamp"
+
+          for i in $(find /btrfs_tmp/old_persist/ -maxdepth 1 -mtime +30); do
+              delete_subvolume_recursively "$i"
+          done
 
           # NOTE: This bug wasn't fixed, I made home needed for boot to fix this issue
           # creates user home directories

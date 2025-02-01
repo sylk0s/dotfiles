@@ -6,6 +6,7 @@
   pkgs,
   inputs,
   secrets,
+  osConfig,
   ...
 }: let
   cfg = config.sylk.desktop.apps.firefox;
@@ -253,7 +254,7 @@ in {
         };
       };
     })
-    (mkIf (osConifg.sylk.git-crypt.enable && cfg.enable) {
+    (mkIf (osConfig.sylk.git-crypt.enable && cfg.enable) {
       programs.firefox.profiles.${config.home.username}.bookmarks =
         mapAttrsToList (
           name: url: {
