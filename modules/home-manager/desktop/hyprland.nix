@@ -365,7 +365,7 @@ in {
 
               # apps
               (app "Z" "uwsm app -- vesktop")
-              (app "F" "uwsm app --firefox")
+              (app "F" "uwsm app -- firefox")
               (app "E" "uwsm app -- thunar")
               (app "X" "uwsm app -- signal-desktop")
               (app "C" "uwsm app -- spotify")
