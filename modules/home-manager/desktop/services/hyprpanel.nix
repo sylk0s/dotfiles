@@ -18,38 +18,15 @@ in {
 
   config = mkIf cfg.enable {
     programs.hyprpanel = {
-      # Enable the module.
-      # Default: false
       enable = true;
-
       overlay.enable = true;
-
-      # Automatically restart HyprPanel with systemd.
-      # Useful when updating your config so that you
-      # don't need to manually restart it.
-      # Default: false
       systemd.enable = true;
-
-      # Add '/nix/store/.../hyprpanel' to your
-      # Hyprland config 'exec-once'.
-      # Default: false
       hyprland.enable = true;
-
-      # Fix the overwrite issue with HyprPanel.
-      # See below for more information.
-      # Default: false
       overwrite.enable = true;
-
-      # Import a theme from './themes/*.json'.
-      # Default: ""
       theme = "catppuccin_mocha";
-
-      # Override the final config with an arbitrary set.
-      # Useful for overriding colors in your selected theme.
-      # Default: {}
-      override = {
-        theme.bar.menus.text = "#123ABC";
-      };
+      # this is needed because otherwise I *can't* use my password for this
+      # TODO revisit locking stuff
+      # security.pam.services.swaylock = {};
 
       # Configure bar layouts for monitors.
       # See 'https://hyprpanel.com/configuration/panel.html'.
@@ -57,21 +34,17 @@ in {
       layout = {
         "bar.layouts" = {
           "0" = {
-            left = ["dashboard" "workspaces"];
-            middle = ["media"];
-            right = ["volume" "systray" "notifications"];
+            left = ["dashboard" "workspaces" "windowtitle"];
+            middle = ["clock"];
+            right = ["hypridle" "media" "volume" "battery" "systray" "notifications" "power"];
           };
         };
       };
 
-      # Configure and theme almost all options from the GUI.
-      # Options that require '{}' or '[]' are not yet implemented,
-      # except for the layout above.
-      # See 'https://hyprpanel.com/configuration/settings.html'.
-      # Default: <same as gui>
       settings = {
         bar.launcher.autoDetectIcon = true;
         bar.workspaces.show_icons = true;
+        bar.clock.format = "%a %b %d  %H:%M:%S %p";
 
         menus.clock = {
           time = {
@@ -80,15 +53,27 @@ in {
           };
           weather.unit = "metric";
         };
+        menus.dashboard.powermenu.avatar.image = "${inputs.self.outPath}/config/assets/julia.png";
+        menus.dashboard.powermenu.avatar.name = "${config.home.username}";
 
         menus.dashboard.directories.enabled = false;
         menus.dashboard.stats.enable_gpu = true;
 
-        theme.bar.transparent = true;
+        theme = {
+          bar = {
+            transparent = false;
+            outer_spacing = "8px";
+            margin_sides = "0em";
+            margin_top = "0em";
+            buttons = {
+              padding_x = "0.5rem";
+              padding_y = "0rem";
+            };
+          };
 
-        theme.font = {
-          name = "CaskaydiaCove NF";
-          size = "16px";
+          font = {
+            size = "13px";
+          };
         };
       };
     };

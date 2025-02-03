@@ -55,6 +55,7 @@
       docker.enable = true;
       gpg.enable = true;
       git-crypt.enable = true;
+      vmware.enable = true;
     };
     ssh.enable = true;
 

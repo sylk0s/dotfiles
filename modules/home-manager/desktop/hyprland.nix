@@ -100,6 +100,9 @@ in {
         };
       };
 
+      programs.fuzzel.enable = true;
+      catppuccin.fuzzel.enable = true;
+
       services.hypridle = {
         enable = true;
         settings = {
@@ -328,6 +331,19 @@ in {
           #   "fakefullscreen, class:^(code-url-handler)$"
           # ];
 
+          # smart gaps
+          workspace = [
+            "w[tv1], gapsout:0, gapsin:0"
+            "f[1], gapsout:0, gapsin:0"
+          ];
+
+          windowrulev2 = [
+            "bordersize 0, floating:0, onworkspace:w[tv1]"
+            "rounding 0, floating:0, onworkspace:w[tv1]"
+            "bordersize 0, floating:0, onworkspace:f[1]"
+            "rounding 0, floating:0, onworkspace:f[1]"
+          ];
+
           bind = let
             binding = mod: cmd: key: arg: "${mod}, ${key}, ${cmd}, ${arg}";
 
@@ -371,7 +387,7 @@ in {
               (app "C" "uwsm app -- spotify")
               (app "R" "uwsm app -- code")
               (base "exec" "Tab" "uwsm app -- ${pkgs.alacritty}/bin/alacritty")
-              (base "exec" "R" "uwsm app -- wofi --show run")
+              (base "exec" "R" "uwsm app -- fuzzel")
 
               # ags
               # (ag "R" "applauncher")

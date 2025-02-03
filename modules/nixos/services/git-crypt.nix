@@ -2,6 +2,7 @@
   config,
   lib,
   sylib,
+  pkgs,
   ...
 }: let
   inherit (lib) mkIf types;
@@ -13,7 +14,9 @@ in {
     enable = mk-enable true;
   };
 
-  config =
-    mkIf cfg.enable {
-    };
+  config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      git-crypt
+    ];
+  };
 }
