@@ -25,6 +25,12 @@
 
       boot.systemd-boot.enable = true;
 
+      #hibernate = {
+      #enable = false;
+      #resume-offset = 533760;
+      #resume-device = "/dev/disk/by-label/NIXROOT";
+      #};
+
       fs = {
         ephemeral-btrfs.enable = true;
         impermanence.enable = true;
@@ -48,6 +54,8 @@
       sops.enable = true;
       docker.enable = true;
       gpg.enable = true;
+      git-crypt.enable = true;
+      vmware.enable = true;
     };
     ssh.enable = true;
 

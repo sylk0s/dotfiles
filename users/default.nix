@@ -75,13 +75,19 @@ in {
       home-manager = let
         module-paths = sylib.all-modules-in-dir-rec "${inputs.self.outPath}/modules/home-manager";
 
-        secrets = listToAttrs (map (user: {
-            name = user.name;
-            value = builtins.fromJSON (builtins.readFile "${inputs.self.outPath}/secrets/git-crypt/secrets-${user.name}.json");
-          })
-          cfg);
+        secrets =
+          if config.sylk.services.git-crypt.enable
+          then
+            (listToAttrs (map (user: {
+                name = user.name;
+                value = builtins.fromJSON (builtins.readFile "${inputs.self.outPath}/secrets/git-crypt/secrets-${user.name}.json");
+              })
+              cfg))
+          else null;
       in {
-        extraSpecialArgs = {inherit inputs sylib secrets;};
+        extraSpecialArgs = {
+          inherit inputs sylib secrets;
+        };
         # for each user, generate a home-manager config
         users = mk-homes module-paths ./home.nix cfg;
         backupFileExtension = "backup";

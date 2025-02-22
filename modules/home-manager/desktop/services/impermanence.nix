@@ -40,7 +40,9 @@ in {
             "Documents"
             ".gnupg"
             ".ssh"
-            # TODO more...
+            "projects"
+            "school"
+            "work"
           ];
           allowOther = true;
         };

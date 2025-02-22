@@ -33,6 +33,7 @@
         #  kdeconnect.enable = true;
         dunst.enable = true;
         waybar.enable = true;
+        # hyprpanel.enable = true;
       };
     };
     dev = {
@@ -52,7 +53,5 @@
 
   home.packages = with pkgs; [
     kicad
-    remmina # RDP client
-    git-crypt # For user secrets that can't be in a file
   ];
 }

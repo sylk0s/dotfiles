@@ -28,8 +28,6 @@ in {
       WLR_NO_HARDWARE_CURSORS = "1";
     };
 
-    # this is needed because otherwise I *can't* use my password for this
-    # TODO revisit locking stuff
-    # security.pam.services.swaylock = {};
+    services.upower.enable = true;
   };
 }

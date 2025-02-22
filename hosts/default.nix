@@ -58,4 +58,6 @@ in {
       neovim
       curl
     ];
+
+  boot.kernelPackages = mkDefault pkgs.linuxPackages_latest;
 }

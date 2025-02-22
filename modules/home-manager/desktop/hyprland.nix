@@ -100,6 +100,9 @@ in {
         };
       };
 
+      programs.fuzzel.enable = true;
+      catppuccin.fuzzel.enable = true;
+
       services.hypridle = {
         enable = true;
         settings = {
@@ -139,6 +142,8 @@ in {
           ];
         };
       };
+
+      services.swayosd.enable = true;
 
       programs.hyprlock = {
         enable = true;
@@ -328,6 +333,19 @@ in {
           #   "fakefullscreen, class:^(code-url-handler)$"
           # ];
 
+          # smart gaps
+          workspace = [
+            "w[tv1], gapsout:0, gapsin:0"
+            "f[1], gapsout:0, gapsin:0"
+          ];
+
+          windowrulev2 = [
+            "bordersize 0, floating:0, onworkspace:w[tv1]"
+            "rounding 0, floating:0, onworkspace:w[tv1]"
+            "bordersize 0, floating:0, onworkspace:f[1]"
+            "rounding 0, floating:0, onworkspace:f[1]"
+          ];
+
           bind = let
             binding = mod: cmd: key: arg: "${mod}, ${key}, ${cmd}, ${arg}";
 
@@ -365,13 +383,13 @@ in {
 
               # apps
               (app "Z" "uwsm app -- vesktop")
-              (app "F" "uwsm app --firefox")
+              (app "F" "uwsm app -- firefox")
               (app "E" "uwsm app -- thunar")
               (app "X" "uwsm app -- signal-desktop")
               (app "C" "uwsm app -- spotify")
               (app "R" "uwsm app -- code")
               (base "exec" "Tab" "uwsm app -- ${pkgs.alacritty}/bin/alacritty")
-              (base "exec" "R" "uwsm app -- wofi --show run")
+              (base "exec" "R" "uwsm app -- fuzzel")
 
               # ags
               # (ag "R" "applauncher")
@@ -380,8 +398,8 @@ in {
               # (salt "exec" "Q" "ags quit; ags")
 
               # screenshot keybinds
-              (sal "E" "uwsm app --${inputs.self.outPath}/config/scripts/screenshot.sh sel-clip")
-              (sal "R" "uwsm app --${inputs.self.outPath}/config/scripts/screenshot.sh sel-file")
+              (sal "E" "uwsm app -- ${inputs.self.outPath}/config/scripts/screenshot.sh sel-clip")
+              (sal "R" "uwsm app -- ${inputs.self.outPath}/config/scripts/screenshot.sh sel-file")
               (sal "F" "uwsm app -- ${inputs.self.outPath}/config/scripts/screenshot.sh full-file")
 
               (sal "X" "uwsm app -- hyprlock")
@@ -400,6 +418,18 @@ in {
               (base "workspace" "mouse_down" "e+1")
               (base "workspace" "mouse_up" "e-1")
               # "SUPER, grave, hyprexpo:expo, toggle"
+
+              # brightness
+              ",XF86MonBrightnessUp, exec, uwsm app -- swayosd-client --brightness raise"
+              ",XF86MonBrightnessDown, exec, uwsm app -- swayosd-client --brightness lower"
+
+              # audio
+              ",XF86AudioRaiseVolume, exec, uwsm app -- swayosd-client --output-volume raise"
+              ",XF86AudioLowerVolume, exec, uwsm app -- swayosd-client --output-volume lower"
+              ",XF86AudioMute, exec, uwsm app -- swayosd-client --output-volume mute-toggle"
+
+              # caps lock thing
+              ",Caps_Lock, exec, uwsm app -- swayosd-client --caps-lock"
             ]
             # ++ (map (i: (map (j: swpfocus (toString j) (toString i [0]))) i [1]) dirs)
             # ++ (map (i: (map (j: mvfocus (toString j) (toString i [0]))) i [1]) dirs)

@@ -51,6 +51,11 @@
     };
 
     lanzaboote.url = "github:nix-community/lanzaboote";
+
+    hyprpanel = {
+      url = "github:jas-singhfsu/hyprpanel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
