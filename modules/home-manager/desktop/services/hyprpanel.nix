@@ -36,7 +36,8 @@ in {
           "0" = {
             left = ["dashboard" "workspaces" "windowtitle"];
             middle = ["clock"];
-            right = ["hypridle" "media" "volume" "battery" "systray" "notifications" "power"];
+            # media, notifications
+            right = ["hypridle" "media" "volume" "battery" "systray" "power"];
           };
         };
       };

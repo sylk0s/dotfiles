@@ -143,6 +143,8 @@ in {
         };
       };
 
+      services.swayosd.enable = true;
+
       programs.hyprlock = {
         enable = true;
         settings = {
@@ -418,13 +420,16 @@ in {
               # "SUPER, grave, hyprexpo:expo, toggle"
 
               # brightness
-              ",XF86MonBrightnessUp, exec, uwsm app -- brightnessctl set 5%+"
-              ",XF86MonBrightnessDown, exec, uwsm app -- brightnessctl set 5%-"
+              ",XF86MonBrightnessUp, exec, uwsm app -- swayosd-client --brightness raise"
+              ",XF86MonBrightnessDown, exec, uwsm app -- swayosd-client --brightness lower"
 
               # audio
-              ",XF86AudioRaiseVolume, exec, uwsm app -- wpctl set-volume @DEFAULT_SINK@ 5%+"
-              ",XF86AudioLowerVolume, exec, uwsm app -- wpctl set-volume @DEFAULT_SINK@ 5%-"
-              ",XF86AudioMute, exec, uwsm app -- wpctl set-mute @DEFAULT_SINK@ toggle"
+              ",XF86AudioRaiseVolume, exec, uwsm app -- swayosd-client --output-volume raise"
+              ",XF86AudioLowerVolume, exec, uwsm app -- swayosd-client --output-volume lower"
+              ",XF86AudioMute, exec, uwsm app -- swayosd-client --output-volume mute-toggle"
+
+              # caps lock thing
+              ",Caps_Lock, exec, uwsm app -- swayosd-client --caps-lock"
             ]
             # ++ (map (i: (map (j: swpfocus (toString j) (toString i [0]))) i [1]) dirs)
             # ++ (map (i: (map (j: mvfocus (toString j) (toString i [0]))) i [1]) dirs)

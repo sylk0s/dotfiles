@@ -23,7 +23,7 @@ in {
         mainBar = {
           layer = "top";
           position = "top";
-          height = 25;
+          height = 20;
 
           modules-left = ["hyprland/workspaces"];
           modules-center = ["clock"];
