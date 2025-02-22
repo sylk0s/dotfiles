@@ -82,21 +82,29 @@ in {
         ];
       };
 
-      services.hyprpaper = {
+      # services.hyprpaper = {
+      #   enable = true;
+      #   settings = {
+      #     ipc = "on";
+      #     splash = false;
+      #     preload = [
+      #       "${inputs.self.outPath}/config/assets/wallpapers/alena-aenami-far-from-tomorrow-1080px.jpg"
+      #       "${inputs.self.outPath}/config/assets/wallpapers/nix-black-4k.png"
+      #     ];
+
+      #     # TODO add wallpapers to this
+      #     wallpaper = [
+      #       "eDP-1, ${inputs.self.outPath}/config/assets/wallpapers/alena-aenami-far-from-tomorrow-1080px.jpg"
+      #       ", ${inputs.self.outPath}/config/assets/wallpapers/nix-black-4k.png"
+      #     ];
+      #   };
+      # };
+
+      programs.wpaperd = {
         enable = true;
         settings = {
-          ipc = "on";
-          splash = false;
-          preload = [
-            "${inputs.self.outPath}/config/assets/wallpapers/alena-aenami-far-from-tomorrow-1080px.jpg"
-            "${inputs.self.outPath}/config/assets/wallpapers/nix-black-4k.png"
-          ];
-
-          # TODO add wallpapers to this
-          wallpaper = [
-            "eDP-1, ${inputs.self.outPath}/config/assets/wallpapers/alena-aenami-far-from-tomorrow-1080px.jpg"
-            ", ${inputs.self.outPath}/config/assets/wallpapers/nix-black-4k.png"
-          ];
+          "eDP-1".path = "${inputs.self.outPath}/config/assets/wallpapers/alena-aenami-far-from-tomorrow-1080px.jpg";
+          default.path = "${inputs.self.outPath}/config/assets/wallpapers/nix-black-4k.png";
         };
       };
 
@@ -251,6 +259,7 @@ in {
           exec-once = [
             "uwsm app -- nm-applet"
             "uwsm app -- blueman-applet"
+            "uwsm app -- wpaperd"
           ];
 
           # constructs monitor config from my monitor options
