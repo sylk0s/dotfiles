@@ -17,9 +17,7 @@ in {
       xwayland.enable = true;
     };
 
-    programs.hyprlock.enable = true;
-    security.pam.services.hyprlock = {}; # allows hyprlock to preform auth
-
+    # should these be in a nividia/waylanc callback instead?
     environment.sessionVariables = {
       LIBVA_DRIVER_NAME = "nvidia";
       XDG_SESSION_TYPE = "wayland";
@@ -28,6 +26,7 @@ in {
       WLR_NO_HARDWARE_CURSORS = "1";
     };
 
+    # why do we have this fr
     services.upower.enable = true;
   };
 }

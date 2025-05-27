@@ -16,6 +16,7 @@ in {
   };
 
   config = lib.mkIf (cfg.enable) {
+    home.packages = with pkgs; [networkmanagerapplet];
     programs.waybar = {
       enable = true;
       systemd.enable = true;
