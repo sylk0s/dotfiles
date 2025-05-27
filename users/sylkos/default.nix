@@ -24,7 +24,7 @@
       };
       gaming = {
         steam.enable = true;
-        #  mc.enable = true;
+        mc.enable = true;
       };
       services = {
         #  ags = {
@@ -53,5 +53,15 @@
 
   home.packages = with pkgs; [
     kicad
+    telegram-desktop
   ];
+
+  home.persistence = {
+    "/persist/home/sylkos/" = {
+      directories = [
+        ".local/share/TelegramDesktop"
+        ".local/share/kicad"
+      ];
+    };
+  };
 }

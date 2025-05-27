@@ -75,7 +75,7 @@ in {
           grim
           swappy
           imagemagick
-          xwaylandvideobridge
+          kdePackages.xwaylandvideobridge
           libnotify
           brightnessctl
           networkmanagerapplet
@@ -100,7 +100,7 @@ in {
       #   };
       # };
 
-      programs.wpaperd = {
+      services.wpaperd = {
         enable = true;
         settings = {
           "eDP-1".path = "${inputs.self.outPath}/config/assets/wallpapers/alena-aenami-far-from-tomorrow-1080px.jpg";
@@ -259,7 +259,7 @@ in {
           exec-once = [
             "uwsm app -- nm-applet"
             "uwsm app -- blueman-applet"
-            "uwsm app -- wpaperd"
+            # "uwsm app -- wpaperd"
           ];
 
           # constructs monitor config from my monitor options
@@ -439,6 +439,8 @@ in {
 
               # caps lock thing
               ",Caps_Lock, exec, uwsm app -- swayosd-client --caps-lock"
+
+              "SUPER,b,sendshortcut,,mouse:272"
             ]
             # ++ (map (i: (map (j: swpfocus (toString j) (toString i [0]))) i [1]) dirs)
             # ++ (map (i: (map (j: mvfocus (toString j) (toString i [0]))) i [1]) dirs)

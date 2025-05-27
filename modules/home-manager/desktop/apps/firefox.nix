@@ -1,5 +1,4 @@
 {
-  options,
   config,
   lib,
   sylib,
@@ -10,10 +9,10 @@
   ...
 }: let
   cfg = config.sylk.desktop.apps.firefox;
-  inherit (lib) mkIf types mapAttrsToList mkMerge;
+  inherit (lib) mkIf mapAttrsToList mkMerge;
   inherit (sylib) mk-enable mk-str-opt;
 in {
-  options.sylk.desktop.apps.firefox = with types; {
+  options.sylk.desktop.apps.firefox = {
     enable = mk-enable false;
     profileName = mk-str-opt config.user.name;
   };
@@ -41,7 +40,9 @@ in {
             ublock-origin
             stylus
           ];
-          bookmarks = lib.mkBefore [
+          bookmarks = {
+          force = true;
+          settings = [
             {
               name = "Bar";
               toolbar = true;
@@ -79,6 +80,7 @@ in {
               ];
             }
           ];
+          };
           settings = {
             ### This is all aesthetic stuff
             # for tiling window managers expands to the size of the window
@@ -255,20 +257,19 @@ in {
       };
     })
     (mkIf (osConfig.sylk.services.git-crypt.enable && cfg.enable) {
-      programs.firefox.profiles.${config.home.username}.bookmarks = [
+      programs.firefox.profiles.${config.home.username}.bookmarks = {
+        settings = [
         {
           name = "Secret_Bookmarks";
           toolbar = true;
-          bookmarks =
-            mapAttrsToList (
+          bookmarks = mapAttrsToList (
               name: url: {
-                name = name;
-                url = url;
+                inherit name url;
               }
-            )
-            secrets."${config.home.username}".bookmarks;
+            ) secrets."${config.home.username}".bookmarks;
         }
-      ];
+        ];
+      };
     })
   ];
 }

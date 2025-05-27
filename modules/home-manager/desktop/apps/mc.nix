@@ -48,7 +48,7 @@ in {
               "fadeColor": "#6c7086"
           },
           "name": "Catppuccin Mocha",
-          "widgets": "Fusion"
+          "widgets": "Cat"
       }
     '';
 

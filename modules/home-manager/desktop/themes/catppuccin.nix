@@ -16,7 +16,7 @@ in {
   };
 
   imports = [
-    inputs.catppuccin.homeManagerModules.catppuccin
+    inputs.catppuccin.homeModules.catppuccin
   ];
 
   config = mkIf cfg.enable {
