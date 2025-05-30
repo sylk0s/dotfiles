@@ -5,9 +5,8 @@
 }: {
   sylk = {
     desktop = {
-      hyprland = {
-        enable = true;
-      };
+      # hyprland.enable = true;
+      niri.enable = true;
       # media.spotify.enable = true;
       social = {
         discord.enable = true;
@@ -27,21 +26,9 @@
         mc.enable = true;
       };
       services = {
-        #  ags = {
-        #    enable = true;
-        #  };
-        #  kdeconnect.enable = true;
         dunst.enable = true;
         waybar.enable = true;
-        # hyprpanel.enable = true;
       };
-    };
-    dev = {
-      #python.enable = true;
-      #rust.enable = true;
-      #julia.enable = true;
-      #c.enable = true;
-      #embedded.enable = false;
     };
 
     shell = {
@@ -54,6 +41,7 @@
   home.packages = with pkgs; [
     kicad
     telegram-desktop
+    element-desktop
   ];
 
   home.persistence = {
