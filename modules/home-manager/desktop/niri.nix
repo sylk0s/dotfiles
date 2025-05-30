@@ -31,8 +31,26 @@ in {
     services.swayosd.enable = true;
 
     programs.niri.settings = {
+      # gets rid of pesky bars for terminals
       prefer-no-csd = true;
     
+      # disable while typing
+      input.touchpad.dwt = true;
+
+      layout = {
+        focus-ring = {
+          width = 2;
+        };
+
+        tab-indicator = {
+          hide-when-single-tab = true;
+        };
+
+        empty-workspace-above-first = true;
+        gaps = 8;
+      };
+
+      animations.slowdown = 0.5;
       
       binds = let
         # Movement Key Sets (Left, Down, Up, Right)
@@ -55,29 +73,49 @@ in {
       in with config.lib.niri.actions; {
 # Quit
         "Mod+Escape".action = quit;
-# Suspend
 # Spawns,,,
         "Mod+R".action = spawn "fuzzel";
         "Mod+Tab".action = spawn "alacritty";
 # lock
-        "Mod+Alt+X".action = screenshot;
+        "Mod+Alt+X".action = spawn "hyprlock";
 # screenshot
+        "Mod+Alt+E".action = screenshot;
 # close window
         "Mod+Q".action = close-window;
 # fullscreen window (fake fullscreen?)
         "Mod+F".action = fullscreen-window;
 # toggle tagged column
         "Mod+X".action = toggle-column-tabbed-display;
-# centering(?)
 # show hotkey overlay
         "Mod+Slash".action = show-hotkey-overlay;
-# toggle floating windows
-# toggle floating focus
 # toggle overlay
         "Mod+E".action = toggle-overview;
 # maximize column? expand colums to width?
         "Mod+C".action = maximize-column;
+# audio
+        "XF86AudioRaiseVolume" = {
+          allow-when-locked = true;
+          action = spawn "swayosd-client" "--output-volume" "raise";
+        };
+        "XF86AudioLowerVolume" = {
+          allow-when-locked = true;
+          action = spawn "swayosd-client" "--output-volume" "lower";
+        };
+        "XF86AudioMute" = {
+          allow-when-locked = true;
+          action = spawn "swayosd-client" "--output-volume" "mute-toggle";
+        };
+# brightness
+        "XF86MonBrightnessUp".action = spawn "swayosd-client" "--brightness" "raise";
+        "XF86MonBrightnessDown".action = spawn "swayosd-client" "--brightness" "lower";
+# caps
+        "Caps_Lock".action = spawn "swayosd-client" "--caps-lock";
+# Mouse gestures
+# toggle floating windows
+# toggle floating focus
 # swap windows
+# centering(?)
+# Suspend
       }
 
 # focus column

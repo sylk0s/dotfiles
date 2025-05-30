@@ -78,7 +78,6 @@ in {
         # other hyprland specific packages
         packages = with pkgs; [
           slurp
-          swww
           hyprpicker
           wl-gammactl
           wl-clipboard
