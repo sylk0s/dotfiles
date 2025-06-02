@@ -36,50 +36,50 @@ in {
       programs.firefox = {
         enable = true;
         profiles.${config.home.username} = {
-          extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
+          extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
             ublock-origin
             stylus
           ];
           bookmarks = {
-          force = true;
-          settings = [
-            {
-              name = "Bar";
-              toolbar = true;
-              bookmarks = [
-                {
-                  name = "noogle";
-                  url = "https://noogle.dev/";
-                }
-                {
-                  name = "homepkgs";
-                  url = "https://home-manager-options.extranix.com/";
-                }
-                {
-                  name = "pkgs";
-                  url = "https://search.nixos.org/options";
-                }
+            force = true;
+            settings = [
+              {
+                name = "Bar";
+                toolbar = true;
+                bookmarks = [
+                  {
+                    name = "noogle";
+                    url = "https://noogle.dev/";
+                  }
+                  {
+                    name = "homepkgs";
+                    url = "https://home-manager-options.extranix.com/";
+                  }
+                  {
+                    name = "pkgs";
+                    url = "https://search.nixos.org/options";
+                  }
 
-                {
-                  name = "github";
-                  url = "https://github.com";
-                }
-                {
-                  name = "dotfiles";
-                  url = "https://github.com/sylk0s/dotfiles";
-                }
+                  {
+                    name = "github";
+                    url = "https://github.com";
+                  }
+                  {
+                    name = "dotfiles";
+                    url = "https://github.com/sylk0s/dotfiles";
+                  }
 
-                {
-                  name = "simplenote";
-                  url = "https://app.simplenote.com";
-                }
-                {
-                  name = "calendar";
-                  url = "https://calendar.google.com/";
-                }
-              ];
-            }
-          ];
+                  {
+                    name = "simplenote";
+                    url = "https://app.simplenote.com";
+                  }
+                  {
+                    name = "calendar";
+                    url = "https://calendar.google.com/";
+                  }
+                ];
+              }
+            ];
           };
           settings = {
             ### This is all aesthetic stuff
@@ -259,15 +259,17 @@ in {
     (mkIf (osConfig.sylk.services.git-crypt.enable && cfg.enable) {
       programs.firefox.profiles.${config.home.username}.bookmarks = {
         settings = [
-        {
-          name = "Secret_Bookmarks";
-          toolbar = true;
-          bookmarks = mapAttrsToList (
-              name: url: {
-                inherit name url;
-              }
-            ) secrets."${config.home.username}".bookmarks;
-        }
+          {
+            name = "Secret_Bookmarks";
+            toolbar = true;
+            bookmarks =
+              mapAttrsToList (
+                name: url: {
+                  inherit name url;
+                }
+              )
+              secrets."${config.home.username}".bookmarks;
+          }
         ];
       };
     })

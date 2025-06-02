@@ -26,7 +26,9 @@ in {
           position = "top";
           height = 20;
 
-          modules-left = ["hyprland/workspaces"];
+          # TODO make this not hardcoded? base it off of the desktop enabled,,,
+          # niri/workspaces vs hyprland/workspaces
+          modules-left = [];
           modules-center = ["clock"];
           modules-right = ["battery" "tray"];
 
