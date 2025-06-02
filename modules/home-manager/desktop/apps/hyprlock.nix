@@ -15,6 +15,9 @@ in {
   };
 
   config = mkIf cfg.enable {
+    # so we can style it with our own config
+    catppuccin.hyprlock.enable = false;
+
     programs.hyprlock = {
       enable = true;
       settings = {
