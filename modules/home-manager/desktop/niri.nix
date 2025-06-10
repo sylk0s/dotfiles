@@ -33,7 +33,7 @@ in {
     programs.niri.settings = {
       # gets rid of pesky bars for terminals
       prefer-no-csd = true;
-    
+
       # disable while typing
       input.touchpad.dwt = true;
 
@@ -51,92 +51,156 @@ in {
       };
 
       animations.slowdown = 0.5;
-      
+
       binds = let
         # Movement Key Sets (Left, Down, Up, Right)
-        one-handed = { left = "a"; down = "s"; up = "w"; right = "d"; };
-        vim = { left = "h"; down = "j"; up = "k"; right = "l"; };
-        arrows = { left = "Left"; down = "Down"; up = "Up"; right = "Right"; };
+        one-handed = {
+          left = "a";
+          down = "s";
+          up = "w";
+          right = "d";
+        };
+        vim = {
+          left = "h";
+          down = "j";
+          up = "k";
+          right = "l";
+        };
+        arrows = {
+          left = "Left";
+          down = "Down";
+          up = "Up";
+          right = "Right";
+        };
 
-        # Key sets for all, left/right, up/down 
+        # Key sets for all, left/right, up/down
         keysets = [one-handed vim arrows];
         lr-keysets = map (ks: filterAttrs (n: v: n == "left" || n == "right") ks) keysets;
         ud-keysets = map (ks: filterAttrs (n: v: n == "up" || n == "down") ks) keysets;
 
         # generates a bind for all keys, for all duplicate keysets
-        map-binds = sets: opt-f: key-f: combine-attrs (map (set: concatMapAttrs (dir: key: { "${key-f key}".action = config.lib.niri.actions.${(opt-f dir)}; }) set) sets);
+        map-binds = sets: opt-f: key-f: format-f:
+          combine-attrs (map (set:
+            concatMapAttrs (
+              dir: key: {
+                "${key-f key}" = {
+                  action = config.lib.niri.actions.${(opt-f dir)};
+                  hotkey-overlay.title = format-f dir;
+                };
+              }
+            )
+            set)
+          sets);
 
         # specified keyset maps
         map-dirs = map-binds keysets;
         map-lr = map-binds lr-keysets;
         map-ud = map-binds ud-keysets;
-      in with config.lib.niri.actions; {
-# Quit
-        "Mod+Escape".action = quit;
-# Spawns,,,
-        "Mod+R".action = spawn "fuzzel";
-        "Mod+Tab".action = spawn "alacritty";
-# lock
-        "Mod+Alt+X".action = spawn "hyprlock";
-# screenshot
-        "Mod+Alt+E".action = screenshot;
-# close window
-        "Mod+Q".action = close-window;
-# fullscreen window (fake fullscreen?)
-        "Mod+F".action = fullscreen-window;
-# toggle tagged column
-        "Mod+X".action = toggle-column-tabbed-display;
-# show hotkey overlay
-        "Mod+Slash".action = show-hotkey-overlay;
-# toggle overlay
-        "Mod+E".action = toggle-overview;
-# maximize column? expand colums to width?
-        "Mod+C".action = maximize-column;
-# audio
-        "XF86AudioRaiseVolume" = {
-          allow-when-locked = true;
-          action = spawn "swayosd-client" "--output-volume" "raise";
-        };
-        "XF86AudioLowerVolume" = {
-          allow-when-locked = true;
-          action = spawn "swayosd-client" "--output-volume" "lower";
-        };
-        "XF86AudioMute" = {
-          allow-when-locked = true;
-          action = spawn "swayosd-client" "--output-volume" "mute-toggle";
-        };
-# brightness
-        "XF86MonBrightnessUp".action = spawn "swayosd-client" "--brightness" "raise";
-        "XF86MonBrightnessDown".action = spawn "swayosd-client" "--brightness" "lower";
-# caps
-        "Caps_Lock".action = spawn "swayosd-client" "--caps-lock";
-# Mouse gestures
-# toggle floating windows
-# toggle floating focus
-# swap windows
-# centering(?)
-# Suspend
-      }
+      in
+        with config.lib.niri.actions;
+          {
+            # Unbind hotkey-overlay results
+            # "".hotkey-overlay.hidden = true;
 
-# focus column
-      // (map-lr (d: "focus-column-or-monitor-${d}") (k: "Mod+${k}"))
-      // (map-ud (d: "focus-window-or-workspace-${d}") (k: "Mod+${k}"))
-
-# move column
-      // (map-lr (d: "move-column-${d}-or-to-monitor-${d}") (k: "Mod+Shift+${k}"))
-      // (map-ud (d: "move-column-to-workspace-${d}") (k: "Mod+Shift+${k}"))
-
-# move window
-      // (map-lr (d: "consume-or-expel-window-${d}") (k: "Mod+Alt+${k}"))
-      // (map-ud (d: "move-window-${d}-or-to-workspace-${d}") (k: "Mod+Alt+${k}"))
-
-# adjust size
-  # TODO Ctrl mod
-
-# move workspaces between monitors?
-# move windows between monitors?
-      // {};
+            # Quit
+            "Mod+Escape" = {
+              action = quit;
+              hotkey-overlay.title = "Quit niri";
+            };
+            # Spawns,,,
+            "Mod+R" = {
+              action = spawn "fuzzel";
+              hotkey-overlay.title = "Spawn `fuzzel`";
+            };
+            "Mod+Tab" = {
+              action = spawn "alacritty";
+              hotkey-overlay.title = "Spawn `alacritty`";
+            };
+            # lock
+            "Mod+Alt+X" = {
+              action = spawn "hyprlock";
+              hotkey-overlay.title = "Lock the screen";
+            };
+            # screenshot
+            "Mod+Alt+E" = {
+              action = screenshot;
+              hotkey-overlay.title = "Screenshot";
+            };
+            # close window
+            "Mod+Q" = {
+              action = close-window;
+              hotkey-overlay.title = "Close focused window";
+            };
+            # fullscreen window (fake fullscreen?)
+            "Mod+F" = {
+              action = fullscreen-window;
+              hotkey-overlay.title = "Fullscreen window";
+            };
+            # toggle tagged column
+            "Mod+X" = {
+              action = toggle-column-tabbed-display;
+              hotkey-overlay.title = "Toggle tagged/column mode";
+            };
+            # show hotkey overlay
+            "Mod+Slash" = {
+              action = show-hotkey-overlay;
+              hotkey-overlay.title = "Show this overlay";
+            };
+            # toggle overlay
+            "Mod+E" = {
+              action = toggle-overview;
+              hotkey-overlay.title = "Toggle overview";
+            };
+            # maximize column? expand colums to width?
+            "Mod+C" = {
+              action = maximize-column;
+              hotkey-overlay.title = "Maximize focused column";
+            };
+            # audio
+            "XF86AudioRaiseVolume" = {
+              allow-when-locked = true;
+              action = spawn "swayosd-client" "--output-volume" "raise";
+            };
+            "XF86AudioLowerVolume" = {
+              allow-when-locked = true;
+              action = spawn "swayosd-client" "--output-volume" "lower";
+            };
+            "XF86AudioMute" = {
+              allow-when-locked = true;
+              action = spawn "swayosd-client" "--output-volume" "mute-toggle";
+            };
+            # brightness
+            "XF86MonBrightnessUp" = {
+              action = spawn "swayosd-client" "--brightness" "raise";
+            };
+            "XF86MonBrightnessDown" = {
+              action = spawn "swayosd-client" "--brightness" "lower";
+            };
+            # caps
+            "Caps_Lock" = {
+              action = spawn "swayosd-client" "--caps-lock";
+            };
+            # Mouse gestures
+            # toggle floating windows
+            # toggle floating focus
+            # swap windows
+            # centering(?)
+            # Suspend
+          }
+          # focus column
+          // (map-lr (d: "focus-column-or-monitor-${d}") (k: "Mod+${k}") (d: "Focus column ${d}"))
+          // (map-ud (d: "focus-window-or-workspace-${d}") (k: "Mod+${k}") (d: "Focus column ${d}"))
+          # move column
+          // (map-lr (d: "move-column-${d}-or-to-monitor-${d}") (k: "Mod+Shift+${k}") (d: "Move column ${d}"))
+          // (map-ud (d: "move-column-to-workspace-${d}") (k: "Mod+Shift+${k}") (d: "Move column ${d}"))
+          # move window
+          // (map-lr (d: "consume-or-expel-window-${d}") (k: "Mod+Alt+${k}") (d: "Move window ${d}"))
+          // (map-ud (d: "move-window-${d}-or-to-workspace-${d}") (k: "Mod+Alt+${k}") (d: "Move window ${d}"))
+          # adjust size
+          # TODO Ctrl mod
+          # move workspaces between monitors?
+          # move windows between monitors?
+          // {};
     };
   };
 }
-    

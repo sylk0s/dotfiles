@@ -29,7 +29,7 @@ in {
     #   # ];
 
     #   # callback
-    # gtk.enable = true;
+    gtk.enable = true;
 
     catppuccin = {
       enable = true;
@@ -40,16 +40,16 @@ in {
         accent = "lavender";
         flavor = "mocha";
       };
-      # gtk = {
-      #   enable = true;
-      #   accent = "lavender";
-      #   flavor = "mocha";
-      #   icon = {
-      #     enable = true;
-      #     accent = "lavender";
-      #     flavor = "mocha";
-      #   };
-      # };
+      gtk = {
+        enable = true;
+        accent = "lavender";
+         flavor = "mocha";
+         icon = {
+           enable = true;
+           accent = "lavender";
+           flavor = "mocha";
+         };
+       };
     };
   };
 }
