@@ -10,7 +10,7 @@
 
   cfg = config.sylk.desktop.services.hyprpanel;
 in {
-  imports = [inputs.hyprpanel.homeManagerModules.hyprpanel];#
+  # imports = [inputs.hyprpanel.homeManagerModules.hyprpanel];#
 
   options.sylk.desktop.services.hyprpanel = {
     enable = mk-enable false;

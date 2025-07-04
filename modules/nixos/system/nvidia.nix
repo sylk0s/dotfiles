@@ -50,6 +50,7 @@ in {
       # good for hyprland
       environment.variables = {
         "LIBVA_DRIVER_NAME" = "nvidia";
+        # This breaks kicad... also I no longer use hyprland so :O
         "__GLX_VENDOR_LIBRARY_NAME" = "nvidia";
       };
 

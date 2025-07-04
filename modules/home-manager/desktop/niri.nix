@@ -2,6 +2,8 @@
   lib,
   sylib,
   config,
+  pkgs,
+  inputs,
   ...
 }: let
   inherit (lib) mkIf filterAttrs concatMapAttrs;
@@ -14,6 +16,8 @@ in {
   };
 
   config = mkIf cfg.enable {
+    nixpkgs.overlays = [inputs.niri.overlays.niri];
+
     home.sessionVariables = {
       NIXOS_OZONE_WL = "1";
       ELECTRON_OZONE_PLATFORM_HINT = "auto";
@@ -26,6 +30,14 @@ in {
         hypridle.enable = true;
       };
     };
+
+    xdg.portal.extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+    ];
+
+    home.packages = with pkgs; [
+      xwayland-satellite-unstable
+    ];
 
     programs.fuzzel.enable = true;
     services.swayosd.enable = true;
@@ -51,6 +63,9 @@ in {
       };
 
       animations.slowdown = 0.5;
+
+      # meow idk if i need this to get it to work automagically
+      xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite-unstable;
 
       binds = let
         # Movement Key Sets (Left, Down, Up, Right)
@@ -197,7 +212,7 @@ in {
           // (map-lr (d: "consume-or-expel-window-${d}") (k: "Mod+Alt+${k}") (d: "Move window ${d}"))
           // (map-ud (d: "move-window-${d}-or-to-workspace-${d}") (k: "Mod+Alt+${k}") (d: "Move window ${d}"))
           # adjust size
-          # TODO Ctrl mod
+          # // (map-lr (d: "set-window-") (k: "Mod+Ctrl+${k}") (d: "Resize window ${}"))
           # move workspaces between monitors?
           # move windows between monitors?
           // {};

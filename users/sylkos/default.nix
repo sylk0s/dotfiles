@@ -24,6 +24,7 @@
       gaming = {
         steam.enable = true;
         mc.enable = true;
+        olympus.enable = true;
       };
       services = {
         dunst.enable = true;

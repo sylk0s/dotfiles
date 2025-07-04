@@ -18,6 +18,10 @@ in {
         enable = true;
         package = pkgs.niri-unstable;
       };
+
+      xdg.portal.config.niri = {
+        "org.freedesktop.impl.portal.FileChooser" = ["gtk"];
+      };
     })
   ];
 }
