@@ -48,7 +48,7 @@ in {
                 toolbar = true;
                 bookmarks = [
                   {
-                    name = "noogle";
+                    name = "noo";
                     url = "https://noogle.dev/";
                   }
                   {
@@ -61,20 +61,20 @@ in {
                   }
 
                   {
-                    name = "github";
+                    name = "gh";
                     url = "https://github.com";
                   }
                   {
-                    name = "dotfiles";
+                    name = "dot";
                     url = "https://github.com/sylk0s/dotfiles";
                   }
 
                   {
-                    name = "simplenote";
+                    name = "snt";
                     url = "https://app.simplenote.com";
                   }
                   {
-                    name = "calendar";
+                    name = "cal";
                     url = "https://calendar.google.com/";
                   }
                 ];
