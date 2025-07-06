@@ -94,12 +94,12 @@ in {
         ud-keysets = map (ks: filterAttrs (n: v: n == "up" || n == "down") ks) keysets;
 
         # generates a bind for all keys, for all duplicate keysets
-        map-binds = sets: opt-f: key-f: format-f:
+        map-binds = sets: opt-f: key-f: format-f: {arg-application ? x: _dir: x}:
           combine-attrs (map (set:
             concatMapAttrs (
               dir: key: {
                 "${key-f key}" = {
-                  action = config.lib.niri.actions.${(opt-f dir)};
+                  action = arg-application config.lib.niri.actions.${(opt-f dir)} dir;
                   hotkey-overlay.title = format-f dir;
                 };
               }
@@ -203,16 +203,26 @@ in {
             # Suspend
           }
           # focus column
-          // (map-lr (d: "focus-column-or-monitor-${d}") (k: "Mod+${k}") (d: "Focus column ${d}"))
-          // (map-ud (d: "focus-window-or-workspace-${d}") (k: "Mod+${k}") (d: "Focus column ${d}"))
+          // (map-lr (d: "focus-column-or-monitor-${d}") (k: "Mod+${k}") (d: "Focus column ${d}") {})
+          // (map-ud (d: "focus-window-or-workspace-${d}") (k: "Mod+${k}") (d: "Focus column ${d}") {})
           # move column
-          // (map-lr (d: "move-column-${d}-or-to-monitor-${d}") (k: "Mod+Shift+${k}") (d: "Move column ${d}"))
-          // (map-ud (d: "move-column-to-workspace-${d}") (k: "Mod+Shift+${k}") (d: "Move column ${d}"))
+          // (map-lr (d: "move-column-${d}-or-to-monitor-${d}") (k: "Mod+Shift+${k}") (d: "Move column ${d}") {})
+          // (map-ud (d: "move-column-to-workspace-${d}") (k: "Mod+Shift+${k}") (d: "Move column ${d}") {})
           # move window
-          // (map-lr (d: "consume-or-expel-window-${d}") (k: "Mod+Alt+${k}") (d: "Move window ${d}"))
-          // (map-ud (d: "move-window-${d}-or-to-workspace-${d}") (k: "Mod+Alt+${k}") (d: "Move window ${d}"))
+          // (map-lr (d: "consume-or-expel-window-${d}") (k: "Mod+Alt+${k}") (d: "Move window ${d}") {})
+          // (map-ud (d: "move-window-${d}-or-to-workspace-${d}") (k: "Mod+Alt+${k}") (d: "Move window ${d}") {})
           # adjust size
-          # // (map-lr (d: "set-window-") (k: "Mod+Ctrl+${k}") (d: "Resize window ${}"))
+          // (map-lr (_d: "set-column-width") (k: "Mod+Ctrl+${k}")
+            (d:
+              if d == "left"
+              then "Shrink column width"
+              else "Expand column width")
+            {
+              arg-application = action: d:
+                if d == "left"
+                then action "-10%"
+                else action "+10%";
+            })
           # move workspaces between monitors?
           # move windows between monitors?
           // {};

@@ -51,7 +51,7 @@ in {
       environment.variables = {
         "LIBVA_DRIVER_NAME" = "nvidia";
         # This breaks kicad... also I no longer use hyprland so :O
-        "__GLX_VENDOR_LIBRARY_NAME" = "nvidia";
+        # "__GLX_VENDOR_LIBRARY_NAME" = "nvidia";
       };
 
       # Load nvidia driver for Xorg and Wayland
