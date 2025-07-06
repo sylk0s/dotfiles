@@ -63,189 +63,44 @@ in {
     );
   in
     mkIf cfg.enable {
+      sylk.desktop = {
+        services = {
+          wpaperd.enable = true;
+          hypridle.enable = true;
+        };
+
+        apps = {
+          hyprlock.enable = true;
+        };
+      };
+
       home = {
         # other hyprland specific packages
         packages = with pkgs; [
-          wofi
           slurp
-          swww
           hyprpicker
           wl-gammactl
           wl-clipboard
           grim
           swappy
           imagemagick
-          xwaylandvideobridge
+          kdePackages.xwaylandvideobridge
           libnotify
           brightnessctl
-          networkmanagerapplet
         ];
       };
 
-      services.hyprpaper = {
-        enable = true;
-        settings = {
-          ipc = "on";
-          splash = false;
-          preload = [
-            "${inputs.self.outPath}/config/assets/wallpapers/alena-aenami-far-from-tomorrow-1080px.jpg"
-            "${inputs.self.outPath}/config/assets/wallpapers/nix-black-4k.png"
-          ];
-
-          # TODO add wallpapers to this
-          wallpaper = [
-            "eDP-1, ${inputs.self.outPath}/config/assets/wallpapers/alena-aenami-far-from-tomorrow-1080px.jpg"
-            ", ${inputs.self.outPath}/config/assets/wallpapers/nix-black-4k.png"
-          ];
-        };
-      };
-
       programs.fuzzel.enable = true;
-      catppuccin.fuzzel.enable = true;
-
-      services.hypridle = {
-        enable = true;
-        settings = {
-          general = {
-            lock_cmd = "pidof hyprlock || hyprlock"; # avoid starting multiple hyprlock instances.
-            before_sleep_cmd = "loginctl lock-session"; # lock before suspend.
-            after_sleep_cmd = "hyprctl dispatch dpms on"; # to avoid having to press a key twice to turn on the display.
-          };
-
-          listener = [
-            {
-              timeout = 150; # 2.5m
-              on-timeout = "${pkgs.libnotify}/bin/notify-send -a \"Idle\" \"Dimming screen\""; # set monitor backlight to minimum, avoid 0 on OLED monitor.
-            }
-            {
-              timeout = 150; # 2.5m
-              on-timeout = "${pkgs.brightnessctl}/bin/brightnessctl -s set 1"; # set monitor backlight to minimum, avoid 0 on OLED monitor.
-              on-resume = "${pkgs.brightnessctl}/bin/brightnessctl -r"; # monitor backlight restore.
-            }
-            {
-              timeout = 290; # 2m 50s
-              on-timeout = "${pkgs.libnotify}/bin/notify-send -a \"Idle\" \"Locking screen in 10s\"";
-            }
-            {
-              timeout = 300; # 5m
-              on-timeout = "loginctl lock-session"; # lock screen when timeout has passed
-            }
-            {
-              timeout = 360; # 6m
-              on-timeout = "hyprctl dispatch dpms off"; # screen off when timeout has passed
-              on-resume = "hyprctl dispatch dpms on"; # screen on when activity is detected after timeout has fired.
-            }
-            {
-              timeout = 600; # 10 mins
-              on-timeout = "systemctl suspend";
-            }
-          ];
-        };
-      };
-
       services.swayosd.enable = true;
-
-      programs.hyprlock = {
-        enable = true;
-        settings = {
-          auth."pam:enabled" = true;
-
-          # BACKGROUND
-          background = {
-            monitor = "";
-            path = "${inputs.self.outPath}/config/assets/wallpapers/alena-aenami-far-from-tomorrow-1080px.jpg";
-            blur_passes = 2;
-            contrast = 1;
-            brightness = 0.5;
-            vibrancy = 0.2;
-            vibrancy_darkness = 0.2;
-          };
-
-          # GENERAL
-          general = {
-            no_fade_in = true;
-            no_fade_out = true;
-            hide_cursor = false;
-            grace = 0;
-            disable_loading_bar = true;
-          };
-
-          # INPUT FIELD
-          input-field = {
-            monitor = "";
-            size = "250, 60";
-            outline_thickness = 2;
-            dots_size = 0.2; # Scale of input-field height, 0.2 - 0.8
-            dots_spacing = 0.35; # Scale of dots' absolute size, 0.0 - 1.0
-            dots_center = true;
-            outer_color = "rgba(0, 0, 0, 0)";
-            inner_color = "rgba(0, 0, 0, 0.2)";
-            font_color = "rgb(245, 224, 220)";
-            fade_on_empty = false;
-            rounding = -1;
-            check_color = "rgb(204, 136, 34)";
-            placeholder_text = "<i><span foreground=\"##cdd6f4\">Input Password...</span></i>";
-            hide_input = false;
-            position = "0, -200";
-            halign = "center";
-            valign = "center";
-          };
-
-          # DATE
-          label = [
-            {
-              monitor = "";
-              text = "cmd[update:1000] echo \"$(date +\"%A, %B %d\")\"";
-              color = "rgb(245, 224, 220)";
-              font_size = 22;
-              font_family = "JetBrains Mono";
-              position = "0, 300";
-              halign = "center";
-              valign = "center";
-            }
-
-            # TIME
-            {
-              monitor = "";
-              text = "cmd[update:1000] echo \"$(date +\"%-I:%M\")\"";
-              color = "rgb(245, 224, 220)";
-              font_size = 95;
-              font_family = "JetBrains Mono Extrabold";
-              position = "0, 200";
-              halign = "center";
-              valign = "center";
-            }
-          ];
-
-          # Profile Picture
-          image = [
-            {
-              monitor = "";
-              path = "${inputs.self.outPath}/config/assets/julia.png";
-              size = 100;
-              border_size = 2;
-              border_color = "rgb(245, 224, 220)";
-              position = "0, -100";
-              halign = "center";
-              valign = "center";
-            }
-          ];
-        };
-      };
 
       # this is the hm module
       wayland.windowManager.hyprland = {
         enable = true;
-        #enableNvidiaPatches = cfg.nvidia; #if you have nvidia
         xwayland.enable = true;
         package = hyprland;
 
         # needed for UWSM
         systemd.enable = false;
-
-        # plugins = [
-        #   inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
-        # ];
 
         settings = {
           exec-once = [
@@ -358,7 +213,6 @@ in {
             resize = base "resizeactive";
             mvact = binding "SUPER ALT" "moveactive";
             mvtows = binding "SUPER SHIFT" "movetoworkspace";
-            ag = key: name: base "exec" "${key}" "ags -t ${name}";
 
             app = sshf "exec";
             sal = salt "exec";
@@ -390,12 +244,6 @@ in {
               (app "R" "uwsm app -- code")
               (base "exec" "Tab" "uwsm app -- ${pkgs.alacritty}/bin/alacritty")
               (base "exec" "R" "uwsm app -- fuzzel")
-
-              # ags
-              # (ag "R" "applauncher")
-              # (ag "escape" "powermenu")
-              # (ag "E" "overview")
-              # (salt "exec" "Q" "ags quit; ags")
 
               # screenshot keybinds
               (sal "E" "uwsm app -- ${inputs.self.outPath}/config/scripts/screenshot.sh sel-clip")
@@ -430,6 +278,8 @@ in {
 
               # caps lock thing
               ",Caps_Lock, exec, uwsm app -- swayosd-client --caps-lock"
+
+              "SUPER,b,sendshortcut,,mouse:272"
             ]
             # ++ (map (i: (map (j: swpfocus (toString j) (toString i [0]))) i [1]) dirs)
             # ++ (map (i: (map (j: mvfocus (toString j) (toString i [0]))) i [1]) dirs)
@@ -440,26 +290,6 @@ in {
             "SUPER, mouse:272, movewindow"
             "SUPER, mouse:273, resizewindow"
           ];
-
-          #bindl = concatLists (map (m: [
-          #  # trigger when the switch is turning on
-          #  ", switch:on:${m.switch}, exec, hyprctl keyword monitor \"${m.name}, disable\""
-          #  # trigger when the switch is turning off
-          #  ", switch:off:${m.switch}, exec, hyprctl keyword monitor \"${monitor-str m}\""
-          #]) (filter (m: m.switch != "") osConfig.sylk.system.monitors));
-
-          # plugin = {
-          #   hyperexpo = {
-          #     columns = 3;
-          #     gap_size = 5;
-          #     bg_col = "rgba(111111)";
-          #     workspace_method = "static 1";
-
-          #     enable_gesture = true;
-          #     gesture_distance = 300;
-          #     gesture_positive = true;
-          #   };
-          # };
         };
       };
     };

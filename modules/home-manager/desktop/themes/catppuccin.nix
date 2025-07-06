@@ -16,7 +16,7 @@ in {
   };
 
   imports = [
-    inputs.catppuccin.homeManagerModules.catppuccin
+    inputs.catppuccin.homeModules.catppuccin
   ];
 
   config = mkIf cfg.enable {
@@ -43,13 +43,13 @@ in {
       gtk = {
         enable = true;
         accent = "lavender";
-        flavor = "mocha";
-        icon = {
-          enable = true;
-          accent = "lavender";
-          flavor = "mocha";
-        };
-      };
+         flavor = "mocha";
+         icon = {
+           enable = true;
+           accent = "lavender";
+           flavor = "mocha";
+         };
+       };
     };
   };
 }

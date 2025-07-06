@@ -53,9 +53,9 @@ in {
               mikestead.dotenv
 
               tamasfe.even-better-toml
-              rust-lang.rust-analyzer
+              # rust-lang.rust-analyzer
 
-              nvarner.typst-lsp
+              # nvarner.typst-lsp
 
               ms-vscode.hexeditor
 

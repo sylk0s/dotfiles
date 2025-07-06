@@ -1,5 +1,4 @@
 {
-  options,
   config,
   lib,
   sylib,
@@ -10,10 +9,10 @@
   ...
 }: let
   cfg = config.sylk.desktop.apps.firefox;
-  inherit (lib) mkIf types mapAttrsToList mkMerge;
+  inherit (lib) mkIf mapAttrsToList mkMerge;
   inherit (sylib) mk-enable mk-str-opt;
 in {
-  options.sylk.desktop.apps.firefox = with types; {
+  options.sylk.desktop.apps.firefox = {
     enable = mk-enable false;
     profileName = mk-str-opt config.user.name;
   };
@@ -37,48 +36,51 @@ in {
       programs.firefox = {
         enable = true;
         profiles.${config.home.username} = {
-          extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
+          extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
             ublock-origin
             stylus
           ];
-          bookmarks = lib.mkBefore [
-            {
-              name = "Bar";
-              toolbar = true;
-              bookmarks = [
-                {
-                  name = "noogle";
-                  url = "https://noogle.dev/";
-                }
-                {
-                  name = "homepkgs";
-                  url = "https://home-manager-options.extranix.com/";
-                }
-                {
-                  name = "pkgs";
-                  url = "https://search.nixos.org/options";
-                }
+          bookmarks = {
+            force = true;
+            settings = [
+              {
+                name = "Bar";
+                toolbar = true;
+                bookmarks = [
+                  {
+                    name = "noogle";
+                    url = "https://noogle.dev/";
+                  }
+                  {
+                    name = "homepkgs";
+                    url = "https://home-manager-options.extranix.com/";
+                  }
+                  {
+                    name = "pkgs";
+                    url = "https://search.nixos.org/options";
+                  }
 
-                {
-                  name = "github";
-                  url = "https://github.com";
-                }
-                {
-                  name = "dotfiles";
-                  url = "https://github.com/sylk0s/dotfiles";
-                }
+                  {
+                    name = "github";
+                    url = "https://github.com";
+                  }
+                  {
+                    name = "dotfiles";
+                    url = "https://github.com/sylk0s/dotfiles";
+                  }
 
-                {
-                  name = "simplenote";
-                  url = "https://app.simplenote.com";
-                }
-                {
-                  name = "calendar";
-                  url = "https://calendar.google.com/";
-                }
-              ];
-            }
-          ];
+                  {
+                    name = "simplenote";
+                    url = "https://app.simplenote.com";
+                  }
+                  {
+                    name = "calendar";
+                    url = "https://calendar.google.com/";
+                  }
+                ];
+              }
+            ];
+          };
           settings = {
             ### This is all aesthetic stuff
             # for tiling window managers expands to the size of the window
@@ -255,20 +257,21 @@ in {
       };
     })
     (mkIf (osConfig.sylk.services.git-crypt.enable && cfg.enable) {
-      programs.firefox.profiles.${config.home.username}.bookmarks = [
-        {
-          name = "Secret_Bookmarks";
-          toolbar = true;
-          bookmarks =
-            mapAttrsToList (
-              name: url: {
-                name = name;
-                url = url;
-              }
-            )
-            secrets."${config.home.username}".bookmarks;
-        }
-      ];
+      programs.firefox.profiles.${config.home.username}.bookmarks = {
+        settings = [
+          {
+            name = "Secret_Bookmarks";
+            toolbar = true;
+            bookmarks =
+              mapAttrsToList (
+                name: url: {
+                  inherit name url;
+                }
+              )
+              secrets."${config.home.username}".bookmarks;
+          }
+        ];
+      };
     })
   ];
 }

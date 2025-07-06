@@ -5,9 +5,8 @@
 }: {
   sylk = {
     desktop = {
-      hyprland = {
-        enable = true;
-      };
+      # hyprland.enable = true;
+      niri.enable = true;
       # media.spotify.enable = true;
       social = {
         discord.enable = true;
@@ -24,24 +23,13 @@
       };
       gaming = {
         steam.enable = true;
-        #  mc.enable = true;
+        mc.enable = true;
+        olympus.enable = true;
       };
       services = {
-        #  ags = {
-        #    enable = true;
-        #  };
-        #  kdeconnect.enable = true;
         dunst.enable = true;
         waybar.enable = true;
-        # hyprpanel.enable = true;
       };
-    };
-    dev = {
-      #python.enable = true;
-      #rust.enable = true;
-      #julia.enable = true;
-      #c.enable = true;
-      #embedded.enable = false;
     };
 
     shell = {
@@ -53,5 +41,16 @@
 
   home.packages = with pkgs; [
     kicad
+    telegram-desktop
+    element-desktop
   ];
+
+  home.persistence = {
+    "/persist/home/sylkos" = {
+      directories = [
+        ".local/share/TelegramDesktop"
+        ".local/share/kicad"
+      ];
+    };
+  };
 }

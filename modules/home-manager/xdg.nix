@@ -8,6 +8,12 @@
   ...
 }:
 with lib; {
+  xdg.portal.config.niri = {
+    "org.freedesktop.impl.portal.FileChooser" = ["gtk"];
+  };
+  xdg.portal.extraPortals = [
+    pkgs.xdg-desktop-portal-gtk
+  ];
   ### A tidy $HOME is a tidy mind
   xdg = {
     enable = mkDefault true;
