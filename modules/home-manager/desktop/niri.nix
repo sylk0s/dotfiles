@@ -4,6 +4,7 @@
   config,
   pkgs,
   inputs,
+  osConfig,
   ...
 }: let
   inherit (lib) mkIf filterAttrs concatMapAttrs;
@@ -31,12 +32,16 @@ in {
       };
     };
 
-    xdg.portal.extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
+    xdg.portal.extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-gnome
     ];
 
     home.packages = with pkgs; [
       xwayland-satellite-unstable
+      xdg-desktop-portal-gtk
+      # for some reason this really hates me
+      xdg-desktop-portal-gnome
     ];
 
     programs.fuzzel.enable = true;
@@ -66,6 +71,31 @@ in {
 
       # meow idk if i need this to get it to work automagically
       xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite-unstable;
+
+      outputs = let
+        generate_output = m: {
+          name = m.name;
+          value = {
+            enable = m.enable;
+            focus-at-startup = m.primary;
+            mode = {
+              height = m.height;
+              width = m.width;
+              # TODO this needs to be a float to work right
+              # refresh = m.refresh-rate;
+            };
+            position = {
+              x = m.x-off;
+              y = m.y-off;
+            };
+            scale = m.scale;
+            transform = {
+              flipped = m.transform > 3;
+              rotation = (lib.mod m.transform 4) * 90;
+            };
+          };
+        };
+      in lib.listToAttrs (map generate_output osConfig.sylk.system.monitors);
 
       binds = let
         # Movement Key Sets (Left, Down, Up, Right)

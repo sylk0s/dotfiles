@@ -46,6 +46,25 @@
           primary = true;
           enable = true;
           switch = "Lid Switch";
+          # I think when operating alone this should be *fine*?
+          x-off = 1200 + 1920;
+          y-off = 0;
+        }
+        # home desk config
+        {
+          # Sideways HP monitor
+          name = "Hewlett Packard HP LP2475w CNC0090CVH";
+          enable = true;
+          x-off = 0;
+          y-off = 0;
+          transform = 3;
+        }
+        {
+          # Normal lenovo monitor
+          name = "Lenovo Group Limited LEN T2424zA V1K90974";
+          enable = true;
+          x-off = 1200;
+          y-off = 235;
         }
       ];
     };
