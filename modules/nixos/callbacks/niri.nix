@@ -21,6 +21,7 @@ in {
 
       xdg.portal.config.niri = {
         "org.freedesktop.impl.portal.FileChooser" = ["gtk"];
+        "org.freedesktop.impl.portal.ScreenCast" = ["gnome"];
       };
     })
   ];

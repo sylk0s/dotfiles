@@ -51,6 +51,7 @@
           y-off = 0;
         }
         # home desk config
+        # TODO this may break with hyprland actually since hypr might not support this naming
         {
           # Sideways HP monitor
           name = "Hewlett Packard HP LP2475w CNC0090CVH";

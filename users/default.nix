@@ -91,6 +91,8 @@ in {
         # for each user, generate a home-manager config
         users = mk-homes module-paths ./home.nix cfg;
         backupFileExtension = "backup";
+        # TODO - this is a big fix from 3ulalia's closed PR
+        # sharedModules = [inputs.niri.homeModules.niri];
       };
     }
     (

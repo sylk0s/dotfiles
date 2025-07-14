@@ -32,10 +32,25 @@ in {
       };
     };
 
-    xdg.portal.extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-      xdg-desktop-portal-gnome
-    ];
+    # TODO should be done by niri flake
+    services.gnome-keyring.enable = true;
+
+    xdg.portal = {
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+        # TODO should be done by niri flake
+        xdg-desktop-portal-gnome
+      ];
+
+      config.niri = {
+        "org.freedesktop.impl.portal.FileChooser" = ["gtk"];
+        "org.freedesktop.impl.portal.ScreenCast" = ["gnome"];
+      };
+
+      # TODO should be done by niri flake
+      configPackages = config.programs.niri.package;
+    };
+
 
     home.packages = with pkgs; [
       xwayland-satellite-unstable
@@ -46,6 +61,8 @@ in {
 
     programs.fuzzel.enable = true;
     services.swayosd.enable = true;
+
+    # programs.niri.enable = true;
 
     programs.niri.settings = {
       # gets rid of pesky bars for terminals
@@ -71,6 +88,33 @@ in {
 
       # meow idk if i need this to get it to work automagically
       xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite-unstable;
+
+      window-rules = [
+        # highlights screencast window
+        {
+          matches = [{
+            is-window-cast-target = true;
+          }];
+
+          focus-ring = {
+            active.color = "#f38ba8";
+            inactive.color = "#7d0d2d";
+          };
+
+          border = {
+            inactive.color = "#7d0d2d";
+          };
+
+          shadow = {
+            color = "#7d0d2d70";
+          };
+
+          tab-indicator = {
+            active.color = "#f38ba8";
+            inactive.color = "#7d0d2d";
+          };
+        }
+      ];
 
       outputs = let
         generate_output = m: {
