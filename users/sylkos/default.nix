@@ -7,7 +7,7 @@
     desktop = {
       # hyprland.enable = true;
       niri.enable = true;
-      # media.spotify.enable = true;
+      media.spotify.enable = true;
       social = {
         discord.enable = true;
         signal.enable = true;
@@ -29,6 +29,7 @@
       services = {
         dunst.enable = true;
         waybar.enable = true;
+        kdeconnect.enable = true;
       };
     };
 
