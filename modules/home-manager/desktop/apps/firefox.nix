@@ -35,9 +35,7 @@ in {
 
       programs.firefox = {
         enable = true;
-        profiles.default.extensions.force = true;
         profiles.${config.home.username} = {
-          id = 1;
           extensions = {
             packages = with inputs.firefox-addons.packages.${pkgs.system}; [
               ublock-origin
