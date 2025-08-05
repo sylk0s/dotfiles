@@ -19,6 +19,13 @@ in {
     stylix = {
       enable = true;
       base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+      fonts = {
+        sizes = {
+          desktop = 11;
+          applications = 11;
+          terminal = 11;
+        };
+      };
     };
   };
 }

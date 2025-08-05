@@ -56,7 +56,7 @@ in {
           #  family = mono.family;
           #  style = "Bold Italic";
           #};
-          # size = mono.size;
+          size = 11;
         };
 
         # colorscheme
