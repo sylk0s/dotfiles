@@ -16,7 +16,7 @@ in {
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      vmware-horizon-client # (run vmware-view)
+      omnissa-horizon-client # (run vmware-view)
       openconnect
       gp-saml-gui
     ];

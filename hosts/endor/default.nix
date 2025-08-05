@@ -75,7 +75,7 @@
       docker.enable = true;
       gpg.enable = true;
       git-crypt.enable = true;
-      vmware.enable = true;
+      vmware.enable = false; # libxml is sad
     };
     ssh.enable = true;
 

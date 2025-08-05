@@ -17,8 +17,9 @@ in {
   config = mkIf cfg.enable {
     services.wpaperd = {
       enable = true;
+# TODO make this more configurable
       settings = {
-        "eDP-1".path = "${inputs.self.outPath}/config/assets/wallpapers/alena-aenami-far-from-tomorrow-1080px.jpg";
+        "eDP-1".path = "${inputs.self.outPath}/config/assets/wallpapers/alena-aenami-clouds-1k.jpg";
         default.path = "${inputs.self.outPath}/config/assets/wallpapers/nix-black-4k.png";
       };
     };

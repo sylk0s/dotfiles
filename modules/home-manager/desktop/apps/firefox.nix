@@ -35,11 +35,16 @@ in {
 
       programs.firefox = {
         enable = true;
+        profiles.default.extensions.force = true;
         profiles.${config.home.username} = {
-          extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
-            ublock-origin
-            stylus
-          ];
+          id = 1;
+          extensions = {
+            packages = with inputs.firefox-addons.packages.${pkgs.system}; [
+              ublock-origin
+              stylus
+            ];
+            force = true;
+          };
           bookmarks = {
             force = true;
             settings = [
