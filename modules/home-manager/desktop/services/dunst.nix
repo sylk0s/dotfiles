@@ -51,7 +51,7 @@ in {
           indicate_hidden = true;
 
           separator_height = 6;
-          separator_color = "frame";
+          # separator_color = "frame";
           padding = 16;
           horizontal_padding = 16;
           # border around notification
@@ -64,7 +64,7 @@ in {
           layer = "top";
           force_xwayland = false;
 
-          font = "${fontConfig.main.family} ${toString fontConfig.main.size}";
+          # font = "${fontConfig.main.family} ${toString fontConfig.main.size}";
           line_height = 0;
           markup = "full";
           format = ''<b>%a</b>\n%s'';
@@ -92,36 +92,36 @@ in {
           mouse_right_click = "close_all";
         };
 
-        urgency_low = {
-          background = ct.background-darker;
-          foreground = ct.foreground;
-          frame_color = ct.border;
-          timeout = 5;
-        };
+        #urgency_low = {
+        #  background = ct.background-darker;
+        #  foreground = ct.foreground;
+        #  frame_color = ct.border;
+        #  timeout = 5;
+        #};
 
-        urgency_normal = {
-          background = ct.background-darker;
-          foreground = ct.foreground;
-          frame_color = ct.border;
-          timeout = 8;
-        };
+        #urgency_normal = {
+        #  background = ct.background-darker;
+        #  foreground = ct.foreground;
+        #  frame_color = ct.border;
+        #  timeout = 8;
+        #};
 
-        urgency_critical = {
-          background = ct.background-darker;
-          foreground = ct.foreground;
-          frame_color = cc.color1; #red
-          timeout = 0;
-        };
+        #urgency_critical = {
+        #  background = ct.background-darker;
+        #  foreground = ct.foreground;
+        #  frame_color = cc.color1; #red
+        #  timeout = 0;
+        #};
 
-        volume = {
-          summary = "Volume*";
-          highlight = ct.highlight;
-        };
+        #volume = {
+        #  summary = "Volume*";
+        #  highlight = ct.highlight;
+        #};
 
-        backlight = {
-          appname = "Backlight";
-          highlight = ct.highlight;
-        };
+        #backlight = {
+        #  appname = "Backlight";
+        #  highlight = ct.highlight;
+        #};
       };
     };
 

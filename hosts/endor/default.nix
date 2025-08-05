@@ -76,6 +76,7 @@
       gpg.enable = true;
       git-crypt.enable = true;
       vmware.enable = false; # libxml is sad
+      stylix.enable = true;
     };
     ssh.enable = true;
 
@@ -88,11 +89,11 @@
     ];
   };
 
-  catppuccin = {
-    enable = true;
-    accent = "lavender";
-    flavor = "mocha";
-  };
+  #catppuccin = {
+  #  enable = true;
+  #  accent = "lavender";
+  #  flavor = "mocha";
+  #};
 
   environment.systemPackages = with pkgs; [
     # mesa

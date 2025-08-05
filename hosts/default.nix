@@ -44,9 +44,6 @@ in {
 
   nixpkgs = {
     hostPlatform.system = "x86_64-linux";
-    #config.permittedInsecurePackages = [
-    #  "libxml2-2.13.8"
-    #];    
   };
 
   # TODO should this be system wide or nah

@@ -60,6 +60,11 @@
     niri = {
       url = "github:sodiboo/niri-flake";
     };
+
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {

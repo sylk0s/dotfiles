@@ -30,7 +30,7 @@ in {
             y = 4;
           };
           dynamic_padding = true;
-          opacity = 1;
+          # opacity = 1;
         };
 
         # max lines in buffer
@@ -40,23 +40,23 @@ in {
         font = let
           mono = fontStyles.mono;
         in {
-          normal = {
-            family = mono.family;
-            style = "Regular";
-          };
-          bold = {
-            family = mono.family;
-            style = "Bold";
-          };
-          italic = {
-            family = mono.family;
-            style = "Italic";
-          };
-          bold_italic = {
-            family = mono.family;
-            style = "Bold Italic";
-          };
-          size = mono.size;
+          #normal = {
+          #  family = mono.family;
+          #  style = "Regular";
+          #};
+          #bold = {
+          #  family = mono.family;
+          #  style = "Bold";
+          #};
+          #italic = {
+          #  family = mono.family;
+          #  style = "Italic";
+          #};
+          #bold_italic = {
+          #  family = mono.family;
+          #  style = "Bold Italic";
+          #};
+          # size = mono.size;
         };
 
         # colorscheme
