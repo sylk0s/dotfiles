@@ -1,25 +1,25 @@
 {
   config,
-  options,
   lib,
   sylib,
   inputs,
   ...
 }: let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf mkMerge;
   inherit (sylib) mk-enable;
 
   cfg = config.sylk.themes.catppuccin;
 in {
   options.sylk.themes.catppuccin = {
-    enable = mk-enable true;
+    enable = mk-enable false;
+    cursors.enable = mk-enable true;
   };
 
   imports = [
     inputs.catppuccin.homeModules.catppuccin
   ];
 
-  config = mkIf cfg.enable {
+  config = mkMerge [(mkIf cfg.enable {
     #   # assertions = [
     #   #   {
     #   #     assertion = true;
@@ -29,27 +29,19 @@ in {
     #   # ];
 
     #   # callback
-    gtk.enable = true;
 
     catppuccin = {
       enable = true;
       accent = "lavender";
       flavor = "mocha";
-      cursors = {
+    };
+  })
+  (mkIf (cfg.enable || cfg.cursors.enable) {
+      catppuccin.cursors = {
         enable = true;
         accent = "lavender";
         flavor = "mocha";
       };
-      #gtk = {
-      #  enable = true;
-      #  accent = "lavender";
-      #   flavor = "mocha";
-      #   icon = {
-      #     enable = true;
-      #     accent = "lavender";
-      #     flavor = "mocha";
-      #   };
-      # };
-    };
-  };
+   }
+  )];
 }

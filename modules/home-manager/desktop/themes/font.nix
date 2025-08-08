@@ -1,13 +1,11 @@
 # Global font configuration
 {
   config,
-  options,
   lib,
   sylib,
   pkgs,
   ...
 }: let
-  inherit (lib) mkIf;
   inherit (sylib) mk-enable mk-str-opt;
 
   cfg = config.sylk.themes.fonts;

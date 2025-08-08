@@ -276,5 +276,8 @@ in {
         ];
       };
     })
+    (mkIf (cfg.enable && config.stylix.enable) {
+      stylix.targets.firefox.profileNames = lib.mkAfter ["${config.home.username}"];
+    })
   ];
 }
