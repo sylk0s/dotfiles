@@ -1,7 +1,6 @@
 vim.cmd.colorscheme "catppuccin"
 
 local opt = vim.opt
-
 opt.mouse = "a"
 
 opt.number = true
@@ -16,3 +15,8 @@ opt.shiftwidth = 2
 opt.expandtab = true
 
 opt.completeopt = {'menu', 'menuone', 'noselect'}
+
+vim.diagnostic.enable = true
+vim.diagnostic.config({
+  virtual_lines = true,
+})

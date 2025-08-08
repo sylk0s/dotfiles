@@ -70,7 +70,7 @@ in {
             monitor = "";
             text = "cmd[update:1000] echo \"$(date +\"%A, %B %d\")\"";
             # color = "rgb(245, 224, 220)";
-            # font_size = 22;
+            font_size = 22;
             # font_family = "JetBrains Mono";
             position = "0, 300";
             halign = "center";
@@ -82,7 +82,7 @@ in {
             monitor = "";
             text = "cmd[update:1000] echo \"$(date +\"%-I:%M\")\"";
             # color = "rgb(245, 224, 220)";
-            # font_size = 95;
+            font_size = 95;
             # font_family = "JetBrains Mono Extrabold";
             position = "0, 200";
             halign = "center";

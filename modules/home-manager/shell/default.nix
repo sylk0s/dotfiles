@@ -1,13 +1,7 @@
 {
-  config,
-  options,
-  lib,
-  sylib,
   pkgs,
   ...
-}: let
-  cfg = config.sylk.shell;
-in {
+}: {
   config = {
     assertions = [
       # add some assertion about only having one shell enabled?
@@ -29,6 +23,7 @@ in {
       fd
       ripgrep
       fzf
+      tmux
       #socat
       #jq
       #acpi

@@ -1,7 +1,5 @@
 {
   config,
-  osConfig,
-  options,
   lib,
   sylib,
   pkgs,
@@ -45,6 +43,8 @@ in {
           # Deps of telescope
           ripgrep
           fd
+
+          # deps of the sshfs thing I use
         ]
         ++ (with pkgs.ocamlPackages; [
           ocaml-lsp
@@ -91,24 +91,33 @@ in {
           # treesitter
           nvim-treesitter.withAllGrammars
 
-          # TODO
-          # telescope
           telescope-nvim
           plenary-nvim
           nvim-web-devicons
 
-          # TODO
+          comment-nvim
+          lualine-nvim
+          gitsigns-nvim
+          neo-tree-nvim
+          todo-comments-nvim
+          bufferline-nvim
+          remote-sshfs-nvim
+          persistence-nvim
+
+          cmp-nvim-lua
+          cmp-latex-symbols
+          cmp-nvim-lsp-document-symbol
+          cmp-nvim-lsp-signature-help
+          cmp-calc
+  
+          alpha-nvim
+
+          # TODO ???
           # comfort.nvim
-          # UI stuff
           # lang specific
           # spectre, flash
-          # todo-comments-nvim
           # leap?
-          alpha-nvim
-          # copilot?
           # diffview
-          # noice
-          #
         ];
 
         extraLuaConfig = ''
@@ -127,7 +136,7 @@ in {
                 },
                 dev = {
                     path = "${pkgs.vimUtils.packDir config.programs.neovim.finalPackage.passthru.packpathDirs}/pack/myNeovimPackages/start",
-                    patterns = {"folke", "catppuccin", "nvim-treesitter", "hrsh7th", "saadparwaiz1", "L3MON4D3", "neovim", "mfussenegger", "rafamadriz", "windwp", "nvim-tree", "nvim-lua", "nvim-telescope", "goolord" },
+                    patterns = {""},
                 },
                 install = {
                     -- Safeguard in case we forget to install a plugin with Nix
