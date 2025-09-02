@@ -13,6 +13,7 @@ in {
   options.sylk.themes.catppuccin = {
     enable = mk-enable false;
     cursors.enable = mk-enable true;
+    icons.enable = mk-enable true;
   };
 
   imports = [
@@ -43,5 +44,12 @@ in {
         flavor = "mocha";
       };
    }
-  )];
+  )
+  (mkIf (cfg.enable || cfg.icons.enable) {
+    catppuccin.gtk.icon = {
+      enable = true;
+      flavor = "mocha";
+      accent = "lavender";
+    };
+  })];
 }

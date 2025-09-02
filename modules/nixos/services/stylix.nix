@@ -17,14 +17,16 @@ in {
     enable = mk-enable false;
   };
 
-  config = mkIf (cfg.enable) {
+  config = mkIf cfg.enable {
     stylix = {
       enable = true;
       base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
       fonts = {
         sansSerif = {
-          package = julia-mono-nerd-font;
-          name = "JuliaMono Nerd Font Mono";
+          # package = pkgs.nerd-fonts.blex-mono;
+          # name = "BlexMono Nerd Font";
+          package = pkgs.nerd-fonts.ubuntu;
+          name = "Ubuntu Nerd Font";
         };
         monospace = {
           package = julia-mono-nerd-font;
