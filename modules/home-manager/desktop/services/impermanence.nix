@@ -43,7 +43,6 @@ in {
             "projects"
             "school"
             "work"
-            # ".config/sops-nix/secrets"
           ];
           allowOther = true;
         };
