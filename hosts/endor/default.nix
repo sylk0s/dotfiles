@@ -42,7 +42,7 @@
 
       monitors = [
         {
-          name = "eDP-1";
+          name = "LG Display 0x06B3 Unknown";
           primary = true;
           enable = true;
           switch = "Lid Switch";
@@ -51,7 +51,7 @@
           y-off = 0;
         }
         # home desk config
-        # TODO this may break with hyprland actually since hypr might not support this naming
+        # TODO: this may break with hyprland actually since hypr might not support this naming
         {
           # Sideways HP monitor
           name = "Hewlett Packard HP LP2475w CNC0090CVH";
