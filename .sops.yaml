@@ -1,10 +1,12 @@
 keys:
   - &user_sylkos 8C04FBD390300C3AE3306CD98984B68ABBC5733D
+  - &user_yubikey 8B077EBBFCC6FCE835188704132055CD98FF83D6
   - &machine_endor age103wevp6y689rgx5d3ca8hjqc54txcgqfh9u9q3jsneflhfathv7qmsrgch
 creation_rules:
   - path_regex: secrets/secrets.yaml$
     key_groups:
     - pgp:
       - *user_sylkos
+      - *user_yubikey
       age:
       - *machine_endor

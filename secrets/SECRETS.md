@@ -16,4 +16,3 @@ nix-shell -p sops --run "sops secrets.yaml"
 - generate a key for the machine
 - add it to the .sops.yaml
 - make sure GPG key is imported for the machine using the shell.nix
--
