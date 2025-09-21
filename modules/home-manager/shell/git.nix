@@ -53,11 +53,11 @@ in {
 
       programs.ssh = {
         enable = true;
-        compression = true;
         includes = ["config.d/*"];
         matchBlocks = listToAttrs (for-all-gits (
           x: {
             name = "gh-${x}";
+            compression = true;
             value = {
               host = "gh-${x}";
               hostname = secrets."${config.home.username}".github."${x}-url";

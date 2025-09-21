@@ -33,9 +33,9 @@ in {
           #nodePackages.pyright
           nodePackages.typescript-language-server
           nodePackages.bash-language-server
-          clang-tools_17
+          #clang-tools_17
           cmake-language-server
-          dockerfile-language-server-nodejs
+          dockerfile-language-server
           statix
           alejandra
           nil
