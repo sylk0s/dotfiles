@@ -71,6 +71,8 @@ in {
       # disable while typing
       input.touchpad.dwt = true;
 
+      hotkey-overlay.hide-not-bound = true;
+
       layout = {
         focus-ring = {
           width = 2;
