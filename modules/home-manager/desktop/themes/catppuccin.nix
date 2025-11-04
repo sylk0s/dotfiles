@@ -21,15 +21,7 @@ in {
   ];
 
   config = mkMerge [(mkIf cfg.enable {
-    #   # assertions = [
-    #   #   {
-    #   #     assertion = true;
-    #   #     message = "";
-    #   #   }
-    #   #   # ...
-    #   # ];
-
-    #   # callback
+    # callback
 
     catppuccin = {
       enable = true;

@@ -3,7 +3,7 @@ keys:
   - &user_yubikey 8B077EBBFCC6FCE835188704132055CD98FF83D6
   - &machine_endor age103wevp6y689rgx5d3ca8hjqc54txcgqfh9u9q3jsneflhfathv7qmsrgch
 creation_rules:
-  - path_regex: secrets/secrets.yaml$
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini|sops|nix)$
     key_groups:
     - pgp:
       - *user_sylkos

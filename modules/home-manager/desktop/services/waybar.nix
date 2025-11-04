@@ -15,7 +15,7 @@ in {
     };
   };
 
-  config = lib.mkIf (cfg.enable) {
+  config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [networkmanagerapplet];
     programs.waybar = {
       enable = true;
@@ -28,7 +28,7 @@ in {
 
           # TODO make this not hardcoded? base it off of the desktop enabled,,,
           # niri/workspaces vs hyprland/workspaces
-          modules-left = [];
+          modules-left = ["niri/workspaces"];
           modules-center = ["clock"];
           modules-right = ["battery" "tray"];
 

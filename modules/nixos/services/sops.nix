@@ -1,13 +1,13 @@
 {
   config,
-  options,
   lib,
   sylib,
   inputs,
+  pkgs,
   ...
 }: let
-  inherit (lib) mkIf;
-  inherit (sylib) mk-enable;
+  inherit (lib) mkIf types;
+  inherit (sylib) mk-enable mk-opt;
 
   cfg = config.sylk.services.sops;
 in {
@@ -28,7 +28,15 @@ in {
     #   }
     #   # ...
     # ];
+
     # other config ...
+    nix.extraOptions = ''
+      plugin-files = ${pkgs.nix-plugins}/lib/nix/plugins
+    '';
+
+    nix.settings.extra-builtins-file = [
+      ../../../secrets/sops-plugin.nix
+    ];
 
     sops = {
       validateSopsFiles = false;

@@ -14,24 +14,8 @@ with lib; {
   xdg.portal.extraPortals = [
     pkgs.xdg-desktop-portal-gtk
   ];
-  ### A tidy $HOME is a tidy mind
   xdg = {
     enable = mkDefault true;
-
-    #   desktopEntries = {
-    #     thunar-settings = {
-    #       name = "thunar-settings";
-    #       genericName = "File Explorer";
-    #       exec = "thunar %U";
-    #       terminal = false;
-    #     };
-    #     thunar-bulk-rename = {
-    #       name = "thunar-bulk-rename";
-    #       genericName = "File Explorer";
-    #       exec = "thunar %U";
-    #       terminal = false;
-    #     };
-    #   };
 
     # TODO break this out of this module here
     mimeApps = {

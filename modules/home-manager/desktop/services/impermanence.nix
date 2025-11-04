@@ -33,6 +33,7 @@ in {
 
       home.persistence = {
         # enable = true;
+# TODO: put these where they go
         "/persist/home/${config.home.username}" = {
           directories = [
             "dotfiles"

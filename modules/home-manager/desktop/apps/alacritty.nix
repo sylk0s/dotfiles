@@ -1,16 +1,12 @@
 # Configuration for the Alacritty terminal
 {
   config,
-  options,
   lib,
   sylib,
-  pkgs,
   ...
 }: let
   inherit (lib) mkIf;
   inherit (sylib) mk-enable;
-  colorScheme = config.sylk.themes.colors;
-  fontStyles = config.sylk.themes.fonts.styles;
   cfg = config.sylk.desktop.apps.alacritty;
 in {
   options.sylk.desktop.apps.alacritty = {
@@ -37,58 +33,13 @@ in {
         scrolling.history = 10000;
 
         # font config
-        font = let
-          mono = fontStyles.mono;
-        in {
-          #normal = {
-          #  family = mono.family;
-          #  style = "Regular";
-          #};
-          #bold = {
-          #  family = mono.family;
-          #  style = "Bold";
-          #};
-          #italic = {
-          #  family = mono.family;
-          #  style = "Italic";
-          #};
-          #bold_italic = {
-          #  family = mono.family;
-          #  style = "Bold Italic";
-          #};
+        font = {
           size = 11;
         };
 
         # colorscheme
-        colors = let
-          cc = colorScheme.colors;
-          ct = colorScheme.types;
-        in {
+        colors = {
           draw_bold_text_with_bright_colors = true;
-          # primary = {
-          #   background = ct.background;
-          #   foreground = ct.foreground;
-          # };
-          # normal = {
-          #   black = cc.color0;
-          #   red = cc.color1;
-          #   green = cc.color2;
-          #   yellow = cc.color3;
-          #   blue = cc.color4;
-          #   magenta = cc.color5;
-          #   cyan = cc.color6;
-          #   white = cc.color7;
-          # };
-          # bright = {
-          #   black = cc.color8;
-          #   red = cc.color9;
-          #   green = cc.color10;
-          #   yellow = cc.color11;
-          #   blue = cc.color12;
-          #   magenta = cc.color13;
-          #   cyan = cc.color14;
-          #   white = cc.color15;
-          # };
         };
 
         # selection settings

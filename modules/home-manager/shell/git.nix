@@ -1,12 +1,9 @@
 {
   config,
   osConfig,
-  options,
   lib,
   sylib,
-  pkgs,
   inputs,
-  secrets,
   ...
 }: let
   inherit (lib) mkIf listToAttrs mkMerge;
@@ -51,7 +48,9 @@ in {
           );
       };
 
-      programs.ssh = {
+      programs.ssh = let
+        secrets = builtins.extraBuiltins.read-sops "${inputs.self.outPath}/secrets/secrets-${config.home.username}.nix";
+      in {
         enable = true;
         includes = ["config.d/*"];
         matchBlocks = listToAttrs (for-all-gits (

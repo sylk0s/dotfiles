@@ -6,8 +6,7 @@
   ...
 }: let
   inherit (lib) mkIf types mkDefault mkOption;
-  inherit (builtins) foldl';
-  inherit (sylib) mk-enable mk-opt mk-str-opt;
+  inherit (sylib) mk-enable mk-str-opt;
   cfg = config.sylk.system.fs.impermanence;
 in {
   imports = [

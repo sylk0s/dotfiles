@@ -2,14 +2,10 @@
   lib,
   sylib,
   config,
-  inputs,
-  pkgs,
   ...
 }: let
-  inherit (lib) mkIf filter listToAttrs;
+  inherit (lib) mkIf listToAttrs;
   inherit (sylib) any-user filter-users;
-
-  pkgs-unstable = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in {
   config = mkIf (any-user (user: user.sylk.desktop.gaming.steam.enable) config.home-manager.users) {
     programs.steam = {
@@ -29,6 +25,7 @@ in {
       };
     };
 
+    # this exists because steam HATES symlinks
     environment.persistence."${config.sylk.system.fs.impermanence.persist-dir}".users =
       listToAttrs
       (map (user: {
