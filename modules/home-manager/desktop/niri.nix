@@ -214,7 +214,7 @@ in {
             };
             # screenshot
             "Mod+Alt+E" = {
-              action = screenshot;
+              action.screenshot = [];
               hotkey-overlay.title = "Screenshot";
             };
             # close window

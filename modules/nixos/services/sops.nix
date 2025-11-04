@@ -30,13 +30,13 @@ in {
     # ];
 
     # other config ...
-    nix.extraOptions = ''
-      plugin-files = ${pkgs.nix-plugins}/lib/nix/plugins
-    '';
+    #nix.extraOptions = ''
+    #  plugin-files = ${pkgs.nix-plugins}/lib/nix/plugins
+    #'';
 
-    nix.settings.extra-builtins-file = [
-      ../../../secrets/sops-plugin.nix
-    ];
+    #nix.settings.extra-builtins-file = [
+    #  ../../../secrets/sops-plugin.nix
+    #];
 
     sops = {
       validateSopsFiles = false;
