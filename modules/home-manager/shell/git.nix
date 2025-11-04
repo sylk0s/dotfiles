@@ -25,10 +25,12 @@ in {
       programs.git = {
         enable = true;
         # sane defaults
-        userName = cfg.userName;
-        userEmail = cfg.userEmail;
         ignores = ["/.vscode" "/.pio" "/__pycache__" ".envrc" ".direnv" ".env" "/target"];
-        extraConfig.init.defaultBranch = "main";
+        settings = {
+          init.defaultBranch = "main";
+          user.name = cfg.userName;
+          user.email = cfg.userEmail;
+        };
       };
 
       programs.gh = {
@@ -53,6 +55,7 @@ in {
       in {
         enable = true;
         includes = ["config.d/*"];
+        enableDefaultConfig = false;
         matchBlocks = listToAttrs (for-all-gits (
           x: {
             name = "gh-${x}";
