@@ -24,8 +24,8 @@ in rec {
           networking.hostName = mkDefault name;
         }
 
-        parent
         path
+        parent
       ];
     };
   };

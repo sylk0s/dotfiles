@@ -30,17 +30,26 @@ in {
     # ];
 
     # other config ...
-    #nix.extraOptions = ''
-    #  plugin-files = ${pkgs.nix-plugins}/lib/nix/plugins
-    #'';
+    nix.extraOptions = ''
+        plugin-files = ${ pkgs.nix-plugins.override {
+# TODO: I don't like this. fix it
+	        nixComponents = pkgs.nixVersions.nixComponents_2_31;
+      }}/lib/nix/plugins
+      '';
 
-    #nix.settings.extra-builtins-file = [
-    #  ../../../secrets/sops-plugin.nix
-    #];
+    nix.settings.extra-builtins-file = [
+      "${inputs.self.outPath}/secrets/sops-plugin.nix"
+    ];
+
+    environment.systemPackages = with pkgs; [
+      sops
+    ];
 
     sops = {
       validateSopsFiles = false;
       defaultSopsFile = "${inputs.self.outPath}/secrets/secrets.yaml";
+# TODO: Hey! this makes BAD assumptions about filesystem structure! Don't do this silly!
+# ok so in retrospect... this is needed or it fails. L
       age.sshKeyPaths = ["/persist/etc/ssh/ssh_host_ed25519_key"];
     };
   };

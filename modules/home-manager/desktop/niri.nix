@@ -228,7 +228,7 @@ in {
               hotkey-overlay.title = "Fullscreen window";
             };
             # toggle tagged column
-            "Mod+X" = {
+            "Mod+Z" = {
               action = toggle-column-tabbed-display;
               hotkey-overlay.title = "Toggle tagged/column mode";
             };
@@ -248,25 +248,25 @@ in {
               hotkey-overlay.title = "Maximize focused column";
             };
             # audio
-            "XF86AudioRaiseVolume" = {
-              allow-when-locked = true;
-              action = spawn "swayosd-client" "--output-volume" "raise";
-            };
-            "XF86AudioLowerVolume" = {
-              allow-when-locked = true;
-              action = spawn "swayosd-client" "--output-volume" "lower";
-            };
-            "XF86AudioMute" = {
-              allow-when-locked = true;
-              action = spawn "swayosd-client" "--output-volume" "mute-toggle";
-            };
+            # "XF86AudioRaiseVolume" = {
+            #   allow-when-locked = true;
+            #   action = spawn "swayosd-client" "--output-volume" "raise";
+            # };
+            # "XF86AudioLowerVolume" = {
+            #   allow-when-locked = true;
+            #   action = spawn "swayosd-client" "--output-volume" "lower";
+            # };
+            # "XF86AudioMute" = {
+            #   allow-when-locked = true;
+            #   action = spawn "swayosd-client" "--output-volume" "mute-toggle";
+            # };
             # brightness
-            "XF86MonBrightnessUp" = {
-              action = spawn "swayosd-client" "--brightness" "raise";
-            };
-            "XF86MonBrightnessDown" = {
-              action = spawn "swayosd-client" "--brightness" "lower";
-            };
+            # "XF86MonBrightnessUp" = {
+            #   action = spawn "swayosd-client" "--brightness" "raise";
+            # };
+            # "XF86MonBrightnessDown" = {
+            #   action = spawn "swayosd-client" "--brightness" "lower";
+            # };
             # caps
             "Caps_Lock" = {
               action = spawn "swayosd-client" "--caps-lock";

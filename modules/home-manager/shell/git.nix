@@ -4,6 +4,7 @@
   lib,
   sylib,
   inputs,
+  secrets,
   ...
 }: let
   inherit (lib) mkIf listToAttrs mkMerge;
@@ -51,7 +52,7 @@ in {
       };
 
       programs.ssh = let
-        # secrets = builtins.extraBuiltins.read-sops "${inputs.self.outPath}/secrets/secrets-${config.home.username}.nix";
+        # secrets = builtins.extraBuiltins.read-sops "/persist/etc/ssh/ssh_host_ed25519_key" "${inputs.self.outPath}/secrets/secrets-${config.home.username}.nix";
       in {
         enable = true;
         includes = ["config.d/*"];
@@ -62,7 +63,7 @@ in {
             compression = true;
             value = {
               host = "gh-${x}";
-              # hostname = secrets."${config.home.username}".github."${x}-url";
+              hostname = secrets."${config.home.username}".github."${x}-url";
               identityFile = config.sops.secrets."ssh/gh-${x}".path;
               identitiesOnly = true;
             };

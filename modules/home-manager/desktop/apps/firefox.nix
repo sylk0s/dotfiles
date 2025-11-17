@@ -5,6 +5,7 @@
   pkgs,
   inputs,
   osConfig,
+  secrets,
   ...
 }: let
   cfg = config.sylk.desktop.apps.firefox;
@@ -36,7 +37,7 @@ in {
         enable = true;
         profiles.${config.home.username} = {
           extensions = {
-            packages = with inputs.firefox-addons.packages.${pkgs.system}; [
+            packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
               ublock-origin
               stylus
             ];
@@ -259,18 +260,18 @@ in {
       };
     })
     (mkIf (osConfig.sylk.services.git-crypt.enable && cfg.enable) {
-      programs.firefox.profiles.${config.home.username}.bookmarks = let 
-        secrets = { sylkos.bookmarks = {}; };# builtins.extraBuiltins.read-sops "${inputs.self.outPath}/secrets/secrets-${config.home.username}.nix";
-      in {
-        settings = [
-          {
-            name = "Secret_Bookmarks";
-            toolbar = true;
-            bookmarks =
-              mapAttrsToList (
-                name: url: {
-                  inherit name url;
-                }
+       programs.firefox.profiles.${config.home.username}.bookmarks = let 
+    #     secrets = builtins.extraBuiltins.read-sops "${inputs.self.outPath}/secrets/secrets-${config.home.username}.nix";
+       in {
+         settings = [
+           {
+             name = "Secret_Bookmarks";
+             toolbar = true;
+             bookmarks =
+               mapAttrsToList (
+                 name: url: {
+                   inherit name url;
+                 }
               )
               secrets."${config.home.username}".bookmarks;
           }

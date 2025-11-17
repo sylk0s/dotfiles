@@ -14,7 +14,7 @@
   cfg = config.sylk.desktop.hyprland;
 
   # change this for nvidia
-  hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
+  hyprland = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
 in {
   imports = [inputs.hyprland.homeManagerModules.default];
 
