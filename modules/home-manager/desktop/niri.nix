@@ -82,7 +82,7 @@ in {
           hide-when-single-tab = true;
         };
 
-        empty-workspace-above-first = true;
+        # empty-workspace-above-first = true;
         gaps = 6;
       };
 

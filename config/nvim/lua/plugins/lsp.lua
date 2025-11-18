@@ -1,7 +1,7 @@
 return {
     "neovim/nvim-lspconfig",
     config = function()
-        local lspconfig = require('lspconfig')
+        local lsp = vim.lsp -- require('lspconfig')
         local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
         vim.api.nvim_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { noremap = true, silent = true })
@@ -9,7 +9,7 @@ return {
 
         local nproc = vim.fn.systemlist("nproc")[1]
 
-        lspconfig.lua_ls.setup({
+        lsp.config("lua_ls", {
             capabilities = lsp_capabilities,
             settings = {
               Lua = {
@@ -20,39 +20,39 @@ return {
             }
         })
 
-        lspconfig.rust_analyzer.setup {
+        lsp.config("rust_analyzer", {
             capabilities = lsp_capabilities,
-        }
+        })
 
-        lspconfig.java_language_server.setup{
+        lsp.config("java_language_server", {
             capabilities = lsp_capabilities,
-        }
+        })
 
-        lspconfig.pyright.setup{
+        lsp.config("pyright", {
             capabilities = lsp_capabilities,
-        }
+        })
 
-        lspconfig.racket_langserver.setup{
+        lsp.config("racket_langserver", {
             capabilities = lsp_capabilities,
-        }
+        })
 
-        lspconfig.julials.setup{
+        lsp.config("julials", {
             capabilities = lsp_capabilities,
-        }
+        })
 
-        lspconfig.ts_ls.setup{
+        lsp.config("ts_ls", {
             capabilities = lsp_capabilities,
-        }
+        })
 
-        lspconfig.bashls.setup{
+        lsp.config("bashls", {
             capabilities = lsp_capabilities,
-        }
+        })
 
-        lspconfig.gopls.setup{
+        lsp.config("gopls", {
             capabilities = lsp_capabilities,
-        }
+        })
 
-        lspconfig.clangd.setup{
+        lsp.config("clangd", {
           capabilities = lsp_capabilities,
           cmd = {
             "clangd",
@@ -62,21 +62,21 @@ return {
             "--function-arg-placeholders",
             "--background-index",
           }
-        }
+        })
 
-        lspconfig.cmake.setup{
+        lsp.config("cmake", {
             capabilities = lsp_capabilities,
-        }
+        })
 
-        lspconfig.dockerls.setup{
+        lsp.config("dockerls", {
             capabilities = lsp_capabilities,
-        }
+        })
 
-        lspconfig.ocamllsp.setup{
+        lsp.config("ocamllsp", {
             capabilities = lsp_capabilities,
-        }
+        })
 
-        lspconfig.nil_ls.setup{
+        lsp.config("nil_ls", {
             autostart = true,
             capabilities = lsp_capabilities,
             settings = {
@@ -87,6 +87,6 @@ return {
                     },
                 },
             }
-        }
+        })
     end
 }

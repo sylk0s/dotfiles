@@ -1,5 +1,3 @@
-vim.cmd.colorscheme "catppuccin"
-
 local opt = vim.opt
 opt.mouse = "a"
 
