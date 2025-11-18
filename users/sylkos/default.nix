@@ -28,9 +28,9 @@
       };
       services = {
         dunst.enable = true;
-        # waybar.enable = true;
+        waybar.enable = true;
         kdeconnect.enable = true;
-        dms.enable = true;
+        # dms.enable = true;
       };
     };
 

@@ -261,7 +261,7 @@ in {
     })
     (mkIf (osConfig.sylk.services.git-crypt.enable && cfg.enable) {
        programs.firefox.profiles.${config.home.username}.bookmarks = let 
-    #     secrets = builtins.extraBuiltins.read-sops "${inputs.self.outPath}/secrets/secrets-${config.home.username}.nix";
+          # secrets = builtins.extraBuiltins.read-sops "${inputs.self.outPath}/secrets/secrets-${config.home.username}.nix";
        in {
          settings = [
            {
