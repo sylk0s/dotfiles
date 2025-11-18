@@ -22,9 +22,9 @@ in {
   config = mkIf cfg.enable {
     programs.dankMaterialShell = {
       enable = true;
+      systemd.enable = true;
       niri = {
         enableKeybinds = true;   # Automatic keybinding configuration
-        enableSpawn = true;      # Auto-start DMS with niri
       };
     };
   };

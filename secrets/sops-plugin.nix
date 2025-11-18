@@ -1,3 +1,3 @@
 {exec, ... }: {
-  read-sops = keyfile: name: exec ["env" "SOPS_AGE_SSH_PRIVATE_KEY_FILE=${keyfile}" "sops" "-d" "${name}"];
+  read-sops = keyfile: name: exec ["env" "SOPS_AGE_KEY=$(nix" "run" "nixpkgs$ssh-to-age" "--" "-private-key" "-t" "${keyfile})" "sops" "-d" "${name}"];
 }

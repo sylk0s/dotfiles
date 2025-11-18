@@ -52,7 +52,7 @@ in {
       };
 
       programs.ssh = let
-        # secrets = builtins.extraBuiltins.read-sops "/persist/etc/ssh/ssh_host_ed25519_key" "${inputs.self.outPath}/secrets/secrets-${config.home.username}.nix";
+         # secrets = builtins.extraBuiltins.read-sops "/persist/etc/ssh/ssh_host_ed25519_key" "${inputs.self.outPath}/secrets/secrets-${config.home.username}.nix";
       in {
         enable = true;
         includes = ["config.d/*"];
