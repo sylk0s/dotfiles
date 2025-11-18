@@ -24,13 +24,13 @@ in {
         mainBar = {
           layer = "top";
           position = "top";
-          height = 20;
+          height = 16;
 
           # TODO make this not hardcoded? base it off of the desktop enabled,,,
           # niri/workspaces vs hyprland/workspaces
-          modules-left = ["niri/workspaces"];
+          modules-left = ["niri/workspaces" "niri/window"];
           modules-center = ["clock"];
-          modules-right = ["battery" "tray"];
+          modules-right = ["idle_inhibitor" "battery" "tray"];
 
           "battery" = {
             "tooltip-format" = "{time}";

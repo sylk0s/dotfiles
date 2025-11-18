@@ -83,7 +83,7 @@ in {
         };
 
         empty-workspace-above-first = true;
-        gaps = 8;
+        gaps = 6;
       };
 
       animations.slowdown = 0.5;
@@ -142,6 +142,27 @@ in {
           };
         };
       in lib.listToAttrs (map generate_output osConfig.sylk.system.monitors);
+
+      /* recent-windows = {
+        binds = {
+          "Alt+Tab" = {
+            action = next-window;
+            hotkey-overlay.title = "Next window";
+          };
+
+          "Alt+Shift+Tab" = { 
+            action = previous-window; 
+          };
+          "Alt+grave" = { 
+            action = next-window; 
+            filter="app-id"; 
+          };
+          "Alt+Shift+grave" = { 
+            action = previous-window;
+            filter="app-id"; 
+          };
+        }
+      }; */
 
       binds = let
         # Movement Key Sets (Left, Down, Up, Right)
@@ -248,25 +269,25 @@ in {
               hotkey-overlay.title = "Maximize focused column";
             };
             # audio
-            # "XF86AudioRaiseVolume" = {
-            #   allow-when-locked = true;
-            #   action = spawn "swayosd-client" "--output-volume" "raise";
-            # };
-            # "XF86AudioLowerVolume" = {
-            #   allow-when-locked = true;
-            #   action = spawn "swayosd-client" "--output-volume" "lower";
-            # };
-            # "XF86AudioMute" = {
-            #   allow-when-locked = true;
-            #   action = spawn "swayosd-client" "--output-volume" "mute-toggle";
-            # };
+            "XF86AudioRaiseVolume" = {
+              allow-when-locked = true;
+              action = spawn "swayosd-client" "--output-volume" "raise";
+            };
+            "XF86AudioLowerVolume" = {
+              allow-when-locked = true;
+              action = spawn "swayosd-client" "--output-volume" "lower";
+            };
+            "XF86AudioMute" = {
+              allow-when-locked = true;
+              action = spawn "swayosd-client" "--output-volume" "mute-toggle";
+            };
             # brightness
-            # "XF86MonBrightnessUp" = {
-            #   action = spawn "swayosd-client" "--brightness" "raise";
-            # };
-            # "XF86MonBrightnessDown" = {
-            #   action = spawn "swayosd-client" "--brightness" "lower";
-            # };
+            "XF86MonBrightnessUp" = {
+              action = spawn "swayosd-client" "--brightness" "raise";
+            };
+            "XF86MonBrightnessDown" = {
+              action = spawn "swayosd-client" "--brightness" "lower";
+            };
             # caps
             "Caps_Lock" = {
               action = spawn "swayosd-client" "--caps-lock";

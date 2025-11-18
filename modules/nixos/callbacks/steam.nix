@@ -35,6 +35,7 @@ in {
               ".local/share/Steam"
               ".local/share/vulkan"
               ".steam"
+              ".config/unity3d/Team Cherry" # OH TEAM CHERRY... why why why would you do this to us
             ];
           };
         })
