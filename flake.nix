@@ -71,20 +71,22 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.dgop.follows = "dgop";
     };
+
+    flake-awesome-neovim-plugins.url = "github:m15a/flake-awesome-neovim-plugins";
   };
 
   outputs = inputs @ {
     self,
     nixpkgs,
+    flake-awesome-neovim-plugins,
     ...
   }: let
     lib = nixpkgs.lib;
     sylib = import ./lib {inherit lib inputs;};
     module-paths = sylib.all-modules-in-dir-rec ./modules/nixos;
-  in {
-    lib = lib;
 
-    sylib = sylib;
+  in {
+    inherit lib sylib;
 
     # Custom pkgs
     # packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});

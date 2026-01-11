@@ -44,6 +44,7 @@ in {
             on-timeout = "loginctl lock-session"; # lock screen when timeout has passed
           }
           {
+            # TODO: abstract this per wm
             timeout = 360; # 6m
             on-timeout = "hyprctl dispatch dpms off"; # screen off when timeout has passed
             on-resume = "hyprctl dispatch dpms on"; # screen on when activity is detected after timeout has fired.

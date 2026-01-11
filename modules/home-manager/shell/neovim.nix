@@ -55,6 +55,8 @@ in {
       };
     };
 
+    nixpkgs.overlays = [inputs.flake-awesome-neovim-plugins.overlays.default];
+
     programs = {
       neovim = {
         enable = true;
@@ -62,8 +64,9 @@ in {
         vimAlias = true;
         vimdiffAlias = true;
         withNodeJs = true;
+        defaultEditor = true;
 
-        plugins = with pkgs.vimPlugins; [
+        plugins = (with pkgs.vimPlugins; [
           lazy-nvim
 
           which-key-nvim
@@ -112,13 +115,23 @@ in {
   
           alpha-nvim
 
+          # web dev things.
+          neotest
+          neotest-vitest
+          null-ls-nvim
+          FixCursorHold-nvim
+
+          precognition-nvim
           # TODO ???
           # comfort.nvim
           # lang specific
           # spectre, flash
           # leap?
           # diffview
-        ];
+        ]) ++ (with pkgs.awesomeNeovimPlugins; [
+          prettier-nvim
+          nvim-eslint
+        ]);
 
         extraLuaConfig = ''
           vim.g.mapleader = " " -- Need to set leader before lazy for correct keybindings

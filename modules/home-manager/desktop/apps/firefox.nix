@@ -71,11 +71,6 @@ in {
                     name = "dot";
                     url = "https://github.com/sylk0s/dotfiles";
                   }
-
-                  {
-                    name = "snt";
-                    url = "https://app.simplenote.com";
-                  }
                   {
                     name = "cal";
                     url = "https://calendar.google.com/";

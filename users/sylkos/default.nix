@@ -42,10 +42,13 @@
     themes.catppuccin.enable = false;
   };
 
+
   home.packages = with pkgs; [
     kicad
     telegram-desktop
     element-desktop
+    obsidian
+    rpi-imager
   ];
 
   home.persistence = {
@@ -53,6 +56,8 @@
       directories = [
         ".local/share/TelegramDesktop"
         ".local/share/kicad"
+        "obsidian"
+        ".config/obsidian"
       ];
     };
   };
