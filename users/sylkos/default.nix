@@ -58,6 +58,8 @@
         ".local/share/kicad"
         "obsidian"
         ".config/obsidian"
+        ".config/xilinx"
+        ".Xilinx"
       ];
     };
   };

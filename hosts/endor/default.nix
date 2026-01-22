@@ -2,7 +2,9 @@
   inputs,
   pkgs,
   ...
-}: {
+}: let
+  xilinxUdevRules = pkgs.callPackage ./xilinx-udev-rules/default.nix { inherit pkgs; };
+in {
   imports = [
     ./hardware-configuration.nix
     inputs.nixos-hardware.nixosModules.dell-xps-15-9520
@@ -96,8 +98,16 @@
   #  flavor = "mocha";
   #};
 
+  services.udev.packages = [
+    pkgs.apio-udev-rules
+    xilinxUdevRules
+  ];
+
+
+
   environment.systemPackages = with pkgs; [
     # mesa
+    libftdi1
   ];
 
   # time.timeZone = "Europe/Budapest";
