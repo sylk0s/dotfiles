@@ -39,7 +39,7 @@ in {
         "$CARGO_HOME/bin"
       ];
 
-      persistence."/persist/home/${config.home.username}" = {
+      persistence."/persist" = {
         directories = [
           ".local/state/cargo"
         ];

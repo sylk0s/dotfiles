@@ -22,7 +22,7 @@ in {
     };
 
     home.persistence = {
-      "/persist/home/${config.home.username}".directories = [".config/kdeconnect"];
+      "/persist".directories = [".config/kdeconnect"];
     };
   };
 }

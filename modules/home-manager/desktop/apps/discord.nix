@@ -22,7 +22,7 @@ in {
         vesktop
       ];
 
-      persistence."/persist/home/${config.home.username}" = {
+      persistence."/persist" = {
         directories = [
           ".config/vesktop"
           # ".config/vesktop/sessionData"

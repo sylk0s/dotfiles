@@ -26,7 +26,7 @@ in {
           XDG_DESKTOP_DIR = "$HOME/";
         };
 
-        persistence."/persist/home/${config.home.username}" = {
+        persistence."/persist" = {
           directories = [
             ".mozilla/firefox/${config.home.username}"
           ];

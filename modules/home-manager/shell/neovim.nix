@@ -124,7 +124,7 @@ in {
 
           precognition-nvim
 
-          # ocaml-nvim
+          ocaml-nvim
           # TODO ???
           # comfort.nvim
           # lang specific
@@ -136,7 +136,7 @@ in {
           nvim-eslint
         ]);
 
-        extraLuaConfig = ''
+        initLua = ''
           vim.g.mapleader = " " -- Need to set leader before lazy for correct keybindings
 
           require("lazy").setup({
@@ -151,7 +151,7 @@ in {
                     }
                 },
                 dev = {
-                    path = "${pkgs.vimUtils.packDir config.programs.neovim.finalPackage.passthru.packpathDirs}/pack/myNeovimPackages/start",
+                    path = "${config.xdg.dataHome}/nvim/site/pack/hm/start",
                     patterns = {""},
                 },
                 install = {

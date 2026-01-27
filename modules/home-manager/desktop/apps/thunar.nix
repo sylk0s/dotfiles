@@ -16,7 +16,7 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      xfce.thunar
+      thunar
     ];
 
     # callback into callbacks/thunar.nix

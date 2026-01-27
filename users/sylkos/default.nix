@@ -52,7 +52,7 @@
   ];
 
   home.persistence = {
-    "/persist/home/sylkos" = {
+    "/persist" = {
       directories = [
         ".local/share/TelegramDesktop"
         ".local/share/kicad"

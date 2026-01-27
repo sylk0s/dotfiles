@@ -11,7 +11,8 @@
   cfg = config.sylk.impermanence;
 in {
   imports = [
-    inputs.impermanence.nixosModules.home-manager.impermanence
+    # inputs.impermanence.nixosModules.home-manager.impermanence
+    # inputs.home-manager.nixosModules.home-manager
   ];
 
   options.sylk.impermanence = {
@@ -34,7 +35,7 @@ in {
       home.persistence = {
         # enable = true;
 # TODO: put these where they go
-        "/persist/home/${config.home.username}" = {
+        "/persist" = {
           directories = [
             "dotfiles"
             "Pictures"
@@ -45,7 +46,6 @@ in {
             "school"
             "work"
           ];
-          allowOther = true;
         };
       };
     })

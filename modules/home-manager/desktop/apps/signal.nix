@@ -20,7 +20,7 @@ in {
       packages = with pkgs; [
         signal-desktop
       ];
-      persistence."/persist/home/${config.home.username}" = {
+      persistence."/persist" = {
         directories = [
           ".config/Signal"
         ];

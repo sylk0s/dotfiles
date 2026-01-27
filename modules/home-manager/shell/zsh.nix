@@ -20,6 +20,7 @@ in {
   config = mkIf cfg.enable {
     programs.zsh = {
       enable = true;
+      dotDir = "${config.xdg.configHome}/zsh";
       shellAliases = {
       };
       history.size = 10000;

@@ -19,7 +19,7 @@ in {
         olympus
       ];
 
-      persistence."/persist/home/${config.home.username}" = {
+      persistence."/persist" = {
         directories = [
           # TODO something goes here meow
         ];
