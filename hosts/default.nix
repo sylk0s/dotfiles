@@ -44,6 +44,9 @@ in {
 
   nixpkgs = {
     hostPlatform.system = "x86_64-linux";
+    overlays = [
+      inputs.nix-xilinx.overlay
+    ];
   };
 
   # TODO should this be system wide or nah
@@ -54,6 +57,7 @@ in {
 
   environment.systemPackages = with pkgs;
     mkDefault [
+      vivado
       git
       neovim
       curl

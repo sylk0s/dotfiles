@@ -108,7 +108,14 @@ in {
   environment.systemPackages = with pkgs; [
     # mesa
     libftdi1
+    mongodb-compass
   ];
 
   # time.timeZone = "Europe/Budapest";
+
+# fix /proc/sys/kernel/hung_tast_timeout_secs = 0
+# TODO: determine if this is sus or ok
+  # boot.kernelParams = [ "kernel.hung_tast_timeout_secs=0" ];
+
+  services.mongodb.enable = true;
 }

@@ -39,6 +39,7 @@ in {
           statix
           alejandra
           nil
+          vtsls
 
           # Deps of telescope
           ripgrep
@@ -122,6 +123,8 @@ in {
           FixCursorHold-nvim
 
           precognition-nvim
+
+          ocaml-nvim
           # TODO ???
           # comfort.nvim
           # lang specific

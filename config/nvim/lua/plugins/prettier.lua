@@ -5,6 +5,9 @@ return {
     'jose-elias-alvarez/null-ls.nvim'
   },
   config = function ()
+    if vim.fn.executable('prettier') ~= 1 then
+      return
+    end
     -- setup for null-ls
     local null_ls = require("null-ls")
 

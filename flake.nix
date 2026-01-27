@@ -73,6 +73,8 @@
     };
 
     flake-awesome-neovim-plugins.url = "github:m15a/flake-awesome-neovim-plugins";
+
+    nix-xilinx.url = "github:MIT-OpenCompute/xilinx-flake";
   };
 
   outputs = inputs @ {
@@ -81,7 +83,7 @@
     flake-awesome-neovim-plugins,
     ...
   }: let
-    lib = nixpkgs.lib;
+    inherit (nixpkgs) lib;
     sylib = import ./lib {inherit lib inputs;};
     module-paths = sylib.all-modules-in-dir-rec ./modules/nixos;
 

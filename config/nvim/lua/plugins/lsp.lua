@@ -72,10 +72,6 @@ return {
             capabilities = lsp_capabilities,
         })
 
-        lsp.config("ocamllsp", {
-            capabilities = lsp_capabilities,
-        })
-
         lsp.config("nil_ls", {
             autostart = true,
             capabilities = lsp_capabilities,
@@ -87,6 +83,11 @@ return {
                     },
                 },
             }
+        })
+
+        vim.lsp.enable({
+          'ocamllsp',
+          'vtsls'
         })
     end
 }
