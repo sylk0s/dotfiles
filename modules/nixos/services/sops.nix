@@ -30,16 +30,16 @@ in {
     # ];
 
     # other config ...
-    nix.extraOptions = ''
-        plugin-files = ${ pkgs.nix-plugins.override {
-# TODO: I don't like this. fix it
-	        nixComponents = pkgs.nixVersions.nixComponents_2_31;
-      }}/lib/nix/plugins
-      '';
-
-    nix.settings.extra-builtins-file = [
-      "${inputs.self.outPath}/secrets/sops-plugin.nix"
-    ];
+#     nix.extraOptions = ''
+#         plugin-files = ${ pkgs.nix-plugins.override {
+# # TODO: I don't like this. fix it
+# 	        nixComponents = pkgs.nixVersions.nixComponents_2_31;
+#       }}/lib/nix/plugins
+#       '';
+#
+#     nix.settings.extra-builtins-file = [
+#       "${inputs.self.outPath}/secrets/sops-plugin.nix"
+#     ];
 
     environment.systemPackages = with pkgs; [
       sops

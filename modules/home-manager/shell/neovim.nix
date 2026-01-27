@@ -124,7 +124,7 @@ in {
 
           precognition-nvim
 
-          ocaml-nvim
+          # ocaml-nvim
           # TODO ???
           # comfort.nvim
           # lang specific
