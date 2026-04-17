@@ -31,8 +31,8 @@ in {
           java-language-server
           #TODO
           #nodePackages.pyright
-          nodePackages.typescript-language-server
-          nodePackages.bash-language-server
+          typescript-language-server
+          bash-language-server
           #clang-tools_17
           cmake-language-server
           dockerfile-language-server

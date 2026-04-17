@@ -14,7 +14,7 @@
   cfg = config.sylk.shell.neofetch;
 in {
   options.sylk.shell.neofetch = {
-    enable = mk-enable true;
+    enable = mk-enable false;
   };
 
   config = mkIf cfg.enable {
