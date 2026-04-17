@@ -49,6 +49,7 @@
     element-desktop
     obsidian
     rpi-imager
+    prusa-slicer
   ];
 
   home.persistence = {
