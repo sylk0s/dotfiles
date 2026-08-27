@@ -87,7 +87,7 @@ in {
         name = "sylkos";
         privileged = true;
         config = "${inputs.self.outPath}/users/sylkos";
-        extra-groups = [ "disk" ];
+        extra-groups = [ "disk" "dialout" ];
       }
     ];
   };
@@ -101,6 +101,7 @@ in {
   services.udev.packages = [
     pkgs.apio-udev-rules
     xilinxUdevRules
+    pkgs.meshtasticd
   ];
 
 
@@ -109,9 +110,12 @@ in {
     # mesa
     libftdi1
     mongodb-compass
+    meshtastic
+
   ];
 
   # time.timeZone = "Europe/Budapest";
+  time.timeZone = "US/Pacific";
 
 # fix /proc/sys/kernel/hung_tast_timeout_secs = 0
 # TODO: determine if this is sus or ok
