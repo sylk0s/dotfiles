@@ -16,7 +16,7 @@ in {
     (mkIf (any-user (user: user.sylk.desktop.niri.enable) config.home-manager.users) {
       programs.niri = {
         enable = true;
-        package = pkgs.niri-unstable;
+        package = pkgs.niri;
       };
 
       xdg.portal.config.niri = {

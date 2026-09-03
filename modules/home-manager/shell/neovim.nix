@@ -119,7 +119,7 @@ in {
           # web dev things.
           neotest
           neotest-vitest
-          null-ls-nvim
+          none-ls-nvim
           FixCursorHold-nvim
 
           precognition-nvim
@@ -132,7 +132,7 @@ in {
           # leap?
           # diffview
         ]) ++ (with pkgs.awesomeNeovimPlugins; [
-          prettier-nvim
+          # prettier-nvim
           nvim-eslint
         ]);
 

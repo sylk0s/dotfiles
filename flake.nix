@@ -5,6 +5,9 @@
     # default nix pkgs repo
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    # stable nixpkgs
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-26.05";
+
     # home-manager import
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -12,36 +15,41 @@
     };
 
     # hyprland related stuffs
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprland = {
+      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
 
-    # ags for wayland bar/widets
-    ags.url = "github:Aylur/ags";
-
     # hardware specific configs
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    # declaritive hyprland
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # ephemeral filesystem
-    impermanence.url = "github:nix-community/impermanence";
+    impermanence = {
+      url = "github:nix-community/impermanence";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # secret management
-    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # theming
-    catppuccin.url = "github:catppuccin/nix";
-
-    # cosmic desktop
-    nixos-cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
+    catppuccin = {
+      url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -50,10 +58,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    lanzaboote.url = "github:nix-community/lanzaboote";
+    lanzaboote = { 
+      url = "github:nix-community/lanzaboote";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     niri = {
       url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     stylix = {
@@ -66,9 +78,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    flake-awesome-neovim-plugins.url = "github:m15a/flake-awesome-neovim-plugins";
+    flake-awesome-neovim-plugins = {
+      url = "github:m15a/flake-awesome-neovim-plugins";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    nix-xilinx.url = "github:MIT-OpenCompute/xilinx-flake";
+    nix-xilinx = {
+      url = "github:MIT-OpenCompute/xilinx-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
